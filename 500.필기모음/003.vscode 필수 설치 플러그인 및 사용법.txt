@@ -121,13 +121,15 @@ __________________________________________________
 -> ctrl+alt+A (A는 Abbribiation 약어)
 
 2. Upate Tag (기존태그 변경하기)
--> ctrl+alt+I (I는 Inverse 반전)
+-> ctrl+alt+u(U는 update)
 
 3. Remove Tag(감싼태그 지우기)
--> ctrl+alt+K (K는 Kill 죽이기)
+-> ctrl+alt+r (R는 remove 죽이기)
 
-4. Beautify(자동줄맞춤)
--> ctrl+alt+B (B는 Beautify)
+4. Prettier(자동줄맞춤)
+-> ctrl+alt+P (P는 Prettier)
+프리티어 설정에서 프리디어 : 탭 윗스 를 4로변경
+원래 2임 tab누르면 4칸 들여쓰기라 밸런스 맞추려는것
 
 ******************************************************
 
