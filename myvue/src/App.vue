@@ -24,3 +24,10 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+<!-- <template> 안에는 html
+     <script> 안에는 js
+     <sytle> 안에는 css
+      cd 폴더명 을 통해 폴더로 접근후 
+      npm run serve를 통해 현재 브라우저를 확인할 수 있다.
+-->

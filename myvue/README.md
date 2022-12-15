@@ -1,4 +1,4 @@
-# mybue
+# myvue
 
 ## Project setup
 ```
