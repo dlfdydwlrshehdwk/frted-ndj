@@ -48,7 +48,9 @@
                 -> 같은 클래스인데 다른 디자인을 적용가능
                 5. 그룹선택자 : ,(콤마)
                 예) h1,div,a {} 여러곳에 같은디자인을 적용가능
-                
+                6.자손 선택자 : 띄어쓰기
+                ex) div a {} -> div 하위 모든 a요소들 에게 적용
+                */
                 
                 /* 기본마진 패딩 없애기 */
                 html,body{
@@ -58,15 +60,28 @@
                     사용자가 별도로 적용한 마진등 초기화할때 한꺼번에 최상위 요소인 html,body를 마진,패딩 초기화값 0으로 셋팅한다. */
                 }
 
-                /* 1. 상단영역 */
-                .top{
-                    /* 1. 가로크기 w */
+                /* 1. 박스공통 클래스 */
+                .bx{
+                    /* 1. 가로크기 w 
+                        아무값도 안쓰면? auto 여서 블록은 부모오쇼 끝까지 차지*/
                         width: 750px;
-                    /* 2. 세로크기 h */
-                        height: 150px;
+                    /* 2. 세로크기 h 
+                        아무값도 안쓰면? auto인데... 블록은 내용만큼만 늘어남*/
+                        /* height: 150px; */
                     /* 3. 경계선(보더) bd 
-                    border: 두께 종류 색상 */
-                        border: 1px dashed #3069c0;
+                    border: 두께 종류 색상 
+                        - border-width : 두께
+                        - border-style : 종류
+                        - border-color : 색상                  
+                    */
+                        border: 1px inset #3069c0;
+
+                        /* 둥근 모서리 보더 : brad
+                        border-radius : 값
+                        값은50% 주면 둥글어짐
+                        */
+                        border-radius: 20px;
+
                     /* 4. 안쪽여백(패딩) p 
                         padding : 1개 (4방향)
                         padding : 1개 2개 (위아래 양쪽)
@@ -80,7 +95,6 @@
                     /* 5. 바깥여백(마진) m */
                         /* margin: 30px; */
                         margin: 0 auto;
-                        ///
                         margin-top: 30px;
 
                     /* 
@@ -91,15 +105,19 @@
                         (공식명칭 X)
                     */
                 }
+                /* 메인영역 이미지 */
+                .cont img{
+                    width: 100%;
+                    /* 한쪽만  주면 이미지는 자동으로 비율유지를 하면서 변경된다
+                    100%는 부모박스를 채움! */
+                }
 
-
-            */
         </style>
     </head>
 
     <body>
         <!-- 1. 상단영역 -->
-        <header class="top">
+        <header class="top bx">
             <!-- 1-1. 제목 -->
             <h1>네이버 요약 뉴스</h1>
             <!-- 1-2.GNB메뉴  -->
@@ -118,11 +136,11 @@
             </nav>
         </header>
         <!-- 2. 메인영역 -->
-        <main class="cont">
+        <main class="cont bx">
             <img src="./images/newsiller.jpg" alt="newsimage">
         </main>
         <!-- 3. 하단영역 -->
-        <footer class="info">
+        <footer class="info bx">
             <!-- 주소블록요소 address -->
             <address>
                 서울시 강남구 역삼동 119 대호B 8F<br>
