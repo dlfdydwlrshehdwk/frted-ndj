@@ -7,7 +7,7 @@
   
   <h2>{{products[0]}}</h2>
   <div>가격</div>
-  <button>허위매물신고</button> <span>신고수 : 0</span>
+  <button @click="신고수++">허위매물신고</button> <span>신고수 : {{신고수}}</span>
   <h2>{{products[1]}}</h2>
   <div>가격</div>
   <h2>{{products[2]}}</h2>
@@ -35,6 +35,7 @@ export default {
   name: 'App',
   data(){
     return{
+      신고수 : 0,
       메뉴들 : ['Home','Shop','About'],
       products:['역삼동원룸','천호도원룸','마포구원룸'],
       }
