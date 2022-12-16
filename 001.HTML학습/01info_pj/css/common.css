@@ -1,0 +1,198 @@
+@charset "utf-8";
+/* 외부CSS 상단엔 @charset 필수 */
+/* Info PJ 공통 CSS -common.css */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=La+Belle+Aurore&family=Martian+Mono&family=Mukta&family=Nanum+Pen+Script&family=Source+Code+Pro&display=swap');
+          
+
+
+/*  
+    [스타일 시트 문법 영역
+    기본문법]
+
+    선택자{
+        속성 : 값;
+    }
+
+    [css 박스 모델]
+    -> 모든요소는 박스형태로 그 디자인을 설정한다.
+
+    ->5가지 속성을 셋팅한다.
+    1. width : 가로크기
+    2. height : 세로크기
+    3. padding : 안쪽여백
+    4. border : 경계선
+    5. margin : 바깥여백
+
+    -> 박스모델은 적용은 블록요소를 기본으로 한다.
+
+    [css 선택자 (Selector)]
+    1. 타입선택자 : 요소명으로 선택
+    예) h1{}, div{}, a{}
+    2. 아이디선택자 : # ex) #아이디명{}
+    3. 클래스선택자 : . ex) .클래스명{}
+    4. 종속선택자 : 요소명#아이디명 or 요소명.클래스명
+    요소명#아이디명.클래스명
+    ex) div#my{} ->div요소인데 아이디명이 my 이다.
+    ex2) a.my{} -> a요소인데 클라스명이 my이다.
+    -> 기본적으로 종속선택자는 요소분석기에서 사용
+    -> 특정요소에 특정이름을 밝혀야 할 경우
+    -> 클래스적용시 같은 이름으로 다른 디자인을 줄 때
+    ex) div.on{} , header.on{}
+    -> 같은 클래스인데 다른 디자인을 적용가능
+    5. 그룹선택자 : ,(콤마)
+    예) h1,div,a {} 여러곳에 같은디자인을 적용가능
+    6.자손 선택자 : 띄어쓰기
+    ex) div a {} -> div 하위 모든 a요소들 에게 적용
+    7.직계자식 선택자 : > (왼쪽꺾쇠) 
+    ex) header>a{} 헤더 바로아래 a요소
+    8. 형제선택자 : +
+    예) div+div{} -> 앞에 형제div가 있는 div선택
+    예) a+a{} ->앞에 a가있는 a선택
+    -> 첫번째를 제외한 나머지 형제 요소들을 선택시 많이씀
+    */
+    
+    /* 기본마진 패딩 없애기 */
+    html,body{
+        margin: 0;
+        padding: 0;
+        /* 실제는 body에만 마진8px이 있지만
+        사용자가 별도로 적용한 마진등 초기화할때 한꺼번에 최상위 요소인 html,body를 마진,패딩 초기화값 0으로 셋팅한다. */
+    }
+
+    body{
+        padding-bottom: 50px;
+    }
+
+    /* 1. 박스공통 클래스 */
+    .bx{
+        /* 1. 가로크기 w 
+            아무값도 안쓰면? auto 여서 블록은 부모오쇼 끝까지 차지*/
+            width: 750px;
+        /* 2. 세로크기 h 
+            아무값도 안쓰면? auto인데... 블록은 내용만큼만 늘어남*/
+            /* height: 150px; */
+        /* 3. 경계선(보더) bd 
+        border: 두께 종류 색상 
+            - border-width : 두께
+            - border-style : 종류
+            - border-color : 색상                  
+        */
+            border:  inset #3069c0;
+
+            /* 둥근 모서리 보더 : brad
+            border-radius : 값
+            값은50% 주면 둥글어짐
+            */
+            border-radius: 20px;
+
+        /* 4. 안쪽여백(패딩) p 
+            padding : 1개 (4방향)
+            padding : 1개 2개 (위아래 양쪽)
+            padding : 1개 2개 3개(위 양쪽 아래)
+            padding : 1개 2개 3개 4개(각 방향(위 오른 아래 왼)
+            ->>>마진도 동일함!
+        */
+            padding: 20px; 
+        /* padding: 20px 50px 80px 5px; */
+
+        /* 5. 바깥여백(마진) m */
+            /* margin: 30px; */
+            margin: 0 auto;
+            margin-top: 30px;
+
+        /* 
+            마영오씨가 누구지?
+            -일반적인 블록요소가 가로크기를 가질 때
+            이를 중앙정렬하려면 양쪽 마진을 auto로 설정한다.
+            이때 위아래 0 양쪽 auto를 줄여서 마영오 라고한다.
+            (공식명칭 X)
+        */
+    }
+    /* 메인영역 이미지 */
+    .cont img{
+        width: 100%;
+        /* 한쪽만  주면 이미지는 자동으로 비율유지를 하면서 변경된다
+        100%는 부모박스를 채움! */
+    }
+
+    /* 1. 상단영역 */
+    .top{
+        /* 배경색 : bgc 
+        background-color */
+        background-color: rgba(245, 228, 132, 0.555);
+        /* 글자중앙정렬 */
+        text-align: center;
+    }
+    /* 타이틀 */
+    .top>h1{
+        /* 1. 글자 스타일 fs : font-style 
+        italick : 이탤릭 , normal : 이탤릭해제(기본값)*/
+        font-style: normal;
+        /* 2. 글자두께 fw: font-weight 
+        normal : 두께없음
+        bold : 두껍게*/
+        font-weight: normal;
+        /* 3. 글자크기 fz : font-size 
+        글자단위 : pt,px,em,rem,vw,vh 등...*/
+        font-size: 50px;
+        /* 4. 글자줄간격 lh : line-height 
+        (글이 여러줄일때 사이간격용 또는 글자 박스에서 세로중앙정렬시)
+        -단위 없으면 배수로 적용*/
+        line-height: 1;
+        /* 5. 글자체 ff : font-family */
+        /* font-family:sans-serif */
+        /* ex) font-family : "궁서","굴림","돋움" 
+        궁서체가없다면 굴림체로 굴림체가 없다면 돋움체로
+        대체체로 설정됨*/
+        font-family: 'Nanum Pen Script', cursive;
+        /* 6. 글자색 : c
+        color -해시코드/RGB/HGL/웹색상명 */
+        color: green;
+    }
+    #gnb a{
+        /* 글자체 */
+        font-family: 'Source Code Pro', monospace;
+        /* a요소는 기본적으로 밑줄과 글자색이 셋팅됨
+        반드시 a요소에서 변경해야만 적용된다 */
+        color: #000;
+        /* 밑줄없앰 tdn- text-decoration : none; */
+        text-decoration: none;
+        font-size: 20px;
+    }
+    /* a요소 오버시 */
+    /* :hover 가상클래스
+    -> 마우스오버된 상태에 대한 디자인 셋팅 */
+
+    /* a+a:hover 앞에 a형제가 있는 a에 오버시 */
+    #gnb a+a:hover{
+        /* 글자색 */
+        color: aqua;
+        text-decoration:underline;
+        /* 글자 데코 : text-decoration
+        underline(밑줄)/overline(윗줄)/line-through(중간줄) */
+    }
+    /* 로고이미지 va
+    vertical-align 
+    -값 : top,bottom,middle,수치 등..
+    인라인요소간 세로정렬(진행방향)   */
+    #gnb img{
+        vertical-align: -3px;
+    }
+
+    
+    /* 2. 메인영역 */
+    /* 3. 하단영역 */
+    .info{
+        background-color: lightgrey;
+        text-align: center;
+        font-family: 'Martian Mono', monospace;
+    }
+    .info address{
+        /* address는 기본 이탤릭 이므로 해제하기 */
+        font-style: normal;
+        color: #333;
+        font-size: 14px;
+    }
+
