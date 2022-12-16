@@ -5,16 +5,27 @@
     
   </div>
   
-  <div v-for="(a,i) in products" :key="i">
-    <h4>{{products[]}}</h4>
-    <p>가격</p>
-  </div>
-  <!-- <h2>{{products[0]}}</h2>
-  <div>{{price1}}만원</div>
+  <h2>{{products[0]}}</h2>
+  <div>가격</div>
+  <button>허위매물신고</button> <span>신고수 : 0</span>
   <h2>{{products[1]}}</h2>
-  <div>가격은아무거나</div>
+  <div>가격</div>
   <h2>{{products[2]}}</h2>
-  <div>가격은아무거나</div> -->
+  <div>가격</div>
+  <!-- <h2>역삼동원룸</h2>
+  <div>가격</div>
+  <h2>천호동원룸</h2>
+  <div>가격</div>
+  <h2>마포구원룸</h2>
+  <div>가격</div> 을 반복문으로... 
+  데이터값을 만들어주고 위와같이 반복문 실행
+  
+  <div v-for="(a,i) in products" :key="i">
+    <h4>{{a}}</h4>
+    <p>가격</p>
+  </div>  이렇게 a는제목같은 느낌 i는 i++처럼 숫자가 하나씩늘어나는 그런거
+  key는 꼭입력해주어야함
+  -->
 </template>
 
 <script>
