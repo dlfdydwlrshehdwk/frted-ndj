@@ -53,6 +53,10 @@
                 ex) div a {} -> div 하위 모든 a요소들 에게 적용
                 7.직계자식 선택자 : > (왼쪽꺾쇠) 
                 ex) header>a{} 헤더 바로아래 a요소
+                8. 형제선택자 : +
+                예) div+div{} -> 앞에 형제div가 있는 div선택
+                예) a+a{} ->앞에 a가있는 a선택
+                -> 첫번째를 제외한 나머지 형제 요소들을 선택시 많이씀
                 */
                 
                 /* 기본마진 패딩 없애기 */
@@ -149,7 +153,7 @@
                     color -해시코드/RGB/HGL/웹색상명 */
                     color: green;
                 }
-                .top a{
+                #gnb a{
                     /* 글자체 */
                     font-family: 'Source Code Pro', monospace;
                     /* a요소는 기본적으로 밑줄과 글자색이 셋팅됨
@@ -158,9 +162,27 @@
                     /* 밑줄없앰 tdn- text-decoration : none; */
                     text-decoration: none;
                 }
-                .logo{
-                    margin-top: ;
+                /* a요소 오버시 */
+                /* :hover 가상클래스
+                -> 마우스오버된 상태에 대한 디자인 셋팅 */
+
+                /* a+a:hover 앞에 a형제가 있는 a에 오버시 */
+                #gnb a+a:hover{
+                    /* 글자색 */
+                    color: aqua;
+                    text-decoration:underline;
+                    /* 글자 데코 : text-decoration
+                    underline(밑줄)/overline(윗줄)/line-through(중간줄) */
                 }
+                /* 로고이미지 va
+                vertical-align 
+                -값 : top,bottom,middle,수치 등..
+                인라인요소간 세로정렬(진행방향)   */
+                #gnb img{
+                    vertical-align: -3px;
+                }
+
+                
                 /* 2. 메인영역 */
                 /* 3. 하단영역 */
                 .info{
@@ -186,17 +208,16 @@
             <!-- 1-2.GNB메뉴  -->
             <!-- GNB=Global Navigation Bar -->
 
-            <nav id="gnb">
-                <span class="logo">
-                <a href="#">
+            <nav id="gnb">  
+                <a href="index.html">
                     <img src="images/naverlogo.png" alt="naverlogo" style="width: 20px;"> 
                     <!-- ctrl + space = 자동완성창 -->
-                </a></span>
-                <a href="">정치</a> | 
-                <a href="">경제</a> | 
-                <a href="">사회</a> | 
-                <a href="">IT/과학</a> | 
-                <a href="">TV/연예</a> 
+                </a>
+                <a href="sub1.html">정치</a> | 
+                <a href="sub2.html">경제</a> | 
+                <a href="sub3.html">사회</a> | 
+                <a href="sub4.html">IT/과학</a> | 
+                <a href="sub5.html">TV/연예</a> 
             </nav>
         </header>
         <!-- 2. 메인영역 -->
