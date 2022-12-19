@@ -46,14 +46,35 @@
         animation-timing-function : linear;
         margin: auto;
         margin-top: 150px;
-}
-
+        }
+        
 @keyframes mymove {
   100% {transform: rotate(360deg);}
 }  
 @font-face{
     font-family: songlc;
     src: url(./002.CSS학습/fonts/나눔손글씨\ 잘하고\ 있어.woff)format(woff);
+}
+@font-face {
+    font-family: father;
+    src: url(./002.CSS학습/fonts/나눔손글씨\ 아빠글씨.woff);
+}
+@font-face {
+    font-family: adult;
+    src: url(./002.CSS학습/fonts/나눔손글씨\ 나무정원.woff);
+}
+@font-face {
+    font-family: gom;
+    src: url(./002.CSS학습/fonts/나눔손글씨\ 곰신체.woff);
+}
+.sibdae{
+    font-family: father; 
+}
+.esibdae{
+    font-family: adult;
+}
+.samsibdae{
+    font-family: gom;
 }
 
     </style>
@@ -62,9 +83,9 @@
     <nav class="navbar">
         <h1 class="logo">제목</h1>
         <ul class="navbarul">
-            <li>10</li>
-            <li>20</li>
-            <li>30</li>
+            <li class="sibdae">내 어린시절 이야기</li>
+            <li class="esibdae">나의 청춘!</li>
+            <li class="samsibdae">늙어써ㅠ</li>
         </ul>
     </nav>
     
