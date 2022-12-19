@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아카이브 페이지</title>
+    <style>
+        *{
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            
+        }
+        .navbar{
+            display: flex;   
+            vertical-align: center;
+            justify-content: space-between;
+            height: 100px;
+            background-color: aqua;
+        }
+        .logo{
+            font-size: 48px;
+            padding-left: 10px;
+            margin-top: 15px;
+        }
+        .navbarul{
+            display: flex;
+            font-size: 24px;
+            
+        }
+        .navbarul li{
+            text-align: center;
+            padding:30px;
+            
+        }
+        .navbarul :hover{
+            background-color: yellowgreen;
+            border-radius: 15%;
+        }
+       .qwe{
+        width: 500px; height: 500px;
+        background-color: aqua;
+        animation: mymove 2s ;
+        animation-timing-function : linear;
+        margin: auto;
+        margin-top: 20px;
+}
+
+@keyframes mymove {
+  100% {transform: rotate(360deg);}
+}  
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo">제목</h1>
+        <ul class="navbarul">
+            <li>10</li>
+            <li>20</li>
+            <li>30</li>
+        </ul>
+    </nav>
+    
+
+    <div class="qwe"></div>
+
+</body>
+</html>
