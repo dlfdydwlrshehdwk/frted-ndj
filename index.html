@@ -7,8 +7,14 @@
        .qwe{
         width: 50px; height: 50px;
         background-color: aqua;
-        rotate: 30deg;
-       }
+        animation: mymove 1s ;
+  animation-timing-function : linear;
+}
+
+@keyframes mymove {
+  100% {transform: rotate(360deg);}
+}
+       
     </style>
 </head>
 <body style="text-align: center;">
