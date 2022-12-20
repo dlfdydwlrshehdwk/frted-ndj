@@ -11,6 +11,9 @@
             width: 100%;
             
         }
+        .body{
+            width: 1280px;
+        }
         .navbar{
             text-align: center;  
             vertical-align: center;
@@ -76,21 +79,66 @@
 .samsibdae{
     font-family: gom;
 }
+@keyframes blink-effect{
+    50%{
+        opacity: 0;
+    }
+}
+.qwer{
+    animation: blink-effect 1s step-start infinit;
+   
+}
+.wert{
+    animation: blink-effect 1s step-end infinit;
+    
+    
+}
+.erty{
+    animation: blink-effect 1s step-start infinit;
+    
+    
+}
+.rtyu{
+    animation: blink-effect 1s step-end infinit;
+    
+    
+}
+.up{
+    display: flex;
+    justify-content: space-between;
+}
+.down{
+    display: flex;
+    justify-content: space-between;
+}
 
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <h1 class="logo">제목</h1>
-        <ul class="navbarul">
-            <li class="sibdae">내 어린시절 이야기</li>
-            <li class="esibdae">나의 청춘!</li>
-            <li class="samsibdae">늙어써ㅠ</li>
-        </ul>
+        <h1 class="logo">일대기</h1>
+            <ul class="navbarul">
+                <li class="sibdae">내 어린시절</li>
+                <li class="esibdae">나의 청춘!</li>
+                <li class="samsibdae">늙어써ㅠ</li>
+            </ul>
     </nav>
     
+    <main>
+        <div class="up">
+            <div class="qwer">1234</div>
+            <div class="wert">2345</div>
+        </div>
+        
+        <div class="qwe"></div>
+        <div class="down">
+            <div class="erty">3456</div>
+            <div class="rtyu">4567</div>
+        </div>
+        
+    </main>
 
-    <div class="qwe"></div>
+    
 
 </body>
 </html>
