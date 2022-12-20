@@ -9,7 +9,7 @@
             margin: 0px;
             padding: 0px;
             width: 100%;
-            
+            text-decoration: none;
         }
         .body{
             width: 1280px;
@@ -32,6 +32,7 @@
             font-size: 24px;
             background-color: blueviolet;
             
+            
         }
         .navbarul li{
             text-align: center;
@@ -40,7 +41,7 @@
         }
         .navbarul :hover{
             background-color: yellowgreen;
-            border-radius: 15%;
+            border-radius: 50%;
         }
        .qwe{
         width: 500px; height: 500px;
@@ -48,7 +49,10 @@
         animation: mymove 2s ;
         animation-timing-function : linear;
         margin: auto;
-        margin-top: 150px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 50%;
+        text-align: center;
         }
         
 @keyframes mymove {
@@ -106,18 +110,22 @@
 .up{
     display: flex;
     justify-content: space-between;
+    margin-top: 130px;
+    text-align: center;
 }
 .down{
     display: flex;
     justify-content: space-between;
+    text-align: center;
 }
 
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <h1 class="logo">일대기</h1>
-            <ul class="navbarul">
+        <h1 class="logo">
+            <a href="#">일대기</a></h1>   
+        <ul class="navbarul">
                 <li class="sibdae">내 어린시절</li>
                 <li class="esibdae">나의 청춘!</li>
                 <li class="samsibdae">늙어써ㅠ</li>
@@ -130,7 +138,7 @@
             <div class="wert">2345</div>
         </div>
         
-        <div class="qwe"></div>
+        <div class="qwe">가나다라마바사아자차카파타하</div>
         <div class="down">
             <div class="erty">3456</div>
             <div class="rtyu">4567</div>
