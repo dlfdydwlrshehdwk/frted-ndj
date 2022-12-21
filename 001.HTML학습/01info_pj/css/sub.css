@@ -51,9 +51,24 @@
 }
 /* 2-3.기사사진(+사진영역) */
 .afig{
-
+   /* 마진 m : 2개값 -> 위아래 양쪽*/
+   margin: 15px 0;
+   /* 인라인 가로중앙 : text-align tac*/
+   text-align: center;
 }
-/
+/* 기사이미지 */
+.afig img{
+   width: 100%;
+}
+/* 기사이미지 설명글*/
+.afig small{
+   font-family: 'Nanum Pen Script', cursive;
+   /* 글자크기 : fz 
+   -글자크기 최저 한계는 10px*/
+   font-size: 14px;
+   /* 글자색 c*/
+   color: #14c014
+}
 /* 2-4.기사내용 */
 /* 2-5.기자정보 */
 /* 2-6.기사원문 */
