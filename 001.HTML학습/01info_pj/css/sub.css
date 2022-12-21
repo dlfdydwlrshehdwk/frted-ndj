@@ -1,2 +1,11 @@
 @charset "utf-8";
 /* 서브페이지공통 CSS - sub.css */
+
+/* 
+   [ import로 파일합치기]
+   외부 css파일에서 다른 외부 css파일을 import 방식으로 불러올때의 장점은?
+   html파일에서 link요소로 호출할 경우 
+   http requesete (웹요청) 이 많아져서 페이지 랜더링 속도에 영향을 미친다.
+   따라서 import방식을 쓰면 더 적은 웹요청에 따라 처리속도에 도움이 된다.
+*/
+@impor/t url();
