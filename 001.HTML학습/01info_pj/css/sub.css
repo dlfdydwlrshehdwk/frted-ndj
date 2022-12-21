@@ -70,5 +70,36 @@
    color: #14c014
 }
 /* 2-4.기사내용 */
+.arti{
+   font-size: 17px;
+   /*줄간격 : 1h
+   -> 주의 단위가없으면 배수다.기준은 글자크기*/
+   line-height: 1.7;
+   padding: 0 10px; 
+   /* 자간 : ls */
+   letter-spacing: 1px;
+   /* 글자들여쓰기 ti
+   값 : 양수는 들여쓰기 ,음수는 내여쓰기*/
+   text-indent: 20px;
+}
+
+/* mark요소 변경하기*/
+.arti p mark{
+   /* 인라인요소를 블록태그로*/
+   display : block; 
+   /* 글자크기 */
+   font-size: 18px;
+   /*줄간격*/
+   line-height: 2;
+   /* 위아래 , 양쪽패딩*/
+   padding: 20px 50px;
+   /*배경색변경*/
+   background-color: #ebebeb;
+   border-top: 2px solid gray;
+   border-bottom: 2px solid gray;
+   /* 중앙정렬 */
+   text-align: center;
+   margin: 15px 0px;
+}
 /* 2-5.기자정보 */
 /* 2-6.기사원문 */
