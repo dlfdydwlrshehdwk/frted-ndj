@@ -18,6 +18,7 @@
 .cont{
    /*패딩 15px 기존20px에서 재정의*/
    padding: 15px;
+   overflow: hidden;
 }
 
 /* 2-1.언론사로고 */
@@ -115,4 +116,46 @@
    font-weight: bold;
 }
 /* 2-5.기자정보 */
-/* 2-6.기사원문 */
+.rpt{
+   font-size: 14px;
+   /* 배경색 bgc*/
+   background-color: #dbdbdb;
+   padding: 5px;
+   /* 출신변경하기 
+   디자인적용과 동시에 인라인특성인 글자만큼만 
+   크기가잡히도록 인라인블럭으로 변경함*/
+   display: inline-block;
+   margin: 15px 0;
+}
+.cont h5{
+   text-align: right;
+}
+/* 2-6.기사원문 
+별도의 이름없이 구조로만 기사원문을 선택한다
+직계자식*/
+.cont>h5>a{
+   display: inline-block;
+   /*블록요소 오른쪽 끝으로 보내기
+   부모박스인 .cont에 overflow:hidden 셋팅으로 박스가 망가지는 것 막자.*/
+   
+   /*기본없애기*/
+   margin: 0; 
+   padding: 0;
+   /*가로,세로 지정*/
+   width: 70px; height: 70px; border: 1px solid #dbdbdb;
+   border-radius: 50%; text-align: center;
+   /*세로중앙 : 줄간격으로 lh*/
+   line-height: 70px;
+   /*동그라미 둥글게 둥글게 border-radius brad -> 50%는 원circle*/
+   background-color: lightblue;
+   
+}
+
+/*가상클래스로 오버시 박스그림자넣기*/
+.cont>h5 a:hover{
+   /*박스그림자
+   box-shadow: x y blur spread 색;
+   (내부그림자는 inset씀
+   spread= 박스그림자크기(필요시사용)*/
+   box-shadow: 0 0 5px rgb(136, 61, 61);
+}
