@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="http://code.jquery.com/jquery-3.6.2.min.js">
+    </script>
     <meta charset="UTF-8">
     <title>아카이브 페이지</title>
     <style>
@@ -44,14 +46,6 @@
             border-radius: 50%;
         }
        .qwe{
-        width: 500px; height: 500px;
-        background-color: aqua;
-        animation: mymove 2s ;
-        animation-timing-function : linear;
-        margin: auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        border-radius: 50%;
         text-align: center;
         }
         
@@ -89,22 +83,23 @@
     }
 }
 .qwer{
-    animation: blink-effect 1s step-start infinit;
+    animation: blink-effect 1s step-start infinite;
+     transform: rotate(-35deg);
    
 }
 .wert{
-    animation: blink-effect 1s step-end infinit;
-    
+    animation: blink-effect 1s step-end infinite;
+    transform: rotate(35deg);
     
 }
 .erty{
-    animation: blink-effect 1s step-start infinit;
-    
+    animation: blink-effect 1s step-end infinite;
+    transform: rotate(-145deg);
     
 }
 .rtyu{
-    animation: blink-effect 1s step-end infinit;
-    
+    animation: blink-effect 1s step-start infinite;
+    transform: rotate(145deg);
     
 }
 .up{
@@ -118,35 +113,66 @@
     justify-content: space-between;
     text-align: center;
 }
-
+#nuller{
+     width: 500px; height: 500px;
+        background-color: aqua;
+        animation: mymove 2s infinite;
+        animation-timing-function : linear;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 50%;
+        text-align: center;
+}
     </style>
+    
+    <script>
+       var car = 1;
+       document.getElementById()
+
+       if (car == '1'){
+        function open(){
+           document.getElementById('nuller').style.animationPlayState='paused'
+        }
+     }
+     if (car == 1){
+        function open(){
+           document.getElementById('nuller').style.animationPlayState='paused'
+        }
+     }
+    </script>
 </head>
 <body>
+    
     <nav class="navbar">
         <h1 class="logo">
-            <a href="#">일대기</a></h1>   
+            <a href="#">이하나 일대기</a></h1>   
         <ul class="navbarul">
                 <li class="sibdae">내 어린시절</li>
                 <li class="esibdae">나의 청춘!</li>
-                <li class="samsibdae">늙어써ㅠ</li>
+                <li class="samsibdae">생일사진~!</li>
             </ul>
     </nav>
     
     <main>
         <div class="up">
-            <div class="qwer">1234</div>
-            <div class="wert">2345</div>
+            <div class="qwer">끄에에엑~!!!</div>
+            <div class="wert">뿌애애앵!!!!!</div>
         </div>
         
-        <div class="qwe">가나다라마바사아자차카파타하</div>
-        <div class="down">
-            <div class="erty">3456</div>
-            <div class="rtyu">4567</div>
+        <div class="qwe" id="nulller" >
+            
+            <button id="nuler"><img class="qqqw" id="nuller" src="leehana3.jpg" alt="" onclick="document.getElementById('nuller').style.animationPlayState='paused'">눌러!!</button>
+        </div>
+        
+        <div class="down" id="dowwn">
+            <div class="erty">으아아아아!!!</div>
+            <div class="rtyu">끄아아아아~!</div>
         </div>
         
     </main>
 
     
-
+    
 </body>
 </html>
