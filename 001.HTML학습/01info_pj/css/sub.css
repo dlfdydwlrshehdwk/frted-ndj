@@ -101,5 +101,18 @@
    text-align: center;
    margin: 15px 0px;
 }
+/* p요소 아래 em요소 디자인변경*/
+.arti p em{
+   /*글자그림자 : text-shadow ts
+   값: x축 y축 블러 색
+   블러는 그림자 경계흐림정도*/
+   text-shadow: 2px 2px 2px rgba(100, 0, 70, 0.582);
+   /* 이탤릭해제 : fsn*/
+   font-style: normal;
+   /* color */
+   color : rgba(139, 0, 139, 0.671);
+   /* rmfwkenRJqrp : fwb */
+   font-weight: bold;
+}
 /* 2-5.기자정보 */
 /* 2-6.기사원문 */
