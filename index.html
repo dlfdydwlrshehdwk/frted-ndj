@@ -3,21 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        html,body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            /* 배경이미지 넣기 bgi*/
+            background-image: url(./imgs/worksbg.jpg);
+            /* 배경반복여부 bgr 반복안함(no-repeat)*/
+            background-repeat: no-repeat;
+            /* 배경 크기 : 채우기 (cover) bgz*/
+            background-size: cover;
+            padding-top: 50px;
+        }
+        /*전체박스 : div 블록박스*/
+        .mybx{
+            width: 1200px;
+            height: 800px;
+            background: rgba(255, 255, 255, 0.295);
+            border-radius: 20px;
+            /* 가로중앙 
+            마영오 마진 영 오토*/
+            margin: 0 auto;
+            /* 양쪽 마진이 auto이면 양쪽을 등분해서 가로 중앙이된다*/
+        }
+        /*h1요소*/
+        .tit{
+            /*기본마진없앰*/
+            margin: 0;
+            /*패딩*/
+            padding: 20px;
+            /*글자중앙*/
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>김동호의 아카이브 페이지</h1>
-    <h2>
-        <ol>
-            <li>
-                <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
-            </li>
-            <li>
-                <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">경제/IT PJ</a>
-            </li>
-            <li>
-                <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ</a>
-            </li>
-        </ol>
-    </h2>
+    <div class="mybx">
+        <h1 class="tit">
+            <img src="./imgs/mylogo_14.png" alt="나으로고"><br>
+            김동호의 아카이브 페이지</h1>
+        <h2>
+            <ol>
+                <li>
+                    <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
+                </li>
+                <li>
+                    <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">IT/과학 PJ</a>
+                </li>
+                <li>
+                    <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ 와이어프레임</a>
+                </li>
+            </ol>
+        </h2>
+    </div>
 </body>
 </html>
