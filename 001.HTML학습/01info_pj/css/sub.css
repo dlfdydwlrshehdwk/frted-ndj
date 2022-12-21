@@ -8,4 +8,38 @@
    http requesete (웹요청) 이 많아져서 페이지 랜더링 속도에 영향을 미친다.
    따라서 import방식을 쓰면 더 적은 웹요청에 따라 처리속도에 도움이 된다.
 */
-@imp
+
+/*@import url();*/
+@import url(./common.css);
+
+/*본 css설정 코드는 하단에 한다*/
+
+/* 메인영역박스 */
+.cont{
+   /*패딩 15px 기존20px에서 재정의*/
+   padding: 15px;
+}
+
+/* 2-1.언론사로고 */
+.prlogo img{
+   height: 32px;
+   /*이미지는 가로,세로 중 한쪽만 주면 자동 비율유지를 함*/
+}
+/* 2-2.기사제목 */
+.atit{
+   /* 글자크기 fz30*/
+   font-size: 30px;
+   /* 글자두께 fw n */
+   font-weight: normal;
+   /* 글자체 ff */
+   font-family: 'Nanum Pen Script', cursive;
+   /* 글자간격(자간) letter-spacing ls 기본값=0 or normal, 양수는 멀어지고
+   음수는 가까워진다*/
+   letter-spacing: 8px;
+   /* 단어간격 word-spacing : ws */
+   word-spacing: -2px;
+}
+/* 2-3.기사사진(+사진영역) */
+/* 2-4.기사내용 */
+/* 2-5.기자정보 */
+/* 2-6.기사원문 */
