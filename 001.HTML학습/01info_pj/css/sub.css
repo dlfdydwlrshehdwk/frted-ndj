@@ -396,7 +396,7 @@
          /* 가로중앙이동 마영오
          -> 블록요소 또는 table요소에 적용된다. */
          margin: 0 auto;
-         border: 1px solid #000;
+         border: 2px solid gray;
       
          /* 테이블 기본 사이간격 없애기 */
          border-collapse: collapse;
@@ -418,17 +418,18 @@
          /* 인라인 가로중앙 tac*/
          text-align: center;
          /* 배경색 bgc */
-         background-color: lightgoldenrodyellow;
+         background-color: gray;
+        
       }
       .pnews td:nth-child(2){
          /* 배경색 bgc */
-         background-color: lightcyan;
+         background-color: #ccc;
         
       }
 
       /* 세번째 td */
       .pnews td:last-child{
-         background-color: lightcyan;
+         background-color: #ccc;
          padding-right: 5px;
       }
 
@@ -440,4 +441,22 @@
          vertical-align: middle;
          /* td에서만 세로정렬이 적용되고 일반적으로는 버티칼얼라인은 
          vertical-align은 인라인요소간 세로방향정렬이다. */
+      }
+
+
+      /* 앞에 tr이 있는 tr만 하위 td에 디자인 = 처음을뺀 나머지 tr*/
+      .pnews tr+tr td{
+         /* 보더탑 bdt */
+         border-top: 2px solid gray;
+      }
+      /* 테이블 a요소 */
+      /* 깆ㄴ .cont article a 로 셋팅된것이 
+      더 쎄기 때문에 여기서 윗 부모를 같은 레벨로 
+      넣어서 선택하면 하위에 클래스가 요소(타입)보다 더 높기 때문에 
+      우선 적용된다.*/
+      .cont .pnews a{
+         /* 글자크기 */
+         font-size: 14px;
+         /* 줄간격 lh */
+         line-height: 1.5;
       }
