@@ -127,7 +127,7 @@
    디자인적용과 동시에 인라인특성인 글자만큼만 
    크기가잡히도록 인라인블럭으로 변경함*/
    display: inline-block;
-   margin: 15px 0;
+   margin: 15px 30px;
 }
 .cont h5{
     /* 글자체 : 웹폰트 ff */
@@ -164,6 +164,10 @@
    white-space: nowrap;
    font-size: 12px;
    text-indent: 0;
+   
+}
+.cont>h5{
+   text-align: end;
 }
 .cont>article>h5{
     display: inline-block;
@@ -390,13 +394,22 @@
          /* 왼쪽마진 ml */
          margin-left: 100px;
       }
+      /* 사진뉴스 타이틀 가상요소 아이콘 넣기 */
+      /* 맨 앞 가상요소 ::before 
+      태그를 사용하지 않고 요소를 넣는 방법*/
+      .pnews h3::before{
+         content: '😊';
+      }
+      .pnews h3{
+         text-align: center;
+      }
 
       /* 사진뉴스 테이블박스 */
       .pnews table{
          /* 가로중앙이동 마영오
          -> 블록요소 또는 table요소에 적용된다. */
          margin: 0 auto;
-         border: 2px solid gray;
+         border: 2px solid #ccc;
       
          /* 테이블 기본 사이간격 없애기 */
          border-collapse: collapse;
@@ -414,23 +427,23 @@
          /* 가로크기 w */
          width: 50px; 
          /* 세로크기 */
-         height: 70px;
+         height: 85px;
          /* 인라인 가로중앙 tac*/
          text-align: center;
          /* 배경색 bgc */
-         background-color: gray;
+         background-color: #ccc;
         
       }
       .pnews td:nth-child(2){
          /* 배경색 bgc */
-         background-color: #ccc;
+         background-color: #e4e4e4;
         
       }
 
       /* 세번째 td */
       .pnews td:last-child{
-         background-color: #ccc;
-         padding-right: 5px;
+         background-color: #e4e4e4;
+         padding-right: 7px;
       }
 
       /* 사진뉴스이미지 */
@@ -447,7 +460,7 @@
       /* 앞에 tr이 있는 tr만 하위 td에 디자인 = 처음을뺀 나머지 tr*/
       .pnews tr+tr td{
          /* 보더탑 bdt */
-         border-top: 2px solid gray;
+         border-top: 2px solid #ccc;
       }
       /* 테이블 a요소 */
       /* 깆ㄴ .cont article a 로 셋팅된것이 
@@ -459,4 +472,21 @@
          font-size: 14px;
          /* 줄간격 lh */
          line-height: 1.5;
+      }
+      .pnews td{
+         padding: 0 15px;
+      }
+
+      /* 말줄임 표시 셋팅하기 */
+      ul a, ol a, dl a{
+         /* 1. 디자인 적용위해 디스플레이변경 block */
+         display: block;
+         /* 2. 가로크기 설정 한계주기 */
+         width: 300px;
+         /* 3. 줄바꿈방지(한줄짜리) */
+         white-space: nowrap;
+         /* 4. 넘치는 자식요소 숨기기 */
+         overflow: hidden;
+         /* 5. 넘치는 텍스트 말줄임설정 */
+         text-overflow: ellipsis;
       }
