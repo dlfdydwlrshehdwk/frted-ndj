@@ -251,5 +251,84 @@
       2. padding-box -> 패딩까지 적용
       3. content-box -> 내용영역만 적용(패딩,보더 빠짐) */
    background-clip: content-box ;
+   }
 
-}
+    /* 작품명  */
+    .work figcaption{
+      font-family: 'Martian Mono', monospace; 
+    }
+    .work figcaption cite{
+      font-style: normal;
+    }
+    /* 작품이미지 */
+    .work img{
+      border: 10px ridge rgb(59, 161, 230);  
+    }
+
+    /* 파트별 a링크요소 공통 디자인 */
+    .cont article a{
+      /* 글자크기 fz */
+      font-size: 17px;
+      /* 줄간격 */
+      line-height: 2.5;
+      /* 자간 ls */
+      letter-spacing: -1px;
+      }
+      /* 가상클래스 hover 오버시 */
+      .cont article a:hover{
+         /* 글자색 c  */
+         color: goldenrod;
+         /* 글자 그림자 ts */
+         text-shadow: 1px 1px 1px #000;
+      }
+
+      /* 공통 ul  */
+      .cont article ul{
+         /* 리스트타입 : lit */
+         list-style-type: '👍';
+          /*
+            square 사각형, disc 원형, circle 빈원
+            -> 따옴표안에 다른 문자형을 넣을 수 있음
+            -> 윈도우키 + 점(.) -> 아이콘 넣기 가능
+            -> 아이콘을 다른데서 복사해서 붙여넣기도 가능.
+          */
+      }
+
+      /* 공통 ol */
+      .cont article ol{
+         /* 숫자형 리스트 타입 lit */
+         list-style-type: upper-roman;
+         /* upper-roman 로마자 대문자 */
+         /* 순서를 표시하는 종류는 너무 많다. 고로 안적음. */
+      }
+
+      /* 주요뉴스 li별 글자색변경하기 */
+      /* 
+         [자식요소 선택 가상클래스 : 자식요소 종류가 같아야함!]
+         요소:first-child - 첫째자식요소
+         요소:nth-child(n) - n번째자식요소
+         요소:last-child - 마지막자식요소
+      */
+      /* 블릿과 글자사이 간격주기 */
+      .cont article ul li,
+      .cont article ol li{
+         /* 패딩 left : 블릿 뒤쪽이 적용됨 */
+         padding-left: 10px;
+      }
+      /* 첫번째 li */
+      .cont article ul li:first-child a{
+         color: red;
+      }
+      .cont article ul li:nth-child(2) a{
+         color: rgb(0, 81, 255);
+      }
+      .cont article ul li:last-child a{
+         color: rgb(32, 255, 99);
+      }
+
+      /* CSS 적용 우선순위 */
+      /* type < class < id <inline < !important 
+      ->더 쌘 선택자이여도 부모요소를 업고 있는 것이 더 쎄다.
+      예 ) #my < .cont .my
+      */
+   
