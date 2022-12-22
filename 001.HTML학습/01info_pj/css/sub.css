@@ -358,6 +358,7 @@
          (inset) x y blur spread(더커지게) 색 */
          box-shadow: 0 0 5px 2px rgba(8, 177, 255, 0.5);
          /* 마진탑 밀기 */
+         font-weight: bold;
 
       }
       /* 앞에 dd가 있는 dt만 마진탑밀기 */
@@ -388,4 +389,55 @@
       .secnews dd{
          /* 왼쪽마진 ml */
          margin-left: 100px;
+      }
+
+      /* 사진뉴스 테이블박스 */
+      .pnews table{
+         /* 가로중앙이동 마영오
+         -> 블록요소 또는 table요소에 적용된다. */
+         margin: 0 auto;
+         border: 1px solid #000;
+      
+         /* 테이블 기본 사이간격 없애기 */
+         border-collapse: collapse;
+         /* seperate(기본값) */
+         padding-right: 15px;
+      }
+
+      
+      
+      /* tr이나 td에 child선택자를 사용가능
+      why? 같은 종류의 요소만 올 수 있으므로 */
+
+      /* 첫번째 td - 숫자부분 */
+      .pnews td:first-child{
+         /* 가로크기 w */
+         width: 50px; 
+         /* 세로크기 */
+         height: 70px;
+         /* 인라인 가로중앙 tac*/
+         text-align: center;
+         /* 배경색 bgc */
+         background-color: lightgoldenrodyellow;
+      }
+      .pnews td:nth-child(2){
+         /* 배경색 bgc */
+         background-color: lightcyan;
+        
+      }
+
+      /* 세번째 td */
+      .pnews td:last-child{
+         background-color: lightcyan;
+         padding-right: 5px;
+      }
+
+      /* 사진뉴스이미지 */
+      .pnews img{
+         height: 70px;
+         /* 이미지는 한쪽만 크기줄때 나머지는 비율유지 */
+         /* 세로정렬 */
+         vertical-align: middle;
+         /* td에서만 세로정렬이 적용되고 일반적으로는 버티칼얼라인은 
+         vertical-align은 인라인요소간 세로방향정렬이다. */
       }
