@@ -135,7 +135,9 @@
             margin: 0 auto;
             /* 내부 인라인요소 오른쪽정렬 */
             text-align: right;
-            outline: 1px solid red;
+            /* outline: 1px solid red; */
+            padding: 20px;
+            box-sizing: border-box;
         }
         
         /* 
@@ -153,10 +155,10 @@
             list-style: none;
         }
 
-        /* ul 기본 리셋 */
-        ul.part1{
+        /* 부모박스셋팅 */
+        ul.part1, div.part2{
             width: 800px;
-            margin: 0 auto;
+            margin: 30px auto;
             padding: 20px;
             border: 2px solid #ccc;
             /* 둥근모서리 */
@@ -173,6 +175,9 @@
             [ font 한번에셋팅하기 자주씀]
             font : 스타일 두께 크기/줄간격 글자체
             font : 스두크/줄체
+            font한번에 쓰기에서 글씨체는 필수 
+            글씨체를 안쓰면 따로 지정해주기
+            ! 2개이상 셋팅 필수
         */
         /* 모든 li에 오버시 손가락모양 */
         .part1 li{
@@ -259,6 +264,7 @@
             color: blue;
         }
 
+       
         /* 마지막li 변경하기 font40px "맑은고딕" 글자색코랄*/
         body .part1 li:last-child{
             color: coral;
@@ -311,6 +317,51 @@
         이런 셋팅이 있으면 JS가 적용되지 않는 경우가
         발생한다! 따라서 사용을 최대한 신중하게 해야함
       */
+
+      /* 두번째 파트 
+      -> 여러종류의 요소가 섞여 있으면 
+      first-of-type
+      nth-of-type(n)
+      last-of-type
+      */
+
+      /* 두번째 div
+      font-30px 궁서 글자색-blueviolet */
+        .part2 div:nth-of-type(2){
+            font: 30px "궁서";
+            color: blueviolet;
+        }
+        /* 첫번째 i 
+        font-bold 20px
+        글자색 - paleviopetred */
+        .part2 i:first-of-type{
+            /* font한번에 쓰기에서 글씨체는 필수 
+            글씨체를 안쓰면 따로 지정해주기*/
+            /* font: bold 20px; */
+            font-size: 20px;
+            font-weight: bold;
+            color : palevioletred
+        }
+
+        /* 3번째 div이후 div형제요소 모두
+        font - 궁서체, 글자색 -red
+        .part2 div:nth-of-type(3)~i{ */
+
+
+        /* 3번째 div이후 i형제요소 모두
+        font - 궁서체, 글자색 -red*/
+        /* .part2 div:nth-of-type(3)~i{  */
+
+        /* 3번째 div이후 모든형제요소 모두
+        font - 궁서체, 글자색 -red*/
+        .part2 div:nth-of-type(3)~*{ 
+            font-family: "궁서";
+            color: red;
+        }
+
+
+
+
     </style>
 </head>
 
