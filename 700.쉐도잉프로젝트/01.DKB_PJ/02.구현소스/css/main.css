@@ -9,7 +9,7 @@
 
 /* 공사중표시 */
 body *{
-    outline: 1px dotted gray;
+    outline: 1px dotted rgb(250, 7, 7);
 }
 
 /* 컨텐츠파트 최상위부모 */
