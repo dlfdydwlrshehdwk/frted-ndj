@@ -30,11 +30,18 @@ body{
 }
 /* 전체 캐릭터 박스 */
 .cont{
+    overflow: hidden;
+}
+
+.cbx{
     /* 가로크기 */
     width: 90%;
     /* 중앙배치 */
     margin: 0 auto;
+    /* 상단마진 -> 부모박스에 oh! 설정 */
+    margin-top: 470px;
 }
+
 /* 자식요소의 float해제 clear설정 가상요소로하기 */
 .cbx::after{
     content: '';
@@ -50,8 +57,39 @@ float: left;
 }
 
 /* 캐릭터이미지 */
-.cat img{
+.ci > img{
     /* 이미지가로크기박스채움 */
     width: 100%;
     /* 이미지 높이값은 자동(비율유지) */
+}
+
+/* 캐릭터 이름 이미지박스 */
+.ci  figcaption{
+    /* 글자 중앙 정렬 */
+    text-align: center;
+}
+
+
+/* 캐릭터 이름 이미지 */
+.ci  figcaption img{
+    width: 40%;
+/* 단위가 40%이면 질문을하라 무엇을 기준한 %인가
+-> 여기서 기준은 싸고있는 부모박스 즉, figcaption 요소 박스의 가로크기가 기준이다.  */
+}
+
+/* 캐릭터 이름 이미지 중 첫번째 이미지 처음에 숨기기 */
+
+.ci>figcaption img:nth-of-type(1){
+    display: none;
+}
+
+/* .cat 박스에 마우스 오버시 진한 이미지 보이기 */
+
+.cat:hover .ci figcaption img:nth-of-type(1){
+    display: inline;
+}
+
+/* .cat박스에 마우스 오버시 흐린이미지 숨기기 */
+.cat:hover .ci figcaption img:nth-of-type(2){
+    display: none;
 }
