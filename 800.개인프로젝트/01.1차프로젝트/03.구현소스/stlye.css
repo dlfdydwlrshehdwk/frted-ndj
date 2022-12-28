@@ -4,6 +4,11 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
+    
+}
+h1,h2,h3,h4,h5,h6,ul,ol,li{
+  list-style: none;
+  padding: 0;margin: 0;
 }
 .page1{
     width: 100%;
@@ -37,16 +42,37 @@ html, body{
     background-position: center;
   background-image: url();
 }
-.tab{
-  float: right;
-  margin: 15px;
+.tabbutton{
+  width: 50px;
 }
 .ts{
   width: 100%;
   height:100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
+  color: white;
+  margin: 0 auto;
 }
+.ts-main{
+  margin: 0 auto;
+}
+.ts-list{
+  display: flex;
+  
+  
+  
+  
+}
+.ts-list h2{
+  margin-bottom: 30px;
+}
+.ts-list li{
+  
+}
+.ts-list div{
+  border-left: 1px solid rgba(219, 219, 219, 0.164);
+}
+
 .show{
   display: block;
 }
