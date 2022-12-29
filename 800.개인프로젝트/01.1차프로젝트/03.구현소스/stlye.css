@@ -33,16 +33,17 @@ h1,h2,h3,h4,h5,h6,ul,ol,li{
   background-color: rgb(0, 0, 0);
   display: block;
   color: white;
-  width: 1920px;
+  
   
 }
 .tss{
   height: 100%;
   max-width: 1920px;
-  margin: 0 auto;
+  
   
 }
 .ts-main{
+  width: 1550px;
   margin: 0 auto;
 }
 .ts-list{
@@ -58,7 +59,7 @@ h1,h2,h3,h4,h5,h6,ul,ol,li{
   border-left: 1px solid #333;
 }
 .ts-list li{
-  padding: 10px 0;
+ 
 }
 .show{
   display: block;
