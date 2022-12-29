@@ -96,3 +96,21 @@ float: left;
 .cat:hover .ci figcaption img:nth-of-type(2){
     display: none;
 }
+
+.cd{
+    /*배경넣기ㅣ*/
+    background: url(../images/eachBG.jpg) no-repeat bottom/cover;
+}
+
+/* 캐릭터 설명 타이틀*/
+.cd h3{
+    font-family: 'Gugi', cursive;;
+    font-weight: normal;
+    font-size: 24px;
+    padding: 15px 10px 5px;
+    letter-spacing: -1px;
+}
+/* 캐릭터 설명문단 */
+.cd p{
+    font-family: 'Single Day', cursive;
+}
