@@ -116,6 +116,15 @@
 
             8. 앱솔루트는 부모자격박스가 overflow:hidden; 으로
             셋팅되어 넘치는 자식요소를 숨길때 부모자격이 아닌 박스가 overflow:hidden;이여도 숨겨지지 않고 부모자격박스만 숨길 수 있다.
+            예시를 위해 -s8박스를 히든을줬고 a4에게 탑-18을 부여했다.
+            릴러티브를 빼면 히든을못시켜줌
+
+            9. 부모자격
+            -> 자식요소가 앱솔루트일때
+            부모자격으로 relative를 주는 경우가 많다.
+            why? 기존 디자인이 그대로 유지되는 static한 속성을 
+            가지는 포지션은 relative뿐이므로.
+            단, 부모는 static이 아니면 모두 부모자격이다.
         ****************************************************/
      }
         /* 첫번째 박스에 포지션체크 */
@@ -178,6 +187,9 @@
      .s8{
       position: relative;
       background-color: lightsalmon;
+      overflow: hidden;
+      /* 앱솔루트 자식에 관하여 부모자격이 있는 경우에만  
+      overflow:hidden;이 적용된다.*/
      }
 
      /* 부모찾는 앱솔루트박스 */
@@ -194,7 +206,7 @@
 
      /* 부모찾는 앱솔루트 .a4 */
      .a4{
-      top: 0;
+      top: -18px;/* 부모자격있는 overflow:hidden; 체크위해 살짝위로이동*/
       left: 0;
       /* 나의 부모는? */
       width: 20%;
@@ -232,6 +244,31 @@
          border: 4px dotted red;
          
       }
+      /* 앱솔루트는 서로 겹친다 */
+      .absimg{
+         width: 92px;
+         height: 115px;
+         border: 10px ridge #900;
+      }
+      .absimg img{
+         position: absolute;
+         /* 젠틀앱솔루트여서
+         부모자격이 없는 일반 static요소여도 그자리에 가만히 있는다.
+         -> 앱솔루트 이미지끼리는 서로 겹쳐진다
+         위,아래 관계는 z-index로 변경가능 */
+      }
+      /* 두번째 이미지 닥스만 투명하게  */
+      .absimg img:last-child{
+         /* 투명도 : opacity (0 - 투명,1 - 불투명,0.x - 반투명) */
+         opacity: 0;/* op숫자 */
+         /* 트랜지션 : transition - trs */
+         transition: 1s;
+      }
+      /* 부모박스 오버시 닥스 보이기 */
+      .absimg:hover img:last-child{
+         opacity: 1;
+      }
+
 
     </style>
 </head>
@@ -246,6 +283,12 @@
     <!-- 앱솔루트 : 판타롱스타킹 -->
     <div class="a5">
       <img src="./images/ab2.jpg" alt="타노스">
+    </div>
+
+    <!-- 앱솔루트는 서로 겹친다 -->
+    <div class="absimg">
+      <img src="./images/ab3.jpg" alt="토르">
+      <img src="./images/ab4.jpg" alt="닥스">
     </div>
 
 
