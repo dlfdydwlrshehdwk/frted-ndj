@@ -51,9 +51,11 @@ body{
 
 /* 캐릭터 각 박스 공통 */
 .cat{
-/* 4등분할 가로크기 - > 25% */
-width: 25%;
+/* 4등분할 가로크기 - > 25% - 1%(마진)*/
+width: 24%;
 float: left;
+/* 마진: 위아래0 양쪽0.5% */
+margin: 0 0.5%;
 }
 
 /* 캐릭터이미지 */
@@ -72,6 +74,13 @@ float: left;
     margin-top: -21%;
 }
 
+/*  캐릭터 이미지 박스*/
+.cat:hover .ci{
+  transition: margin-top .4s;  
+}
+.cat:hover .ci{
+    margin-top: -55%;
+}
 
 /* 캐릭터 이름 이미지 */
 .ci  figcaption img{
@@ -98,10 +107,25 @@ float: left;
 }
 
 .cd{
+    /* 전체 높이설정 */
+    height: 0;
+    /*넘치는 자식요소 y축 스크롤 셋팅
+    overflow-y: scroll; or overflow: auto; -> 자동으로 y스크롤이됨*/
+    overflow-y: scroll;
     /*배경넣기ㅣ*/
     background: url(../images/eachBG.jpg) no-repeat bottom/cover;
+    
+    /* 트랜지션 
+    두가지변화상태를 애니메이션해주는 속성
+    transition: 속성 시간 이징 지연*/
+    transition: height .4s;
+    
 }
 
+/* .cat에 마우스 오버시.cd높이값 늘리기*/
+.cat:hover .cd{
+height: 250px;
+}
 /* 캐릭터 설명 타이틀*/
 .cd h3{
     font-family: 'Gugi', cursive;;
@@ -113,4 +137,9 @@ float: left;
 /* 캐릭터 설명문단 */
 .cd p{
     font-family: 'Single Day', cursive;
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px;
+    /*양쪽정렬*/
+    text-align: justify;
 }
