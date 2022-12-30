@@ -248,12 +248,28 @@
          padding-right: 10px;
       }
 
+      /* 스티키를 싸고 있는 .s7박스에 높이값주기.
+      -> 그래야 내부박스의 스티키가 적용된다.
+      그리고 overflow 설정값에 유의하자 */
+      .s7{
+         /* 
+         
+         overflow: visible; -> 기본값.
+         overflow: hidden; -> 고장남
+         overflow: scroll; -> 고장남
+         -> 조상요소중에 있어도 적용안된다. */
+         
+         /* 스티키 부모 높이값 필수 */
+         height: 600px;
+      }
       /* 스티키버튼 */
       .stkbtn{
-         top: 70%;
+         top: 60%;
             /* top은 보이는 화면기준이다*/
          position: sticky;
          font-size: 50px;
+         /* 순서 위로 */
+         z-index: 99999;
       }
       
     </style>
@@ -302,14 +318,16 @@
                   <img src="./images/ab0.jpg" alt="포스터">
                   <span>포스터보기</span>
                </div>
-               <!-- 스티키버튼 -->
+               
                
             </div>
-
-
+         <button class="stkbtn">나는 스티키</button>
+            <!-- 스티키버튼 -->
+    </div>
          
       </div>
     </div>
+    <!-- 스티키버튼 -->
     </div><button class="stkbtn">나는 스티키</button>
     
 </body>
