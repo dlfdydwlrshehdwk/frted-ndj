@@ -1,15 +1,23 @@
 @charset "utf-8";
 /* 아카이브 CSS - main.css */
 
+html{
+    scroll-behavior: smooth;
+    /* #아이디명 스크롤 이동시 부드럽게 애니메이션 이동함 */
+}
+
 /* 상단영역 */
-#top{
+#top {
     position: fixed;
     width: 100%;
     /* 판타롱스타킹 이므로 100%로 가로폭 확장. */
+    height: 300px;
     top: 0;
-    left: 0;  
+    left: 0;
+    z-index: 9999999;
 }
-html,body{
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -17,30 +25,43 @@ html,body{
     -> 직계 하위 자식요소가 높이값을 %로 설정할때 
     body가 기준이 된다.  */
 }
-body{
-   
+body {
     /* padding-top: 50px; */
 }
-.gnb ul,ol{
+
+.gnb ul,ol {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 .gnb {
-width: 100%;
+    width: 700px;
+    /* 마영오를 줄때 위쓰가 있어야됨 마진이 들어갈 값이 있어야됨 */
+    margin: 0 auto;
 }
-.gnb li{
+.gnb li {
     float: left;
     text-align: center;
-    width: 150px;
+    width: 150px; 
+    font-size: 1.5em;
 }
-.gnb ul::after{
-    content: '';
+.gnb ul::after {
+    content: "";
     display: block;
-    clear:both;
+    clear: both;
+}
+.gnb a{
+    text-decoration: none;
+    color: brown;
+    font-weight: bold;
+}
+.part a{
+    text-decoration: none;
+    color: cornflowerblue;
+    font-weight: bold;
 }
 /*페이지박스 : div 블록박스*/
-.mybx{
+.mybx {
     width: 100%;
     height: 100%;
     /* 배경이미지 넣기 bgi*/
@@ -53,24 +74,29 @@ width: 100%;
     background-position: center;
     /* 배경 크기 : 채우기 (cover) bgz*/
     background-size: cover;
-
 }
 /* 두번째 페이지박스 배경변경 */
-.mbx2{
+.mbx2 {
     background-image: url(../bg_mainvisual.jpg);
 }
 
 /* 페이지별 컨텐츠 박스 */
-.pwrap{
+.pwrap {
     background: rgba(255, 255, 255, 0.295);
     border-radius: 20px;
     /* 가로중앙 
     마영오 마진 영 오토*/
     margin: 0 auto;
-    /* 양쪽 마진이 auto이면 양쪽을 등분해서 가로 중앙이된다*/ 
+    /* 양쪽 마진이 auto이면 양쪽을 등분해서 가로 중앙이된다*/
+    
+    /* 부모높이값 보다 300px만큼 조금더 그 크기를 뺀 높이값은
+    calc()로 계산한다. */
+    height: calc(100% - 350px);
+    position: relative;
+    top: 300px;
 }
 /*h1요소*/
-.tit{
+.tit {
     /*기본마진없앰*/
     margin: 0;
     /*패딩*/
@@ -78,3 +104,25 @@ width: 100%;
     /*글자중앙*/
     text-align: center;
 }
+.part{
+    float: left;
+    padding: 20px;
+    padding-right: 60px;
+}
+.part li{
+    padding: 20px 10px;
+    font-size: 2rem; 
+}
+.pt1{
+    margin-right: 30px;
+}
+.ptpt::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.ptpt{
+    width: 1000px;
+    margin: 0 auto;
+}
+
