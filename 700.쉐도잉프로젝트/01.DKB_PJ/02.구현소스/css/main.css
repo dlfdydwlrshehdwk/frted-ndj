@@ -8,9 +8,9 @@
 @import url(common.css);
 
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 1px dotted rgb(250, 7, 7);
-}
+} */
 
 /* 컨텐츠파트 최상위부모 */
 body{
@@ -119,9 +119,55 @@ margin: 0 0.5%;
     두가지변화상태를 애니메이션해주는 속성
     transition: 속성 시간 이징 지연*/
     transition: height .4s;
+
+    /* 둥근모서리  왼쪽위부터 시계방향 */
+    border-radius: 20px 5px 5px 20px;
+
+    /* 윗쪽여백 */
+    margin-top: 15px;
     
 }
+/* 캐릭터 타이틀 앞 아이콘 가상요소로 넣기 */
+.cd h3::before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    background-color: red;
+    vertical-align: -6px;
+    margin-right: 5px;
+    background: url(../images/bg_logo_a_01.png) no-repeat -144px -181px ;
+    /* 배경이미지위치값은 본 이미지를 그림판으로 열어서 마우스
+    커서 위치에 따라 표시되는 x,y축 좌표값을 마이너스 기호를 붙여서
+    가로,세로 순으로 써주면 정확한 위치가된다. */
+}
+ /*캐릭터 첫번째 문단 첫글자 가상요소로 디자인 변경하기  */
+ .cd p:first-child::first-letter{
+    color:blue;
+    font-size: 48px;
+    /* 그림자로 글자 테두리주기
+    블러없는 그림자 4개사용 */
+    text-shadow: 
+    1px 0  #000, 
+    -1px 0  #000, 
+    0 1px 0  #000, 
+    0 -1px 0 #000;
 
+    /* 글자크기로 인한 줄간격 조정 */
+    line-height: 1;
+ }
+
+ /* 각 캐릭터 박스별 첫글자 색 변경 */
+ .cat:nth-child(2) .cd p::first-letter{
+    color: red;
+ }
+ .cat:nth-child(3) .cd p::first-letter{
+    color: rgb(31, 145, 135);
+ }
+ .cat:nth-child(4) .cd p::first-letter{
+    color: rgb(209, 46, 136);
+ }
+ 
 /* .cat에 마우스 오버시.cd높이값 늘리기*/
 .cat:hover .cd{
 height: 250px;
