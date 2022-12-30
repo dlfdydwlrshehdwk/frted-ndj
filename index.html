@@ -3,70 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        html,body{
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            /* 보이는 화면에 기준하여 높이값을 설정함
-            -> 직계 하위 자식요소가 높이값을 %로 설정할때 
-            body가 기준이 된다.  */
-        }
-        body{
-            /* padding-top: 50px; */
-        }
-        /*페이지박스 : div 블록박스*/
-        .mybx{
-            width: 100%;
-            height: 100%;
-
-
-            /* 배경이미지 넣기 bgi*/
-            background-image: url(./imgs/worksbg.jpg);
-            /* 배경반복여부 bgr 반복안함(no-repeat)*/
-            background-repeat: no-repeat;
-            /* 배경고정 bga - 고정의 기준은 보이는 화면*/
-            background-attachment: fixed;
-            /* 배경위치:bgp */
-            background-position: center;
-            /* 배경 크기 : 채우기 (cover) bgz*/
-            background-size: cover;
-
-        }
-        /* 두번째 페이지박스 배경변경 */
-        .mbx2{
-            background-image: url(./bg_mainvisual.jpg);
-        }
-
-
-        /* 페이지별 컨텐츠 박스 */
-        .pwrap{
-            background: rgba(255, 255, 255, 0.295);
-            border-radius: 20px;
-            /* 가로중앙 
-            마영오 마진 영 오토*/
-            margin: 0 auto;
-            /* 양쪽 마진이 auto이면 양쪽을 등분해서 가로 중앙이된다*/ 
-        }
-        /*h1요소*/
-        .tit{
-            /*기본마진없앰*/
-            margin: 0;
-            /*패딩*/
-            padding: 20px;
-            /*글자중앙*/
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./zcss/main.css">
 </head>
 <body>
+    <div id="top">
+        <header class="top">
+            <!-- 타이틀 -->
+            <h1 class="tit">
+                <img src="./imgs/mylogo_14.png" alt="나으로고"><br>
+                김동호의 아카이브 페이지
+            </h1>
+            <!-- 네비게이션 -->
+            <nav class="gnb">
+                <ul>
+                    <li>
+                        <a href="#pg1">1페이지</a>
+                        <!-- a요소의 href에 "#아이디명"은
+                        같은 페이지내의 아이디 요소 위치로 이동함 -->
+                    </li>
+                    <li>
+                        <a href="#pg2">2페이지</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">3페이지</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">4페이지</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
     <!-- 1번페이지 -->
-    <div class="mybx mbx1">
-        <h1 class="tit">
-            <img src="./imgs/mylogo_14.png" alt="나으로고"><br>
-            김동호의 아카이브 페이지
-        </h1>
-       
+    <div id="pg1" class="mybx mbx1">
         <div class="pwrap">
             <!-- 1. html학습 링크파트 -->
             <section class="part pt1">
@@ -100,12 +70,73 @@
     </div>
 
     <!-- 2번 페이지 -->
-    <div class="mybx mbx2">
-        <h1 class="tit">
-            <img src="./imgs/mylogo_14.png" alt="나으로고"><br>
-            김동호의 아카이브 페이지
-        </h1>
-       
+    <div  id="pg2" class="mybx mbx2">     
+        <div class="pwrap">
+            <!-- 1. html학습 링크파트 -->
+            <section class="part pt1">
+                <ol>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
+                    </li>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">IT/과학 PJ</a>
+                    </li>
+                    <li>
+                        <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ 와이어프레임</a>
+                    </li>
+                </ol>
+            </section>
+            <!-- 2. CSS학습 링크파트 -->
+            <section class="part pt2">
+                <ol>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
+                    </li>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">IT/과학 PJ</a>
+                    </li>
+                    <li>
+                        <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ 와이어프레임</a>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </div>
+    <!-- 3번 페이지 -->
+    <div  id="pg3" class="mybx mbx4">     
+        <div class="pwrap">
+            <!-- 1. html학습 링크파트 -->
+            <section class="part pt1">
+                <ol>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
+                    </li>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">IT/과학 PJ</a>
+                    </li>
+                    <li>
+                        <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ 와이어프레임</a>
+                    </li>
+                </ol>
+            </section>
+            <!-- 2. CSS학습 링크파트 -->
+            <section class="part pt2">
+                <ol>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/">Info PJ</a>
+                    </li>
+                    <li>
+                        <a href="../frted-ndj/001.HTML학습/01info_pj/sub4.html">IT/과학 PJ</a>
+                    </li>
+                    <li>
+                        <a href="006.와이어프레이밍/도깨비PJ목업.pdf">도깨비 PJ 와이어프레임</a>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </div>
+    <!-- 4번 페이지 -->
+    <div  id="pg4" class="mybx mbx4">     
         <div class="pwrap">
             <!-- 1. html학습 링크파트 -->
             <section class="part pt1">
