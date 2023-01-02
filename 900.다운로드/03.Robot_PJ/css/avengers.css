@@ -2,10 +2,6 @@
 /* 어벤져스 CSS-avengers.css */
 /* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
-@font-face {
-    font-family: haryporter;
-    src: url(../font/HARRYP__.TTF.woff) format('woff');
-}
 
 /* 
     font-family: 'Monoton', cursive;
