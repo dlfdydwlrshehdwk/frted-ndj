@@ -21,6 +21,11 @@
     @keyframes rotate_div{
         100%{transform:rotate(360deg);}
     }
+    #bx span{
+        width: 100px;
+        height: 100px;
+        top: 50%;
+    }
 </style>
 </head>
 <body>
@@ -28,8 +33,22 @@
     <h3>실험</h3>
     <div>
         <div id="box1">
-            <button class="center">입장하기</button>
+            <button class="center" id="button">입장하기</button>
+        </div>
+        <div >
+            <img id="on" src="../bg_mainvisual.jpg" style="opacity: 0; transition: all 2s; width: 200px; height: 200px;" alt="">
+        </div>
+        <div id="bx">
+            <span></span>
         </div>
     </div>
+    <script>
+        document.getElementById('button').addEventListener('click',function(){
+            document.getElementById('box1').style.opacity=0;
+            document.getElementById('box1').style.transition.w
+            document.getElementById('on').style.opacity=1;
+            
+        });
+    </script>
 </body>
 </html>

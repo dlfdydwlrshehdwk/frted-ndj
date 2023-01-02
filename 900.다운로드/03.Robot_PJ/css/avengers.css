@@ -179,12 +179,14 @@ body:hover .cbx:nth-child(5){
     /* 처음엔 내려가있고 오버시 0으로 top값 올라옴 */
     /* 박스셋팅 */
     width: 300px;
-    border: 2px solid white;
-    border-radius: 15px;
-    padding: 15px;
+    /* 처음에 height값 0로 박스 숨기기
+    -> 이유: 투명상태로 오버 되는 경우를 없애기위해 */
+    height: 0;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
     /* 글자셋팅 */
     color: white;
-    background-color: rgba(255, 255, 255, 0.349);
+    
     font-family: 'Single Day', cursive;
     text-shadow:  1px 1px 1px #000;
     
@@ -192,6 +194,15 @@ body:hover .cbx:nth-child(5){
 
     /* 트랜지션 속시이지 속성 시간 이징  지연*/
     transition: .4s ease-out;
+}
+
+/* .cd 직계 하위 div로 디자인 이전하기
+-> 만든이유 : height값을 0으로 숨기려는데 padding과 border때문에 숨겨지지가 않음 따라서 이것을 직계하위div로 이전함 */
+.cd > div{
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.349);
 }
 .ltxt{
     left: -230%;
@@ -205,15 +216,20 @@ body:hover .cbx:nth-child(5){
     right: -230%;
 }
 .dtxt{
-    top: 170%;
+    top: 150%;
     left: -60%;
     text-align: center;
 }
 .cbx:last-of-type:hover .cd{
-    top: 120%;
+    top: -40%;
+    left: 120%
 }
 
 .cbx:hover .cd{
     opacity: 1;
     top: 0;
+    height: auto;
+    /* 전체적으로 트랜지션 설정되어 있으나 height값이 특정값(px,%)으로 설정되지않고 auto일경우 애니메이션 되지 않는다.
+    애니메이션 되지 않게 하려는데 잘됐다. 
+    만약 적용되는 것을 안되게 하려면 transition에서 개별셋팅해야한다*/
 }
