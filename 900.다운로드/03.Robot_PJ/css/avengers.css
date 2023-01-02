@@ -190,7 +190,7 @@ body:hover .cbx:nth-child(5){
     
     opacity: 0; 
 
-    /* 트랜지션 속시이지 속성 시간 이동  지연*/
+    /* 트랜지션 속시이지 속성 시간 이징  지연*/
     transition: .4s ease-out;
 }
 .ltxt{
