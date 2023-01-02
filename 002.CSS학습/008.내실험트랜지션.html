@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #box1{
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        border-radius: 30px;
+        text-align: center;
+        vertical-align: 30px;
+        /* animation: rotate_div 1s linear infinite; */
+        transform-origin: 50% 50%;
+    }
+    .center{
+        position: relative;
+        top: 40%;
+    }
+    @keyframes rotate_div{
+        100%{transform:rotate(360deg);}
+    }
+</style>
+</head>
+<body>
+
+    <h3>실험</h3>
+    <div>
+        <div id="box1">
+            <button class="center">입장하기</button>
+        </div>
+    </div>
+</body>
+</html>
