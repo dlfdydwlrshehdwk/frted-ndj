@@ -22,8 +22,23 @@ a{
 body{
     /* 배경이미지 채우기 */
     background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
+    overflow: hidden;
+    /* 전체 body 스크롤바 숨기기 */
 }
 
+/* body의 높이값을 보이는 화면에 맞추기 */
+html,body{
+    height: 100%;
+    /* body 100%는 html을 기준하며 
+        html 100%는 window(보이는화면)을 기준한다 
+        %셋팅시 html과 body모두 셋팅해야 적용된다.
+        _________________________________________
+        가끔 width:100% 를 잡는 경우가 있는데
+        아무것도 안주면 width:auto 임. 둘 간의 차이는 ?
+        width:100%는 컨텐트 영역을 크기를 채우도록 셋팅함
+        따라서 보더나 패딩을 줄 경우 박스가 커지고 스크롤바가 생김.
+        특별한 경우가 아니라면 auto상태로 놓으면 보더와 패딩이 내부에 자동으로 포함된다 자체border-sizing 된상태*/
+}
 /* 1. 전체타이틀 */
 .tit{
     font-family: 'Monoton', cursive;
@@ -75,7 +90,7 @@ body{
 
     /* 박스테두리 */
     /* outline: 3px dotted yellow; */
-    
+    opacity: 0;
 }
 /* 캐릭터이미지 */
 .cbx img{
@@ -92,5 +107,113 @@ body{
     3. cover : 박스를 비율에 맞게 채움 
         -> 빈틈없이 채우며 배경cover와 유사한 효과를 줌*/
     border-radius: 50%;
-    box-shadow: 0 0 30px goldenrod;
+    box-shadow: 0 0 50px 10px goldenrod;
+    
+}
+/* body에 오버시 전체 opacity 보이게하기 */
+body:hover .cbx{
+    opacity :1;
+}
+/* 2-1. 아이언맨 */
+body:hover .cbx:nth-child(1){
+    top: -10%;
+    left: -80%;
+    transition: all 1s ;
+    
+}
+.cbx:nth-child(1){
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    transition: all 1s .8s;
+    
+}
+/* 2-2. 타노스 */
+body:hover .cbx:nth-child(2){
+    top: -10%;
+    left: 120%;
+    transition: all 1s 0.2s;
+    
+}
+.cbx:nth-child(2){
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    transition: all 1s .6s;
+}
+/* 2-3. 토르 */
+body:hover .cbx:nth-child(3){
+    top: 85%;
+    left: -120%;
+    transition: all 1s .4s;
+}
+.cbx:nth-child(3){
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    transition: all 1s .4s;
+}
+/* 2-4. 닥스 */
+body:hover .cbx:nth-child(4){
+    top: 85%;
+    left: 160%;
+    transition: all 1s .6s;
+}
+.cbx:nth-child(4){
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    transition: all 1s 0.2s;
+}
+/* 2-5. 스타 */
+body:hover .cbx:nth-child(5){
+    top: 140%;
+    transition: all 1s .8s;
+}
+.cbx:nth-child(5){
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
+    transition: all 1s ;
+}
+
+/* 캐릭터 설명박스 공통 */
+.cd{
+    position: absolute;
+    top: 50%;
+    /* 처음엔 내려가있고 오버시 0으로 top값 올라옴 */
+    /* 박스셋팅 */
+    width: 300px;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 15px;
+    /* 글자셋팅 */
+    color: white;
+    background-color: rgba(255, 255, 255, 0.349);
+    font-family: 'Single Day', cursive;
+    text-shadow:  1px 1px 1px #000;
+    
+    opacity: 0; 
+
+    /* 트랜지션 속시이지 속성 시간 이동  지연*/
+    transition: .4s ease-out;
+}
+.ltxt{
+    left: -230%;
+}
+/* 제목 오른쪽 정렬 */
+.ltxt h2{
+    text-align: right;
+    
+}
+.rtxt{
+    right: -230%;
+}
+.dtxt{
+    top: 170%;
+    left: -60%;
+    text-align: center;
+}
+.cbx:last-of-type:hover .cd{
+    top: 120%;
+}
+
+.cbx:hover .cd{
+    opacity: 1;
+    top: 0;
 }
