@@ -2,10 +2,6 @@
 /* 어벤져스 CSS-avengers.css */
 /* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
-@font-face {
-    font-family: haryporter;
-    src: url(../font/HARRYP__.TTF.woff) format('woff');
-}
 
 /* 
     font-family: 'Monoton', cursive;
@@ -29,7 +25,7 @@ a{
 }
 body{
     /* 배경이미지 채우기 */
-    background: url(../ab_img/bg.jpg) no-repeat fixed center/cover;
+    background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
     /* overflow: hidden; */
     /* 전체 body 스크롤바 숨기기 */
     
@@ -60,9 +56,8 @@ html,body{
     /* 글자두께보통 */
     font-weight: normal;
     text-align: center;
-    font-family: harryporter;
     /* 위아래패딩 */
-    ;
+    padding: 50px 0;
 }
 
 /* 1.페이지박스 공통 */
@@ -78,7 +73,7 @@ html,body{
     width: 300px;
     height: 400px;
     /* 배경이미지 */
-    background: url(../ab_img/해리중앙.jpg) no-repeat center/cover;
+    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
     border-radius: 50%;
     margin: 0 auto;
     /* 글러우효과 : 박스그림자 응용 
