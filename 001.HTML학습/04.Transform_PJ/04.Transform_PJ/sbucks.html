@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>스타벅스 응용</title>
+    <style>
+        body{
+            background: #000 url(./starbucks_img/reserve_bg.jpg) no-repeat top/100% ;
+        }
+        #trans10{
+            width: 334px; 
+            height: 334px;
+            text-align: left;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        /* 이미지에 겹치도록 앱솔루트 포지션 셋팅 */
+        #trans10 img{
+            position: absolute;
+            /* 젠틀앱솔루트 부모자격이 없지만 그자리 그대로 
+                주의: 크기를 %로 주지말것(부모를찾음!)*/
+        }
+        /* 보검원본 */
+        #trans10 img:last-child{
+            transform: rotateY(0deg);
+            /* 트랜지션 속시이지 */
+            transition: .4s .4s ease-out;
+        }
+        /* 보검 오버시 */
+        #trans10:hover img:last-child{
+            /* 90도회전하기 */
+            transform: rotateY(90deg);
+            /* 트랜지션 속시이지 */
+            transition: .4s ease-in;
+            /* ease-in 처음에 천천히 나중엔 등속도 */
+        }
+         /* 유정 원본 */
+         #trans10 img:first-child{
+            /* 90도회전하기 */
+            transform: rotateY(90deg);
+            /* 트랜지션 속시이지 */
+            transition: .4s ease-in ;
+        }
+         /* 유정 오버시 */
+         #trans10:hover img:first-child{
+            transform: rotateY(0deg);
+            /* 트랜지션 속시이지 0.4초 뒤에시작*/
+            transition: .4s .4s ease-out;
+            /* ease-out 나중에 천천히 처음엔 등속도 */
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        
+        <div id="trans10"><img src="./starbucks_img/reserve_medal02.png" alt="캐릭터">
+            <img src="./starbucks_img/reserve_medal01.png" alt="캐릭터"></div>
+    </div>
+</body>
+</html>
