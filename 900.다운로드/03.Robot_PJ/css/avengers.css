@@ -320,7 +320,7 @@ body:hover .cbx:nth-child(5){
 }
 /* 오버시 a변경 */
 .gobtn:hover{
-    color: thistle;
+    color: rgb(184, 182, 68);
     text-decoration: underline;
     text-decoration-style: wavy;
 }
