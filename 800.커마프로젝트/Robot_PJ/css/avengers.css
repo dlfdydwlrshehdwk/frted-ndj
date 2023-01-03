@@ -129,6 +129,11 @@ html,body{
 /* body에 오버시 전체 opacity 보이게하기 */
 body:hover .cbx{
     opacity :1;
+    
+}
+body:hover .cbx{
+    transform: rotateY(720deg);
+    transition-duration: 3s;
 }
 /* 2-1. 아이언맨 */
 body:hover .cbx:nth-child(1){
