@@ -96,6 +96,25 @@
              -> width 가로크기를 설정하는 속성
              -> 만약 0을 쓰면 속성값 없음!
             */
+            /* 
+            
+            
+            [ 자식요소 속성 중 order란? ]
+          - 원하는 순서로 정해서 박스가 나열되게함!
+          단, 부모 플렉스 박스에 flex-direction을 주지말것!(order쓰기 때문!)
+
+            속성명 : order: 순번
+            순서를 정할 요소에 준다 
+            예) 
+            <li style="order:3></li>"
+            <li style="order:1></li>"
+            <li style="order:2></li>"
+            <li style="order:4></li>"
+
+
+          소스참고:
+          https://www.w3schools.com/css/tryit.asp?filename=trycss3_flexbox_order_2 */
+
         }
 
         /* 타이틀공통 */
@@ -238,8 +257,100 @@
             ->기본값->1(응) 줄어듬 
             -> 강제로 크기 유지할경우 0으로 변경 */
             flex-shrink: 0;
+
+            /* 
+                [ flex 자식요소 속성을 셋팅하지 않으면?]
+                기본값은 아래와 같다.
+                flex: initial
+                즉, 아래와 동일
+                flex: 0 1 auto
+                -> 두번째 값이 flex-shrink:1 로 셋팅 
+                그래서 부모박스 크기가 작아지면 자식요소도 가로크기가 같이 줄어듬
+                이 값을 0으로 변경하면 자기 셋팅된 원래 크기를 유지하며 부모박스
+                바깥으로 나가는 현상이 생김
+            */
+        }
+        /* 타이틀박스 6 */
+        .t6{
+            top: 500px;
+            height: 250px;
+            display: flex;
+            /* 플렉스랩핑설정 */
+            flex-wrap: wrap;
+
+            /* 
+                [ flex-wrap 속성]
+                - 플렉스 부모박스의 크기보다 자식요소의 내용이 넘칠경우
+                자동 줄바꿈으로 처리하기위한 속성값으로 wrap를 설정
+                -기본값: nowrap
+
+                -> 이 설정을 하지 않으면 flex-shrink:1 때문에 자식요소가 
+                가로크기가 강제적으로 줄어든다
+            */
+
+            /* 진행방향정렬 : 중앙정렬 */
+            justify-content: center;
+           
+           
+            /* 수직방향정렬 : 등분할공간 (space-evenly) */
+            /* align-content 속성:
+             - 진행방향의 수직으로 정렬
+             - 진행방향의 수직으로 여러줄이므로 content!
+
+            1) flex-start : 처음위치(기본값)
+            2) flex-end : 끝위치
+            3) center : 중앙
+            4) space-between : 
+                아이템요소 양쪽끝에 붙고 사이간격 일정
+            5) space-around : 
+                아이템요소 양쪽간격 일정
+            6) space-evenly : 
+                아이템요소 양쪽과 사이간격 일정
+            7) stretch :
+                높이값이 auto인 경우 등분할 늘려주기! */
+            align-content:space-evenly;
+        }
+        /* 글자수 조정을 위해 li에 마진설정하기 */
+        .t6 li{
+            margin: 0 22px;
         }
 
+        /* 타이틀박스7 */
+        .t7{
+            top: 50px;
+            right: 50px;
+            /* r기존에 left는 해제 */
+            left:auto;
+            /* 트랜스폼해제 */
+            transform: none;
+            width: 450px;
+            height: 200px;
+            display: flex;
+            /* 랩핑 */
+            flex-wrap: wrap;
+            /* 수평정렬 : 등분할공간 */
+            justify-content: space-evenly;
+            /* 수직정렬(여러줄) : 중앙 */
+            align-content: center;
+            
+        }
+        /* 자체응용 - 줄바꿈을위한 li */
+        /* 원리는 줄바꿈을 할 부분에서 가로크기 100%를 차지하게 해서
+        줄바꿈효과를 주는것 */
+        .t7 .brk{
+            /* width: 100%; */
+            flex-basis: 100%;
+            /* flex-basis는 width와 동일하지만 flex에서만 사용가능 */
+
+            /* 기존의 다지인을 없애기 */
+            height: 0;
+            border: none;
+            margin-top: 20px;
+        }
+        /* .brk 아래쪽 li 마진탑주기 */
+        /* .t7 li.brk~li{
+            margin-top: 20px;
+        } */
         
     </style>
 </head>
@@ -248,11 +359,11 @@
     <div id="wrap">
         <!-- 파티션박스 -->
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li style="order: 3"></li>
+            <li style="order: 5"></li>
+            <li style="order: 2"></li>
+            <li style="order: 1"></li>
+            <li style="order: 4"></li>
         </ul>
 
 
@@ -291,6 +402,43 @@
         </ol>
         <!-- 타이틀박스 5 -->
         <ol class="tit t5">
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+        </ol>
+
+        <!-- 타이틀박스 6 -->
+        <ol class="tit t6">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+        </ol>
+        
+        <!-- 타이틀박스 7 -->
+        <ol class="tit t7">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+            <!-- 줄바꿈하기위한 요소 -->
+            <li class="brk"></li>
             <li>W</li>
             <li>O</li>
             <li>R</li>
