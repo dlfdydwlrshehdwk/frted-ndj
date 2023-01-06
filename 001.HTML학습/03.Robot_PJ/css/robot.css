@@ -35,15 +35,191 @@ body *{
 }
 /* 로봇머리 */
 .head{
+    position: relative;
+    /* 부모자격 - 하위 div들 */
     width: 250px;
-    height: 250px;
+    height: 190px;
     /* 마영오 */
     margin: 0 auto;
+    /* 턱깎기 */
+    /* border-radius: 0 0 50% 50%; */
+    /* clip-path: polygon(0 0,0 50%, 30% 100%,60% 100%, 100% 50%, 100% 0 ); */
+    
+}
+/* 로봇머리 직계하위 div는 모두 앱솔루트 */
+.head>div{
+    position: absolute;
+}
+/* 로봇머리에 가상요소로 머리털박스 만들기 */
+.head::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -150px;
+    left: -128px;
+    /* 부모는 .head */
+    width: 500px;
+    height: 700px;
+    background: url(../images/가발.png) no-repeat 0/100% 100%;
+    z-index: 99;
+}
+/* 머리박스에 오버시 가상요소 가발변경하기 */
+.head:hover::before{
+    top: -50px;
+    left: 0px;
+    width: 250px;
+    height: 100px;
+    border-radius: 50% 50% 0 0;
+    background-image: none;
+    background-color: peachpuff;
+    z-index: 999;
+}
+/* 머리박스 가상요소로 턱만들기 */
+.head::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    background: url(../images/metal01.jpg) no-repeat bottom/100%;
+    /* 부모박스 높이만큼 밀어준다 */
+    top: 100%;
+    z-index: -1;
+    clip-path: polygon(0 0,33% 85%, 40% 90%,55% 90%, 66% 80%, 80% 55%, 100% 0);
+    /* 박스그림자 */
+}
+
+/* 눈공통 */
+.eye{
+    width: 70px;
+    height: 50px;
+
+    /* 배경공통 */
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    /* 둥근모서리 50% 원  */
+    /* border-radius: 50%; */
+    /* 보더 이중선: double */
+    border: 4px double #000;
+}
+/* 입 옆에 별모양점 가상요소로 만들기 */
+.mouth::before,.mouth::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    /* 부모는 .mouth */
+    top: -25px;
+    right: -10px;
+
+    /* 삼각형 클리핑 속성으로 만들기 */
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.mouth::after{
+    transform: rotate(180deg) translateY(-30%);
+}
+/* 
+    [ CSS 클리핑 속성 ]
+    -> clip-path : poligon(x1 y1, x2 y2, ...)
+    -> 각 좌표쌍은 띄어쓰기로 각 점은 콤마로 구분
+    -> 각 점을 연결하여 도형모양만 출력한다
+    -> px은 각 도형 크기 내부의 수치로 쓰고
+    %는 도형을 기준한 위치를 %로 나타낸다
+*/
+/* 귀공통 */
+.ear{
+    width: 30px;
+    height: 70px;
+    top: 20%;
 }
 /* 왼눈 */
+.e1{
+    top: 65px;
+    left: 30px;
+    background-image: url(../images/e1.jpg);
+    border-radius: 10% 40% 20% 50%;
+}
 /* 오른눈 */
+.e2{
+    top: 65px;
+    right: 30px;
+    background-image: url(../images/e2.jpg);
+    border-radius: 40% 10% 50% 20%;
+}
 /* 코 */
+.nose{
+    width: 60px;
+    height: 70px;
+    position: absolute;
+    background: url(../images/nose.jpg) no-repeat 0/110% 100%;
+    top: 130px;
+    left: calc(50% - 30px);
+    border-radius: 30px;
+}
 /* 입 */
+.mouth{
+    width: 120px;
+    height: 50px;
+    position: absolute;
+    background: url(../images/mouth.png) no-repeat 0/100% 100%;
+    top: 220px;
+    left: calc(50% - 60px);
+}
 /* 왼귀 */
+.er1{
+    left: -30px;
+    border-radius: 10px 0 0 50px;
+}
 /* 오른귀 */
+.er2{
+    right: -30px;
+    border-radius: 0 10px 50px 0;
+    z-index: 999999;
+}
+
+/* ***************로봇몸통*************** */
+.body{
+    /* 부모자격 */
+    position: relative;
+    width: 200px;
+    height: 450px;
+    margin: 120px auto 0;
+}
+/* 몸통 가상요소로 상단만들기 */
+.body::before{
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    left: -100px;
+}
+/* 몸통 가상요소로 하단만들기 */
+.body::after{
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 150px;
+    background-color: white;
+    left: -100px;
+    bottom: 0;
+}
+
+
+/* 몸통하위 직계 div모두 absolute */
+.body>div{
+    position: absolute;
+}
+/* 목 */
+/* 왼팔 */
+/* 오른팔 */
+/* 왼다리 */
+/* 오른다리 */
+/* 왼어꺠 */
+/* 오른어꺠 */
 /******************************* 3. 하단영역 *******************************/
