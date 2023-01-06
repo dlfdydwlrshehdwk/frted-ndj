@@ -29,7 +29,7 @@
 /* 1-1. 로봇 등장 키프레임 */
 @keyframes showRobot {
     from{
-        transform: scale(.1) translate(90%, -200%);
+        transform: scale(.1) translate(180%, -130%);
     }
     to{
         transform: scale(1);
