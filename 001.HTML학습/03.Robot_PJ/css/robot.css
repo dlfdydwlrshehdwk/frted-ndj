@@ -61,7 +61,7 @@ body *{
     width: 500px;
     height: 700px;
     background: url(../images/가발.png) no-repeat 0/100% 100%;
-    z-index: 99;
+    z-index: 9999999;
 }
 /* 머리박스에 오버시 가상요소 가발변경하기 */
 .head:hover::before{
@@ -198,7 +198,13 @@ body *{
     height: 200px;
     background-color: white;
     left: -100px;
-}
+    /* 그라데이션 */
+    background-image: linear-gradient(35deg,#ccc,#727272,#bbb,#616161,#aaa,#515151);
+    clip-path: polygon(0 0,100% 0,75% 75%, 50% 100%,25% 75%);
+    z-index: 33;
+}  
+
+
 /* 몸통 가상요소로 하단만들기 */
 .body::after{
     content: '';
@@ -208,6 +214,8 @@ body *{
     background-color: white;
     left: -100px;
     bottom: 0;
+    background-image: linear-gradient(-35deg,#ccc,#727272,#bbb,#818181,#cbc);
+    clip-path: polygon(20% 30% ,30% 0, 70% 0%,80% 30%, 100% 100%, 0 100%);
 }
 
 
@@ -216,6 +224,13 @@ body *{
     position: absolute;
 }
 /* 목 */
+.neck{
+    width: 50px;
+    height: 28px;
+    top: -30px;
+    left: 75px;
+    z-index: -999;
+}
 /* 왼팔 */
 /* 오른팔 */
 /* 왼다리 */
