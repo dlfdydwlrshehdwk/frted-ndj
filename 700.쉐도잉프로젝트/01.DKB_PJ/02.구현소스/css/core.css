@@ -16,26 +16,24 @@
 
 /* 전체 웹폰트 적용하기 */
 body{
-    font-family: 'Nanum Gothic', sans-serif;;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* 중앙 속박스 클래스 */
 .ibx{
-
     max-width: 1200px;
-    /* 1200px을 유지하다가 이것보다 작아지면 auto로 가로크기가
-    전환되어 가로스크롤이 안생기게됨 */
+    /* 1200px을 유지하다가 이것 보다 작아지면
+    auto로 가로크기가 전환되어 가로스크롤이
+    안생기게 됨! */
     margin: 0 auto;
-
 }
 
 /* 스크롤바 디자인 클래스 */
 /* -webkit- 밴더사명(크롬,사파리) 접두어 */
-/* (참고: -ms-(ie), -o- (오페라), -moz-(파폭) */
-
+/* (참고: -ms-(ie), -o- (오페라), -moz-(파이어폭스) */
 /* 클래스명 scbar */
 .scbar::-webkit-scrollbar{
-    /* 전체 스크롤바 크기변경  */
+    /* 전체 스크롤바 크기변경 */
     width: 7px;
 }
 .scbar::-webkit-scrollbar-thumb{
@@ -44,7 +42,7 @@ body{
     border-radius: 5px;
 }
 .scbar::-webkit-scrollbar-track{
-    /* 스크롤바 트랙  */
+    /* 스크롤바 트랙 */
     background-color: #ddd;
     border-radius: 5px;
 }
