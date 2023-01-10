@@ -51,15 +51,14 @@ body *{
     position: absolute;
 }
 /* 로봇머리에 가상요소로 머리털박스 만들기 */
-.head::before{
+.head::before {
     content: '';
     display: block;
     position: absolute;
-    top: -150px;
+    top: -80px;
     left: -128px;
-    /* 부모는 .head */
     width: 500px;
-    height: 700px;
+    height: 415px;
     background: url(../images/가발.png) no-repeat 0/100% 100%;
     z-index: 9999999;
 }
@@ -72,7 +71,7 @@ body *{
     border-radius: 50% 50% 0 0;
     background-image: none;
     background-color: peachpuff;
-    z-index: 999;
+    z-index: 9;
 }
 /* 머리박스 가상요소로 턱만들기 */
 .head::after{
@@ -279,7 +278,7 @@ body *{
     position: absolute;
     width: 70px;
     height: 100px;
-    outline: 3px dashed lime;
+    /* outline: 3px dashed lime; */
     bottom: -100px;
     
 }
@@ -287,6 +286,7 @@ body *{
 .a1 span::after{
     background: url(../images/hand_left.png) no-repeat bottom/100%;
     left: -10px;
+    /* transform: rotate(10deg); */
 }
 /* 오른쪽손 배경이미지 */
 .a2 span::after{
@@ -296,21 +296,21 @@ body *{
 /* 왼팔 */
 .a1{
     left: -125px;
-    transform: rotate(30deg);
+    transform: rotate(11deg);
 }
 /* 왼팔하단 */
 .a1 span{
-    transform: rotate(30deg);
+    transform: rotate(341deg);
 }
 /* 오른팔 */
 .a2{
     right: -125px;
     z-index: 2;
-    transform: rotate(30deg);
+    transform: rotate(348deg);
 }
 /* 오른팔하단 */
 .a2 span{
-    transform: rotate(30deg);
+    transform: rotate(20deg);
 }
 /* 다리공통 */
 .leg{
@@ -411,5 +411,39 @@ body *{
     right: -140px;
     top: -37px;
     z-index: 222;
+}
+
+/* tv */
+.tv{
+    top: 20px;
+    left: 10px;
+    width: 180px;
+    height: 130px;
+    background: url(../images/tv.jpg) no-repeat center/cover;
+    z-index: 88;
+    border-radius: 10px;
+    overflow: hidden;
+}
+/* 스크린 */
+.screen {
+    position: absolute;
+    top: 9px;
+    left: 7px;
+    width: 132px;
+    height: 107px;
+    background-color: black;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 11;
+}
+
+/* 동영상 iframe */
+.screen iframe {
+    position: absolute;
+    top: -77px;
+    left: 1px;
+    width: 131px;
+    height: 257px;
+    border: none;
 }
 /******************************* 3. 하단영역 *******************************/

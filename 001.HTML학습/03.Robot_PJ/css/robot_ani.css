@@ -29,16 +29,65 @@
 /* 1-1. 로봇 등장 키프레임 */
 @keyframes showRobot {
     from{
-        transform: scale(.1) translate(180%, -130%);
+        /* 초기값과 같다면 from은 생략가능 */
     }
     to{
-        transform: scale(1);
+        transform: 
+        translate(0,0)
+        scale(.5)
+        /* rotate(720deg) */
     }
 }
+/* 로봇몸 키프레임 추가 
+.robx의 내부 div박스를 회전함 
+-> 중심점때문에 만들어서 사용함*/
+
+@keyframes showRobot2 {
+    0%{
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+
+
+/* 
+    [ 애니메이션 기본특성 ]
+    1. 기본적으로 1회만 실행
+    2. 애니메이션 후 처음 설정된 값으로 돌아감
+    3. 반복할 경우 시작 -> 끝 순으로 반복함
+
+    [ 기본특성 변경하기 ] 
+    1. 반복실행하고 싶으면 반복여부(animation-iteration-count_
+    속성값으로 반복횟수를 쓰거나 계속반복실행하고 싶으면 infinite
+
+    2. 마지막 애니메이션 설정값으로 끝나고 싶으면
+    마지막상태(animation-fill-mode) 속성값을 forwards로 쓴다.
+
+    3. 시작->끝, 끝->시작 반복 애니메이션을 역순으로 설정하고싶다면
+    방향(animation-direction)속성값을 alternate로 쓴다.
+*/
+
+
 /* 1-2. 키프레임 호출설정 - 대상*/
 .robx{
+    /* 초기상태 지정하기 */
+    transform: 
+    translate(20%,10%)
+    scale(0);
+    /* 트랜스폼 기준값 변경 */
+    transform-origin: top;
     /* 애니메이션: 이시이지반방마 */
-    animation: showRobot 3s ease-in-out 1s   3;
+    animation: showRobot 2s ease-out 1s forwards;
+}
+/* 로봇몸 추가회전 애니 호출*/
+.robx>div{
+    animation: showRobot2 4s ease-in-out 1s;
 }
 
 /*
@@ -61,3 +110,85 @@ animation: 이시이지반방마
     - 처음상태로 돌아가는 것이 기본!
     - 마지막 상태를 유지하고 싶을때 forwards(앞쪽에...즉,애니끝장면)
 */
+
+
+/* 2. 왼팔올리기 */
+@keyframes leftArm1 {/*팔상단*/
+    to{
+       transform: rotate(76deg);
+    }
+}
+@keyframes leftArm2 {
+    to{
+        transform: rotate(116deg);
+    }
+}
+@keyframes leftArm1-2 {/*팔상단*/
+    from{
+        transform: rotate(76deg);
+    }
+    to{
+       transform: rotate(66deg);
+    }
+}
+
+@keyframes leftArm2-2 {/*팔하단*/
+    from{
+        transform: rotate(110deg);
+    }
+    to{
+        transform: rotate(90deg);
+    }
+}
+/* 2-2. 왼팔애니 호출하기 */
+.a1{
+    /*애니메이션: 이시이지반방마  */
+    animation: leftArm1 3s ease-out 5s forwards,
+    leftArm1-2 .3s linear 8s infinite alternate;
+}
+.a1 span{
+    /*애니메이션: 이시이지반방마  */
+    animation: leftArm2 3s ease-out 5s forwards,
+    leftArm2-2 .3s linear 8s infinite alternate;
+}
+
+
+
+
+/* 3.오른팔올리기 */
+@keyframes rightArm1 {
+    to{
+        transform: rotate(251deg);
+    }
+}
+@keyframes rightArm1-2 {
+    from{
+        transform: rotate(251deg);
+    }
+    to{
+        transform: rotate(241deg);
+    }
+}
+@keyframes rightArm2 {
+    to{
+        transform: rotate(97deg);
+    }
+}
+@keyframes rightArm2-2 {
+    from{
+        transform: rotate(97deg)
+    }
+    to{
+        transform: rotate(77deg)
+    }
+}
+/* 3-2 오른팔애니 호출하기 */
+.a2{
+    animation: rightArm1 3s ease-out 5s forwards,
+    rightArm1-2 .3s linear 8s infinite alternate;
+}
+
+.a2 span{
+    animation: rightArm2 3s ease-out 5s forwards,
+    rightArm2-2 .3s linear 8s infinite alternate;
+}
