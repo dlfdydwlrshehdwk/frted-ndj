@@ -192,3 +192,36 @@ animation: 이시이지반방마
     animation: rightArm2 3s ease-out 5s forwards,
     rightArm2-2 .2s linear 8s infinite alternate;
 }
+
+/* 4-1. 로고 중앙에서 왼쪽 위로 이동하기 키프레임 */
+
+@keyframes logoAni {
+    100%{
+        /* 위치와 크기변경 */
+        top: 50px;
+        left: 50px;
+        transform: scale(1);
+    }
+    80%{
+        /* 위치와 크기변경 */
+        top: 50px;
+        left: 50px;
+        transform: scale(1) rotate(15deg);
+    }
+}
+/* 오뚜기회전 키프레임 */
+@keyframes logoAni2 {
+    from{
+        transform: rotate(15deg);
+    }
+    to{
+        transform: rotate(-15deg);
+    }
+}
+
+.logo{
+    /* 애니 : 이시이지반방마 */
+    animation: 
+    logoAni 2s ease-in-out 1s  forwards,
+    logoAni2 .5s linear 3s alternate infinite;
+}

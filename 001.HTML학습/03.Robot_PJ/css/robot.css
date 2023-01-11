@@ -10,7 +10,14 @@
     font-family: 'Chakra Petch', sans-serif;
     font-family: 'Orbitron', sans-serif;
 */
-
+/* 전체부드러운스크롤 */
+html{
+    scroll-behavior: smooth;
+}
+/* 전체가로스크롤 방지 */
+html,body{
+    overflow-x: hidden;
+}
 /* 초기화 */
 html, body,h1,h2,p,ol,ul,li{
     margin: 0;
@@ -40,8 +47,21 @@ body *{
 /* 1-1. 로고 */
 .logo{
     position: fixed;
-    top: 50px;
-    left: 50px;
+    top: calc(50% - 102px);
+    left: calc(50% - 102px);
+    /* 
+        [ 앱솔루트/픽스드 포지션 정중앙보이기 ]
+        1. calc() 로 계산하기
+        -> top: calc(50% - 박스의 높이값절반px);
+           left: calc(50% - 박스의 가로값절반px);
+
+        2. 위치값 50%이동후 트랜스폼 사용하기
+        -> top: 50%; left: 50%
+            transform: translate(-50%,-50%);
+    */
+    /* 크기확대하기 */
+    transform: scale(2);
+    z-index: 1;
     width: 200px;
     height: 200px;
     /* 글자셋팅 */
@@ -648,3 +668,27 @@ body *{
 }
 
 /****************** 3. 하단영역 *******************/
+#info{
+    /* 글자셋팅 */
+    color: #fff;
+    font: 30px 'Black Ops One';
+    text-shadow: 2px 2px 2px #000;
+    /* 박스셋팅 */
+    background-color: rgba(0, 0, 0, 0.466);
+    padding: 50px;
+    text-align: center;
+}
+/* 속박스 가상요소로 아이콘모양넣기 */
+.info::before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: pink url(../images/robot_03.png) no-repeat;
+    background-position: -15px -8px;
+    background-size: 67px;
+    /* 인라인요소간 세로정렬 */
+    vertical-align: top;
+}
