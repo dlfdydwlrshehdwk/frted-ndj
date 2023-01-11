@@ -149,7 +149,7 @@ animation: 이시이지반방마
 .a1 span{
     /*애니메이션: 이시이지반방마  */
     animation: leftArm2 3s ease-out 5s forwards,
-    leftArm2-2 .3s linear 8s infinite alternate;
+    leftArm2-2 .2s linear 8s infinite alternate;
 }
 
 
@@ -190,5 +190,5 @@ animation: 이시이지반방마
 
 .a2 span{
     animation: rightArm2 3s ease-out 5s forwards,
-    rightArm2-2 .3s linear 8s infinite alternate;
+    rightArm2-2 .2s linear 8s infinite alternate;
 }
