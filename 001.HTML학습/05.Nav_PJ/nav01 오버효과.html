@@ -84,9 +84,8 @@
         .gnb>ul>li:hover>a::after,.tmenu>ul>li:hover>a::after{
             width: 100%;
             margin-left: 0%;
-            /* 마진 left값은 트랜지션 안되고 width만 돼야한다. */
-            transition-property: width;
-            /* 오버시 트랜지션 속성을width만  */
+           
+            
         }
 
         /* 마지막사이드메뉴 li바 제외하기 */
@@ -148,6 +147,11 @@
             padding: 8px 0;
             font-size: 16px;
             font-weight: normal;
+        }
+        /* 서브메뉴 a오버시 확대 */
+        .smenu a:hover{
+            transform: scale(1.2);
+            color: orange;
         }
         
 
