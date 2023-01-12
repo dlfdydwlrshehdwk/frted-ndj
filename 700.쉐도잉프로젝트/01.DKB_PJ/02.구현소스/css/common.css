@@ -43,10 +43,13 @@ nav.gnb ul{
 
 /* gnb a요소 */
 .gnb>ul>li>a{
+    position: relative;
+    /* li의 가상요소 서브배경보다 위
+    순서대로 나중에 그려진 static아닌 요소가 위 */
     text-decoration: none;
     color: #222;
     font-size: 1.7rem;
-    line-height: 4rem;
+    line-height: 2rem;
     margin: 0 10px;
 }
 /* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기
@@ -71,6 +74,46 @@ nav.gnb ul{
     border-bottom: 2px solid red;
     transition-duration: .3s;
 }
+
+/* 가상요소로 밑줄만들기 */
+.gnb>ul>li>a::after,.tmenu>ul>li>a::after{
+    content: '';
+    display: block;
+    margin-top: 2px;
+    /* 변경속성 width */
+    width: 0%;
+    margin-left: 50%;
+    height: 2px;
+    background-color: #fff;
+    /* 트랜지션: 속시이지 */
+    transition: all .3s;
+}
+/* 오버시 바 보이기 */
+.gnb>ul>li:hover>a::after,.tmenu>ul>li:hover>a::after{
+    width: 100%;
+    margin-left: 0%; 
+}
+
+/* 가상요소로 밑줄만들기 */
+.gnb>ul>li>a::after{
+    content: '';
+    display: block;
+    margin-top: 2px;
+    /* 변경속성 width */
+    width: 0%;
+    margin-left: 50%;
+    height: 2px;
+    background-color: rgb(255, 0, 0);
+    /* 트랜지션: 속시이지 */
+    transition: all .3s;
+}
+/* 오버시 바 보이기 */
+.gnb>ul>li:hover>a::after{
+    width: 100%;
+    margin-left: 0%; 
+}
+
+
 
 /* 상위메뉴 li오버시 서브메뉴 보이기 */
 /* 프로그램소개 */
@@ -110,7 +153,7 @@ nav.gnb ul{
     overflow: hidden;
     /* 트랜지션 */
     transition: .4s ease-out;
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
     /* 줄바꿈방지 */
     white-space: nowrap;
     padding: 0 5px;
