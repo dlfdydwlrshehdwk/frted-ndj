@@ -40,7 +40,6 @@ nav.gnb ul{
     /* 마진탑은 부모인 nav.gnb 바깥으로 나가서 위의 박스를 밀고 있다 */
     margin-top: 26px;
 }
-
 /* gnb a요소 */
 .gnb>ul>li>a{
     position: relative;
@@ -50,7 +49,7 @@ nav.gnb ul{
     color: #222;
     font-size: 1.7rem;
     line-height: 2rem;
-    margin: 0 10px;
+    margin: 0 10px; 
 }
 /* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기
 서브메뉴있는곳에 클래스sm 주었다. */
@@ -98,7 +97,7 @@ nav.gnb ul{
 .gnb>ul>li>a::after{
     content: '';
     display: block;
-    margin-top: 2px;
+    margin-top: 19px;
     /* 변경속성 width */
     width: 0%;
     margin-left: 50%;
@@ -106,6 +105,7 @@ nav.gnb ul{
     background-color: rgb(255, 0, 0);
     /* 트랜지션: 속시이지 */
     transition: all .3s;
+    transform: translateX(5px);
 }
 /* 오버시 바 보이기 */
 .gnb>ul>li:hover>a::after{
