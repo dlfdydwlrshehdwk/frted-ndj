@@ -14,13 +14,21 @@
 .logo img{
     width: 100px;
 }
+/* 겉박스 */
 #top{
     background-color: #fff;
+    /* 하단보더 */
+    border-bottom: 1px solid #ccc;
 }
+/* 속박스 */
 .top{
     height: 128px;
     /* 부모자격 .tmenu */
     /* position: relative; */
+}
+.bxbxbx{
+    /* 로고랑 탑박스를 박스화 */
+    position: relative;
 }
 
 /* 1-2 GNB메뉴 */
@@ -30,8 +38,7 @@ nav.gnb ul{
     /* 진행방향 정렬 */
     justify-content: center;
     /* 마진탑은 부모인 nav.gnb 바깥으로 나가서 위의 박스를 밀고 있다 */
-    margin-top: 10px;
-    
+    margin-top: 26px;
 }
 
 /* gnb a요소 */
@@ -44,39 +51,80 @@ nav.gnb ul{
 }
 /* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기
 서브메뉴있는곳에 클래스sm 주었다. */
-.gnb>ul>li.sm::after{
+.gnb>ul>li.sm::before{
     content: '';
     position: absolute;
-    top: 128px;
+    top: 129px;
     left: 0;
-    z-index: -1;
+    /* z-index: -1; */
     width: 100%;
     /* 부모는? */
     height: 0;
     background-color: rgb(255, 255, 255);
-    transition: .6s ease-out;
-    
+    transition: .45s ease-out;
+    border-bottom: 2px solid red;
+    border-style: none;
 }
 /* 상위메뉴 오버시 서브배경보이기 */
-.gnb>ul>li.sm:hover::after{
-    height: 200px;
+.gnb>ul>li.sm:hover::before{
+    height: 140px;
     border-bottom: 2px solid red;
+    transition-duration: .3s;
+}
+
+/* 상위메뉴 li오버시 서브메뉴 보이기 */
+/* 프로그램소개 */
+/* 상위메뉴 오버시 하위메뉴보이기 */
+
+.gnb>ul>li:first-child:hover::before{
+    height: 120px;
+}
+.gnb>ul>li:first-child:hover .smenu{
+    height: 105px;
+}
+/* 동영상 */
+.gnb>ul>li:nth-child(3):hover::before{
+    height: 150px;
+}
+.gnb>ul>li:nth-child(3):hover .smenu{
+    height: 135px;
+}
+/* 사진첩 */
+.gnb>ul>li:nth-child(4):hover::before{
+    height: 90px;
+}
+.gnb>ul>li:nth-child(4):hover .smenu{
+    height: 75px;
 }
 
 /* GNB 서브메뉴 */
 .smenu{
+    position: absolute;
+    /* 가로방향 중앙위치 */
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    background-color: #fff;
+    /* background-color: #fff; */
     /* 숨기기 */
-    /* height: 0;
-    overflow: hidden; */
+    height: 0;
+    overflow: hidden;
     /* 트랜지션 */
     transition: .4s ease-out;
+    outline: 2px solid red;
+    /* 줄바꿈방지 */
+    white-space: nowrap;
+    padding: 0 5px;
+    /* 상단위치이동 */
+    margin-top: 15px;
 }
-/* 상위메뉴 오버시 하위메뉴보이기 */
-.gnb>ul>li:hover .smenu{
-    height: 120px;
+.smbx{
+    /* .smenu의 부모 */
+    position: relative;
+    width: 100%;
+    /* outline: 2px solid red; */
+    
 }
+
 .smenu a{
     font-size: 1.4rem;
     line-height: 2;
