@@ -40,6 +40,11 @@ nav.gnb ul{
     /* 마진탑은 부모인 nav.gnb 바깥으로 나가서 위의 박스를 밀고 있다 */
     margin-top: 26px;
 }
+/* GNB 최상위 li */
+.gnb > ul > li {    
+    /* a요소의 패딩을 li로 이동함! */
+    margin: 0 10px;
+}
 /* gnb a요소 */
 .gnb>ul>li>a{
     position: relative;
@@ -158,7 +163,7 @@ nav.gnb ul{
     white-space: nowrap;
     padding: 0 5px;
     /* 상단위치이동 */
-    margin-top: 15px;
+    
 }
 .smbx{
     /* .smenu의 부모 */
@@ -169,10 +174,20 @@ nav.gnb ul{
 }
 
 .smenu a{
+    display: inline-block;
+    /* 트랜스폼은 inline일떄 적용안됨 */
     font-size: 1.4rem;
     line-height: 2;
     color: #000;
     text-decoration: none;
+    transition: .2s ;
+}
+.smenu li{
+
+}
+.smenu a:hover{
+    transform: scale(1.1);
+    color: crimson;
 }
 
 /* 1-3 탑메뉴 */
