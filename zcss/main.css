@@ -4,6 +4,7 @@
 html{
     scroll-behavior: smooth;
     /* #아이디명 스크롤 이동시 부드럽게 애니메이션 이동함 */
+    font-size: 10px;
 }
 
 /* 상단영역 */
@@ -27,9 +28,10 @@ body {
 }
 body {
     /* padding-top: 50px; */
+    overflow: hidden;
 }
-
-.gnb ul,ol {
+/* ul초기화 */
+ul,ol {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -43,7 +45,6 @@ body {
     float: left;
     text-align: center;
     width: 150px; 
-    font-size: 1.5em;
 }
 .gnb ul::after {
     content: "";
@@ -54,11 +55,22 @@ body {
     text-decoration: none;
     color: brown;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 .part a{
     text-decoration: none;
     color: cornflowerblue;
     font-weight: bold;
+    font-size: 3.5rem;
+}
+/* GNB셋팅 */
+.gnb{
+    white-space: nowrap;
+}
+/* pg1 - 공통프로젝트 아이콘 */
+#pg1 .part a::before{
+    content: '✡';
+    margin-right: 10px;
 }
 /*페이지박스 : div 블록박스*/
 .mybx {
@@ -94,7 +106,9 @@ body {
     height: calc(100% - 350px);
     position: relative;
     top: 300px;
+    display: flex;
 }
+
 /*h1요소*/
 .tit {
     /*기본마진없앰*/
@@ -103,26 +117,20 @@ body {
     padding: 20px;
     /*글자중앙*/
     text-align: center;
+    font-size: 2rem;
 }
 .part{
-    float: left;
+    flex: 1;
+    padding: 50px;
+}
+/* 서브타이틀 */
+.part h2{
+    background-color: rgba(0, 0, 0, 0.432);
     padding: 20px;
-    padding-right: 60px;
-}
-.part li{
-    padding: 20px 10px;
-    font-size: 2rem; 
-}
-.pt1{
-    margin-right: 30px;
-}
-.ptpt::after{
-    content: '';
-    display: block;
-    clear: both;
-}
-.ptpt{
-    width: 1000px;
-    margin: 0 auto;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 4rem;
+    text-align: center;
+    text-shadow: 2px 2px 2px #000;
 }
 
