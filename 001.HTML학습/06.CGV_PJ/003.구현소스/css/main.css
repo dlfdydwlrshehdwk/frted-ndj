@@ -73,7 +73,15 @@ body{
 }
 /* 상위메뉴 a */
 .gnb ul>li>a{
+    display: inline-block;
     font-size: 2rem;/* 20px */
+    transition: .3s;
+}
+/* 오버시변경 */
+.gnb ul>li:hover>a{
+    color: aquamarine;
+    transform: scale(1.2);
+    animation: titAni .5s ease-in infinite alternate;
 }
 
 /* 서브메뉴 */
@@ -242,4 +250,78 @@ body{
 /**************** 3.하단영역 ****************/
 .info{
     height: 100px;
+    /* 플렉스박스 */
+    display: flex;
+    /* 수직방향정렬 */
+    align-items: center;
 }
+
+/* 3-1. 로고 */
+.logo{
+    margin-right: 20px;
+}
+/* 3-2. 회사정보 */
+.corp{
+}
+.corp address{
+    color: #eee;
+    font-family: 'Cute Font', cursive;
+    font-style: normal;
+    line-height: 2rem;
+    font-size: 1.8rem;
+}
+/* 3-3. sns */
+.sns{
+    /* 오른쪽 끝에위치 */
+    margin-left: auto;
+}
+.sns ol{
+    display: flex;
+}
+.sns li{
+    width: 34px;
+    height: 34px;
+    outline: 1px solid white;
+}
+/* li 사이간격 */
+.sns li+li{
+    margin-left: 5px;
+}
+/* a확장 */
+.sns a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 34px;
+    text-align: center;
+}
+
+/* sns오버시 글자색 */
+
+/* 페북 */
+.sns a[class$=facebook]:hover{
+    color: lightblue;
+}
+/* 트위터 */
+.sns a[class^='fa-brands fa-square-t']:hover{
+    color: cornsilk;
+}
+/* 인스타 */
+.sns a[class*=insta]:hover{
+    color: violet;
+}
+/************************************** 
+    속성선택자: [속성명] 
+    - 속성명의 특정값을 비교하는 3가지 방법
+    1. [속성명=값] -> 정확히 일치하는 값
+    2. [속성명*=값] -> 값 내용중 있기만하면 찾음
+    3. [속성명^=값] -> 값내용이 시작하는 문자열 찾음
+    4. [속성명$=값] -> 값내용이 끝나는 문자열 찾음
+
+    - 별은 하늘에 있고 모두가 볼 수 있다. *= 모든일치 내용
+    - 시작할떄는 웃으면서 시작 ^= 시작하는 내용
+    - 끝날때는 돈받고 끝나라 $= 끝나는내용
+
+    - 사용하는 문자열에 문제가 없다면 따옴표를 쓰지 않아도 된다
+    but 띄어쓰기, 특수문자 등이 있다면 ' ' 따옴표를 사용
+**************************************/
