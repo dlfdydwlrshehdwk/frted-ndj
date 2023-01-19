@@ -197,3 +197,11 @@ body{
 .cat:nth-child(4) .cd p:first-child::first-letter{
     color: lightpink;
 }
+
+/* 등장글자 */
+#mvtxt{
+    position: absolute;
+    top: 25vh;
+    right: 5vw;
+    width: min(20vw,327px);
+}
