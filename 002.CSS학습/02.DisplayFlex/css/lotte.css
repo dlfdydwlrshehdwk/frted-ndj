@@ -145,3 +145,11 @@
     width: auto;
 }
 /*********************** 3. 하단영역 ***********************/
+.info{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 0;
+    background-color: #da041c;
+    text-align: center;
+}
