@@ -89,6 +89,7 @@ body *{
     position: absolute;
     top: 100px;
     right: 50px;
+    z-index: 999999;
 }
 .link a{
     /* a요소 필수셋팅: 글자색+밑줄없앰 */
@@ -98,6 +99,7 @@ body *{
     font: 50px 'Black Ops One';
     /* 글자그림자 */
     text-shadow: 2px 2px 2px #000;
+    
 }
 /* 마우스오버시 */
 .link a:hover{
@@ -180,7 +182,7 @@ body *{
     width: 500px;
     height: 415px;
     background: url(../images/가발.png) no-repeat 0/100% 100%;
-    z-index: 9999999;
+    z-index: 999;
 }
 /* 머리박스에 오버시 가상요소 가발변경하기 */
 .head:hover::before{
@@ -206,6 +208,7 @@ body *{
     z-index: -1;
     clip-path: polygon(0 0,33% 85%, 40% 90%,55% 90%, 66% 80%, 80% 55%, 100% 0);
     /* 박스그림자 */
+    
 }
 
 /* 눈공통 */
@@ -298,7 +301,6 @@ body *{
 .er2{
     right: -30px;
     border-radius: 0 10px 50px 0;
-    z-index: 999999;
 }
 
 /* ***************로봇몸통*************** */
@@ -308,6 +310,7 @@ body *{
     width: 200px;
     height: 450px;
     margin: 120px auto 0;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 몸통 가상요소로 상단만들기 */
 .body::before{
@@ -322,6 +325,7 @@ body *{
     clip-path: polygon(0 0,100% 0,75% 75%, 50% 100%,25% 75%);
     z-index: 33;
     /* display: none; */
+    box-shadow: 0 0 10px 5px cyan;
 }  
 
 
@@ -336,6 +340,7 @@ body *{
     bottom: 0;
     background-image: linear-gradient(-35deg,#ccc,#727272,#bbb,#818181,#cbc);
     clip-path: polygon(20% 30% ,30% 0, 70% 0%,80% 30%, 90% 100%, 10% 100%);
+    box-shadow: 0 0 10px 5px cyan;
 }
 
 
@@ -357,6 +362,7 @@ body *{
     height: 200px;
     border-radius: 15px;
     transform-origin: center 10%;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 팔공통 가상요소 연결부분 */
 .arm::before,
@@ -373,6 +379,7 @@ body *{
     box-sizing: border-box;
     bottom: -30px;
     z-index: 3;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 연결부분 내부박스 */
 .arm::after{
@@ -390,6 +397,7 @@ body *{
     border-radius: 15px;
     /* 회전축변경 : 가로중앙 세로 10%*/
     transform-origin: center 10%;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 팔하단 가상요소로 손박스 만들기 */
 .arm span::after{
@@ -440,6 +448,7 @@ body *{
     transform-origin: center 10%;
     /* 부모박스의 높이만큼 아래로 밀어냄 */
     top: 90%;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 다리공통 가상요소로 연결부분 만들기 */
 .leg::before,
@@ -458,6 +467,7 @@ body *{
     bottom: -40px;
     background-color: #ccc;
     z-index: 1;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 연결부분 내부박스 */
 .leg::after{
@@ -476,6 +486,7 @@ body *{
         border-radius: 15px;
         transform-origin: center 10%;
         z-index: -1;
+        box-shadow: 0 0 10px 5px cyan;
 }
 /* 다리하단 가상요소로 발만들기 */
 .leg span::after{
@@ -490,6 +501,7 @@ body *{
     background-image: linear-gradient(-45deg,#333333 10%, #eee 60%,#ccc);
     border: 3px solid #222;
     border-bottom: 20px solid #222;
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 다리하단 가상요소로 부츠만들기 */
 .leg span::before{
@@ -505,6 +517,7 @@ body *{
     border-top: 20px solid #222;
     border-radius: 15px 75px 0 0;
     clip-path: polygon();
+    box-shadow: 0 0 10px 5px cyan;
 }
 /* 왼다리 */
 .l1{
@@ -692,3 +705,4 @@ body *{
     /* 인라인요소간 세로정렬 */
     vertical-align: top;
 }
+
