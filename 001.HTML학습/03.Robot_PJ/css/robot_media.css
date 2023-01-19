@@ -4,9 +4,38 @@
 
 /* 1024px 이하 */
 @media screen and (max-width:1024px){
+    /* 링크박스 */
+    .link{
+        padding-top: 40px;
+        position: static;
+        text-align: center;
+    }
+
     /* 링크이동버튼 */
     .link a{
         font-size: 35px;
+    }
+    /* 
+        [ 기존 애니메이션 적용 요소 변경시 }
+        애니메이션을 없애고(none) 다자인을 변경한다
+        필요에 따라 애니메이션을 다시설정한다.
+    */
+    /* 로고박스 */
+    .logo{
+        animation: none;
+        transform: scale(1);
+        width: 100px;
+        height: 100px;
+        top: 90px;
+        left: 30px;
+        font-size: 20px;
+        line-height: 150px;
+        background: pink url(../images/robot_03.png) no-repeat center 10px/80px;
+    }
+    /* 로고 애니메이션 재설정 */
+    .logo{
+        animation: 
+        logoAni2 .5s ease-in-out 3s infinite alternate;
     }
 }
 /* 900px 이하 */
