@@ -55,10 +55,39 @@
 
 /* 500px 이하 */
 @media screen and (max-width:500px) {
+    html,body{
+        width: 100vw;
+        /* 보이는화면 가로크기 채움 */
+        overflow-x: hidden;
+        /* x축 스크롤 없애기 */
+    }
+
+
     /* 설명다단 */
     /* 2-2-3.내용단락 */
 .dcbx p{
     /* 다중열개수 */
         column-count: 1;
+    }
+    .btnTop{
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        /* 박스셋팅 */
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        border: 5px outset #fff;
+        background-color: #ccc;
+    }
+    .btnTop a{
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        /* 글자셋팅 */
+        color: blue;
+        font: 25px/65px 'Black Ops One';
+       
     }
 }
