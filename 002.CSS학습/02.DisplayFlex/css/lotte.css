@@ -5,3 +5,143 @@
 /* 외부파일 합치기 */
 @import url(./reset.css);
 
+/*********************** 1. 상단영역 ***********************/
+/* 타이틀박스7 */
+.t7{
+    width: 450px;
+    display: flex;
+    /* 랩핑 */
+    flex-wrap: wrap;
+    /* 수평정렬 : 등분할공간 */
+    justify-content: space-evenly;
+    /* 수직정렬(여러줄) : 중앙 */
+    align-content: center;
+}
+/* 자체응용 - 줄바꿈을위한 li */
+/* 원리는 줄바꿈을 할 부분에서 가로크기 100%를 차지하게 해서
+줄바꿈효과를 주는것 */
+.t7 .brk{
+    /* width: 100%; */
+    flex-basis: 100%;
+    /* flex-basis는 width와 동일하지만 flex에서만 사용가능 */
+
+    /* 기존의 다지인을 없애기 */
+    height: 0;
+    border: none;
+    margin-top: 40px;
+}
+
+
+/* 타이틀공통 */
+.tit{
+    z-index: 3;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 500px;
+    /* 가로 중앙이동 : 트랜스폼(트랜슬레이트) */
+    transform: translateX(-50%);
+    /* 자신의 크기 절반(50%)만큼 왼쪽방향(-)이동 */
+}
+
+/* 타이틀 하위 공통li */
+.tit>li{
+    /* 박스셋팅 */
+    width: 50px;
+    height: 50px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background-color: red;
+    text-align: center;
+    /* 글자셋팅 font:스타일 두께 크기/줄간격 글자체;*/
+    font: bold 14px/50px Verdana;
+    color: white;
+}
+
+
+/*********************** 2. 메인영역 ***********************/
+/* 파티션박스 ul */
+.cont>ul{
+    /* 플렉스박스 */
+    display: flex;
+    /* 높이값을 보이는 화면기준으로 채우기 */
+    height: 100vh;
+}
+/* 파티션 박스 li */
+.cont>ul>li{
+    position: relative;
+    /* 부모자격 하위img */
+    /* 플렉스 자식요소 등분할 설정 */
+    flex: 1;
+    /* 가로는 등분할, 세로는 100% 채움 */
+
+    /* 커서 손가락모양 */
+    cursor: pointer;
+
+    /* 트랜지션 속시이지 */
+    transition: .3s;
+}
+
+/* 파티션li박스 가상요소로 오버레이효과 */
+.cont>ul>li::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* 앱솔루트 사방채우기 */
+    background-color: rgb(0, 0, 0);
+    opacity: .5;
+    /* 트랜지션 속시이지 */
+    transition: .3s;
+}
+/* 파티션 li에 마우스오버시  */
+/* li넓어지기  */
+.cont>ul>li:hover{
+    flex: 1.4;
+    /* 
+        flex: 1 -> 등분할설정
+        -> 여ㅣ에 다른 숫자를 쓰면 기존 1로 등분할 된 것에 
+        비교하여 2를쓰면 2배... 이런식의 배수를 셋팅하게됨
+    */
+}
+/* 가상요소배경 밝아지기 */
+.cont>ul>li:hover::before{
+    opacity: 0;
+}
+
+/* 각 파티션 박스에 배경 이미지 넣기 */
+.cont > ul > li:first-child {
+    background: url(../images/m01_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(2) {
+    background: url(../images/m02_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(3) {
+    background: url(../images/m03_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(4) {
+    background: url(../images/m04_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(5) {
+    background: url(../images/m05_bg.jpg) no-repeat center/cover;
+}
+
+/* 타이틀 + 로고 이미지 공통셋팅 */
+.cont>ul>li>img{
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(70%, 250px);
+    /* 부모박스의 70%적용시 최대 250픽셀한계 */
+}
+/* 로고만 셋팅변경 */
+.cont>ul>li>img:last-child{
+    top: 80%;
+    width: auto;
+}
+/*********************** 3. 하단영역 ***********************/
