@@ -60,11 +60,15 @@
 /* 1024px사이즈 이하 미디어쿼리 끝 */
 
 
-/* 510px사이즈 이하 미디어쿼리 시작 */
-@media screen and (max-width:510px){
+/* 780px사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width:780px){
     /* 디스플레이 없애기 */
      .tmenu, .gnb ul li{
         display: none;
+    }
+    /* 햄버거버튼보이기 */
+    .ham{
+        display: block;
     }
     /* 상단영역 */
     .top{
@@ -103,4 +107,4 @@
         display: none;
     }
 }
-/* 510px사이즈 이하 미디어쿼리 끝 */
+/* 780px사이즈 이하 미디어쿼리 끝 */

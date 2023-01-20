@@ -257,6 +257,9 @@ aside.tmenu{
     border: none;
     font-size: 50px;
     transform: scaleX(1.4);
+
+    /* 처음에 숨기기 */
+    display: none;
 }
 
 /***************************** 2. 메인영역 *****************************/
