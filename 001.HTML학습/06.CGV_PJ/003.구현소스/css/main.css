@@ -163,17 +163,19 @@ body{
 .cont{
     position: relative;
     /* 부모자격 - .screen */
-    height: 788px;
+    /* 비율설정 */
+    aspect-ratio: 1200/788;
+    /* height: 788px; */
     /* 극장배경 넣기 */
     background: url(../images/bg.jpg) no-repeat center top/100%;
 }
 /* 2-1.스크린 */
 .screen{
     position: absolute;
-    top: 136px;
-    left: 256px;
-    width: 702px;
-    height: 398px;
+    top: 17.1%;
+    left: 21.3%;
+    width: 58.6%;
+    height: 50.6%;
     background-color: #000;
 }
 /* 유튜브 아이프레임 */
@@ -187,9 +189,9 @@ body{
 /* 2-2.예고편 선택메뉴 */
 .mlist{
     position: absolute;  
-    bottom: 61px;
+    bottom: 5%;
     left: 50%;
-    width: 702px;
+    width: 60%;
     transform: translateX(-49%);
 
     /* 앱솔루트 부모자격이 있는 요소의
@@ -203,16 +205,22 @@ body{
     display: flex;
     /* 진행방향정렬 : 양쪽끝 맞춘후 사이간격일정 */
     justify-content: space-between;
-    
+}
+.mlist ul>li+li{
+    margin-left: 1.5%;
 }
 /* 선택메뉴 상위li */
 .mlist ul>li{
+    position: relative;
+    /* 부모자격 .movtxt */
     overflow: hidden;
+    flex: 1;
+    /* 등분할 */
 }
 /* 포스터 이미지 */
 .mlist img{
-    width: 99px;
-    height: 140px;
+    width: 100%;
+    /* height: 140px; */
 }
 
 /* 영화정보박스 */
@@ -227,8 +235,9 @@ body{
     /* 앱솔루트 포지션 */
     position: absolute;
     top: 100%;
-    width: 99px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
+    /* 부모는 ? 싸고있는 li */
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
 
@@ -261,8 +270,7 @@ body{
     margin-right: 20px;
 }
 /* 3-2. 회사정보 */
-.corp{
-}
+
 .corp address{
     color: #eee;
     font-family: 'Cute Font', cursive;
