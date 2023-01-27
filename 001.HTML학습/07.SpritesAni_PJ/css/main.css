@@ -240,6 +240,7 @@ body {
     transition:  .8s;
 }
 .big:hover{
+    /* 오버시 확대 , 멈춤, 위로 */
     transform: scale(3);
     animation-play-state: paused;
     z-index: 1;
