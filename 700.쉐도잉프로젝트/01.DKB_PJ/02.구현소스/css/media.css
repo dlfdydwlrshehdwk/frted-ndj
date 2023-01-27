@@ -73,14 +73,63 @@
         width: 100vw;
         
     }
-
+    .logo{
+        position: relative;
+        z-index: 99999;
+    }
     /* 디스플레이 없애기 */
-     .tmenu, .gnb ul li{
+     .tmenu,
+     .smbx,
+     .gnb>ul>li>a{
         display: none;
+    }
+    .top.on .smbx{
+        display: block;
+    }
+    .top.on .gnb>ul>li>a{
+        display: block;
+    }
+    /* GNB메뉴 변경하기 
+    ->메뉴를 fixed로 고정
+    -> .top에 .on을 준 경우 적용됨 */
+    .top.on .gnb{
+        display: block;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.555);
+        z-index: 9999;
+    }
+    .gnb ul{
+        /* 플렉스 박스 방향을 세로로 변경 */
+       flex-direction: column ;
+       text-align: center;
+       margin: 0;
+    }
+    .gnb>ul>li{
+        margin: 0;
+    }
+    /* 글자 */
+    .gnb >ul>li>a{
+        font-size: 5vh;
+        line-height: 12vh;
+        color: #fff;
     }
     /* 햄버거버튼보이기 */
     .ham{
         display: block;
+        
+    }
+    /* 햄버거버튼 상위.top에 클래스 on
+    줄경우 x버튼으로 변경 */
+    .top.on .ham{
+        z-index: 999999;
+        color: #fff;
+         transform: scale(1.5);
+    }
+    .top.on .ham::before{
+       content: '×';
     }
 
     /* 캐릭터박스 한줄에하나 */

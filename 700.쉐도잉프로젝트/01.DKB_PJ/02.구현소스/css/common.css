@@ -56,7 +56,15 @@ nav.gnb ul{
     line-height: 2rem;
     margin: 0 10px; 
 }
-/* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기
+
+/* 모바일에서는 오버시 설정이 적용되지 않도록 
+미디어쿼리 min-width를 사용한 구역에 넣어준다.
+-> 780px 이상일때만 적용이 되게끔 */
+@media screen and (min-width: 780px) {
+    
+
+/* GNB 서브메뉴 배경 
+상위메뉴 li에 가상요소로 만들기
 서브메뉴있는곳에 클래스sm 주었다. */
 .gnb>ul>li.sm::before{
     content: '';
@@ -144,6 +152,9 @@ nav.gnb ul{
 .gnb>ul>li:nth-child(4):hover .smenu{
     height: 75px;
 }
+}
+/* 780이상일대 오버시적용 */
+
 
 /* GNB 서브메뉴 */
 .smenu{
@@ -257,11 +268,13 @@ aside.tmenu{
     border: none;
     font-size: 50px;
     transform: scaleX(1.4);
-
     /* 처음에 숨기기 */
     display: none;
 }
-
+/* 햄버거모양 가상요소넣기 */
+.ham::before{
+    content: '≡';
+}
 /***************************** 2. 메인영역 *****************************/
 .cont{
    min-height: 800px;
