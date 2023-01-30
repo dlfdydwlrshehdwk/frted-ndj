@@ -100,15 +100,18 @@
         height: 100vh;
         background: rgba(0, 0, 0, 0.555);
         z-index: 9999;
+        margin-top: 20vh;
     }
-    .gnb ul{
+    .gnb>ul{
         /* 플렉스 박스 방향을 세로로 변경 */
        flex-direction: column ;
        text-align: center;
        margin: 0;
     }
+    /* li 셋팅 */
     .gnb>ul>li{
         margin: 0;
+        height: 11vh;
     }
     /* 글자 */
     .gnb >ul>li>a{
@@ -163,6 +166,30 @@
     /* 하단링크 일부 숨기기(li:1~4) */
     .blink li:nth-child(-n + 3){
         display: none;
+    }
+    .tmenu>ul{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .tmenu>ul>li:last-child{
+        width: 100%;
+    }
+    .tmenu ul ol{
+        justify-content: center;
+        display: flex;
+        margin-top: 2vh;
+        transform: scale(1.2);
+    }
+    .tmenu ul li a{
+        font-size: 3vw;
+        color: #fff;
+    }
+
+    aside.tmenu{
+    position: fixed;
+    z-index: 99999;
+    top: 85vh;
+    width: 100vw;
     }
 }
 /* 780px사이즈 이하 미디어쿼리 끝 */

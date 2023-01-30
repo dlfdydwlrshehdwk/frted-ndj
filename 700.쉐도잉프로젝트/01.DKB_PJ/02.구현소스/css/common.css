@@ -19,6 +19,9 @@
     background-color: #fff;
     /* 하단보더 */
     border-bottom: 1px solid #ccc;
+    position: relative;
+    z-index: 9999;
+    /* 메인영역보다 위 - 이유 : GNB서브메뉴가 위로와야함 */
 }
 /* 속박스 */
 .top{
