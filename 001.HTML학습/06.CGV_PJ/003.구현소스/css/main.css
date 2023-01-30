@@ -54,6 +54,7 @@ body{
     position: absolute;
     bottom: 10px;
     right: 10px;
+    height: 50%;
 }
 /* ul박스 */
 .gnb ul{
@@ -157,6 +158,51 @@ body{
 .bdt{
     border-top: 1px solid #ccc;
 }
+
+/* 영사기 박스 */
+#cam{
+    position: absolute;
+    right: -60px;
+    bottom: 0px;
+}
+/* 영사기 이미지 */
+#cam img{
+    width: 50px;
+    position: relative;
+    /* 영사기가 위 */
+    z-index: 1;
+    transition: .5s ease-out ;
+    transform: rotate(35deg);
+}
+.gnb:hover #cam img{
+    transform: rotate(0deg);
+}
+.gnb:hover .beam{
+    /* 이시이지반방마 */
+    width: 200px;
+    transition-delay: .5s;
+    animation: beam .00004s linear infinite alternate;
+}
+
+@keyframes beam {
+    to{
+        opacity: .5;
+    }
+}
+.beam{
+    position: absolute;
+    top: -16px;
+    right: 11px;
+    width: 0;/*200px*/
+    height: 70px;
+    background: url(../images/bim.png) no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    transition: .1s;
+    z-index: -1;
+    /* outline: 2px dotted lime; */
+}
+
 
 /**************** 2.메인영역 ****************/
 /* 속박스 */

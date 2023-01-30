@@ -19,7 +19,7 @@ body{
     /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고
     먼저쓴 이미지가 위에 온다! */
     background: 
-    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 25%/10%,
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 28%/10%,
     url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
     /* 외부CSS에서 이미지 경로를 잡을때 주의사항!
     -> CSS파일 위치에서 이미지를 찾아가야함! */
@@ -144,9 +144,10 @@ body{
 /* 캐릭터 설명 타이틀 */
 .cd h3{
     font-family: 'Gugi', cursive;
+    /* 글자크기 최대24px, 화면가로크기의 1.7% */
     font-size: min(24px,1.7vw);
-    /* 글자크기 최대 24px, 화면가로크기의 1.7% */
     font-weight: normal;
+    /* 줄바꿈 방지 */
     white-space: nowrap;
     padding: 15px 10px 5px;
     letter-spacing: -1px;
@@ -169,9 +170,10 @@ body{
 /* 캐릭터 설명문단 */
 .cd p{
     font-family: 'Single Day','ZCOOL KuaiLe', cursive;
-    font-size: min(18px,1.3vw);
+    /* 글자크기 최대18px, 화면가로크기의 1.3% */
+    font-size: min(1.3vw,18px);
     line-height: 1.6;
-    /* 패딩크기 최대 15px, 화면가로크기의 1% */
+    /* 패딩크기 최대15px, 화면가로크기의 1% */
     padding: min(1vw,15px);
     /* 양쪽정렬 justify - taj */
     text-align: justify;
@@ -179,7 +181,7 @@ body{
 
 /* 캐릭터 첫번째 문단 첫글자 가상요소로 디자인 변경하기! */
 .cd p:first-child::first-letter{
-    /* 글자크기 최대 50px, 화면가로크기의 3% */
+    /* 글자크기 최대50px, 화면가로크기의 3% */
     font-size: min(3vw,50px);
     color: cyan;
     /* 그림자로 글자 테두리주기
@@ -204,10 +206,11 @@ body{
     color: lightpink;
 }
 
-/* 등장글자 */
+
+/* 등장글자 이미지 */
 #mvtxt{
     position: absolute;
-    top: 7vh;
+    top: 15vh;
     right: 5vw;
     width: min(20vw,327px);
 }
