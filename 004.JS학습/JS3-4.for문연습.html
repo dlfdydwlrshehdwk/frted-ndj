@@ -55,7 +55,7 @@
             var rbtn = document.querySelector(".rbtn");
 
             // 2-4. 전체개수표시 .stxt span
-            var stxt = document.querySelectorAll(".stxt span");
+            var stxt = document.querySelector(".stxt span");
 
 
 
@@ -136,8 +136,8 @@
                 // 2. 파란상자안의 미니언즈 이미지개수 읽어오기
                 var cnt = Bcase.querySelectorAll("img").length;
                 console.log(cnt);
-                // 3. 표시요소에 개수 출력하기
-                stxt.innerHTML = cnt;
+                // 3. 표시요소에 개수 출력하기: .stxt span ->stxt
+                stxt.innerText = cnt;
                
             };/////////showCnt 함수///////////////
             //////////////////////////////////////
