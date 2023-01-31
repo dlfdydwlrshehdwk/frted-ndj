@@ -109,4 +109,26 @@ table#gubun{
     border: 1px solid #999;
     /* 오른쪽 끝으로보내기 */
     float: right;
+
+    /* td(테이블셀)에 사이간격주기 
+    border-collapse: separate; 로 해주고 border-spacing: 으로 수치줌
+    */
+    /* border-collapse: separate;
+    border-spacing: 가로 세로;
+    border-spacing: 양방향; */
+    border-collapse: separate;
+    border-spacing: 10px;
+    
+}
+
+#gubun td{
+    padding: 10px;
+}
+/* 구분테이블 첫번쨰 tr의 첫번쨰 td의 오른쪽 점선넣기 */
+#gubun tr:first-child td:first-child{
+    border-right: 1px dotted #000;
+}
+/* 구분테이블에 두번쨰 tr부터 끝까지 td위쪽 보더 점선넣기 */
+#gubun tr+tr td{
+    border-top: 4px dotted #000;
 }
