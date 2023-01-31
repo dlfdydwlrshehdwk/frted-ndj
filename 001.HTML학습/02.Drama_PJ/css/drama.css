@@ -93,5 +93,20 @@ html,body{
     color: rgb(105, 255, 118);
     text-decoration: overline;
     text-decoration-style: double;
-    
+}
+
+/* 구분테이블 박스 */
+.gubun{
+    width: 1000px;
+    margin: 0 auto;
+    outline: 1px dashed red;
+    /* 자식 float 박스 크기를 유지해줌 */
+    overflow: hidden;
+}
+/* 구분테이블 */
+table#gubun{
+    font-size: 20px;
+    border: 1px solid #999;
+    /* 오른쪽 끝으로보내기 */
+    float: right;
 }
