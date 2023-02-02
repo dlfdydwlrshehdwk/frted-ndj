@@ -22,7 +22,8 @@
             font-size: 24px;
         }
     </style>
-
+    <!-- 영화객체 JS불러오기 -->
+    <script src="./JS4-1.배열과객체_object.js"></script>
     <!-- JS코드구역 -->
     <script>
         // 로드구역//////////////////
@@ -388,10 +389,10 @@
             /*********************************************  
                 [ 미션 : 내가 만든 객체]
                 1. 주제: 영화정보 
-                2. 조건: 변수명, 객체속성명 모두 자신이 지은이름사용
+                2. 조건: 객체변수명만 모두 자신이 지은이름사용
                 3. 객체를 쌤께 전송! 
             *********************************************/
-
+            // 김동호 객체
             var GSObj = {
                 // 1.영화제목
                 제목:"교섭",
@@ -400,24 +401,183 @@
                 // 3. 배우
                 배우:"황정민, 현빈",
                 // 4. 장르
-                장르:"드라마",
+                장르:"전쟁, 드라마",
                 // 5. 관람가
                 관람가:"15000",
                 // 6. 예고편
                 예고편:function(){
-                    alert("예고편");
+                    // 호출확인
+                    // alert("예고편");
+
+                    // 플레이어 호출
+                    playMv("kJnmT5BS4SA");
+
                 }////////////// 예고편메서드 ///////////////////
 
-            }//////////////// GSObj ////////////////////////
+            }//////////////// GSObj객체 ////////////////////////
             
-            tg[5].innerHTML = `
-            영화제목 : ${GSObj.제목}, 감독 : ${GSObj.감독}, 배우진 : ${GSObj.배우}<br> 장르 : ${GSObj.장르},
-            관람가 : ${GSObj.관람가}
-            `;
+            tg[5].innerHTML = arr3.join("");
+            // 출력대상 tg[5]
 
+            /////////////////////////////////
+            // 내용 출력하기 함수로 변경!!
+            ////////////////////////////////
+
+            var expFn = function(){
+            tg[5].innerHTML = `
+                영화제목 : ${GSObj.제목}, 
+                감독 : ${GSObj.감독}, 
+                배우진 : ${GSObj.배우}<br> 
+                장르 : ${GSObj.장르},
+                관람가 : ${GSObj.관람가}
+            `;
+            // 툴팁보이기
+            tg[5].title = `클릭하시면 ${GSObj.제목} 예고편을 보실 수 있습니다!`;
+            
+            // 클릭시 GSObj 메서드 호출하기
+            tg[5].onclick = GSObj.예고편;
+            
+        
+            };///////////////expFn 함수//////////
+
+            // 할당된 expFn함수를 처음 실행호출
+            expFn();
+
+            
+            // 줄간격 조정
             tg[5].style.lineHeight = "40px";
-            tg[5].title = "클릭하시면 교섭 예고편을 보실 수 있습니다!";
+
+
+            // 커서바꾸기
             tg[5].style.cursor = "pointer";
+
+
+
+            
+
+           
+
+            /////////////////////////////
+            // 영화초이스 버튼 클릭시 
+            // 영화정보와 동영상을 변경한다.
+            //////////////////////////////
+            // 대상 : .choice button
+            var cho = document.querySelectorAll(".choice button");
+            console.log("초이스",cho);
+
+            // for문으로 버튼들을 click이벤트 설정하기
+            for(var i = 0; i < cho.length; i++){
+
+                cho[i].onclick = function(){
+               
+                    // 1. 버튼텍스트
+                    var btxt = this.innerText;
+                    console.log(btxt);
+
+                    // 할당전 이전 영화객체
+                    console.log(GSObj);
+
+
+                    // 2. 버튼텍스트에 해당하는 객체를 기존 변수에 할당하기
+                    // switch case문 사용
+                    // 새로운객체를 기존객체에 할당하기(변경)
+                    switch(btxt){
+                        case "1초이스": GSObj = mjObj; break; 
+                        case "2초이스": GSObj = SMObj; break;
+                        case "3초이스": GSObj = leaveObj ; break;
+                        case "4초이스": GSObj = motoraObj; break;
+                        case "5초이스": GSObj =  mov; break;
+                    };//////////// switch case문 ////////////////
+                    /////////////////////////////////////////
+
+                    // 기존 영화객체 변수값이 변경되었는지 확인
+                    console.log(GSObj);
+
+                    // 3. 실제 적용 요소에 객체데이터 넣기
+                    // 위에서 함수로 생성한 expFn 함수를 호출
+
+                };////////////// click 이벤트 //////////////
+                ///////////////////////////////////////////
+
+            };///////////// for 문 ////////////////
+            /////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+            // -> 다른 영화객체ㅔ서 호출하고 있으므로
+            // 로드 구역 바깥으로 옮겨서 전역함수로 변경함
+
+             /********************************************** 
+                함수명: playMv
+                기능: 영화예고편 화면에 띄우기
+            **********************************************/
+            var playMv = function(mvcode){//mvcode 예고편아이디
+                
+                // 예고편동영상박스
+                var mvbx = document.querySelector("#mvbx");
+                console.log(mvbx);
+                
+                
+                // 1. 함수호출
+                console.log("플레이어",mvcode);
+
+                // 2. 영화박스에 아이프레임 넣기
+                // 대상: #mvbx -> mvbx
+                mvbx.innerHTML=`
+                    <div id="mv">
+                        <!-- 유튜브 아이프레임  -->
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${mvcode}?autoplay=1" allow="autoplay" style ="border:none"> </iframe>
+                        <!-- 닫기버튼 -->
+                        <button class="cbtn">×</button>
+                    </div>
+                `;
+
+                // 삽입된 동영상 박스 (#mv) CSS 설정하기
+                var mv = document.querySelector("#mv");
+                var msy = mv.style;
+                
+                msy.position = "fixed";
+                msy.top = "50%";
+                msy.left = "50%";
+                msy.transform = "translate(-50%,-50%)";
+                msy.width = "700px";
+                msy.height = "450px";
+                msy.backgroundColor = "#000"
+
+                // 닫기버튼 CSS 셋팅하기 .cbtn 
+                var cbtn = document.querySelector(".cbtn");
+                var csy = cbtn.style;
+                csy.position = "absolute";
+                csy.top = "0";
+                csy.right = "-70px";
+                csy.width = "50px";
+                csy.height = "50px";
+                csy.borderRadius = "50%";
+                csy.border = "none";
+                csy.backgroundColor = "blue";
+                csy.fontSize = "40px";
+                csy.fontWeight = "bold";
+                csy.color = "#fff";
+                csy.cursor = "pointer";
+                csy.lineHeight = "50px";
+              
+                // 닫기버튼 클릭시 #mv 제거하기
+                cbtn.onclick = function(){
+                    mv.remove();
+                    // remove() 메서드 -> DOM에서 요소를 삭제함
+                }
+            };///////////// playMv 함수 ////////////////
+            ////////////////////////////////////////////
+
+
+            
 
         });//////////////////로드구역/////////////////
         /////////////////////////////////////////////
@@ -435,6 +595,18 @@
     <div class="cont"></div>
     <div class="cont"></div>
     <div class="cont"></div>
+    <!-- 영화초이스 버튼박스 -->
+    <div class="cont choice">
+        <button>1초이스</button>
+        <button>2초이스</button>
+        <button>3초이스</button>
+        <button>4초이스</button>
+        <button>5초이스</button>
+    </div>
+    
+
+
+
 
     <!-- 예고편 동영상용 박스 -->
     <aside id="mvbx"></aside>
