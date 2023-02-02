@@ -117,3 +117,13 @@ https://empiempi.me/
 3) 서브페이지에서 다른 서브페이지로 자연스럽게 이동시
 4) 글자에만 색이 지나가면서 채워짐 -> SVG 클리핑에서 할 예정
 
+6. 댄스사이트
+https://thinkdance.ca/
+->전체 효과, 디자인이 괜찮다
+
+7.Kommigraphics
+https://kommigraphics.com/
+1) 마우스포인터 따라다니는 원 - JS실험실
+    + 오버시 크기확대 
+2) 오버시 색상모드 변경 CSS적용 - JS실험실
+3) 오버시 이미지확대
