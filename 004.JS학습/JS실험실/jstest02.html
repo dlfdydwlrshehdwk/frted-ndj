@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cont{
+            position: relative;
+            display: flex;
+        }
+        .cont>div{
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+        .cont>div>img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cont>div>a{
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            width: 100%;
+            /* 무버보다 높게 올라오기위해 
+            */
+            z-index: 2;
+
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #000;
+        }
+        
+        .cont>div>a:hover{
+            color: #f00;
+        }
+        .mover{
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgb(255, 0, 0);
+            /* 트랜지션 
+            이징을 반드시 ease-out 을 준다 
+            따라다니는 반응이 시작할때 바로 움직여야함*/
+            transition: .3s ease-out;
+        }
+    </style>
+    <script>
+        // 로딩구역
+        window.addEventListener("load",function(){
+
+console.log("로딩완료");
+
+// 움직일 대상: 돌아다니는 원 .mover
+var mover = document.querySelector(".mover");
+
+// 이벤트 대상 : body 
+// 이벤트 종류 : 
+// mousemove - 마우스가 대상위에서 움직일때 발생
+document.body.onmousemove = function(){
+    // 마우스 포인터 위치 알아내기
+    // x좌표 : event.pageX
+    // y좌표 : event.pageY
+    console.log("x:" , event.pageX,"\ny:",event.pageY);
+
+    // 무버에게 위치값 이동 셋팅하기(무버 중앙위치 보정 - 15 .mover의 크기의 반값)
+    mover.style.top = (event.pageY - 15)+"px";
+    mover.style.left = (event.pageX - 15)+"px";
+
+    // 만드는 순서
+    // 움직일 대상지정
+    // 이벤트 대상확인
+    // 대상에 마우스무브할때 함수실행
+    // x값과y값 확인 - 안해도될듯
+    // top값과 left값을 변경되게 설정 px안붙여주면 적용안됨
+    // 움직일 대상의 크기를 반씩 줄여주면 마우스포인터 중앙위치
+
+    // 기타.
+    //  !f12안끄면 버벅거릴 수 있음.
+    //  !트랜지션 ease-out을 줘서 움직이면 바로 따라다니게 해줌
+    //  ! 모양은 이미지나 CSS를 바꿔서 다양하게 이용가능.
+    //  ! 마우스가 돌아다닐때 이벤트를 실행하는 onmouseover
+    //  ! x값과y값을 알 수 있는 event.pageX/Y
+};/////////////////mousemove 함수////////////
+////////////////////////////////////////////////
+
+});//////////////////////로드구역//////////////
+////////////////////////////////////////////////
+    </script>
+</head>
+<body>
+    <section class="cont">
+        <div>
+            <img src="../images/dress/1.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/2.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/3.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+        <div>
+            <img src="../images/dress/4.jpg" alt="dress">
+            <a href="#" class="pt">This is Ur New Dress!</a>
+        </div>
+    </section>
+    <!-- 돌아다니는원 -->
+    <div class="mover"></div>
+</body>
+</html>
