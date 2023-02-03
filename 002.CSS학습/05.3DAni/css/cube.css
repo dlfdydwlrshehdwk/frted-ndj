@@ -9,7 +9,8 @@ body{
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), #11f8c288, #ef95fba1);
     height: 100vh;
 }
-/* 변수셋팅 */
+/* 변수셋팅 
+:root { --작명 : 수치 } */
 :root{
     /* 큐브공통크기 */
     --csz: 300px;
@@ -20,8 +21,49 @@ body{
     position: absolute;
     top:calc(50% - var(--csz)/2);
     left:calc(50% - var(--csz)/2);
-    /* 정중앙 계산 : 50% - 크기의 절반 */
+    /* 정중앙 계산 : 50% - 크기의 절반 
+    calc() 연산시 주의사항 
+    -> +,- 는 기호앞뒤 띄어쓰기
+    -> * , / 는 붙여써도됨
+    */
     width: var(--csz);
     height: var(--csz);
+
+    /*  
+        [ 입체로 설정하기 ]
+        - 입체로 설정할 요소의 부모박스에 아래와같이 설정한다.
+        (부모는 싸고있는요소)
+        transform-style: preserve-3d;
+        - 기본값은 2D설정인 flat
+        - preserve-3d 3D설정임
+    */
+
+    transform-style: preserve-3d;
+
+    /* 입체를 잘보이게 하기위해 약간 회전 */
+    transform: rotateX(10deg) rotateY(30deg);
+
     outline: 2px dotted red;
+}
+
+/* 큐브각면 공통 */
+.cube span{
+    position: absolute;
+    /* 앱솔루트는 자동블럭 */
+    width: 100%;
+    height: 100%;
+    /* 부모는 .cube */
+
+    /* 투명도 */
+    opacity: .8;
+    outline: 1px dashed black;
+}
+
+/* 1. 앞면 */
+.cube span:nth-child(1){
+    background: url(../images/newyorkCity.jpg) no-repeat right/auto 105%;
+
+    /* 화면방향(z축) */
+    transform: translateZ(calc(var(--csz)/2));
+    /* cube사이즈 절반을 앞쪽으로 이동 */
 }
