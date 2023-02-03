@@ -43,7 +43,7 @@ body{
     /* 입체를 잘보이게 하기위해 약간 회전 */
     transform: rotateX(10deg) rotateY(30deg);
 
-    outline: 2px dotted red;
+    /* outline: 2px dotted red; */
 }
 
 /* 큐브각면 공통 */
@@ -56,7 +56,7 @@ body{
 
     /* 투명도 */
     opacity: .8;
-    outline: 1px dashed black;
+    outline: 1px solid rgba(0, 0, 0, 0.384);
 }
 
 /* 1. 앞면 */
@@ -66,4 +66,82 @@ body{
     /* 화면방향(z축) */
     transform: translateZ(calc(var(--csz)/2));
     /* cube사이즈 절반을 앞쪽으로 이동 */
+}
+/* 2. 오른면 */
+.cube span:nth-child(2){
+    background: url(../images/seoulCity.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: 
+    rotateY(90deg)
+    translateZ(calc(var(--csz)/2));
+    /* y축으로 90도 돌리고 z축으로밀어줌 */
+}
+/* 3. 뒷면 */
+.cube span:nth-child(3){
+    background: url(../images/parisCity.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: 
+    rotateY(180deg)
+    translateZ(calc(var(--csz)/2));
+    /* y축으로 180도 돌리고 z축으로밀어줌 */
+}
+/* 4. 왼면 */
+.cube span:nth-child(4){
+    background: url(../images/cityMain.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: 
+    rotateY(270deg)
+    translateZ(calc(var(--csz)/2));
+    /* y축으로 270도 돌리고 z축으로밀어줌 */
+}
+/* 5. 윗면 */
+.cube span:nth-child(5){
+    background: url(../images/citys.jpg) no-repeat center/100% 120%;
+
+    /* 화면방향(z축) */
+    transform: 
+    rotateX(90deg)
+    translateZ(calc(var(--csz)/2));
+    /* x축으로 180도 돌리고 z축으로밀어줌 */
+}
+/* 6. 밑면 */
+.cube span:nth-child(6){
+    background: url(../images/London_city.jpg) no-repeat center/cover;
+
+    /* 화면방향(z축) */
+    transform: 
+    rotateX(270deg)
+    translateZ(calc(var(--csz)/2));
+    /* x축으로 270도 돌리고 z축으로밀어줌 */
+}
+
+/* 큐브회전 클래스 */
+.cube-ani{
+    /* 애니메이션 이시이지반방마 */
+    animation: cubeAni 4s linear infinite;
+}
+
+
+/* 큐브회전 키프레임 */
+@keyframes cubeAni {
+    to{
+        /* x축 양의방향, y축 음의방향 */
+        transform: 
+        rotateX(370deg) rotateY(-330deg);
+        /* 
+            x축 양의 방향으로 10도 에서 출발 
+            양의방향 360도 + 10도 => 370도
+            음의방향 -360도 + 10도 => -350도
+            ______________________________
+
+            y축 양의 방향으로 30도 에서 출발 
+            양의방향 360도 + 30도 => 390도
+            음의방향 -360도 + 30도 => -330도
+        */
+        /* rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
+        /* z축회전도 적용할 수 있음. */
+    }
 }
