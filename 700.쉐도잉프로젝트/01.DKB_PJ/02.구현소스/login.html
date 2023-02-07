@@ -13,6 +13,8 @@
         <!-- 뷰포트필수!!! -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>도깨비 PJ - 로그인페이지</title>
+        <!-- 폰트어썸 CDN CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <!-- 외부CSS 불러오기(main.css만) -->
         <link rel="stylesheet" href="./css/login.css" />
         <!-- 미디어쿼리 불러오기 : 메인아래있어야함! -->
@@ -183,8 +185,12 @@
                         <div class="addbx">
                             <span>
                                 <input type="checkbox" id="chkbx" name="chkbx">
-                                <label for="chkbx">ㅋ</label>
-                                아이디저장
+                                <label for="chkbx" class="fa-regular fa-circle-check"></label>
+                                <label for="chkbx">아이디저장</label>
+                                <!-- 인풋의 디지인을 지우고 
+                                첫번쨰 라벨에 디자인을 줘서 바뀌게끔만듬 라벨을 하나더만들어 기본라벨을 인풋처럼보이게 만듬
+                            !라벨은 여러개를 만들 수 있음 -->
+                        </span>
                                 <span>
                                     <a href="">아이디찾기</a>
                                 </span>
@@ -194,7 +200,6 @@
                                 <span>
                                     <a href="">회원가입</a>
                                 </span>
-                            </span>
                         </div>
 
                     
