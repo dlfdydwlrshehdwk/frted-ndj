@@ -31,8 +31,42 @@
                 ["빅쇼트", "https://s.pstatic.net/movie.phinf/20160121_2/14533409853749GqxA_JPEG/movie_image.jpg?type=m133_190_2"],
             ];
 
+            window.addEventListener("DOMContentLoaded",()=>{
+                // 1. 배열은? mvinfo
 
-            
+                // 2. 대상은? .minfo 
+                minfo = document.querySelector(".minfo");
+
+                // 4. 데이터를 모을 변수를 만듦
+                let data = ""; // 빈공간에 데이터를 받기위함.
+                // 3. for문으로 데이터 모으기
+                // for(let x of mvinfo){
+                //     // console.log(x[1]);
+                //     data +=
+                //     `
+                //     <div>
+                //     <img src="${x[1]}" art="">
+                //     <h2>${x[0]}</h2>    
+                //     </div>
+                //     `;
+                //     console.log(data);
+                // }///////for 
+
+                // 3. forEach문으로 데이터 모으기
+                mvinfo.forEach(val => 
+                    data += `
+                    <div>
+                    <img src="${val[1]}" art="">
+                    <h2>${val[0]}</h2>    
+                    </div>
+                    `
+                );
+
+                // 5. 출력하기
+                minfo.innerHTML = data;
+
+                });
+
 
 
             /////////// 로드구역 /////////////////////////////////////
@@ -66,17 +100,17 @@
         //         // minfo.innerHTML = hcode;
 
         //         // forEach 메서드 사용할 경우
-        //         mvinfo.forEach(
-        //             val => 
-        //                 hcode +=`
-        //                         <div>
-        //                             <img src="${val[1]}" alt="포스터">
-        //                             <h2>${val[0]}</h2>
-        //                         </div>
-        //                         ` 
-        //         );
+                // mvinfo.forEach(
+                //     val => 
+                //         hcode +=`
+                //                 <div>
+                //                     <img src="${val[1]}" alt="포스터">
+                //                     <h2>${val[0]}</h2>
+                //                 </div>
+                //                 ` 
+                // );
 
-        //         minfo.innerHTML = hcode;
+                // minfo.innerHTML = hcode;
 
 
 
