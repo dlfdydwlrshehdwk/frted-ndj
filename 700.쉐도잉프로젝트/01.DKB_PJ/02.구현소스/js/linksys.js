@@ -50,6 +50,9 @@ window.addEventListener("DOMContentLoaded",() => {
                 case "로그인" : url = "login"; break;
                 case "회원가입" : url = "member"; break;
                 case "tvN로고" : url = "index"; break;
+                case "트위터 바로가기" : url = "https://twitter.com/chtvn"; break;
+                case "인스타그램 바로가기" : url = "https://www.instagram.com/tvn_joy/"; break;
+                case "페이스북 바로가기" : url = "https://www.facebook.com/tvNdokebi/"; break;
                 default: url = "esc";
             }//////////// switch case문 //////////////
 
@@ -59,6 +62,17 @@ window.addEventListener("DOMContentLoaded",() => {
                     공사중입니다.
                 `);
             }////// if 문 ////
+            
+            // sns 일 경우 처리분기문
+            else if(
+                atxt === "트위터 바로가기"||
+                atxt === "인스타그램 바로가기"||
+                atxt === "페이스북 바로가기"
+                ){
+                window.open().location.href = url;
+            }/////////////else if ///////////////
+
+            // 기타 내부시스템 페이지 이동하기
             else{
                 location.href = url + ".html"
 
