@@ -16,13 +16,79 @@
     --csz: 300px;
 }
 
-html,body{
+/* 초기화 */
+html,body,h1,ul,li{
     margin: 0;
     padding: 0;
 }
+body{
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #777 30%, #ccc 70%);
+}
 
 /* 1. 전체 제목 */
+.tit{
+    text-align: center;
+    font-family: 'Black And White Picture', sans-serif;
+    color: #fff;
+    font-weight: normal;
+    font-size: 60px;
+    padding-top: 50px;
+    background: url(../images/citybg.png) no-repeat center 20px/auto 85%;
+}
 /* 2. 메뉴 버튼 */
+.city {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+.city ul{
+    width: 200px;
+    list-style: none;
+    perspective: 50vw;
+}
+.city ul li{
+    height: 10vh;
+    /* 보이는 화면의 10% -> 6개의 메뉴 = 전체의 60% */
+    background-image: linear-gradient(to right, transparent,blue);
+    /* 축변경 */
+    transform-origin: right;
+    transition: .3s;
+}
+/* li에 오버시 y축 회전 */
+.city li:nth-child(1):hover{
+    transform: rotateY(20deg);
+    background-image: linear-gradient(to right, transparent,rgb(199, 255, 94));
+}
+.city li:nth-child(2):hover{
+    transform: rotateY(-40deg);
+    background-image: linear-gradient(to right, transparent,rgb(140, 222, 255));
+}
+.city li:nth-child(3):hover{
+    transform: rotateY(30deg);
+    background-image: linear-gradient(to right, transparent,rgb(255, 15, 183));
+}
+.city li:nth-child(4):hover{
+    transform: rotateY(-20deg);
+    background-image: linear-gradient(to right, transparent,rgb(255, 60, 0));
+}
+.city li:nth-child(5):hover{
+    transform: rotateY(15deg);
+    background-image: linear-gradient(to right, transparent,rgb(255, 60, 86));
+}
+.city li:nth-child(6):hover{
+    transform: rotateY(-20deg);
+    background-image: linear-gradient(to right, transparent,rgb(255, 250, 175));
+}
+.city a{
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    font : 52px/10vh 'East Sea Dokdo', cursive;
+    color: #fff;
+    text-align: center;
+}
 /* 3. 큐브 박스 */
 
 /* 큐브 */
