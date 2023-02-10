@@ -36,6 +36,11 @@
         line-height: 10vw;
         font-size: 6vw;
     }
+
+    /* li에 오버시 y축 회전 */
+    .city li:hover{
+    transform: none !important;
+}
    
 }
 
