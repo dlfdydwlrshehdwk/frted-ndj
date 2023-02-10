@@ -27,7 +27,7 @@ function loadFn(){
     // 1-4. 변경대상3 : 도시정보 - .cinfo
     const cinfo = document.querySelector(".cinfo");
 
-    // 1-5. 변경대상4 : 박스 - .cbx
+    // 1-5. 변경대상4 : 도시박스 - .cbx
     const cbx = document.querySelector(".cbx");
 
     // 
@@ -39,6 +39,12 @@ function loadFn(){
     for(let x of menu){
         // 1. 클릭이벤트설정
         x.onclick = () => {//x는 각각의 a요소
+
+            // 0. 도시정보박스 숨기기(트랜지션 없애기)
+            cbx.style.opacity = 0;
+            cbx.style.transition = "none";
+    
+
         // 1. 메뉴 텍스트 읽기
             let mtxt = x.innerText;
             // console.log(mtxt);
@@ -60,7 +66,7 @@ function loadFn(){
 
         // 3. 회전값 적용하기(트랜스폼에 setval변수값 할당하기)
         cube.style.transform = setval;
-        cube.style.transition = "1.5s ease-in-out";
+        cube.style.transition = "transform 1.5s ease-in-out";
 
         // 만약 "출발"을 클릭한 경우 아래코드 실행안하기
         if(mtxt==="출발") return; ////if문 ///
@@ -78,13 +84,19 @@ function loadFn(){
         // 도시명 넣기
         cname.innerText = mtxt;
         cinfo.innerText = city[mtxt];
-        cbx.style.opacity = 1;
-
-        };/////onclick 함수 ////////
-
-
         
-
+        
+        // 5. 도시 정보박스보이기
+        // 대상: .cbx
+        // 내용: 큐브 1.5초간 회전후 도시정보박스가 보여야한다.
+        // setTimeout(함수,시간)
+        setTimeout(() => {
+            cbx.style.opacity = 1;
+            cbx.style.transition = "opacity .8s ease-in-out";
+        }, 1500);  ////타임아웃 /////
+        
+    };/////onclick 함수 ////////
+        
     }///for of 문 ///
 
 

@@ -245,3 +245,18 @@ p.cinfo {
     overflow: auto;
     /* 내용이 넘칠때만 스크롤바 자동생성 */
 }
+
+.scbar::-webkit-scrollbar{
+    /* 전체 스크롤바 크기변경 */
+    width: 5px;
+}
+.scbar::-webkit-scrollbar-thumb{
+    /* 스크롤바 */
+    background-color: #555;
+    border-radius: 3px;
+}
+.scbar::-webkit-scrollbar-track{
+    /* 스크롤바 트랙 */
+    background-color: #ddd;
+    border-radius: 3px;
+}
