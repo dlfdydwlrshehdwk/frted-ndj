@@ -39,4 +39,62 @@ window.addEventListener("DOMContentLoaded",()=>{
 
     }////for of 문 ////
 
+    // 극장가는길 구글맵보기 기능
+    // 극장가는길 박스 클릭시 구글맵 등장
+    // 구글맵박스의 닫기버튼 클릭시 구글맵 퇴장
+    // -> 방법 : CSS셋팅된 클래스 "on"넣기/빼기
+
+    // 1. 대상선정
+    // 1-1. 이벤트대상 : .anibx -> 애니메이션버튼박스
+    const anibx = qs(".anibx");
+    // 1-2. 변경대상 : .gmap -> 구글맵박스
+    const gmap = qs(".gmap");
+    // 이벤트 대상 닫기버튼 .cbtn
+    const cbtn = qs(".cbtn");
+    // qs(".anibx").onclick=() => {qs(".gmap").classList.toggle("on");}
+    // qs(".cbtn").onclick=() => {qs(".gmap").classList.toggle("on");}
+
+    // 2. 버튼에 클릭 이벤트설정하기
+    // 왼쪽상단누를시 구글맵박스 내려오기 + 왼쪽상단 커튼 올려주기
+    anibx.onclick=() => {
+        anibx.classList.add("on");
+        gmap.classList.add("on")};
+    // 닫기버튼 누를시 사라지기 + 왼쪽상단 커튼내려주기
+    cbtn.onclick=() =>{
+        gmap.classList.remove("on");
+        anibx.classList.remove("on");
+    } 
+
+
+    /* 
+        sns버튼 링크 이동하기
+    */
+
+    // 1. 대상 : .sns a
+    const sns = qsa(".sns a");
+    // 2. 클릭이벤트설정
+    // forEach((요소,순번,객체)=>{코드})
+    sns.forEach((ele)=>{
+        ele.onclick = () => {
+            // 1. 내부텍스트읽기
+
+            let btxt = ele.innerText;
+            // console.log(btxt);
+            
+            let url="";
+            // 2. 분기문 url 할당하기
+            switch(btxt){
+                case "페이스북바로가기": url = "https://www.facebook.com/CJCGV"; break;
+                case "트위터바로가기": url = "https://twitter.com/CGV_ID"; break;
+                case "인스타그램바로가기": url = "https://www.instagram.com/cgv_korea/"; break;
+            }//// switch 문 ////
+
+            // 3. 페이지 이동하기 : 새창으로
+            // 새창 ->window.open()
+            // 페이지이동 -> location.href = url값
+            window.open().location.href = url;
+
+        };///click함수
+    }); ///// forEach 문 ///
+
 }); //// 로드구역 ////
