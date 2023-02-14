@@ -7,7 +7,7 @@ body {
 }
 body {
     height: 300vh;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     background-image: linear-gradient(to bottom, #6af3f8, #eaf755, #a3b5ff, #ffb0fc);
 }
 
