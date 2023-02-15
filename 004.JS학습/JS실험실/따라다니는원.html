@@ -42,6 +42,8 @@
                 console.log("x:" , event.pageX,"\ny:",event.pageY);
 
                 // 무버에게 위치값 이동 셋팅하기(무버 중앙위치 보정 - 15 .mover의 크기의 반값)
+                // mover.style.top = (event.clientY - 15)+"px";
+                // mover.style.left = (event.clientX - 15)+"px";
                 mover.style.top = (event.pageY - 15)+"px";
                 mover.style.left = (event.pageX - 15)+"px";
 
@@ -67,6 +69,7 @@
     </script>
 </head>
 <body>
+    
     <!-- 돌아다니는원 -->
     <div class="mover"></div>
 </body>
