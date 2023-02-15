@@ -78,6 +78,16 @@ body {
     overflow: hidden;
     background-color: #00000043;
 }
+/* 벌새위에 가림막을줄수 있다 */
+/* .inbox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999;
+} */
 .wrap {
     position: absolute;
     top: 0;
