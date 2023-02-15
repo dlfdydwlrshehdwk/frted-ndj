@@ -26,8 +26,8 @@
                     // 대한민국전체 ////
                     qs("body").onclick =(e) => {
                         // currentTarget - 이벤트를 받고 있는 요소자신
-                        // event.currentTarget.style.backgroundColor = "blue";
-                        event.target.style.backgroundColor = "blue";
+                        event.currentTarget.style.backgroundColor = "blue";
+                        // event.target.style.backgroundColor = "blue";
 
                         // 이벤트속성값 찍기 
                         showLog("대한민국전체");
@@ -37,11 +37,11 @@
                     // 친척네집 ////
                     qs("div").onclick =(e) => {
                         // currentTarget - 이벤트를 받고 있는 요소자신
-                        // event.currentTarget.style.backgroundColor = "green";
-                        event.target.style.backgroundColor = "green";
+                        event.currentTarget.style.backgroundColor = "green";
+                        // event.target.style.backgroundColor = "green";
 
                         // 이벤트 버블링 막기
-                        event.stopPropagation();
+                        // event.stopPropagation();
 
                         // 이벤트속성값 찍기 
                         showLog("친척네집");
@@ -51,10 +51,10 @@
                     // 엄마집 ////
                     qs("p").onclick =(e) => {
                         // currentTarget - 이벤트를 받고 있는 요소자신
-                        // event.currentTarget.style.backgroundColor = "yellow";
-                        event.target.style.backgroundColor = "yellow";
+                        event.currentTarget.style.backgroundColor = "yellow";
+                        // event.target.style.backgroundColor = "yellow";
 
-                        // // 이벤트 버블링 막기
+                        // 이벤트 버블링 막기
                         // event.stopPropagation();
 
                         // 이벤트속성값 찍기 
@@ -65,13 +65,23 @@
                     // 내방 ////
                     qs("a").onclick =(e) => {
                         // currentTarget - 이벤트를 받고 있는 요소자신
-                        // event.currentTarget.style.backgroundColor = "red";
-                        event.target.style.backgroundColor = "red";
+                        event.currentTarget.style.backgroundColor = "red";
+                        // event.target.style.backgroundColor = "red";
+                        // [ target으로 배경색 변경할경우 결과는? ]
+                        // -> 부모요소중 버블링막기가 된 요소에
+                        // 배경색 변경이 target으로 되어있다면
+                        // 그것이 최종변경색으로 반영된다.
+                        // 왜? target은 이벤트가 발생한 요소이므로 
+
+                        // a요소 기본 이동기능막기
+                        event.preventDefault();
 
                         // 이벤트속성값 찍기 
                         showLog("내방");
 
                     };////onclick////
+
+
 
                     
 
@@ -164,8 +174,9 @@
 
             1. 이벤트 설정
             (1) addEventListener(이벤트명,함수)
+                -> 같은요소에 같은 이벤트로 다중설정가능
             (2) 이벤트속성 = 함수
-
+            -> 같은요소에 같은 이벤트로 단일설정만 가능
             2. 이벤트 해제
             (1) removeEventListener(이벤트명,함수)
             -> 주의: 함수를 외부함수로 만들어야 해제가 가능하다!
@@ -213,5 +224,7 @@
                 <a href="#">내방</a>
             </p>
         </div>
+        <!-- 아들방 클릭이벤트 지우기 -->
+        <button class="clear">아들방 이벤트 지우기</button>
     </body>
 </html>
