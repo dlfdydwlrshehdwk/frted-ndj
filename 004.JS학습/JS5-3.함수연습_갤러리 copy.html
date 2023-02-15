@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Gallery</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* 보이는 화면 기준채우기 */
+        }
+
+        body {
+            background: url(./images/space.jpg) no-repeat center/auto 200%;
+        }
+
+        /* a요소 */
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* 갤러리 부모박스 */
+        .wrap {
+            position: relative;
+            /* 부모자격 - #mini */
+            width: 520px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 20px;
+            /* outline: 2px dotted red; */
+        }
+
+        /* 메인이미지박스 */
+        #mbox {
+            display: inline-block;
+        }
+
+        /* 이미지 중간맞추기 */
+        #mbox img {
+            vertical-align: -79px;
+        }
+
+        /* 이미지 텍스트 출력박스 */
+        .imgtxt {
+            text-align: center;
+            color: red;
+            text-shadow: 1px 1px 1px #777;
+        }
+
+        /* 자동넘김 버튼박스 */
+        .abtn {
+            text-align: center;
+        }
+
+        .abtn button {
+            font-size: 1.5rem;
+        }
+
+        /* 처음에 멈춤버튼 숨기기 */
+        .stop {
+            display: none;
+        }
+
+        /* 미니언즈 */
+        #mini {
+            position: absolute;
+            top: 80%;
+            left: -20%;
+            /* 부모는? #wrap */
+            width: 150px;
+            transform: rotate(720deg);
+            transition: all 1.5s ease-out;
+        }
+
+        /* 미니언즈 변경클래스1 */
+        #mini.on1 {
+            top: 0;
+            left: 0;
+            transform: rotate(0deg);
+        }
+
+        /* 미니언즈 변경클래스2 */
+        #mini.on2 {
+            top: 0;
+            left: 80%;
+            transform: rotate(-720deg);
+        }
+    </style>
+    <!-- JS코딩구역 -->
+    <script>
+        /////////////// 로드구역 //////////////////
+        window.addEventListener("load", () => {
+
+            // 함수바깥쪽에 전역변수 선언 및 할당!
+
+            // 1. 이미지 번호 변수(전역변수 -> goSlide함수에서 참조)
+            let inum = 1;
+            // -> 이미지 이름의 번호를 증감하기위한 저장공간
+            // 변경대상1: 메인이미지 - #mbox img
+            const mimg = document.querySelector("#mbox img");
+            // 변경대상2: 글자박스 - .imgtxt
+            const imgtxt = document.querySelector(".imgtxt");
+            
+            // 첫번째 이미지메시지 출력하기
+            imgtxt.innerText = itxt[0];
+            // 이벤트대상 = .btn
+            const btns = document.querySelectorAll(".btn");
+
+            // console.log(mimg,imgtxt,btns)
+            
+            ////////////////////////////
+            // 이동버튼 클릭설정하기 /////
+            ///////////////////////////
+            btns.forEach((ele,idx)=>{//ele = 요소 , idx = 요소순번
+                ele.onclick = () => goSlide(idx); 
+            });//forEach ////
+            
+            // btns.forEach((ele,idx)=>
+            //     ele.onclick = () => goSlide(idx));
+            // 더 축소버전 
+
+            /**************************************** 
+                함수명: goSlide
+                기능: 갤러리 이미지,글자 변경하기
+            ****************************************/
+
+            const goSlide = (seq) => {//seq는 버튼 순번
+                // 2. 버튼별 분기하기
+                // 2-1. 오른쪽 버튼 분기 (이미지번호 증가)
+                if(seq){
+                    // 1씩증가 
+                    inum++;
+                    // 한계값 체크 (처음값으로 변경)
+                    if(inum === 8){
+                        inum = 1;
+                    }
+                }///if문 ///
+                else{
+                    // 1씩감소
+                    inum--;
+                    // 한계값 체크 (마지막값으로 변경)
+                    if(inum === 0) inum = 7;
+                }
+
+
+                // 증감후전역 inum변수
+                console.log("증감후전역inum",inum)
+
+                // 3. 변경대상에 변경코드 적용
+                // 변경대상: #mbox img -> mimg변수
+                mimg.src = `./images/img${inum}.jpg`;
+                // mimg.setAttribute("src",`./images/img${inum}.jpg`); 위와 같은 내용 
+                
+            }; ////////// goSlide 함수 ////
+            
+            /***************************************** 
+            [ 자동넘김 기능 구현하기]
+            - "자동넘김" 버튼 클릭시 일정시간 간격으로 
+            롤링갤러리가 넘어감 
+            - "멈춤" 버튼 클릭시 정지됨
+            *****************************************/
+            // 이벤트 대상: 
+            const abtn = document.querySelectorAll(".abtn button");
+            // console.log(abtn);
+
+            // 인터발용 변수
+            let autoI;
+
+            // 버튼에 클릭이벤트 설정하기
+            for(let x of abtn){
+                x.onclick = () => {
+                    // 1. 클릭된 요소의 클래스가 "start"인지 여부
+                    let isB = x.classList.contains("start");
+                    // classList.contains(클래스명)
+                    // -> 클래스가 해당요소에 있으면 true
+                    console.log(isB);
+
+                    // 2. 조건분기
+                    // 2-1. true이면 자동넘김
+                    if(isB){
+                        // setInterval(함수,시간)
+                       autoI = setInterval(()=>{goSlide(1)},2000)
+                       
+                    }/////if 문 ////
+                    // 2-2. false이면 멈추기
+                    else{
+                        // clearInterval(인터발변수)
+                        clearInterval(autoI);
+                    }////else ////
+
+                    // 3. 버튼 보이기 / 숨기기
+                    // 항상 클릭된 버튼은 숨긴다.
+                    x.style.display = "none";
+                    // "멈춤"/"자동넘김" 버튼 전환하며 보이기
+                    abtn[isB?1:0].style.display ="inline-block";
+                    // isB? "자동넘김" 버튼인가?
+                    // 맞으면 1 두번째버튼 "멈춰"를 보여줘
+                    // 아니라면 0 첫번째버튼 "자동넘김" 을보여줘
+
+                    console.log("autoI변수:" ,autoI)
+                    // 숫자가찍힘 -> Number형으로 체크됨
+                    // 인터발함수의 특징이다.
+                };//////click 이벤트 함수 ////
+
+            }////for of 문 ////
+        }); /////////// 로드구역 ///////////////////
+    </script>
+</head>
+
+<body>
+    <!-- 갤러리 박스 -->
+    <div class="wrap">
+        <!-- 타이틀 -->
+        <h1>Rolling Gallery</h1>
+        <!-- 왼쪽이동버튼 -->
+        <a href="#" class="btn lb">
+            <img src="./images/left_btn.png" alt="왼쪽버튼">
+        </a>
+        <!-- 메인이미지박스 -->
+        <div id="mbox">
+            <img src="./images/img1.jpg" alt="메인이미지">
+        </div>
+        <!-- 오른쪽이동버튼 -->
+        <a href="#" class="btn rb">
+            <img src="./images/right_btn.png" alt="오른쪽버튼">
+        </a>
+        <!-- 미니언즈 -->
+        <img src="./images/Minions.png" alt="미니언즈" id="mini">
+    </div>
+
+    <!-- 이미지별 설명 텍스트 출력박스 -->
+    <h2 class="imgtxt"></h2>
+
+    <!-- 자동넘김 버튼박스 -->
+    <div class="abtn">
+        <button class="start">자동넘김</button>
+        <button class="stop">멈춤</button>
+    </div>
+
+</body>
+
+</html>
