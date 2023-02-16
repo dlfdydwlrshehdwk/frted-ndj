@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>객체를 위한 for문</title>
+        <title>객체를 위한 for in문</title>
         <style>
             h1,
             .btns,
@@ -22,6 +22,20 @@
                 margin: 0 auto;
             }
 
+            .wrap {
+                /* 플렉스박스 */
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 20px;
+            }
+            .cbx {
+                margin: 10px;
+                padding: 10px;
+                border: 4px double gray;
+                border-radius: 10px;
+            }
+
             .photo img {
                 height: 200px;
                 margin-right: 20px;
@@ -36,39 +50,27 @@
             .show span {
                 display: inline-block;
                 /* 가로,세로 등 디자인 적용+한줄에 나옴 */
-                width: 50px;
-                height: 50px;
+                width: 30px;
+                height: 30px;
                 border-radius: 50%;
                 /* 원 */
-                border: 5px solid #d30000;
+                border: 2px solid #d30000;
                 background-color: #00f;
-                font-size: 30px;
+                font-size: 20px;
                 color: #fff;
 
                 /* 동그라미 박스 정중앙 */
                 text-align: center;
-                line-height: 50px;
+                line-height: 30px;
                 text-align: center;
-            }
-            .wrap {
-                /* 플렉스박스 */
-                display: flex;
-                flex-wrap: wrap;
-                padding: 20px;
-                justify-content: center;
-            }
-            .cbx {
-                margin: 10px;
-                padding: 10px;
-                border: 4px double gray;
-                border-radius: 10px;
             }
         </style>
         <script>
-            /********************************************* 
-            [미션 :]
-            영화정보를 모두html형식에 맞도록 .wrap요소에 모두 출력하시오(for-in문사용)
-        *********************************************/
+            /*************************************************** 
+            [미션:]
+            영화정보를 모두 html형식에 맞도록 .wrap요소에
+            모두 출력하시오!(for in문을 사용하여 출력)
+        ***************************************************/
 
             /// 영화정보 객체 ////
             const mvi = {
@@ -174,76 +176,117 @@
             window.addEventListener("DOMContentLoaded", () => {
                 console.log("로딩완료");
 
-                // DOM선택 함수
+                /* DOM선택 함수 */
                 const qs = (x) => document.querySelector(x);
                 const qsa = (x) => document.querySelectorAll(x);
+                // 화살표함수 원형 : () => {}
+                /* 
+                선언적 함수로 만들면?
+                function qs(x) {
+                    return document.querySelector(x)
+                }
+            */
 
-                // 대상변수 할당하기
+                /******************************************************** 
+                [ 구현내용 ]
+                - 해당 영화의 정보를 화면에 보여준다!
+                - 변경대상: .tit, .sum, .dir, .act
+                - 변경내용: 
+                    for in문으로 해당 클래스에 대응하는 데이터를 넣는다!
+            ********************************************************/
+
+                // 1. 대상변수 할당하기
                 const wrap = qs(".wrap");
 
-                // 최종 출력코드
+                // 2. for in문으로 객체만큼 돌아서 데이터 셋팅하기
+
+                // 최종 태그 담는 변수
                 let hcode = "";
 
-                // 2. for in 문으로 객체만큼 돌아서 데이터 셋팅하기
                 for (let x in mvi) {
-                    // x 는 각 mvi객체의 속성
+                    // x는 mvi객체의 속성
 
                     console.log("속성명:", x, "/값:", mvi[x]);
 
-                    // 해당 데이터값 변수에 할당하기
+                    // 해당 데이터 값 변수에 할당하기
                     let data = mvi[x];
 
-                    let t = data["문구"];
+                    // 영화 한마디 넣기 /////
+                    // for of문으로 문자데이터 잘라넣기!
+                    // 한글자씩 span태그로 싸서 해당요소에 넣음!
+                    // 1. 데이터 담기
+                    let txt = data["문구"];
+                    //     console.log("문구데이터:", txt);
+                    // 태그로 싼 새로운 데이터 넣을 변수
                     let newtxt = "";
-                    //     // 태그로 싼 새로운 데이터 넣을 변수
-                    //     let newtxt = "";
-                    console.log(t);
-                    for (let x of t) {
-                        // console.log(x)
-                        if (x === " ") {
+
+                    // 문구 데이터를 for of문으로 하나씩 넣기
+                    for (let m of txt) {
+                        // m은 한글자씩!
+                        console.log("한글자씩:", m);
+                        // 스페이스 문자일 경우 띄어쓰기기호로!
+                        if (m === " ") {
                             newtxt += "&nbsp;&nbsp;&nbsp;";
-                        } else {
-                            newtxt += `<span>${x}</span>`;
-                        }
-                    }
+                        } //// if /////
+                        else {
+                            // 그밖에 문자일 경우
+                            newtxt += `<span>${m}</span>`;
+                        } //// else /////
+                    } /////// for of ////////
 
-                    console.log(newtxt);
-                    wrap.innerHTML += newtxt;
-
-                    // 출력할 태그변수
+                    // 출력할 태그변수에 대입연산자로 계속넣기
                     hcode += `
-                         <section class="cbx">
-                             <div class="minfo">
-                             <!-- 1. 포스터 -->
-                             <div class="photo">
-                                 <img src ="${data["포스터"]}" alt="${x}의포스터">    
-                             </div>
-                                 <div class="cont">
-                                     <!-- 2. 제목 -->
-                                     <h2 class="tit">${data["제목"]}</h2>
-                                     <!-- 3. 개요 -->
-                                     <h3 class="sum">${data["개요"]}</h3>
-                                     <!-- 4. 감독 -->
-                                     <h3 class="dir">${data["감독"]}</h3>
-                                     <!-- 5. 출연 -->
-                                     <h3 class="act">${data["출연"]}</h3>
-                                 </div>
-                             </di   
-                             <!-- 영화 한마디 -->
-                             <h2 class="showtit">♥ 영화한마디!</h2>
-                             <!-- 6. 문구 -->
-                             <div class="show">${newtxt}</div>
-                         </section>
-                         `;
+                        <section class="cbx">
+                            <div class="minfo">
+                                <!-- 1. 포스터 -->
+                                <div class="photo">
+                                    <img src="${data["포스터"]}" alt="${x}의 포스터">  
+                                </div>
+                                <div class="cont">
+                                    <!-- 2. 제목 -->
+                                    <h2 class="tit">
+                                        ${data["제목"]}</h2>
+                                    <!-- 3. 개요 -->
+                                    <h3 class="sum">
+                                        ★장르 : ${data["개요"]}</h3>
+                                    <!-- 4. 감독 -->
+                                    <h3 class="dir">
+                                        ★감독 : ${data["감독"]}</h3>
+                                    <!-- 5. 출연 -->
+                                    <h3 class="act">
+                                        ★출연 : ${data["출연"]}</h3>
+                                </div>
+                            </div>
+                
+                            <!-- 영화 한마디 -->
+                            <h2 class="showtit">♥ 영화한마디!</h2>
+                            <!-- 6. 문구 -->
+                            <div class="show">${newtxt}</div>
+                        </section>
+                        
+                        `; /////// hcode변수 //////////
 
+                    
+                } ////////// for in 문 ///////////////
 
-
-
-                                
-                } //////////// for in 문 ///////
-
-                // 출력하기
+                // 3. 대상에 출력하기
                 wrap.innerHTML = hcode;
+
+                /************************************************* 
+                [ 객체를 위한 for in 문 ]
+
+                - 구문: 
+                for(변수 in 객체){코드}
+
+                - 작동원리:
+                객체의 개수만큼 순서대로 속성명과 속성값을 가져옴
+
+                - 변수는 객체의 속성명이다!
+
+                - 객체의 값을 사용하려면 for in 문 안에
+                    객체[변수] 로 쓰면됨!
+
+            *************************************************/
             }); //////////////// 로드구역 ///////////////////////
             /////////////////////////////////////////////////////
         </script>
