@@ -257,6 +257,7 @@
                 // [ 배열메서드5 : shift() ]
                 fruit.shift();
                 
+                // 3. 배열정보 출력하기
                 showArr();
 
                 // 4. 현재배열선택박스 업데이트 함수호출
@@ -299,6 +300,46 @@
 
             // 최초호출
             makeSel();
+
+            // 11. 중간배열삭제! 버튼
+            // 대상: mbtn[5]
+            mbtn[5].onclick = () => {
+                // 1. 호출확인
+                cg("중간배열삭제 확인")
+
+                // 2. 중간배열 삭제하기
+                // [ 배열메서드6 : splice() ]
+                // -> 삭제시
+                // splice(순번) -> 순번부터 뒤 모두지움
+                // splice(순번,개수) -> 순번부터 개수만큼 지움
+
+                // 순번은 현재배열 선택박스(#anum)에서 선택하여 value에 있는 
+                // 순번값을 가져온다.
+
+                // 만약 지울값이 빈값 또는 숫자가 아니면
+                // 선택순번부터 모두지우기
+                // isNaN(값) -> 숫자가 아니면 true 숫자면 false 
+                // is Not a Number? 숫자가 아니니?
+                if(delnum.value =="" || isNaN(delnum.value))
+                {
+                    fruit.splice(anum.value);
+                }// if 문 //// 
+                else{// 숫자 이면 개수만큼 지우기
+                    fruit.splice(anum.value,delnum.value);
+                }// else //
+
+
+                cg("순번:"+ anum.value)
+                cg("개수:"+ delnum.value)
+
+                // 3. 배열정보 출력하기
+                showArr();
+
+                // 4. 현재배열선택박스 업데이트 함수호출
+                makeSel();
+
+
+            };//onclick//
 
 
 
