@@ -26,7 +26,7 @@ body{
 
 /* 공사중 */
 body *{
-    outline: 1px dashed lightpink;
+    /* outline: 1px dashed lightpink; */
 }
 /* 태양계박스 */
 #solar{
@@ -69,8 +69,12 @@ var(--변수명)
     --esz: 80px;
     /* 목성크기 */
     --jsz: 150px;
+    /* 토성크기 */
+    --ssz: 160px;
     /* 명왕성크기 */
     --psz: 50px;
+    /* 달크기 */
+    --msz: 40px;
 }
 
 
@@ -108,6 +112,40 @@ var(--변수명)
 }/* 지구회전 키프레임 */
 
 
+/* 달 */
+#moon{
+    position: absolute;
+    /* calc로 중앙이동 */
+    top: calc(50% - var(--msz)/2);
+    left: calc(50% - var(--msz)/2);
+    width: var(--msz);
+    height: var(--msz);
+    background: url(../images/moon.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 이시이지반방마 */
+    animation: moon 10s linear infinite;
+}
+
+/* 달회전 키프레임 */
+@keyframes moon {
+    from{
+        transform: rotate(0deg) translateX(80px) rotate(0deg);
+        /* [주변회전만들기] 
+            1. 첫번째 rotate : 0deg->360deg 
+            -> 중앙회전
+            2. 위치이동 translateX
+            -> 주변을 도는 효과 생김
+            3. 두번째 rotate : 0deg -> -360deg
+            -> 반대회전은 옆으로 이동한 박스에 적용되어
+            세워져서 주변을 도는 효과가생긴다
+        */
+    }
+    to{
+        transform: rotate(360deg) translateX(80px) rotate(-360deg);
+    }
+}/* 달회전 키프레임 */
+
+
 /* 목성 */
 #jupiter{
     position: absolute;
@@ -131,6 +169,41 @@ var(--변수명)
         transform: rotate(360deg) translateX(-400px) rotate(-360deg);
     }
 }/* 목성회전 키프레임 */
+
+
+/* 토성 */
+#saturn{
+    position: absolute;
+    /* calc로 중앙이동 */
+    top: calc(50% - var(--ssz)/2);
+    left: calc(50% - var(--ssz)/2);
+    width: var(--ssz);
+    height: var(--ssz);
+    
+
+    /* 애니메이션 이시이지반방마 */
+    animation: saturn 45s linear infinite;
+}
+/* 가상요소로 토성이미지 배경으로 넣기 */
+#saturn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 160%;
+    height: 100%;
+    background: url(../images/saturn.png) no-repeat 0/100% 100%;
+}
+
+/* 토성회전 키프레임 */
+@keyframes saturn {
+    from{
+        transform: rotate(0deg) translateY(-460px) rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg) translateY(-460px) rotate(-360deg);
+    }
+}/* 토성회전 키프레임 */
 
 
 /* 명왕성 */

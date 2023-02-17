@@ -67,10 +67,10 @@
     /* 플렉스박스 */
     display: flex;
     /* 진행방향 정렬 - 오른쪽 끝 */
-    justify-content: end;
-
+    justify-content: flex-end;
     /* 글자체:Roboto, 나눔바른고딕 */
     font-family: "Roboto",nbg;
+    font-size: 12px;
 }
 /* 사이드메뉴 상위 a요소 */
 .smbx>li>a{
@@ -99,6 +99,7 @@
     /* display: block; */
     opacity: 1;
     height: auto;   
+    box-sizing: border-box;
 }
 /* 사이드 메뉴 상위 첫번째 a요소 커서 */
 .smbx > li:first-child > a{
