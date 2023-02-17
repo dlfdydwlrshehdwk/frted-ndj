@@ -32,7 +32,7 @@ font-family: 'Roboto Condensed', sans-serif;
 
 /* 공사중 표시 */
 body * {
-    outline: 1px dashed gray;
+    /* outline: 1px dashed gray; */
 }
 
 /************* 2. 공통 class *************/
@@ -84,6 +84,10 @@ body * {
 .cbx{
     position: relative;
 }
+/* .cbx에 오버시 */
+.cbx:hover::after{
+    border-width: 20px;
+}
 /* 가상요소로 컨텐츠박스 배경그라데이션 넣기 */
 .cbx::before{
     content: '';
@@ -92,6 +96,18 @@ body * {
     width: 100%;
     height: 50%;
     background-image: linear-gradient(to top, rgb(0, 0, 0),rgba(0, 0, 0, 0));
+}
+/* 가상요소로 컨텐츠박스 오버시 보더테두리 애니 */
+.cbx::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 0px solid red;
+    transition: border .3s ease-in-out;
+    cursor: pointer;
 }
 /* 3. 콘텐츠 타이틀 박스  (h2) */
 .cbx h2{
@@ -120,4 +136,9 @@ body * {
     width: 0;
     height: 0;
     overflow: hidden;
+}
+
+/* 공통배경색 */
+.bgc{
+    background-color: #f9f9f9;
 }
