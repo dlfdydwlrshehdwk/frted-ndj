@@ -73,6 +73,85 @@
         window.addEventListener("DOMContentLoaded",()=>{
 
             console.log("로딩완료!");
+        // 이벤트대상 
+        const mbtn = document.querySelectorAll(".mbtn");
+        // 출력대상
+        // 글씨출력대상
+        const showit = document.querySelector(".showit");
+        // 그림출력대상
+        const cont = document.querySelector(".cont");
+        // 선택과일개수
+        let anum = document.querySelector("#anum");
+        // 현재과일모음
+        let sel = document.querySelector("#sel");
+        // 지울과일
+        const delnum = document.querySelector("#delnum");
+
+        // 1. 배열변수 선언과 할당 
+        const fruit = ["배","사과","용과","딸기"];
+
+        // 2. 과일명과 배경이미지명을 매칭함 -> 객체
+        const frObj ={
+            "배" : "fruits_01",
+            "사과" : "fruits_02",
+            "용과" : "fruits_14",
+            "딸기" : "fruits_09",
+            "두리안" : "fruits_17",
+            "바나나" : "fruits_15",
+            "수박" : "fruits_12",
+            "파인애플" : "fruits_13",
+            "망고" : "fruits_24",
+            "오렌지" : "fruits_03",
+            "체리" : "fruits_05",
+            "멜론" : "fruits_11",
+            "블루베리" : "fruits_20",
+            "레몬" : "fruits_04",
+        }; // frObj 객체 ////
+
+        // 처음에 배열을 문자화해놓기
+        const showArr = () => {
+            showit.innerText=fruit.join("*");
+        }
+        // 최초실행해야하니 실행
+        showArr();
+        
+        // 0번버튼 클릭시 
+        mbtn[0].onclick = () =>{
+            // ul을 미리만들어놓고 
+            let hcode = "<ul>";
+            
+            // for문돌려서 li를 현재 배열수만큼 돌려주기 + 사진찍기
+            fruit.forEach((ele)=>{
+                console.log(ele)
+                hcode += `
+                <li style="background: url(addimg/${frObj[ele]}.png) no-repeat center/cover;">${ele}</li>  
+                `;
+            })/////
+            // ul코드 닫아주기
+            hcode += "</ul>";
+            // ul출력
+            cont.innerHTML=hcode;
+        };//onclick////
+
+        // 바로실행코드 추가하고싶은 과일목록들을 다 읽어서 올려야하기에
+        //  forin 문으로 싹다 읽어서 x로 만들어 넣어줌
+        (()=>{
+            console.log("실행");
+            // 빈변수를 만들어줌
+            let code;
+            // for문돌려서 frObj객체의 데이터를 담아줌
+            for(let x in frObj){
+                // console.log(x);
+                code += `<option>${x}</option>`;
+            }//for in////
+
+            sel.innerHTML=code;
+        })();
+
+
+        
+        
+
 
         }); ////////// 로드구역 ////////////////////////
     </script>
@@ -109,7 +188,8 @@
         </select>
     </div>
     <!-- 출력박스 -->
-    <div class="cont"></div>
+    <div class="cont">
+    </div>
 </body>
 
 </html>
