@@ -182,11 +182,22 @@
         // 현재 과일의 목록이 선택과일박스에 들어가 있어야한다. 그리고 배열이 추가될때
         // 삭제될때 이 함수가 실행이 되어야한다. 업데이트를 위해.
         // 선택과일 - anum
-
-
+        const reset=()=>{
+            // 비워놓기 시작하면
+            anum.innerHTML=""
+            fruit.forEach((ele,idx)=>{
+                anum.innerHTML+=`
+                <option value="${idx}">${ele}</option>
+            `})//foreach////
+        }
+        reset();
         // 5번 버튼 클릭시
         
-        mbtn[5].onclick
+        mbtn[5].onclick=()=>{
+            if(delnum.value="" ||isNan(delnum.value)){
+                fruit.splice(anum.value)
+            }
+        }
         // 6번 버튼 클릭시
         mbtn[6].onclick
         
