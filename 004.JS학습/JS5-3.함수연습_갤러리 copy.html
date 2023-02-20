@@ -66,63 +66,33 @@
             display: none;
         }
 
-        /* 미니언즈 */
-        #mini {
-            position: absolute;
-            top: 80%;
-            left: -20%;
-            /* 부모는? #wrap */
-            width: 150px;
-            transform: rotate(720deg);
-            transition: all 1.5s ease-out;
-        }
-
-        /* 미니언즈 변경클래스1 */
-        #mini.on1 {
-            top: 0;
-            left: 0;
-            transform: rotate(0deg);
-        }
-
-        /* 미니언즈 변경클래스2 */
-        #mini.on2 {
-            top: 0;
-            left: 80%;
-            transform: rotate(-720deg);
-        }
     </style>
     <!-- JS코딩구역 -->
     <script>
         /////////////// 로드구역 //////////////////
         window.addEventListener("load", () => {
 
-            // 함수바깥쪽에 전역변수 선언 및 할당!
+            console.log("로딩완료!");
 
+           
             // 1. 이미지 번호 변수(전역변수 -> goSlide함수에서 참조)
             let inum = 1;
             // -> 이미지 이름의 번호를 증감하기위한 저장공간
+
             // 변경대상1: 메인이미지 - #mbox img
             const mimg = document.querySelector("#mbox img");
             // 변경대상2: 글자박스 - .imgtxt
             const imgtxt = document.querySelector(".imgtxt");
             
-            // 첫번째 이미지메시지 출력하기
-            imgtxt.innerText = itxt[0];
             // 이벤트대상 = .btn
             const btns = document.querySelectorAll(".btn");
 
-            // console.log(mimg,imgtxt,btns)
-            
             ////////////////////////////
             // 이동버튼 클릭설정하기 /////
             ///////////////////////////
             btns.forEach((ele,idx)=>{//ele = 요소 , idx = 요소순번
                 ele.onclick = () => goSlide(idx); 
             });//forEach ////
-            
-            // btns.forEach((ele,idx)=>
-            //     ele.onclick = () => goSlide(idx));
-            // 더 축소버전 
 
             /**************************************** 
                 함수명: goSlide
@@ -130,6 +100,12 @@
             ****************************************/
 
             const goSlide = (seq) => {//seq는 버튼 순번
+                // 1. 함수호출 및 전달값 확인
+                console.log("왕빛나",seq);
+
+                // 현재전역 inum변수
+                console.log("현재전역inum",inum)
+
                 // 2. 버튼별 분기하기
                 // 2-1. 오른쪽 버튼 분기 (이미지번호 증가)
                 if(seq){
@@ -156,6 +132,9 @@
                 mimg.src = `./images/img${inum}.jpg`;
                 // mimg.setAttribute("src",`./images/img${inum}.jpg`); 위와 같은 내용 
                 
+                
+     
+
             }; ////////// goSlide 함수 ////
             
             /***************************************** 
@@ -208,6 +187,8 @@
                 };//////click 이벤트 함수 ////
 
             }////for of 문 ////
+
+
         }); /////////// 로드구역 ///////////////////
     </script>
 </head>
@@ -229,12 +210,9 @@
         <a href="#" class="btn rb">
             <img src="./images/right_btn.png" alt="오른쪽버튼">
         </a>
-        <!-- 미니언즈 -->
-        <img src="./images/Minions.png" alt="미니언즈" id="mini">
     </div>
 
     <!-- 이미지별 설명 텍스트 출력박스 -->
-    <h2 class="imgtxt"></h2>
 
     <!-- 자동넘김 버튼박스 -->
     <div class="abtn">
