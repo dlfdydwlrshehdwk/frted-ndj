@@ -1,7 +1,14 @@
-window.addEventListener("DOMContentLoaded",()=>{
 
-    const btn = document.querySelector('.btn');
-    const screen = document.querySelector('.screen');
-    btn.onclick = ()=>{screen.classList.toggle('on')};
+window.addEventListener('DOMContentLoaded', 함수실행());
 
-});
+
+function 함수실행(){
+    const myvid = document.querySelector("#myvid");
+    myvid.addEventListener("timeupdate",영상시간체크);
+
+    function 영상시간체크(){
+        if(myvid.paused){
+            location.href="main.html";
+        }
+    }
+}

@@ -1,7 +1,7 @@
-.screen{
+
+
+#myvid{
     width: 100vw;
     height: 100vh;
-}
-.screen.on{
-    background-color: black;
+    object-fit: cover;  
 }
