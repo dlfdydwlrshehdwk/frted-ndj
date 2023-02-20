@@ -457,11 +457,12 @@ body{
     justify-content: space-between;
     /* 원근3D적용 -> 보이는 화면 높이값의 50% */
     perspective: 50vh;
+    gap: 1vh 2.2%;
     
 }
 /* 상위li 두번째 부터 끝까지 왼쪽마진 */
 .mlist ul>li+li{
-    margin-left: 1.5%;
+    margin-left: 0%;
 }
 /* 선택메뉴 상위li */
 .mlist ul>li{
