@@ -1,14 +1,14 @@
 
-window.addEventListener('DOMContentLoaded', 함수실행());
+window.addEventListener('DOMContentLoaded', 함수구역);
 
 
-function 함수실행(){
+function 함수구역(){
     const myvid = document.querySelector("#myvid");
-    myvid.addEventListener("timeupdate",영상시간체크);
+    myvid.addEventListener("timeupdate",check);
 
-    function 영상시간체크(){
+    function check(){
         if(myvid.paused){
-            location.href="main.html";
+            location.href="index.html";
         }
     }
 }
