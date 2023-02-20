@@ -1,7 +1,45 @@
+@charset "utf-8";
 
-
-#myvid{
+html,body{
     width: 100vw;
     height: 100vh;
-    object-fit: cover;  
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow: hidden;
+}
+.slidect{
+    position: relative;
+    display: flex;
+    width: 300vw;
+    height: 100%;
+    transition:  1s;
+    /* transform: translateX(-100vw); */
+}
+.slidebx{
+    width: 100%;
+    height: 100%;
+}
+.slidebx1{
+    background-color: blue;
+}
+.slidebx2{
+    background-color: purple;
+}
+.slidebx3{
+    background-color: yellow
+    ;
+}
+.btns{
+    position: fixed;
+    display: flex;
+    top: 5%;
+    left: 50%;
+    gap: 0 10%;
+}
+.next{
+    position: fixed;
+    top: 5%;
+    right: 20%;
 }
