@@ -54,7 +54,6 @@ body{
     position: absolute;
     bottom: 10px;
     right: 10px;
-    height: 50%;
 }
 /* ul박스 */
 .gnb ul{
@@ -66,7 +65,7 @@ body{
     position: relative;
     /* 부모자격 : .smenu */
     padding-bottom: 5px;
-    /* 서브메뉴와 공간연결을 위해 하단패딩을줌 */
+    /* 서브메뉴와 공간연결을 위해 하단패딩줌! */
 }
 /* 상위li 두번째부터 */
 .gnb ul>li+li{
@@ -74,14 +73,17 @@ body{
 }
 /* 상위메뉴 a */
 .gnb ul>li>a{
+    /* 트랜스폼 적용위해 인라인블록 */
     display: inline-block;
     font-size: 2rem;/* 20px */
+    /* 트랜지션 */
     transition: .3s;
 }
-/* 오버시변경 */
+/* 오버시 변경 */
 .gnb ul>li:hover>a{
+    transform: scale(1.3);
     color: aquamarine;
-    transform: scale(1.2);
+    /* 애니메이션: 이시이지반방마 */
     animation: titAni .5s ease-in infinite alternate;
 }
 
@@ -149,136 +151,156 @@ body{
     /* 오른쪽 끝으로 보내기 */
     float: right;
 }
-.gnb ul>li:nth-child(2)
+/* 예매 */
+.gnb ul>li:nth-child(2) 
 .smenu a:hover::after{
-    content: '💚';
+    content: '🎪';
+}
+/* 극장 */
+.gnb ul>li:nth-child(3) 
+.smenu a:hover::after{
+    content: '👓';
+}
+/* 이벤트&컬처 */
+.gnb ul>li:nth-child(4) 
+.smenu a:hover::after{
+    content: '😻';
 }
 
-/* 서브메뉴 사이구분선 클래스 */
+/* 서브메뉴 li보더 상단 구분선 클래스 */
 .bdt{
     border-top: 1px solid #ccc;
 }
 
-/* 영사기 박스 */
+/* 영사기박스 */
 #cam{
     position: absolute;
+    bottom: -10px;
     right: -60px;
-    bottom: 0px;
+    z-index: -1;
+    /* 메뉴보다 아래! */
 }
 /* 영사기 이미지 */
 #cam img{
-    width: 50px;
     position: relative;
-    /* 영사기가 위 */
     z-index: 1;
-    transition: .5s ease-out ;
-    transform: rotate(35deg);
+    /* 영사기가 위! */
+    width: 50px;
+    transform: rotate(25deg);
+    /* 트랜지션: 속시이지 
+    - 돌아올때 0.3초 빔시간 기다림*/
+    transition: .5s ease-out .3s;
 }
+/* .gnb에 오버시 영사기회전 */
 .gnb:hover #cam img{
     transform: rotate(0deg);
+    /* 오버시 기다림 없음 */
+    transition-delay: 0s;
 }
-.gnb:hover .beam{
-    /* 이시이지반방마 */
-    width: 200px;
-    transition-delay: .5s;
-    animation: beam .00004s linear infinite alternate;
-}
-
-@keyframes beam {
-    to{
-        opacity: .5;
-    }
-}
+/* 빔박스 */
 .beam{
     position: absolute;
     top: -16px;
-    right: 11px;
-    width: 0;/*200px*/
+    right: 13px;
+    width: 0;/* 200px; */
     height: 70px;
     background: url(../images/bim.png) no-repeat;
     background-position: right center;
     background-size: auto 100%;
-    transition: .1s;
-    z-index: -1;
     /* outline: 2px dotted lime; */
-}
 
-/* 1-3. 찾아오는길 애니박스 */
+    /* 트랜지션: 속시이지 */
+    transition: .3s ease-out;
+}
+/* .gnb에 오버시 빔쏘기 */
+.gnb:hover #cam .beam{
+    width: 200px;
+    /* 카메라 도는 0.5초 기다림 */
+    transition-delay: .5s;
+    /* 애니메이션: 이시이지반방마 */
+    animation: beamAni .01s linear infinite alternate;
+}
+/* 빔 빛흔들리기 애니 키프레임 */
+@keyframes beamAni {
+    to{
+        opacity: 0.5;
+    }
+}/* 키프레임 */
+
+/* 1-3.찾아오는길 애니박스 */
 .anibx{
     position: absolute;
     top: 0;
     left: 0;
-    /* 부모는 .top */
+    /* 부모는? .top */
     width: 144px;
     height: 80px;
-    /* 나간글자숨기기 */
-    perspective: 40vh;
+    /* 원근설정 : 직계하위 span적용! */
+    perspective: 50vh;
+    /* 손가락모양 */
+    cursor: pointer;
 }
-/* 극장가는길 타이틀박스 */
+/* 극장가는 길 타이틀박스 */
 .anibx>span{
-    /* 커튼 대문역할 */
+    /* 커튼 대문 역할 */
     position: absolute;
-    /* 변경속성 초기값 설정 */
+    /* 변경속성 top 초기값 셋팅!(애니위해) */
     top: 0;
     z-index: 1;
-    font-family: 'Cute Font', cursive;
-    color: #fff;
+    display: block;
     width: 144px;
     height: 80px;
-    display: block;
-    line-height: 80px;
-    text-align: center;
-    font-size: 20px;
+    /* 나간글자 숨기기 */
     overflow: hidden;
+    text-align: center;
+    line-height: 80px;
+    font-family: 'Cute Font', cursive;
+    color: #fff;
+    font-size: 20px;
+    /* 줄바꿈방지 */
     white-space: nowrap;
-    /* 줄바꿈 방지 */
-    /*배경이미지 넣기 */
+    /* 배경이미지넣기 */
     background: url(../images/curtain.jpg) no-repeat;
-    /* 애니메이션 이시이지반방마 */
-    animation: anibxani 3s cubic-bezier(0.9, -0.93, 0.2, 1.8) infinite;
+    /* 애니메이션: 이시이(지)반(방마) */
+    animation: anibxAni 2.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    /* 트랜지션:속시이지 */
     transition: top .4s ease-in-out .2s;
-    cursor: pointer;
-
 }
-/* 마우스오버시+클래스 "on" 추가시 보이기 */
-.anibx:hover span,
-.anibx.on span{
+/* 오버시 + 클래스 "on"적용시
+ 타이틀애니박스 보이기 */
+.anibx:hover>span,
+.anibx.on>span{
     top: -100%;
-    /* top은 기본값이 auto이므로 
-    애니메이션 하려면 탑값을 조정해놔야함 */
+    /* top은 기본값이 auto이므로
+    애니메이션 하려면 top:0 으로 초기값 필요! */
     outline: 1px solid aqua;
 }
-
 /* 타이틀 애니 키프레임 */
-@keyframes anibxani {
+@keyframes anibxAni {
     0%{
         text-indent: 0;
     }
-    30%{
-        text-indent: 0;
-    }
-    /* 50~70% 오른쪽으로 나감 */
+    /* 50%~70% 오른쪽으로 나감! */
     50%{
-        text-indent: 250px;
+        text-indent: 0;
     }
     70%{
         text-indent: 250px;
     }
+    /* 위치변경 왼쪽 바깥 */
     70.1%{
         text-indent: -250px;
     }
-    /* 80~100% 왼쪽에서 들어옴 */
+    /* 80%~100% 왼쪽에서 들어옴! */
     80%{
         text-indent: -250px;
     }
     100%{
         text-indent: 0;
     }
+}/* 키프레임 */
 
-} /* 키프레임 */
-
-
-/* 샐애니 */
+/* 샐애니박스 */
 .cellAni{
     position: absolute;
     top: 0;
@@ -287,45 +309,48 @@ body{
     height: 80px;
 
     /* 배경넣기 */
-    background:url(../images/street.jpg) repeat-x;
+    background: url(../images/street.jpg) repeat-x;
     background-size: auto 100%;
 
     /* 애니메이션: 이시이지반방마 */
     animation: street 4s linear infinite;
-    
 }
 
-
-/* 키프레임 */
 /* 스크린배경이동 키프레임 */
 @keyframes street {
     to{
         background-position: -136px 0;
     }
 }
+/* 키프레임 */
+
 /* 3-1.걷는존 */
 .spani1{
     position: relative;
     width: 30%;
     height: 100%;
     margin: 0 auto;
+
     background: url(../images/spAni03.png) no-repeat;
     background-size: auto 100%;
-    /* outline: 3px solid red; */
 
     /* 애니메이션: 이시이지반방마 */
     animation: spani1 1s steps(8) infinite;
+
+    /* outline: 5px solid red; */
 }
+
 /* 걷는존 키프레임 */
 @keyframes spani1 {
     to{
         background-position: -362px 0;
     }
-    /* 배경이미지 x축 이동일 경우 
-    줄였을때 이미지 전체 가로크기를 마이너스 값으로 써주면된다. */
+    /* 배경이미지 x축 이동일 경우
+    줄였을때 이미지 전체 가로크기를
+    마이너스 값으로 써주면된다! */
 }
-/* 키프레임 */
 
+/* 키프레임 */
 /* 3-2.꼬마 */
 .spani2{
     position: absolute;
@@ -333,18 +358,21 @@ body{
     left: 0;
     width: 20px;
     height: 29px;
-    background: url(../images/KakaoTalk_20230213_121554270.png) no-repeat;
+    background: url(../images/spAni01.png) no-repeat;
+    /* 배경사이즈 변경 */
     background-size: 200px;
-    /* 애니메이션: 이시이지반방마 */
-    animation: spani2 2s steps(10) infinite;
+        /* 애니메이션: 이시이지반방마 */
+    animation: spani2 1s steps(10) infinite;
 }
+
 /* 꼬마 키프레임 */
-/* 키프레임 */
 @keyframes spani2 {
     to{
         background-position: -200px 0;
     }
 }
+/* 키프레임 */
+
 /* 3-3.몬스터 */
 .spani3{
     position: absolute;
@@ -353,14 +381,16 @@ body{
     width: 40px;
     height: 40px;
     background: url(../images/spAni02.png) no-repeat;
+    /* 배경사이즈 변경 */
     background-size: 240px;
-
-    /* 애니메이션 : 이시이지반방마 */
-    animation: spani3X 1s steps(6) infinite,
-     spani3Y 3s steps(3) infinite;
-     /* x축은 6장면을 1초간 작동
-        y축은 3줄을 3초간 작동 */
+    /* 애니메이션: 이시이지반방마 */
+    animation: 
+    spani3X 1s steps(6) infinite,
+    spani3Y 3s steps(3) infinite;
+    /* x축은 6장면을 1초간 작동
+    y축은 3줄을 3초간 작동 */
 }
+
 /* 몬스터 키프레임 X축 */
 @keyframes spani3X {
     to{
@@ -376,6 +406,8 @@ body{
     /* y축은 세로크기를 마이너스로 씀 */
 }
 
+
+
 /**************** 2.메인영역 ****************/
 /* 속박스 */
 .cont{
@@ -390,7 +422,7 @@ body{
 /* 2-1.스크린 */
 .screen{
     position: absolute;
-    top: 17.1%;
+    top: 17.2%;
     left: 21.3%;
     width: 58.6%;
     height: 50.6%;
@@ -407,13 +439,13 @@ body{
 /* 2-2.예고편 선택메뉴 */
 .mlist{
     position: absolute;  
-    bottom: 5%;
+    bottom: 5.4%;
     left: 50%;
     width: 60%;
     transform: translateX(-49%);
 
     /* 앱솔루트 부모자격이 있는 요소의
-    overflow가 적용됨! */
+    overflow가 적용됨! -> li각각에 처리함 */
     /* overflow: hidden; */
 
 }
@@ -423,37 +455,41 @@ body{
     display: flex;
     /* 진행방향정렬 : 양쪽끝 맞춘후 사이간격일정 */
     justify-content: space-between;
-    /* 원근 3D적용 -> 보이는 화면 높이값이 50% */
+    /* 원근3D적용 -> 보이는 화면 높이값의 50% */
     perspective: 50vh;
+    
 }
+/* 상위li 두번째 부터 끝까지 왼쪽마진 */
 .mlist ul>li+li{
     margin-left: 1.5%;
 }
 /* 선택메뉴 상위li */
 .mlist ul>li{
     position: relative;
-    /* 부모자격 .movtxt */
-    overflow: hidden;
+    /* 부모자격 - .movtxt */
     flex: 1;
-    /* 등분할 */
-
-    /* x축회전 적용하기 */
+    /* 등분할설정 */
+    overflow: hidden;
+    
+    /* X축회전적용하기 */
     transform: rotateX(30deg);
-    transition: .4s;
-    /* 회전축변경 - 하단 */
+    /* 회전축 변경 : 하단 */
     transform-origin: bottom;
+    /* 트랜지션: 속시이지 */
+    transition: .4s;
 }
-/* 마우스오버시 + 클래스"on"적용시 
-포스터 일어나기 */
-.mlist ul>li:hover,
-.mlist ul>li.on{
-    /* x축 회전 */
+/* 마우스 오버시 + 클래스"on"적용시
+포스터 일어나기! */
+.mlist ul>li:hover ,
+.mlist ul>li.on {
+    /* x축회전 */
     transform: translateX(0);
-    /* 다른li보다 위에오게 */
+    /* 다른 li보다 위 */
     z-index: 1;
     /* 테두리 생김 */
     outline: 1px solid aqua;
 }
+
 /* 포스터 이미지 */
 .mlist img{
     width: 100%;
@@ -474,7 +510,7 @@ body{
     top: 100%;
     width: 100%;
     height: 100%;
-    /* 부모는 ? 싸고있는 li */
+    /* 부모는? 싸고있는 li */
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
 
@@ -493,7 +529,7 @@ body{
 }
 
 /* 영화정보박스 제목만 변경 */
-.movtxt li:first-child{
+.movtxt li:first-child {
     font-size: min(17px,1.2vw);
     color: aqua;
     white-space: nowrap;
@@ -502,40 +538,40 @@ body{
 
 /**************** 3.하단영역 ****************/
 .info{
-    height: 100px;
     /* 플렉스박스 */
     display: flex;
-    /* 수직방향정렬 */
+    /* 수직방향정렬 : ai */
     align-items: center;
+    height: 100px;
 }
 
-/* 3-1. 로고 */
+/* 3-1.로고 */
 .logo{
     margin-right: 20px;
 }
-/* 3-2. 회사정보 */
-
+/* 3-2.회사정보 */
 .corp address{
-    color: #eee;
     font-family: 'Cute Font', cursive;
+    color: #fff;
     font-style: normal;
-    line-height: 2rem;
     font-size: 1.8rem;
+    line-height: 2rem;
 }
-/* 3-3. sns */
+/* 3-3.SNS */
 .sns{
-    /* 오른쪽 끝에위치 */
+    /* 오른쪽 끝위치 */
     margin-left: auto;
 }
 .sns ol{
+    /* 플렉스박스 */
     display: flex;
 }
 .sns li{
     width: 34px;
     height: 34px;
-    outline: 1px solid white;
+    /* outline: 1px dashed yellow; */
 }
-/* li 사이간격 */
+/* li사이간격 */
 .sns li+li{
     margin-left: 5px;
 }
@@ -548,66 +584,78 @@ body{
     text-align: center;
 }
 
-/* sns오버시 글자색 */
+/* sns 오버시 글자색 */
 
 /* 페북 */
-.sns a[class$=facebook]:hover{
-    color: lightblue;
+.sns a[class$=book]:hover{
+    color: lightskyblue;
 }
 /* 트위터 */
-.sns a[class^='fa-brands fa-square-t']:hover{
-    color: cornsilk;
+.sns a[class^='fa-brands fa-square-tw']:hover{
+    color: lightcoral;
 }
 /* 인스타 */
-.sns a[class*=insta]:hover{
-    color: violet;
+.sns a[class*=ins]:hover{
+    color: lightgreen;
 }
-/************************************** 
-    속성선택자: [속성명] 
+
+/***************************************** 
+    속성선택자: [속성명]
     - 속성명의 특정값을 비교하는 3가지 방법
     1. [속성명=값] -> 정확히 일치하는 값
-    2. [속성명*=값] -> 값 내용중 있기만하면 찾음
+    2. [속성명*=값] -> 값내용중 있기만하면 찾음
     3. [속성명^=값] -> 값내용이 시작하는 문자열 찾음
     4. [속성명$=값] -> 값내용이 끝나는 문자열 찾음
 
-    - 별은 하늘에 있고 모두가 볼 수 있다. *= 모든일치 내용
-    - 시작할떄는 웃으면서 시작 ^= 시작하는 내용
-    - 끝날때는 돈받고 끝나라 $= 끝나는내용
+    - 별은 하늘에 있고 모두가 볼 수 있다 *= 모든일치내용
+    - 시작할때는 웃으면서 시작 ^= 시작하는내용
+    - 끝날때는 돈받고 끝나라!  $= 끝나는내용
 
-    - 사용하는 문자열에 문제가 없다면 따옴표를 쓰지 않아도 된다
-    but 띄어쓰기, 특수문자 등이 있다면 ' ' 따옴표를 사용
-**************************************/
+    - 사용하는 문자열에 문제가 없다면
+    따옴표를 쓰지 않아도 된다!
+    (띄어쓰기, 특수문자 등 있다면 따옴표사용)
 
+
+*****************************************/
+
+
+
+/* 구글맵 지도박스 */
 .gmap{
     position: fixed;
+    top: -50%;
+    /* 처음에 top값으로 윗쪽에 숨김! */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 정중앙이동 */
+
     width: 600px;
     height: 450px;
     background-color: #fff;
-    /* 정중앙이동 */
-    top: -50%;
-    /* 처음에 위로숨겨놓기 */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 20px solid goldenrod;
+    border: 20px solid hotpink;
     border-radius: 10px;
+
     z-index: 999;
-    /* 트랜지션 속시이지 */
-    transition: top 0.8s ease-in-out;
+    /* 트랜지션: 속시이지 */
+    transition: top .8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-/* 구글맵에 클래스 "on" 적용시 등장하기 */
+/* 구글맵에 클래스"on"적용시 등장하기 */
 .gmap.on{
     top: 50%;
 }
-.cbtn {
+/* 닫기버튼 */
+.cbtn{
     position: absolute;
     top: 0;
-    right: 5px;
+    right: 10px;
     font-size: 40px;
     font-weight: bold;
-    line-height: 40px;
-    width: 40px;
-    height: 40px;
+    color: #000;
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+/* 기본 포커스 아웃라인 제거 */
+.cbtn:focus{
+    outline: none;
 }
