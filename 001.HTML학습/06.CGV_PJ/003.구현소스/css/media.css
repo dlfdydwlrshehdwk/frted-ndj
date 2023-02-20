@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CGV PJ 미디어쿼리 CSS - media.css */
+
+/****************** 1330px 이하 사이즈 시작 ******************/
+@media screen and (max-width:1330px) {
+    /* 1-2.GNB메뉴 */
+    .gnb{
+    right: 70px;
+    }
+}
+/****************** 1330px 이하 사이즈 종료 ******************/
+
+
+/****************** 1050px 이하 사이즈 시작 ******************/
+@media screen and (max-width:1050px) {
+    .gnb:hover .gnb ul{
+        /* display: block; */
+    }
+    /* 1-2.GNB메뉴 */
+.gnb{
+    right: 69px;
+    }
+    /* 서브메뉴 오버시 안나오게 
+    -> 방법 2가지
+    1) hover설정 덮어쓰기
+    2) 원소스에 미디어쿼리로 감싸주기(min-width설정)
+    */
+    .gnb ul>li:hover .smenu{
+       display: none;
+    }
+    .gnb ul{
+        /* display: none; */
+    }
+    /* gnb오버시 ul보이기 */
+    .gnb:hover ul{
+        display: flex;
+    }
+}
+/****************** 1050px 이하 사이즈 종료 ******************/
