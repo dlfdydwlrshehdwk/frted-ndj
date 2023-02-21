@@ -39,16 +39,6 @@ window.addEventListener("DOMContentLoaded", loadFn);
 function loadFn() {
     console.log("로딩완료");
 
-    // 슬라이드 li리스트
-    let slist = document.querySelectorAll("#slide>li");
-
-    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한 
-    // 고유순번을 사용자정의 속성(data-)으로 만들어 준다. 
-    slist.forEach((ele,idx)=>{
-        // data-seq 라는 사용자정의 속성 넣기
-        ele.setAttribute('data-seq',idx);
-    });//foreach////
-
     // 1 대상선정
     // 1-1. 이벤트대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
