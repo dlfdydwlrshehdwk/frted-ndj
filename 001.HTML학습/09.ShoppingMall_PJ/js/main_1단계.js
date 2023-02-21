@@ -74,14 +74,14 @@ function loadFn(){
         // 2. 한계값 체크 : 
         // 양끝까지 가면 맨끝페이지로 빠르게 넘어가는 방법 - 지저분해보임
         // 처음이전->끝 
-        if(snum===-1) snum = scnt -1;
-        // 끝다음 -> 처음
-        else if(snum=== scnt) snum = 0
+        // if(snum===-1) snum = scnt -1;
+        // // 끝다음 -> 처음
+        // else if(snum=== scnt) snum = 0
 
         // 양끝에서 더 못가도록 고정하는 법
-        // if(snum===-1) snum = snum=0;
-        // // 끝다음 -> 처음
-        // else if(snum=== scnt) snum = scnt-1
+        if(snum===-1) snum = snum=0;
+        // 끝다음 -> 처음
+        else if(snum=== scnt) snum = scnt-1
         
 
         // 3. 이동하기 
