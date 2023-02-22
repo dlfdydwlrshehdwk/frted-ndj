@@ -43,15 +43,6 @@ window.addEventListener("DOMContentLoaded", loadFn);
 function loadFn() {
     console.log("로딩완료");
 
-    // 슬라이드 li리스트
-    let slist = document.querySelectorAll("#slide>li");
-    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한 
-    // 고유순번을 사용자정의 속성(data-)으로 만들어 준다. 
-    slist.forEach((ele,idx)=>{
-        // data-seq 라는 사용자정의 속성 넣기
-        ele.setAttribute('data-seq',idx);
-    });//foreach////
-
     // 1 대상선정
     // 1-1. 이벤트대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
@@ -62,6 +53,33 @@ function loadFn() {
     // 1-3. 블릿 대상: .indic li
     const indic = document.querySelectorAll('.indic li');
     // console.log(indic);
+
+    // 1-4. 슬라이드 li리스트
+    let slist = document.querySelectorAll("#slide>li");
+
+    // [ 초기화1 - 순번붙이기 ] ////////
+    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한 
+    // 고유순번을 사용자정의 속성(data-)으로 만들어 준다. 
+
+    slist.forEach((ele,idx)=>{
+        // data-seq 라는 사용자정의 속성 넣기
+        ele.setAttribute('data-seq',idx);
+    });//foreach////
+
+    // [ 초기화2 - 맨뒤요소 맨앞으로 이동 2번하기]
+    // 맨뒤 맨앞이동 함수 
+    const chgSeq = () => {
+        // 현재 슬라이드 li 새로읽기 (2번 반복시 li의 순서가 달라지기 때문)
+        slist = document.querySelectorAll("#slide>li");
+        // 맨뒤 맨앞이동하기 -> 변경대상: #slide -> slide변수
+        slide.insertBefore(slist[slist.length-1],slist[0]);
+        // slide.insertBefore(넣을놈,넣을놈전놈)
+        // slide.insertBefore(마지막요소,첫요소)
+    }; ////// chgSeq /////
+
+    // 2번 맨뒤 맨앞이동 함수 호출하기
+    for(let i =0;i<2;i++) chgSeq();
+
 
     // 광클금지 변수 : 0 - 허용, 1 - 불허용
     let prot = 0;
@@ -91,22 +109,17 @@ function loadFn() {
             // console.log("오른");
             
             slide.appendChild(clist[0]);
-            // (2) 동시에 left값을
-            // -330%로 변경한다.
-            slide.style.left = '-330%';
-            // 이때 트랜지션을 없애준다(한번실행후 부터 생기므로)
-            slide.style.transition='.4s ease-in-out';
-
-
-            // (3) 그 후 left값을 -220%으로 애니메이션하여
-            // 슬라이드가 왼쪽에서 들어온다.
-            // 동일 속성인 left가 같은 코딩처리 공간에 동시에 있으므로
-            // 이것을 분리해야 효과가 있다.
-            // setTimeout을 사용한다.
-            setTimeout(()=>{
-                slide.style.left = "-220%";
-                slide.style.transition = ".4s ease-in-out";
-            },0);//timeout////
+            slide.style.left= '-220%';
+            slide.style.transition="none";
+            // (1) 오른쪽 버튼 클릭시 다음 슬라이드가
+            //     나타나도록 슬라이드 박스의 left값을
+            //     -330%로 변경시킨다.
+            // (2) 슬라이드 이동후!!! (0.4초후)
+            setTimeout(() => {
+                slide.style.left = "-330%";
+                slide.style.transition = "none";
+               
+            },); // timeout ///
         }//if////
 
         // 1-2. 왼쪽버튼 클릭시
