@@ -8,15 +8,71 @@
         <script>
             ////// 로드구역 //////////
             window.addEventListener("DOMContentLoaded", () => {
+                // 등장액션 대상: .setit
+                const setit = document.querySelectorAll(".setit");
+                // console.log(setit);
+
+                // 화면높이값의 절반구하기
+                const hv = window.innerHeight/2
+                // console.log("반높이",hv);
+
+                // 등장액션 대상 위치값 리턴함수////
+                const retVal = ele => ele.getBoundingClientRect().top;
+                // [ 보이는화면을 기준한 위치값리턴 :
+                // getBoundingClientRect() ]
+                // top속성값은 Y축위치값을 나타냄
+                // 보이는 화면 상단 닿을경우 0
+                // 통과하여 위로 올라가면 마이너스값임
+
+                ////////////////////////////
+                // 클래스넣기 함수 만들기 ////
+                ////////////////////////////
+
+                const showIt = x => {// x 는 등장요소
+                    if(retVal(x) < hv && retVal(x) > hv-50){
+                        // hv- 값을 너무적게하면 스크롤이동하다가 넘어갈수도잇음
+                        console.log('작동');
+                        x.classList.add('on');
+                    }
+                };//showIt ////
+
+
 
                 // 스크롤 이동시 윈도우에 세로스크롤 위치값찍기
                 // 대상 : window
                 // 이벤트 : 스크롤
                 window.addEventListener('scroll',()=>{
+
+                    // 스크롤등장 요소 개수만큼 for문으로 돌리기
+                    for(let x of setit) showIt(x);
+                    
+
+
+
+
+
+
+
+
+
                     // 스크롤시 스크롤 위치값
                     // ->window.scrollY
-                    let scTOP = window.scrollY;
-                    console.log(scTOP);
+                    // let scTOP = window.scrollY;
+                    // console.log(scTOP);
+
+                    // 현재 첫번째 박스위치값
+                    // let bxpos = retVal(setit[0]);
+                    // console.log(bxpos);
+
+                    // 함수밖에서 값이 1인 변수를 만들고
+                    // if문조건에 && 변수 = 1 이라고하고
+                    // if문 안에 변수 = 0 이라고하면 딱 한번만 실행됨
+
+                    // if(bxpos < hv && bxpos >hv-10){
+                    //     console.log('작동');
+                    //     setit[0].classList.add('on');
+                    // }
+
                 });
 
 
@@ -110,8 +166,8 @@
             }
             /* 스크롤등장 초기화 클래스 */
             .setit {
-                /* transform: translateY(20%); */
-                /* opacity: 0; */
+                transform: translateY(20%);
+                opacity: 0;
                 transition: all 1.2s ease-in-out;
             }
             /* 스크롤등장 클래스 .setit + .on */
