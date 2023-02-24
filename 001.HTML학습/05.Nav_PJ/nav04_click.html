@@ -367,6 +367,10 @@
      
     // gnb요소
     const gnbBx = document.querySelector('.gnb');
+    
+     // 타임아웃변수
+    let autoTgnb;
+
     // gnb 마우스 아웃시 자동초기화////
     gnbBx.addEventListener('mouseleave',()=>{
       autoTgnb = setTimeout(()=>{

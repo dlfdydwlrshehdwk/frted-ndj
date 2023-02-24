@@ -251,11 +251,15 @@
       // -> 대상을 li하위 직계 상단메뉴인 a요소로 선정한 경우
       // 코드 변경하기(기존기능과 같게한다.)
 
-      // 구현내용중 부모로 올라가는 방법
-      // -> 선택요소.parentElemnt
+      // [구현내용중 부모로 올라가는 방법!]
+      // -> 선택요소.parentElement
+      // [구현내용중 다음형제요소 선택 방법!]
+      // -> 선택요소.nextElementSibling
+      // [구현내용중 이전형제요소 선택 방법!]
+      // -> 선택요소.previousElementSibling
 
 
-      const gnb = document.querySelectorAll('.gnb>ul>li:has(.smenu)');
+      const gnb = document.querySelectorAll('.gnb>ul>li:has(.smenu)>a');
       console.log(gnb);
       /*********************************** 
         [css선택자 중 하위요소를 포함하는 요소 선택하기]
@@ -270,9 +274,10 @@
      // 2. 이벤트셋팅하기
 
      // 요소 순번변수
- 
+      let ns = document.querySelector('.smenu') 
       // forEach((요소,순번)=>{코드})
       gnb.forEach((x,idx)=>{// idx는 요소순번
+        console.log('x',x)
         x.onclick = () => {
           // (00) 초기화 함수 호출
           // idx(순번)을 보내는 이유는
@@ -282,11 +287,12 @@
 
 
           // (0) 하위 .smenu
-          let tg = x.querySelector('.smenu');
+          let tg = x.nextElementSibling;
+          console.log("tg",tg);
           // (1) 하위 .smenu ol의 높이값
           let hv = tg.querySelector("ol").clientHeight;
           // clientHeight -> 패딩을 포함한 요소의 높이값
-          console.log(hv);
+          console.log("hv",hv);
 
           // hv값 전환하기 
           console.log('타겟높이:',tg.clientHeight);
@@ -306,7 +312,7 @@
           tg.style.height= hv+'px';
 
           // (4) 상위메뉴에 오버시와 같은 디자인적용: 클래스on넣기/빼기
-          x.classList.toggle('on');
+          x.parentElement.classList.toggle('on');
         }; // onclick ////
   
       });//forEach ////
@@ -352,13 +358,14 @@
         });// forEach ////   
         
         // 2. 서브메뉴있는 li의 클래스 "on"지욱
-        // 대상: .gnb>ul>li:has(.smenu) -> gnb변수
+        // 대상: .gnb>ul>li:has(.smenu)>a -> gnb변수
         gnb.forEach((ele,idx)=>{
           // 호출한 순번과 같다면 넘어가
           if(idx===seq) return;
           console.log('li순번:',idx);
           // class on뺴기
-          ele.classList.remove('on');
+          // gnb변수의 부모 ele.parentElement
+          ele.parentElement.classList.remove('on');
         }); // forEach ////
 
         /***********************************  
@@ -376,6 +383,7 @@
      
     // gnb요소
     const gnbBx = document.querySelector('.gnb');
+    let autoTgnb;
     // gnb 마우스 아웃시 자동초기화////
     gnbBx.addEventListener('mouseleave',()=>{
       autoTgnb = setTimeout(()=>{
