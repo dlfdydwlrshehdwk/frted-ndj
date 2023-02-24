@@ -258,9 +258,20 @@
         h1:has(+div) -> h1요소 바로뒤에 div가 있는 h1
       ***********************************/
 
-      // 2. 이벤트셋팅하기
-      for(let x of gnb){// x는 li요소
+     // 2. 이벤트셋팅하기
+
+     // 요소 순번변수
+ 
+      // forEach((요소,순번)=>{코드})
+      gnb.forEach((x,idx)=>{// idx는 요소순번
         x.onclick = () => {
+          // (00) 초기화 함수 호출
+          // idx(순번)을 보내는 이유는
+          // 자신의 순번을 빼고 초기화 하기위하여!
+          initMenu(idx);
+          
+
+
           // (0) 하위 .smenu
           let tg = x.querySelector('.smenu');
           // (1) 하위 .smenu ol의 높이값
@@ -288,9 +299,82 @@
           // (4) 상위메뉴에 오버시와 같은 디자인적용: 클래스on넣기/빼기
           x.classList.toggle('on');
         }; // onclick ////
-      }//for of ////
+  
+      });//forEach ////
+
+      // .smenu 클릭시 상위 li로 이벤트가 버블링 막기
+      let smenu = document.querySelectorAll('.smenu');
+      for(let x of smenu){
+        x.addEventListener('click',e=>e.stopPropagation());
+        // stop propagation() -> 이벤트 버블링을 막는 event 객체의 메서드
+      }// for of ////
 
 
+      // a요소 클릭시 기본기능막기
+      let atag = document.querySelectorAll('a');
+      for(let x of atag){
+        x.addEventListener('click',e=>e.preventDefault());
+        // preventDefault()
+        // ->요소의 기본기능을 막는다
+        // a요소는 링크 이동기능을 막아준다.
+      }// for of ////
+
+
+      /***************************************** 
+        메뉴 초기화 함수 : 처음상태로 돌림
+      *****************************************/
+    //  참고 function initMenu (seq=1000){}
+    // 파라미터 변수에 어떤값을 할당해 놓으면
+    // 함수호출시 아무값도 입력하지 않을떄 이 값을
+    // 넣고 함수내부로 들어간다. 
+     function initMenu (seq=1000) {// idx - 호출한 순번
+        // 호출확인
+        console.log("왕빛나",seq)
+
+        // 대상: .smneu -> smenu변수
+        // 1. 모든서브메뉴 높이값 0만들기
+        smenu.forEach((ele,idx)=>{
+          // 호출한 순번과 같다면 넘어가
+          if(idx===seq) return;
+          
+          console.log('smenu순번:',idx);
+          // 높이값0만들기
+          ele.style.height=0;
+        });// forEach ////   
+        
+        // 2. 서브메뉴있는 li의 클래스 "on"지욱
+        // 대상: .gnb>ul>li:has(.smenu) -> gnb변수
+        gnb.forEach((ele,idx)=>{
+          // 호출한 순번과 같다면 넘어가
+          if(idx===seq) return;
+          console.log('li순번:',idx);
+          // class on뺴기
+          ele.classList.remove('on');
+        }); // forEach ////
+
+        /***********************************  
+          forEach 메서드에서 중간뛰어넘기
+
+          for문과 같은 제어문이 아니므로 
+          continue 키워드는 사용할 수 없다.
+          그런데 함수구역이므로 return키워드로 
+          사용하면 해당 순번을 빠져나가서 제외되고
+          나머지 순번순회는 계속된다.
+        ***********************************/
+
+
+     }// initMenu 함수 ////
+     
+    // gnb요소
+    const gnbBx = document.querySelector('.gnb');
+    // gnb 마우스 아웃시 자동초기화////
+    // gnbBx.addEventListener('mouseout',function(){
+    //   setTimeout(()=>{
+    //     console.log('아웃')
+    //     initMenu();
+    //     // 보내는값 없이 호출시 모두 초기화된다.
+    //   },2000);
+    // });// out////
 
     });// 로드구역 ////
   </script>
@@ -335,6 +419,23 @@
                   </li>
                   <li>
                     <a href="#">방명록</a>
+                  </li>
+                </ol>
+              </div>
+          </li>
+          <li>
+            <a href="#"><span>웹튜닝</span></a>
+            <!-- 서브메뉴 -->
+            <div class="smenu">
+                <ol>
+                  <li>
+                    <a href="#">서버튜닝</a>
+                  </li>
+                  <li>
+                    <a href="#">DB튜닝</a>
+                  </li>
+                  <li>
+                    <a href="#">개발환경튜닝</a>
                   </li>
                 </ol>
               </div>
