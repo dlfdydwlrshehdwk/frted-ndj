@@ -47,20 +47,16 @@ window.addEventListener("DOMContentLoaded", loadFn);
 function loadFn() {
     console.log("로딩완료!");
 
-    // 1. 대상선정 //////////////////////////
     // 1-1. 이벤트 대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
-
     // 1-2. 변경 대상: #slide
     const slide = document.querySelector("#slide");
-
     // 1-3. 블릿 대상: .indic li
     const indic = document.querySelectorAll(".indic li");
     console.log(indic);
-
     // 1-4. 슬라이드 li리스트
     let slist = document.querySelectorAll("#slide>li");
-    !
+
     slist.forEach((ele, idx) => {
         ele.setAttribute("data-seq", idx);
     }); ////// forEach /////////////////
