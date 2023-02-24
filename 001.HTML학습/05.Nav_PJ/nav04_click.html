@@ -132,8 +132,10 @@
       transition: width .2s ease-out;
     }
 
-    /* 상위메뉴 오버시 가상요소 밑줄애니 */
-    .gnb>ul>li:hover>a>span::after {
+    /* 상위메뉴 오버시 가상요소 밑줄애니 
+    + 클래스 on일떄*/
+    .gnb>ul>li:hover>a>span::after,
+    .gnb>ul>li.on>a>span::after {
       width: 100%;
       /* 오버시에 기다리는 시간 0.4초 */
       transition-delay: .4s;
@@ -280,8 +282,11 @@
           // 그러므로 0이아니면 0으로 만들어주낟.
           // 그래서 토글기능이 된다.
 
-          // (2) 대상에 적용하기
+          // (3) 대상에 적용하기
           tg.style.height= hv+'px';
+
+          // (4) 상위메뉴에 오버시와 같은 디자인적용: 클래스on넣기/빼기
+          x.classList.toggle('on');
         }; // onclick ////
       }//for of ////
 
