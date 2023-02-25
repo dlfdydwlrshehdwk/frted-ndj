@@ -44,6 +44,27 @@ window.addEventListener("DOMContentLoaded", loadFn);
 
 *****************************************************/
 
+/* 
+    버튼 2개를 각각 설정해줌
+    
+    오른버튼을 누르면?
+    ul이 -110% 움직인다.
+    + 왼쪽 맨 끝 사진이 오른쪽으로간다.
+    트랜지션을 없앤다.
+
+    코드를 분리해서 슬라이드를 -220%한다. -> ul이 넘어가도록 보이게하기위해
+    트랜지션을주어 넘어가는거처럼보이게한다.
+
+    왼쪽버튼을 누르면?
+    오른쪽으로나가는 슬라이드를 왼쪽으로 넣는다.
+    동시에 슬라이드를 -330%한다.
+    이때 트랜지션을 없앤다.
+
+    그 후 left값을 -220%로 애니메이션(트랜지션줌)한다. 슬라이드가 왼쪽에서 들어오도록보이게하기위해
+
+    이동버튼에 누르면 실행되게 버튼2개설정을 변수안에 담아준다.
+*/
+
 function loadFn() {
     console.log("로딩완료!");
 
@@ -53,90 +74,119 @@ function loadFn() {
     const slide = document.querySelector("#slide");
     // 1-3. 블릿 대상: .indic li
     const indic = document.querySelectorAll(".indic li");
-    console.log(indic);
     // 1-4. 슬라이드 li리스트
     let slist = document.querySelectorAll("#slide>li");
-
+    
+    // list 에 data라는 속성으로 순번을 넣어준다.
+    // 불릿과 연동하기위함 미리설정
     slist.forEach((ele, idx) => {
-        ele.setAttribute("data-seq", idx);
+        // data-seq 라는 사용자정의 속성 넣기
+        ele.setAttribute("data", idx);
     }); ////// forEach /////////////////
-    const chgSeq = () => {
+    
+    const chg = () => {
         slist = document.querySelectorAll("#slide>li");
-        slide.insertBefore(slist[slist.length-1],slist[0]);        
-    }; ////////// chgSeq함수 ///////////
-
-    for(let i=0;i<2;i++) chgSeq();
-
+        slide.insertBefore(slist[slist.length-1],slist[0]);
+    };//chg 함수 ////
+    for(let i = 0 ; i <2 ; i++){
+        chg();
+    }
+    
+    // 광클방지변수
     let prot = 0;
 
-    const goSlide = (seq) => {
+    const goSlide = (q)=>{
+        //오른쪽클릭, 왼쪽클릭, 블릿초기화 및 블릿 출력
+
+
+        // console.log("슬라이드시작",q);
+        // 광클방지
+        // console.log("광클막기")
         if (prot) return;
-        prot = 1; // 잠금!
-        setTimeout(() => {
-            prot = 0; // 해제!
-        }, 400);
-        let clist = slide.querySelectorAll("li");
-        if (seq) {
+        prot = 1;
+        setTimeout(()=>{prot=0;},400); 
+        // console.log("잠금해제")
 
+        // list수집
+        let clist = slide.querySelectorAll('li');
+
+        if(q){//오른쪽클릭
+            // 슬라이드 이동전 맨왼쪽거 잘라서 오른쪽으로 넣음
+            // 슬라이드가 -110% 
+            console.log('오른쪽클릭')
             slide.appendChild(clist[0]);
-            slide.style.left = "-110%";
-            slide.style.transition = "none";
-            setTimeout(() => {
-                slide.style.left = "-220%";
-                slide.style.transition = "left .4s ease-in-out";                
-            }, 1); //// 타임아웃 //////
+            slide.style.left = '-110%';
+            slide.style.transition = 'none';
 
-        } //////////// if : 오른쪽클릭시 //////
+            setTimeout(()=>{
+                slide.style.left = '-220%'
+                slide.style.transition='.4s ease-in-out';
+            },20);//setTimeout////
+        }
+        else {//왼쪽버튼
+            // 슬라이드 이동전 맨오른쪽거 잘라서 왼쪽으로 넣음
+            // 슬라이드를 -330%로 이동 이때 트랜지션 x
+            // 그 후 슬라이드를 -220%로 이동
+            // 동시에 트랜지션준다.  
+            console.log("왼쪽버튼")
 
-        // 1-2. 왼쪽버튼 클릭시 //////////////
-        else {
-            slide.insertBefore(clist[clist.length - 1], clist[0]);
+            slide.insertBefore(clist[clist.length-1],clist[0]);
+            slide.style.left='-330%'
+            slide.style.transition='none';
 
-            slide.style.left = "-330%";
-            slide.style.transition = "none";
-            setTimeout(() => {
-                slide.style.left = "-220%";
-                slide.style.transition = "left .4s ease-in-out";
-            }, 0); ////// 타임아웃 /////////
+            setTimeout(()=>{
+                slide.style.left='-220%';
+                slide.style.transition='.4s ease-in-out';
+            });//timeout////
+        }  //else ////
 
-        } //////////// else : 왼쪽클릭시 //////
 
-        clist = slide.querySelectorAll("li");
-
-        let cseq = clist[2].getAttribute("data-seq");
-
+        // 블릿이랑 맞추기
+        // 현재 화면수집
+        clist = slide.querySelectorAll('li');
+        console.log(clist);
+        // 화면3에 블릿0을 맞춤
+        let cseq = clist[2].getAttribute("data");
+        console.log('cseq',cseq)
+        // 블릿 초기화
         for (let x of indic) x.classList.remove("on");
+        indic[cseq].classList.add('on');
+    }//goSlide////
 
-        indic[cseq].classList.add("on");
-    }; ////////// goSlide함수 ///////////
-
-    abtn.forEach((ele, idx) => {
-        ele.onclick = () => {
-            event.preventDefault();
-            clearAuto();
+    // 실행버튼
+    abtn.forEach((ele,idx)=>{
+        console.log(ele);
+        event.preventDefault;
+        ele.onclick=()=>{
+            clear();
             goSlide(idx);
-        }; ///// click함수 //////
-    }); /////// forEach //////////
+        };
+    });//forEach////
+
+    // 자동넘김 ////
+
 
     // 인터발함수 지우기위한 변수
     let autoI;
     // 타임아웃함수 지우기위한 변수
     let autoT;
 
-   function autoSlide(){
-        autoI = setInterval(()=>goSlide(1),3000);
-   } ////////////// autoSlide함수 //////////
+    function autoSlide(){
+        // 인터발함수로 슬라이드함수 호출하기
+        autoI = setInterval(()=>{goSlide(1)},3000)
+    }
+    // 최초실행
+    autoSlide();
 
-   autoSlide();
 
-   function clearAuto(){
-    console.log("인터발멈춤!");
-    // 1. 인터발 지우기
-    clearInterval(autoI);
-    clearTimeout(autoT);
-    autoT = setTimeout(autoSlide,5000);
+    // 인터발함수를 지우고 다시셋팅
+    function clear () {
+        clearInterval(autoI);
+        clearTimeout(autoT);
+        autoT = setTimeout(autoSlide,3000);
+    }
 
-   } ///////// clearAuto 함수 /////////////
-   
+
+    
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
