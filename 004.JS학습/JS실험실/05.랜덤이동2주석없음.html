@@ -67,66 +67,31 @@
                 -> 내부코드도 요소별로 적용되도록
                 구현코드를 구성해 준다.
             ******************************************/
-            function moveTang(ele) {//ele 는 요소전달
-                // 호출확인
-                console.log('고우',ele);
+            function moveTang(ele) {
 
-                // 탱의 가로크기 
                 let tgW = ele.clientWidth;
-                // 탱의 세로크기
+                
                 let tgH = ele.clientHeight;
 
-                // 1. 랜덤수 만들기 
-                // top값범위 = 세로크기 - 탱높이
-                // top값범위 = 400 - clientHeight 
-                // 난수 1부터 최대값
-                // Math.ceil(Math.random()*최대수)
-
-                // (1) top값 랜덤
                 let rdTop =  Math.ceil(Math.random()*(400 - tgH));
 
-                // left값범위 = 가로크기 - 탱폭
-                // left값 범위 = 600 - clientWidth 
-                // 난수 1부터 최대값
-                // Math.ceil(Math.random()*최대수)
+                let rdLeft = Math.ceil(Math.random()*(600-tgW));
+                
+                let rdTime =  Math.ceil(Math.random()*6);
 
-                // (2) left값 랜덤
-                let rdLeft = 
-                Math.ceil(Math.random()*(600-tgW));
-
-                console.log("top:",rdTop,"/left:",rdLeft);
-
-                // (3) 트랜지션 애니시간 랜덤 : 1~6초
-                let rdTime = 
-                Math.ceil(Math.random()*6);
-                console.log(
-                    "top:",rdTop,
-                    "\nleft",rdLeft,
-                    "\ntime:",rdTime
-                );
-
-                // 2. 대상위치이동
                 ele.style.top = rdTop +'px'; 
                 ele.style.left = rdLeft + 'px';
                 ele.style.transition = rdTime + 's ease-in-out ';
-                // 애니메이션 시간도 랜덤
 
-                // 3. 함수자신을 다시 호출함 -> 재귀호출!
                 setTimeout(()=>moveTang(ele),rdTime*1000);
-                // 재귀호출시간도 랜덤 -> 애니시간과일치
             } // moveTang 함수 ////
 
-            // 요소선택 ///
             const qs = x => document.querySelector(x);
 
             // 최초호출
             moveTang(qs('.t1'));
             moveTang(qs('.t2'));
             moveTang(qs('.t3'));
-            
-            // 임시호출
-            // window.onclick = () => moveTang();
-
         });//로드구역////
     </script>
 </head>
