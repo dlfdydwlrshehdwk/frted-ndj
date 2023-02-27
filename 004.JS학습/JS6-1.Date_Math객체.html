@@ -198,13 +198,73 @@
 
             예) 4~9 사이의 난수 구하기: 1~6
             -> 최대수는 6, 시작수 만큼 더할 수는 3
+            Math.ceil(Math.random() * 최대수) + 시작수만큼
             Math.ceil(Math.random() * 6) + 3
+            _________________________________________________
 
+            [ 중간범위 수 계산 ]
+            작은수 ~ 큰수
+            1. 최대수 = 큰수 - 작은수 + 1
+            2. 시작수차이 = 작은수 - 1; 
         ***********************************************/
         // 예시 난수
         console.log("4부터 9사이의 난수",Math.ceil(Math.random() * 6) + 3 );
             
+        // 랜덤 이미지 웹경로 배열 //
+        const rimg = [
+            "https://img.etnews.com/photonews/2110/1461216_20211007085904_466_0001.jpg",
+            "https://d2qqqnyszmt41w.cloudfront.net/wp-content/uploads/2021/04/23150534/202104231445162082.jpg",
+            "https://img.imbc.com/adams/Program/202111/132804027350463581.jpg",
+            "https://image.ytn.co.kr/general/jpg/2021/0925/202109251350012465_d.jpg"
+        ];
 
+        // 배열이 4개니까 0~3까지의 랜덤수가 필요
+        // 변경대상 : 랜덤이미지박스 .imbx
+        const imbx = document.querySelector('.imbx');
+
+        // 직전 랜덤수 담을 변수
+        let bnum = 999;
+        // 처음에 할당된 수는 랜덤수 범위가 아닌 아무수나 넣으면 된다.
+        /*********************************************** 
+            함수명 : insImg
+            기능 : 박스에 랜덤이미지 넣기
+        ***********************************************/
+        function insImg() {
+            
+            // 1. 랜덤수 만들기 : 0 ~ 3 사이
+            // 1먼저 1 ~ 4 의 난수를 생각함 최대수 - 4
+            // math.floor() 내림적용하면 0 ~ 3
+            let rnum = Math.floor(Math.random()*4);
+            console.log('랜덤수',rnum);
+
+            // 2. 랜덤수가 바로 직전수와 같으면 다시 난수발생
+            // while(조건){코드}
+            // 조건: 현재발생난수 === 이전발생난수
+            // for(;rnum === bnum;){코드} 이렇게도 된다고함. 시작조건 증감 없이
+            while(rnum === bnum){
+                rnum = Math.floor(Math.random()*4);
+                console.log('다시난수',rnum);
+            }// while문 ////
+
+
+
+            // 3. 랜덤이미지 넣기
+            // 대상: .imbx -> imbx변수
+            imbx.innerHTML =`<img src = "${rimg[rnum]}" alt="랜덤이미지">`;
+
+            // 4. 현재 랜덤수 직전랜덤수 변수에 저장하기
+            // 저장해야 다음번에 while에서 사용한다.
+            // while문 아래쪽에서 업데이트 하면 된다.
+            bnum = rnum;
+        }// insImg 함수////
+        // 랜덤함수 임시호출
+        // window.onclick= ()=> insImg();
+
+        // 최초호출
+        insImg();
+
+        // 인터발호출(2.3s 간격)
+        setInterval(()=>{insImg()},2300)
         });// 로딩구역 끝////
 </script>
     
