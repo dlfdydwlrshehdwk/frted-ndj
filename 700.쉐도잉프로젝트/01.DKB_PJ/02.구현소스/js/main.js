@@ -11,12 +11,21 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // 1. 파라미터 읽어오기
     let pm = location.href;
 
+    // 2. 애니중지대상
+
+
     // 2. 파라미터 유무로 분기하기
     // 물음표 존재여부로 애니메이션 실행가부결정
     if(pm.indexOf("?")!==-1){
         // 파라미터 잘라서 값만 추출
         pm = pm.split("?")[1].split("=")[1];
         console.log('파라미터값',pm);
+
+        // pm값이 'm' 이면 애니메이션 중지!
+        if(pm==="m"){
+            // body의 클래스를 제거함
+            document.body.classList.remove("on");
+        }//if ////
 
     }//if ////
     

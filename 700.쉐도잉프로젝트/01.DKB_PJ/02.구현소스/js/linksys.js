@@ -78,9 +78,9 @@ window.addEventListener("DOMContentLoaded",() => {
                 // 메인페이지 이동일경우
                 // html?code=m 을 보내주자
 
-                location.href =
+                location.href = 
                 url + ".html"+
-                (atxt==="tvn로고"?"?code=m":"");
+                (atxt==="tvN로고"?"?code=m":"");
 
                 // [ 페이지 이동하기]
                 // ((현재창열기))
