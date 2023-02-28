@@ -17,12 +17,15 @@ function loadFn(){
         HTML태그 만들어 넣기.
     */
 
-    // 대상: .gnb 
+    // 1. 대상선정: .gnb 
     const gnb = document.querySelector('.gnb');
     // console.log(gnb);
 
-    // html코드 담을 변수
+    // 2. 변수 셋팅: html코드 담을 변수
     let hcode = "";
+
+
+    // 3. 코드의 구조화 생성하기
     hcode +=`<ul>`
     // 1. 상위메뉴 반복코드 생성
     // mdata 객체를 가져와서 반복시킴 -> for in문
@@ -34,7 +37,8 @@ function loadFn(){
                 <a href="#">${tm}</a>
                 <div class="smenu">
                     <h2>
-                        ${tm}
+                        <div class="stit">${tm}</div>
+                        <a href="#">전체보기 ＞</a>
                     </h2>
                     <div class="swrap">
                     `;
@@ -44,12 +48,17 @@ function loadFn(){
                     // -> 속성값은 서브메뉴이고 객체로 구성됨
                     for(let sm in mdata[tm]){//sm - 속성명(하위메뉴)
                         hcode +=`<dl>
-                       <dt>${sm}</dt>`;
+                        <dt>
+                            <a href="#">${sm}</a>
+                        </dt>`;
 
                         // 3. 서브메뉴(최하위메뉴) 반복코드
                         // -> 서브메뉴는 배열이므로 for of 사용
                         for(let sub of mdata[tm][sm]){
-                            hcode+=`<dd>${sub}</dd>`;
+                            hcode+=
+                            `<dd>
+                                <a href="#">${sub}</a>
+                            </dd>`;
                         }
 
                        hcode+=`</dl>`;
@@ -66,8 +75,8 @@ function loadFn(){
 
     hcode += "</ul>";
 
-    // GNB 박스에 출력하기
-    gnb.innerHTML = hcode;
+    // 4. GNB 박스에 출력하기
+    // gnb.innerHTML = hcode;
 
 
 } // loadFn함수
