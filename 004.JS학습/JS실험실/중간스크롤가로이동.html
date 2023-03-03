@@ -11,8 +11,32 @@
         }
         body{
             overflow-x: hidden;
+            background-image: linear-gradient(to bottom,orange,
+            lightyellow, lightpink, lightgreen);
         }
-        
+        /* gnb박스 */
+        .gnb{
+            position: fixed;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            /* 가로중앙이동 */
+            background-color: #fff;
+            border-radius: 20px;
+        }
+        .gnb>ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+        .gnb a{
+            display: block;
+            padding: 23px 35px;
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+        }
         .pg{
             height: 100vh;
             outline: 1px solid blue;
@@ -91,6 +115,23 @@
     </script>
 </head>
 <body>
+    <!-- 네비게이션 -->
+    <nav class="gnb">
+        <ul>
+            <li>
+                <a href="">Let's explore</a>
+            </li>
+            <li>
+                <a href="">Let's meet</a>
+            </li>
+            <li>
+                <a href="">Let's attend</a>
+            </li>
+            <li>
+                <a href="">Let's dance</a>
+            </li>
+        </ul>
+    </nav>
     <div class="pg"></div>
     <div class="pg"></div>
     <!-- 타겟 페이지(스크롤시 가로이동) -->
