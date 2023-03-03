@@ -68,6 +68,14 @@ window.addEventListener("DOMContentLoaded", ()=>{
                 t1pos += 16;
                 // 위치이동하기
                 t1.style.left = t1pos + 'px'; 
+
+                // 거북버튼 클릭시 포커스가 들어감으로
+                // 엔터키보드작동으로 클릭이 가능해짐
+                // 이것을 방지하기 위해 매번 포커스를 빼기
+                ele.blur();
+                // blur() 메서드 - 포커스가 사라짐
+                // focus() 메서드 - 포커스가 들어감  
+
                 // 토끼 자동이동함수 호출
                 goR1();
             }// else if문 : 거북출발 토끼출발 ////
@@ -145,6 +153,20 @@ window.addEventListener("DOMContentLoaded", ()=>{
             else msg.innerText = "비김 재승부"
             // (4) 메시지보이기
             msg.style.display ='block';
+            msg.style.zIndex='4'
+            // (5)전체 반투명 암전주기
+            qs('.cover').innerHTML +=
+            "<div style ='position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:black;opacity:0.5;z-index:1'></div>"
+            // 주의사항 : body하위에 새로운 요소를 추가하면
+            // 전체body 직계하위에 있는 요소들에 셋팅된 이벤트가 소실된다.
+            // 왜? DOM이 재구조화 되기 때문이다.
+            // 처음부터 편성된 박스에 넣어주면 
+            // 이런 문제는 해결된다.
+            // 여기서도 .cover요소 안에 새로운 요소를 넣어준 이유가 그러하다.
+            // (처음으로 버튼 기능소실때문)
+
+            // (6) 버튼 위로 올리기
+            qs("#btns").style.zIndex = '200';
         }// if 문 ////
     }// whoWinner 함수 ////
 
