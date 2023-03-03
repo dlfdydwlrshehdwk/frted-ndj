@@ -172,7 +172,7 @@
                 if(tgpos <= 0 && tgpos >= -3000){
                     mvbx.style.left = tgpos + 'px';
                 } 
-                // 원래위치를 지키기위해 설정
+                // 위쪽일때(0초과일떄) 처음위치 재설정하기
                 else if(tgpos > 0) {
                     mvbx.style.left = "0";
                 }
