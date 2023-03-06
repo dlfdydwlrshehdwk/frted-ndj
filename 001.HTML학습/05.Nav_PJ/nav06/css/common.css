@@ -41,11 +41,10 @@ body *{
     /* 부모자격 -smenu */
     max-width: 1300px;
     margin: 0 auto;
-
+    /* 배경박스 보다 위 */
+    z-index: 1;
     /* 줄바꿈 방지 */
-    white-space: nowrap;
-    
-    
+    white-space: nowrap; 
 }
 .gnb>ul{
     display: flex;
@@ -72,7 +71,7 @@ body *{
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #fff;
+    /* background-color: #fff; */
     width: 1300px;
 
     /* 숨기기 장치 : overflow , height , with opacity(효과)*/
@@ -85,8 +84,6 @@ body *{
 
     /* 트랜지션 */
     transition: .4s ease-in-out;
-
-    box-shadow:  0 2px 5px rgba(0, 0, 0, 0.185);
 }
 /* 하위메뉴 구조랩핑박스 .smbx */
 .smbx{
@@ -175,4 +172,18 @@ body *{
     width: 0;
     background-color: #555;
     transition: width .2s;
+}
+
+/* 서브메뉴 배경박스 */
+.bgbx{
+    position: absolute;
+    top: 141px;
+    width: 100%;
+    /* 변경요소: height, opacity */
+    height: 0;
+    opacity: 0;
+    transition:  .4s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    /* 박스그림자 */
+    box-shadow:  0 2px 5px rgba(0, 0, 0, 0.185);
 }
