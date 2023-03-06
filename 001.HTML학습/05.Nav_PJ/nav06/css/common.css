@@ -8,7 +8,7 @@
 
 /* 공사중 */
 body *{
-    outline: 1px dashed red;
+    /* outline: 1px dashed red; */
 }
 
 /* 중앙속박스 */
@@ -28,6 +28,11 @@ body *{
 /* 1-1. 탑메뉴 */
 .tmenu{
     height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.tit{
+    padding-top: 25px;
+    text-align: center;
 }
 
 /* 1-2. GNB */
@@ -39,27 +44,59 @@ body *{
 
     /* 줄바꿈 방지 */
     white-space: nowrap;
+    
+    
 }
 .gnb>ul{
     display: flex;
-    gap: 0 40px;
+    /* gap: 0 40px;
+    height: 60px;
+    align-items: center; */
 }
 .gnb>ul>li>a{
     color: #ccc;
+    /* a요소 확장 */
+    display: block;
+    height: 100%;
+    line-height: 60px;
+    padding: 0 20px;
+}
+
+.gnb>ul>li:hover >a{
+    background: linear-gradient(to right, red, orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 /* 하위메뉴 */
 .smenu{
-    /* display: flex; */
     position: absolute;
+    top: 60px;
     left: 0;
     background-color: #fff;
-    display: none;
     width: 1300px;
+
+    /* 숨기기 장치 : overflow , height , with opacity(효과)*/
+    overflow: hidden;
+    /* 넘치는 자식요소 숨기기 */
+    height: 0;
+    /* 높이값 : 0 -> 각각의 서브높이만큼 오버시 변경 */
+    opacity: 0;
+    /* 투명도 애니메이션 0 -> 오버시 1 */
+
+    /* 트랜지션 */
+    transition: .4s ease-in-out;
+
+    box-shadow:  0 2px 5px rgba(0, 0, 0, 0.185);
 }
-/* 임시로 첫번째 메뉴만 보이기 */
-.gnb>ul>li:nth-child(5) .smenu{
+/* 하위메뉴 구조랩핑박스 .smbx */
+.smbx{
+    /* h2와 div의 플렉스 박스 */
     display: flex;
 }
+/* 임시로 첫번째 메뉴만 보이기 */
+/* .gnb>ul>li:nth-child(5) .smenu{
+    display: flex;
+} */
 /* 서브메뉴 타이틀 */
 .smenu h2{
     width: 166px;
@@ -69,11 +106,24 @@ body *{
 /* 타이틀 */
 .smenu h2 div{
     font-size: 25px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 /* 전체보기 */
 .smenu h2 a{
+    display: inline-block;
     font-size: 14px;
+}
+.smenu  h2 a::after{
+    content: '';
+    position: relative;
+    display: block;
+    height: 1px;
+    width: 0;
+    transition: width .2s;
+    background-color: #000;
+}
+.smenu a:hover::after{
+    width: 100%;
 }
 /* 서브메뉴(최하위) */
 .swrap{
@@ -87,4 +137,42 @@ body *{
 /* 서브 각 박스 (dl) */
 .swrap dl{
     width: 200px;
+}
+
+/* 하위메뉴(dt) */
+.swrap dt{
+    position: relative;
+    /* 가로크기일정함 */
+    width: 120px;
+    font-size: 16px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.swrap dt::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background-color: #555;
+    transition: width .2s;
+    transform: translateY(7px);
+}
+.swrap dt:hover::after,
+.swrap dd:hover>a::after
+{
+    width: 100%;
+}
+
+.swrap dd a{
+    display: inline-block;
+    color: #777;
+}
+.swrap dd a::after{
+    content: '';
+    display: block;
+    height: 1px;
+    width: 0;
+    background-color: #555;
+    transition: width .2s;
 }
