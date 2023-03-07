@@ -246,11 +246,13 @@ function loadFn() {
                 sty.top ='-20%'
             }
             else if(seq === 3){ // 4번페이지
+                
                 sty.transform = 'translate(-50%, -50%) scale(0)'
             }
             else if(seq === 4){ // 5번페이지
-                sty.top ='-20%'
-                sty.left='140%'
+                sty.top  = '-30%'
+                sty.left = '130%'
+                sty.transform = 'translate(-50%, -50%) rotate(1800deg)'
             }
             else if(seq === 5){ // 6번페이지
                 sty.top ='-20%'
@@ -286,7 +288,7 @@ function loadFn() {
                 sty.transition = '1.5s ease-in';
             }
             else if(seq ===2){
-                sty.top = '50%'
+                
                 sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
             }
             else if(seq ===3){
@@ -295,13 +297,12 @@ function loadFn() {
             }
             else if(seq ===4){
                 sty.top = '50%'
-                sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
+                sty.left = '50%'
+                sty.transform = 'translate(-50%, -50%) rotate(0deg)';
+                sty.transition = '2s ease-in-out';
             }
             else if(seq ===5){
                 sty.top = '50%'
-                sty.left = '50%'
-                sty.transform = 'translate(-50%, -50%) rotate(1800deg)'
-                sty.transition = '2s ease-in-out';
             }
             else if(seq ===6){
                 sty.top = '50%'
@@ -309,7 +310,7 @@ function loadFn() {
             }
         } //pageAction 함수 ////
 
-        setTimeout(()=>updatePg,100)
+        setTimeout(()=>updatePg(gnb),100)
         setTimeout(()=>pageAction(0),1000)
 
 
