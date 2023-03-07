@@ -230,12 +230,33 @@ function loadFn() {
             let sty = ele.style; 
 
             // 3. 각 요소별 초기화하기
+
+            // 트랜지션 공통초기화 
+            sty.transition = 'none';
+
+            // 페이지별 초기화
             if(seq === 0){ // 1번페이지
-                
+                sty.left = '130%'
             }
             else if(seq === 1){ // 2번페이지
                 // 투명하게
                 sty.opacity = 0;
+            }
+            else if(seq === 2){ // 3번페이지
+                sty.top ='-20%'
+            }
+            else if(seq === 3){ // 4번페이지
+                sty.transform = 'translate(-50%, -50%) scale(0)'
+            }
+            else if(seq === 4){ // 5번페이지
+                sty.top ='-20%'
+                sty.left='140%'
+            }
+            else if(seq === 5){ // 6번페이지
+                sty.top ='-20%'
+            }
+            else if(seq === 6){ // 7번페이지
+                sty.top ='-20%'
             }
         }// initCSS 함수 ////
 
@@ -249,10 +270,14 @@ function loadFn() {
 
             // 2. 변경대상 스타일 속성선택
             let sty = minfo[seq].style;
+            // 3. 전체 초기화!
+            minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
 
-            // 2. 해당페이지 액션주기
+
+            // 4. 해당페이지 액션주기
             if(seq === 0){
-
+                sty.left = '50%';
+                sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
             }
             else if(seq ===1){
                 // 투명도 복원하기
@@ -260,7 +285,32 @@ function loadFn() {
                 // 트랜지션 주기
                 sty.transition = '1.5s ease-in';
             }
+            else if(seq ===2){
+                sty.top = '50%'
+                sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
+            }
+            else if(seq ===3){
+                sty.transform = 'translate(-50%, -50%) scale(100%) ';
+                sty.transition = '1s ease-in-out'
+            }
+            else if(seq ===4){
+                sty.top = '50%'
+                sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
+            }
+            else if(seq ===5){
+                sty.top = '50%'
+                sty.left = '50%'
+                sty.transform = 'translate(-50%, -50%) rotate(1800deg)'
+                sty.transition = '2s ease-in-out';
+            }
+            else if(seq ===6){
+                sty.top = '50%'
+                sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
+            }
         } //pageAction 함수 ////
+
+        setTimeout(()=>updatePg,100)
+        setTimeout(()=>pageAction(0),1000)
 
 
 }// loadFn 함수 ////
