@@ -25,8 +25,11 @@ function loadFn() {
 
     // 이벤트 연결 함수등록하기 ////
     // GNB메뉴 이벤트연결
-    gnb.forEach((ele,idx)=>{//요소 , 순번
-        ele.addEventListener('click',()=>movePg(idx));
+    gnb.forEach((ele,idx,obj)=>{//요소 , 순번 , 전체객체
+        ele.addEventListener('click',()=>movePg(idx,obj));
+        // 전체 객체(obj)를 함수에 전달하는 이유는?
+        // -> 인디케이터도 GNB와 같은 기능을 수행하기 때문에
+        // 호출시 자기자신ㅇ 전체를 보내야 각각에 맞게 기능을 수행할 수 있다.
 
     }); // forEach ////
 
@@ -162,21 +165,21 @@ function loadFn() {
             함수명 : movePg
             기능 : GNB메뉴 클릭시 해당 페이지로 이동하기
         *********************************/
-        function movePg(seq){ // seq - 순번
+        function movePg(seq, obj){ // seq - 순번, obj - 요소전체객체
             // 1.기본기능막기
             event.preventDefault();
             // 2.호출확인
-            console.log('무브피지',seq)
+            console.log('무브피지',seq,obj)
             // 3. 페이지번호(pgnum) 업데이트하기
             pgnum = seq;
-            console.log('클릭',pgnum);
+            // console.log('클릭',pgnum);
             // 4. 페이지 이동하기
             window.scrollTo(0,window.innerHeight*pgnum);
             // 5. 메뉴초기화(클래스 on 제거하기)
-            for(let x of gnb) x.parentElement.classList.remove('on');
+            for(let x of obj) x.parentElement.classList.remove('on');
 
             // 6. 해당메뉴에 클래스 on 넣기
-            gnb[seq].parentElement.classList.add('on');
+            obj[seq].parentElement.classList.add('on');
 
 
 
