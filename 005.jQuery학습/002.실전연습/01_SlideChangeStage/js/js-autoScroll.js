@@ -18,19 +18,27 @@ function loadFn() {
 
     console.log('로딩완료');
 
-    // 이벤트 연결 대상선정하기 ////
-    // GNB메뉴 
+    // [ 이벤트 연결 대상선정하기 ] ////
+    // (1) GNB메뉴 
     const gnb = document.querySelectorAll('.gnb a');
     console.log(gnb);
+    // (2) 인디케이터메뉴 
+    const indic = document.querySelectorAll('.indic a');
+    console.log(indic);
 
-    // 이벤트 연결 함수등록하기 ////
-    // GNB메뉴 이벤트연결
+    // [ 이벤트 연결 함수등록하기 ] ////
+    // (1) GNB메뉴 이벤트연결
     gnb.forEach((ele,idx,obj)=>{//요소 , 순번 , 전체객체
         ele.addEventListener('click',()=>movePg(idx,obj));
         // 전체 객체(obj)를 함수에 전달하는 이유는?
         // -> 인디케이터도 GNB와 같은 기능을 수행하기 때문에
         // 호출시 자기자신ㅇ 전체를 보내야 각각에 맞게 기능을 수행할 수 있다.
 
+    }); // forEach ////
+
+    // (2) 인디케이터메뉴 이벤트연결
+    indic.forEach((ele,idx,obj)=>{//요소 , 순번 , 전체객체
+        ele.addEventListener('click',()=>movePg(idx,obj));
     }); // forEach ////
 
 
@@ -155,10 +163,9 @@ function loadFn() {
             } // else ////
             console.log('페이지번호:',pgnum);
 
-            // (4) 페이지 이동하기
-            // scrollTo(가로,세로)
-            window.scrollTo(0,window.innerHeight*pgnum);
-            // 세로 이동위치 : 윈도우 높이값* 페이지번호
+            // (4) 페이지 이동하기 + 메뉴변경 - updatePg함수 호출
+            updatePg(gnb);
+            updatePg(indic);
         }// wheelFn 함수 ////
 
         /********************************* 
@@ -173,18 +180,27 @@ function loadFn() {
             // 3. 페이지번호(pgnum) 업데이트하기
             pgnum = seq;
             // console.log('클릭',pgnum);
-            // 4. 페이지 이동하기
-            window.scrollTo(0,window.innerHeight*pgnum);
-            // 5. 메뉴초기화(클래스 on 제거하기)
-            for(let x of obj) x.parentElement.classList.remove('on');
-
-            // 6. 해당메뉴에 클래스 on 넣기
-            obj[seq].parentElement.classList.add('on');
-
-
-
+            // 4. 업데이트 페이지 호출 -> 페이지이동, 메뉴변경
+            updatePg(obj);
 
         }// movePg함수 ////
         
+        /******************************************** 
+            함수명 : updatePg
+            기능 : 페이지 이동시 설정값 업데이트 하기
+        ********************************************/
+        function updatePg(obj) { // obj - 변경할 메뉴전체 객체
+            // 1. 함수호출
+            console.log('업데이트')
+            // 2. 페이지 이동하기
+            // scrollTo(가로,세로)
+            window.scrollTo(0,window.innerHeight*pgnum);
+            // 세로 이동위치 : 윈도우 높이값* 페이지번호
+
+            // 3. 메뉴초기화(클래스 on 제거하기)
+            for(let x of obj) x.parentElement.classList.remove('on');
+            // 4. 해당메뉴에 클래스 on 넣기
+            obj[pgnum].parentElement.classList.add('on');
+        } // updatePg 함수 ////
 
 }// loadFn 함수 ////
