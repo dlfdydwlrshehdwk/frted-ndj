@@ -28,8 +28,8 @@ function loadFn() {
 
     // [ 이벤트 연결 함수등록하기 ] ////
     // (1) GNB메뉴 이벤트연결
-    gnb.forEach((ele,idx,obj)=>{//요소 , 순번 , 전체객체
-        ele.addEventListener('click',()=>movePg(idx,obj));
+    gnb.forEach((ele,idx)=>{//요소 , 순번
+        ele.addEventListener('click',()=>movePg(idx));
         // 전체 객체(obj)를 함수에 전달하는 이유는?
         // -> 인디케이터도 GNB와 같은 기능을 수행하기 때문에
         // 호출시 자기자신ㅇ 전체를 보내야 각각에 맞게 기능을 수행할 수 있다.
@@ -37,8 +37,8 @@ function loadFn() {
     }); // forEach ////
 
     // (2) 인디케이터메뉴 이벤트연결
-    indic.forEach((ele,idx,obj)=>{//요소 , 순번 , 전체객체
-        ele.addEventListener('click',()=>movePg(idx,obj));
+    indic.forEach((ele,idx)=>{//요소 , 순번
+        ele.addEventListener('click',()=>movePg(idx));
     }); // forEach ////
 
 
@@ -172,16 +172,20 @@ function loadFn() {
             함수명 : movePg
             기능 : GNB메뉴 클릭시 해당 페이지로 이동하기
         *********************************/
-        function movePg(seq, obj){ // seq - 순번, obj - 요소전체객체
+        function movePg(seq){ // seq - 순번
             // 1.기본기능막기
             event.preventDefault();
             // 2.호출확인
-            console.log('무브피지',seq,obj)
+            console.log('무브피지',seq)
             // 3. 페이지번호(pgnum) 업데이트하기
             pgnum = seq;
             // console.log('클릭',pgnum);
             // 4. 업데이트 페이지 호출 -> 페이지이동, 메뉴변경
-            updatePg(obj);
+            // 개별객체를 업데이트 할때는 obj가 필요했으나
+            // GNB메뉴와 인디케이터가 모두 업데이트 돼야하므로
+            // 개별 obj가 필요없게됨
+            updatePg(gnb);
+            updatePg(indic);
 
         }// movePg함수 ////
         
