@@ -224,7 +224,7 @@ function loadFn() {
         // 3. 함수만들기
         function initCSS(ele,seq) { //ele는 요소, seq는 순번
             // 1. 호출확인
-            console.log('이닛호출',seq);
+            // console.log('이닛호출',seq);
 
             // 2. 해당요소 스타일속성 선택
             let sty = ele.style; 
@@ -288,7 +288,7 @@ function loadFn() {
                 sty.transition = '1.5s ease-in';
             }
             else if(seq ===2){
-                
+                sty.top = '50%';
                 sty.transition = '1s  cubic-bezier(0.63, -0.91, 0.62, 1.46) 0s';
             }
             else if(seq ===3){
@@ -310,7 +310,10 @@ function loadFn() {
             }
         } //pageAction 함수 ////
 
+        // 첫페이지 시작시 실행
+        // 페이지업데이트( 초록글씨 )
         setTimeout(()=>updatePg(gnb),100)
+        // 애니메이션실행
         setTimeout(()=>pageAction(0),1000)
 
 
