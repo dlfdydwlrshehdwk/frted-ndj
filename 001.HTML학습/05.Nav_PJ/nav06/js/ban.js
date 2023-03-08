@@ -105,20 +105,20 @@ function setBan() {
             // (1-1) 바깥에 나가있는 첫번째 슬라이드
             //       li를 잘라서 맨뒤로 보낸다!
             slide.appendChild(clist[0]);
-            // (1-2) 동시에 left값을 -110%으로 변경한다!
-            slide.style.left = "-110%";
+            // (1-2) 동시에 left값을 -120%으로 변경한다!
+            slide.style.left = "-120%";
             // (1-3) 트랜지션 없애기!
             slide.style.transition = "none";
 
             // (2) 오른쪽 버튼 클릭시 다음 슬라이드가
             //     나타나도록 슬라이드 박스의 left값을
-            //     -220%로 변경시킨다.
+            //     -240%로 변경시킨다.
 
             // [코드분리하기!] //////////////////////////
             // -> 같은속성변경을 같은 메모리공간에서 수행하면
             // 변경효과가 없음!!!
             setTimeout(() => {
-                slide.style.left = "-220%";
+                slide.style.left = "-240%";
                 slide.style.transition = "left .4s ease-in-out";
             }, 1); //// 타임아웃 //////
             // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
@@ -141,18 +141,18 @@ function setBan() {
             // slide.insertBefore(맨끝li,맨앞li)
             slide.insertBefore(clist[clist.length - 1], clist[0]);
 
-            // (2) 동시에 left값을 -330%로 변경한다.
-            slide.style.left = "-330%";
+            // (2) 동시에 left값을 -360%로 변경한다.
+            slide.style.left = "-360%";
             // 이때 트랜지션을 없앤다(한번실행후 부터 생기므로!)
             slide.style.transition = "none";
 
-            // (3) 그 후 left값을 -220%으로 애니메이션하여
+            // (3) 그 후 left값을 -240%으로 애니메이션하여
             // 슬라이드가 왼쪽에서 들어온다.
             // 동일 속성인 left가 같은 코딩처리 공간에 동시에
             // 있으므로 이것을 분리해야 효과가 있다!
             // setTimeout을 사용한다!
             setTimeout(() => {
-                slide.style.left = "-220%";
+                slide.style.left = "-240%";
                 slide.style.transition = "left .4s ease-in-out";
             }, 0); ////// 타임아웃 /////////
         } //////////// else : 왼쪽클릭시 //////
