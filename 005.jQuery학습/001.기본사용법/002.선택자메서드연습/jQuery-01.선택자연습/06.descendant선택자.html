@@ -7,10 +7,54 @@
 <script src="jquery-1.7.2.min.js"></script>
 <script>
 $(document).ready(function(e) {
-    // 미션: 아래의 각 li에 미니언즈 이미지를 웹으로 찾아서 html로 넣고 이미지크기를 width: 100px로 고정한다. 
-	// 각 이미지 클릭시 이미지크기각 클릭할때마다 10px씩 커지게함과 동시에 한번은 오른쪽, 한번은 왼쪽으로 10도씩 기울어지게 애니메이션 하시오.
+  // 미션: 아래의 각 li에 미니언즈 이미지를 웹으로 찾아서 html로 넣고 이미지크기를 width: 100px로 고정한다. 
+  $("#first").html('<img src="https://hercanberra.com.au/wp-content/uploads/2019/06/Minions_feature.jpg" alt="미니언즈">');
+
+  $("#second").html('<img src="https://www.partyrama.co.uk/wp-content/uploads/2017/06/minions-kevin-lifesize-cardboard-cutout-180cms-product-image.jpg" alt="미니언즈">');
+
+  $("#third").html('<img src="https://5.imimg.com/data5/XQ/KP/MY-40305254/kids-toy-500x500.jpg" alt="미니언즈">');
+
+  // 모든 미니언즈 img 가로크기 100px 만들기 
+  const tg = $(".list img ")
+  tg.css("width","100px")
+	// 각 이미지 클릭시 이미지크기가 클릭할때마다 10px씩 커지게함과 동시에 한번은 오른쪽, 한번은 왼쪽으로 10도씩 기울어지게 애니메이션 하시오.
+
+  // 각도 변수
+  let dg = [10,10,10];
+
+  tg.click((e)=>{
+    // 현재클릭된 img의 순번은?
+    // $(선택자).index()
+    let seq = $(e.currentTarget).parent().index();
+    // img의 부모는 li -> parent() 이동메서드
+    // img는 단독이므로 0번, 부모li는 순서대로 0,1,2 
+    // li를 기준으로해서 순번을 준셈
+    console.log(seq);
+    $(e.currentTarget).css({
+      width:"+=10px",
+      transition:".2s",
+      transform:`rotate(${dg[seq]}deg)`
+    });
+
+    // 각도 양수/음수 전환
+    dg[seq] = -dg[seq];
+    // console.log(dg);
+  }); //click////
 	
-	
+  /******************************************************** 
+    [ html 태그를 넣는 제이쿼리 메서드 : html()]
+    1. 읽어오기 : let 변수 = $().html();
+    2. 태그넣기 : $(선택자).html("<div>내용</div>")
+
+    _______________________________________________________
+
+    [ 선택요소의 순번알아오는 제이쿼리 메서드 : index()]
+    -> 언제든 제이쿼리 선택된 요소는 자신의 형제요소 중 순번을
+    리턴하여 구할 수 있다.
+    만약 부모요소의 순번이 의미 있다면 부모로 올라가서 index()를 
+    구하면 된다. -> parent() : 부모요소로 이동 메서드 
+    
+  ********************************************************/
 	
 });//jQuery실행구역
 </script>
