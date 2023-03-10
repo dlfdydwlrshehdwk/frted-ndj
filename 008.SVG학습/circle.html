@@ -141,12 +141,31 @@
         }
 
         /* 3. 닥스박스 : 다각형(6각형) */
-        .svg3{
-            background: url();
-        }
+        
 
         /* 다각형 */
-        
+        .svg3{
+            background: url(./images/doc.jpg) no-repeat top/cover;
+            /* 다각형 클리핑 적용하기!
+            polygon(x1 y1, x2 y2, ...) */
+            clip-path: polygon(150px 0px, 300px 100px, 300px 200px, 150px 300px, 0px 200px, 0px 100px);
+            stroke-dasharray: 300%;
+
+            stroke-dashoffset: 300%;
+            
+            
+        }
+        .svg3:hover .pg1{
+            stroke-dashoffset: 0;
+        }
+        .pg1{
+            fill:none;
+            stroke-width: 20;
+            stroke: lime;
+            /* 트랜지션  */
+            transition : .8s ease-in-out;
+        }
+
 
         /* 4. 완다 : path */
         
