@@ -123,10 +123,27 @@
         }
 
         /* 2. 블랙위도우 */
-        
+        .svg2{
+            background: url(./images/black.jpg) no-repeat top/cover;
+        }
+        .rt1{
+            fill: none;
+            stroke: black;
+            stroke-width: 20;
+            stroke-linecap: round;
+            /* 데쉬선 */
+            stroke-dasharray: 15%;
+            stroke-dashoffset: 102%;
+            transition : .8s
+        }
+        .svg2:hover .rt1{
+            stroke-dashoffset: 0;
+        }
 
         /* 3. 닥스박스 : 다각형(6각형) */
-        
+        .svg3{
+            background: url();
+        }
 
         /* 다각형 */
         
@@ -156,16 +173,32 @@
                 </svg>
             </div>
         </section>
-        <!-- 2. 블랙위도우 : 사각형 -->
+
+
+
+
+        <!-- 2. 블랙위도우 : 사각형 
+        [ rect 요소 : 사각형 ]
+        - rectangle(사각형) 이라는 말에서 나온 요소명
+        - width : 가로크기
+        - height : 세로크기
+        - x, y : x축, y축-->
+        
         <section>
             <div class="cbx svg2">
-                
+                <svg>
+                    <rect class="rt1" width="280" height="280" x="10" y="10"></rect>
+                </svg>
             </div>
         </section>
         <!-- 3.닥스박스 : 다각형(6각형) -->
         <section>
             <div class="cbx svg3">
-                
+                <svg>
+                    <polygon class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100">
+
+                    </polygon>
+                </svg>
             </div>
         </section>
         <section>
