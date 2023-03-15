@@ -26,4 +26,139 @@ window.addEventListener("DOMContentLoaded", loadFn);
     함수명: loadFn
     기능: 로딩후 이벤트설정 및 슬라이드 기능
 ******************************************/
+
+function loadFn(){
+    console.log("로딩완료");
+
+    // 슬라이드번호변수
+    let snum = 0;
+    
+    
+    // 1 대상선정
+    // 1-1. 이벤트대상: .abtn
+    const abtn = document.querySelectorAll(".abtn");
+    
+    // 1-2. 변경대상: #slide > li
+    const slide = document.querySelectorAll("#slide li");
+    // console.log(slide);
+    // 슬라이드개수
+    let scnt = slide.length;
+    console.log("슬개수:",scnt);
+
+    // 1-3. 블릿 대상: .indic li
+    const indic = document.querySelectorAll(".indic li");
+
+
+    // 광클금지변수 : 0 - 허용, 1 - 불허용
+    let prot = 0;
+
+    
+    
+    
+    // 2. 슬라이드 변경함수 만들기 
+    const goSlide = seq => {
+        console.log("슬고우:",seq)
+        
+        // 광클금지 설정하기 //////
+                if (prot) return;
+                prot = 1; // 잠금!
+                setTimeout(() => {
+                    prot = 0; // 해제!
+                }, 400); /// 0.4초후 해제! ///
+        // 1. 방향에따른 분기
+        // 1-1. 오른쪽버튼 클릭시 : seq === 1일때
+        if(seq){
+            console.log("오른",snum)
+            // 슬라이드 번호 증가
+            snum++;
+        }
+        // 1-2. 왼쪽버튼 클릭시 : seq === 0 일때
+        else{
+            console.log("왼",snum)
+            // 슬라이드 번호 감소
+            snum--;
+        }
+
+        // 2. 한계값 체크 : 
+        // 양끝까지 가면 맨끝페이지로 빠르게 넘어가는 방법 - 지저분해보임
+        // 처음이전->끝 
+        // if(snum===-1) snum = scnt -1;
+        // // 끝다음 -> 처음
+        // else if(snum=== scnt) snum = 0
+
+        // 양끝에서 더 못가도록 고정하는 법
+        if(snum===-1) snum = snum=0;
+        // 끝다음 -> 처음
+        else if(snum=== scnt) snum = scnt-1
+        
+
+        // 3. 이동하기 : 해당순번 슬라이드 li에 클래스 'on' 넣기
+        // 변경대상 slide(#slide li)
+        // 전체초기화
+        slide.forEach((ele)=>{
+            ele.classList.remove('on');
+        })
+        // 해당순번li에 클래스넣기
+        slide[snum].classList.add('on');
+
+        // 4. 블릿변경 : 해당순번 블릿li에 클래스 'on'넣기
+        // 변경대상 indic(.indic li)
+        indic.forEach((ele)=>{
+            ele.classList.remove('on');
+        })
+        // 해당 인딕순번li에 클래스넣기
+        indic[snum].classList.add('on');
+    };//goSlide 함수////
+
+    // 3. 대상에 이벤트 설정하기
+    abtn.forEach((ele,idx) => {
+        ele.onclick = () =>{ 
+            // 슬라이드 이동함수 호출
+            goSlide(idx);
+            // 자동넘김멈춤함수 호출
+            clearAuto();
+        };//onclick////
+    });//foreach////
+    
+    // 인터발함수 지우기위한 변수
+    let autoI;
+    // 타임아웃함수 지우기위한 변수
+    let autoT;
+
+    /************************************ 
+        함수명: autoSlide
+        기능: 인터발함수로 슬라이드함수 호출
+    ************************************/
+   function autoSlide(){
+        console.log("인터발시작!");
+        // 인터발함수로 슬라이드함수 호출하기
+        autoI = setInterval(()=>goSlide(1),3000);
+   } ////////////// autoSlide함수 //////////
+
+   // 자동넘김 최초호출!
+   autoSlide();
+
+   /************************************ 
+        함수명: clearAuto
+        기능: 인터발함수를 지우고 다시셋팅
+   ************************************/
+   function clearAuto(){
+    console.log("인터발멈춤!");
+    // 1. 인터발 지우기
+    clearInterval(autoI);
+
+    // 2. 타임아웃도 지우지 않으면
+    // 쌓여서 타임아웃 쓰나미실행이 발생한다!
+    clearTimeout(autoT);
+
+    // 3. 잠시후 다시 작동하도록 타임아웃으로
+    // 인터발함수를 호출한다! 
+    // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
+    autoT = setTimeout(autoSlide,5000);
+
+   } ///////// clearAuto 함수 /////////////
+
+}
+    //////////////// loadFn 함수 ///////////////
+/////////////////////////////////////////////
  /////////////// loadFn 함수 //////////////
