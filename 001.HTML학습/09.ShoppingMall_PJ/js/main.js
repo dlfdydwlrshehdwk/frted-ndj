@@ -150,6 +150,9 @@ function loadFn() {
 
         // 2-4. 읽어온 슬라이드 순번의 블릿에 클래스 'on'넣기
         indic[cseq].classList.add("on");
+
+        // 3. 블릿클릭시 이동 현재순번 변수 (iseq)에 순번일치하기
+        iseq = Number(cseq);
     }; //goSlide 함수////
 
     // 3. 이동버튼 대상에 이벤트 설정하기
@@ -254,11 +257,11 @@ function loadFn() {
             let diff = cseq - iseq;
             // 순수값 차이 -> 절대값 : Math.abs()
             let pure = Math.abs(diff);
+
             console.log("클릭된순번:", cseq);
             console.log("현재순번:", iseq);
             console.log("순번차이:", diff);
             console.log("순수차이:", pure);
-
 
             // 4. 방향별 슬라이드 이동
             // 4-1 diff값이 양수면 오른쪽 이동
@@ -276,26 +279,57 @@ function loadFn() {
                     // 계산되는 차이수(1씩감소하여 left값에 계산시킴)
                     let temp = pure;
 
-                    for(let i = 0; i <pure; i++){
+                    for (let i = 0; i < pure; i++) {
                         // temp 1씩감소하기
                         temp--;
 
                         // (2-1) 바깥에 나가있는 첫번째 슬라이드
                         //     li를 잘라서 맨뒤로 보낸다!
                         // 슬라이드li가 잘라내면 매번 변경되므로 새로 읽어서 맨뒤로 이동한다.
-                        slide.appendChild(
-                            slide.querySelectorAll('li')[0]);
+                        slide.appendChild(slide.querySelectorAll("li")[0]);
                         // (2-2) 동시에 left값을 0으로 변경한다!
-                        slide.style.left = (-100 * temp) +"%";
+                        slide.style.left = (-100 * temp) + "%";
                         // (2-3) 트랜지션 없애기.
                         slide.style.transition = "none";
-
                     }
                 }, 400); // timeout ///
             } // if ////
 
             // 4-2 diff값이 음수면 왼쪽 이동
             else if (diff < 0) {
+                // 이동할 리스트
+                
+                // (1) 왼쪽버튼 클릭시 이전 슬라이드가
+                // 나타나도록 하기위해 우선 맨뒤 li를
+                // 맨앞으로 이동한다. -> 개수만큼 처리한다 (pure 순수차이값)
+                // slide.insertBefore(넣을놈,넣을놈전놈)
+                // slide.insertBefore(맨끝li,맨앞li)
+                
+                
+                
+                for(let i = 0; i<pure; i++){
+                    // 이동할 리스트
+                    let clist = slide.querySelectorAll("li");
+                    
+                    slide.insertBefore(clist[clist.length - 1], clist[0]);
+                    // (2) 동시에 left값을
+                    // -100%단위로  변경한다.
+                    // i값이 0부터 반복횟수만큼 증가하므로 이것을 이용
+                    slide.style.left = ((i+1)*-100) +"%";
+                    // 이때 트랜지션을 없애준다(한번실행후 부터 생기므로)
+                    slide.style.transition = "none";
+    
+                    // (3) 그 후 left값을 0으로 애니메이션하여
+                    // 슬라이드가 왼쪽에서 들어온다.
+                    // 동일 속성인 left가 같은 코딩처리 공간에 동시에 있으므로
+                    // 이것을 분리해야 효과가 있다.
+                    // setTimeout을 사용한다.
+
+                }// for ////
+                setTimeout(() => {
+                    slide.style.left = "0";
+                    slide.style.transition = ".4s ease-in-out";
+                }, 0); //timeout////
             }
 
             // 4-3 diff값이 0이면 리턴 - 아무것도안하기
@@ -304,7 +338,7 @@ function loadFn() {
             } // else ////
 
             // 5. 현재블릿초기화
-            indic[iseq].remove("on");
+            indic[iseq].classList.remove("on");
 
             // 6. 클릭된 순번으로 현재순번 변경
             iseq = cseq;
