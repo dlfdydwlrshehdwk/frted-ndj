@@ -42,12 +42,12 @@ function loadFn() {
     // 슬라이드 li리스트
     let slist = document.querySelectorAll("#slide>li");
 
-    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한 
-    // 고유순번을 사용자정의 속성(data-)으로 만들어 준다. 
-    slist.forEach((ele,idx)=>{
+    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
+    // 고유순번을 사용자정의 속성(data-)으로 만들어 준다.
+    slist.forEach((ele, idx) => {
         // data-seq 라는 사용자정의 속성 넣기
-        ele.setAttribute('data-seq',idx);
-    });//foreach////
+        ele.setAttribute("data-seq", idx);
+    }); //foreach////
 
     // 1 대상선정
     // 1-1. 이벤트대상: .abtn
@@ -55,9 +55,9 @@ function loadFn() {
 
     // 1-2. 변경대상: #slide
     const slide = document.querySelector("#slide");
-    
+
     // 1-3. 블릿 대상: .indic li
-    const indic = document.querySelectorAll('.indic li');
+    const indic = document.querySelectorAll(".indic li");
     // console.log(indic);
 
     // 광클금지 변수 : 0 - 허용, 1 - 불허용
@@ -70,16 +70,15 @@ function loadFn() {
 
         // console.log('못들어갔어!')
         // 광클금지 설정하기 ////
-        if(prot) return ;
+        if (prot) return;
         prot = 1; // 잠금!
         // console.log("나 들어왔어!")
-        setTimeout(()=>{
-            prot=0; // 잠금해제!
-        },400); // 0.4초 후 해제!
-
+        setTimeout(() => {
+            prot = 0; // 잠금해제!
+        }, 400); // 0.4초 후 해제!
 
         // 0. 현재의 슬라이드 li수집하기
-        let clist = slide.querySelectorAll('li');
+        let clist = slide.querySelectorAll("li");
         // clist -> current list 현재 리스트
 
         // 1. 방향에따른 분기
@@ -103,7 +102,7 @@ function loadFn() {
                 // (2-3) 트랜지션 없애기.
                 slide.style.transition = "none";
             }, 400); // timeout ///
-        }//if////
+        } //if////
 
         // 1-2. 왼쪽버튼 클릭시
         else {
@@ -115,56 +114,51 @@ function loadFn() {
             // slide.insertBefore(넣을놈,넣을놈전놈)
             // slide.insertBefore(맨끝li,맨앞li)
 
-            slide.insertBefore(clist[clist.length-1],clist[0]);
-            
+            slide.insertBefore(clist[clist.length - 1], clist[0]);
+
             // (2) 동시에 left값을
             // -100%로 변경한다.
-            slide.style.left = '-100%';
+            slide.style.left = "-100%";
             // 이때 트랜지션을 없애준다(한번실행후 부터 생기므로)
-            slide.style.transition='none';
-
+            slide.style.transition = "none";
 
             // (3) 그 후 left값을 0으로 애니메이션하여
             // 슬라이드가 왼쪽에서 들어온다.
             // 동일 속성인 left가 같은 코딩처리 공간에 동시에 있으므로
             // 이것을 분리해야 효과가 있다.
             // setTimeout을 사용한다.
-            setTimeout(()=>{
+            setTimeout(() => {
                 slide.style.left = "0";
                 slide.style.transition = ".4s ease-in-out";
-            },0);//timeout////
-
-        }//else : 왼클릭시 - 끝////
+            }, 0); //timeout////
+        } //else : 왼클릭시 - 끝////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
         // 대상: .indic li -> indic 변수
         // 2-1. 현재 배너리스트 업데이트하기
-        clist = slide.querySelectorAll('li');
-        // 오른쪽클릭시(seq===1) 두번째 슬라이드[1], 
+        clist = slide.querySelectorAll("li");
+        // 오른쪽클릭시(seq===1) 두번째 슬라이드[1],
         // 왼쪽클릭시(seq===0) 첫번째 슬라이드[0]
         // seq순번과 읽어올 슬라이드 순번이 일치한다.
 
         // 2-2. 방향별 읽어올 슬라이드 순번 'data-seq' 값 읽어오기
-        let cseq = clist[seq].getAttribute('data-seq');
+        let cseq = clist[seq].getAttribute("data-seq");
         // console.log("현재순번은",cseq);
 
         // 2-3. 블릿초기화
-        for(let x of indic) x.classList.remove('on');
+        for (let x of indic) x.classList.remove("on");
 
         // 2-4. 읽어온 슬라이드 순번의 블릿에 클래스 'on'넣기
-        indic[cseq].classList.add('on');
-
-
+        indic[cseq].classList.add("on");
     }; //goSlide 함수////
 
     // 3. 이동버튼 대상에 이벤트 설정하기
     abtn.forEach((ele, idx) => {
         ele.onclick = () => {
             // 1. 인터발지우기함수 호출
-            clearAuto();
-            // 2. 슬라이드함수 호출 
+            // clearAuto();
+            // 2. 슬라이드함수 호출
             goSlide(idx);
-
         }; //onclick////
     }); //foreach////
 
@@ -172,7 +166,7 @@ function loadFn() {
     // 자동넘김 설정하기 ////
     ////////////////////////
 
-    // 일정시간간격 넘어가기 
+    // 일정시간간격 넘어가기
     // -> setInterval(함수,시간)
 
     // [ 인버발함수의 함수전달값 사용예 (타임아웃함수도 동일함)]
@@ -185,10 +179,9 @@ function loadFn() {
     // 4. 화살표함수 중괄호생략가능
     // setInterval(()=>goSlide(1),3000);
 
-
     // 인터발함수 지우기위한 변수
     let autoI;
-    // 타임아웃함수 지우기위한 변수 
+    // 타임아웃함수 지우기위한 변수
     let autoT;
 
     /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
@@ -197,15 +190,14 @@ function loadFn() {
         기능 : 인터발함수로 슬라이드함수 호출
 
     ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
-    function autoSlide(){
-        console.log("인터발시작")
+    function autoSlide() {
+        console.log("인터발시작");
         // 인터발함수로 슬라이드함수 호출하기
-        autoI = setInterval(()=>goSlide(1),3000);
-
-    }//autoSlide 함수////
+        autoI = setInterval(() => goSlide(1), 3000);
+    } //autoSlide 함수////
 
     // 자동넘김 최초호출
-    autoSlide();
+    // autoSlide();
 
     /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
 
@@ -214,20 +206,113 @@ function loadFn() {
     
     ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
-    function clearAuto(){
-        console.log("인터발멈추기")
-        // 1. 인터발 지우기 
+    function clearAuto() {
+        console.log("인터발멈추기");
+        // 1. 인터발 지우기
         clearInterval(autoI);
 
         // 2. 타임아웃도 지우지 않으면 광클시
         // 쌓여서 타임아웃 쓰나미처럼 몰려올 수 있다.
         clearTimeout(autoT);
 
-        // 3. 잠시 후 다시 작동하도록 타임아웃으로 
+        // 3. 잠시 후 다시 작동하도록 타임아웃으로
         // 인터발함수를 호출한다. 5초후(인터발은 3초후, 토탈8초후 작동시작)
-        autoT = setTimeout(autoSlide,5000);
-    }// clearAuto 함수 ////
+        autoT = setTimeout(autoSlide, 5000);
+    } // clearAuto 함수 ////
 
+    /* 
+        [ 블릿클릭 이동 구현하기 ]
+        1. 오른쪽 이동시 : 현재 블릿보다 오른쪽 클릭시 
+            1) 기본형 : 오른쪽버튼 클릭구현 
+            2) 유형 : 먼저이동후 맨앞요소 맨뒤로 이동
+            3) 원리 : 차이수만큼 %이동후 for문으로 순서대로 맨뒤이동
+            
+        2. 왼쪽 이동시 : 현재 블릿보다 왼쪽 클릭시 
+            1) 기본형 : 왼쪽버튼 클릭구현 
+            2) 유형 : 먼저 맨뒤요소 맨앞으로 이동후 들어오기
+            3) 원리 : 차이수만큼 앞에 for문으로 쌓은 후 이동함
+
+        3. 방향구분의 기준 : 클릭된 블릿순번 - 현재블릿순번
+            1) 양수면 오른쪽이동
+            2) 음수면 왼쪽이동
+    */
+
+    // 대상 : .indic li -> indic 변수
+    // 이벤트 : click
+    // 순번변수 - 블릿순번 블릿li클릭 함수에서 공유함
+    let iseq = 0;
+
+    indic.forEach((ele, idx) => {
+        // ele - 요소 , idx - 순번
+        // 클릭이벤트 설정하기
+        ele.onclick = () => {
+            // 1. 클릭된 순번
+            let cseq = idx;
+
+            // 2. 현재 순번 - iseq
+            // 3. 순번차 : 클릭된순번 - 현재순번
+            let diff = cseq - iseq;
+            // 순수값 차이 -> 절대값 : Math.abs()
+            let pure = Math.abs(diff);
+            console.log("클릭된순번:", cseq);
+            console.log("현재순번:", iseq);
+            console.log("순번차이:", diff);
+            console.log("순수차이:", pure);
+
+
+            // 4. 방향별 슬라이드 이동
+            // 4-1 diff값이 양수면 오른쪽 이동
+            if (diff > 0) {
+                // (1) 오른쪽 버튼 클릭시 다음 슬라이드가
+                //     나타나도록 슬라이드 박스의 left값을
+                //     (-100% * 순수차) 로 변경시킨다.
+                slide.style.left = (-100 * pure) + "%";
+                slide.style.transition = ".4s ease-in-out";
+
+                // (2) 슬라이드 이동후!!! (0.4초후)
+                setTimeout(() => {
+                    // for문으로 자를수 (순수값)만큼 순서대로 처리
+
+                    // 계산되는 차이수(1씩감소하여 left값에 계산시킴)
+                    let temp = pure;
+
+                    for(let i = 0; i <pure; i++){
+                        // temp 1씩감소하기
+                        temp--;
+
+                        // (2-1) 바깥에 나가있는 첫번째 슬라이드
+                        //     li를 잘라서 맨뒤로 보낸다!
+                        // 슬라이드li가 잘라내면 매번 변경되므로 새로 읽어서 맨뒤로 이동한다.
+                        slide.appendChild(
+                            slide.querySelectorAll('li')[0]);
+                        // (2-2) 동시에 left값을 0으로 변경한다!
+                        slide.style.left = (-100 * temp) +"%";
+                        // (2-3) 트랜지션 없애기.
+                        slide.style.transition = "none";
+
+                    }
+                }, 400); // timeout ///
+            } // if ////
+
+            // 4-2 diff값이 음수면 왼쪽 이동
+            else if (diff < 0) {
+            }
+
+            // 4-3 diff값이 0이면 리턴 - 아무것도안하기
+            else {
+                return;
+            } // else ////
+
+            // 5. 현재블릿초기화
+            indic[iseq].remove("on");
+
+            // 6. 클릭된 순번으로 현재순번 변경
+            iseq = cseq;
+
+            // 7. 클릭된 블릿에 on넣기
+            indic[iseq].classList.add("on");
+        }; //c l i c k ////
+    }); //foreach ////
 }
 //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
