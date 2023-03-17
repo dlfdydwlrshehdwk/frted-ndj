@@ -44,6 +44,9 @@ window.addEventListener("DOMContentLoaded", loadFn);
 
 *****************************************************/
 
+// 슬라이드 이동함수 전역화
+let goSlide;
+
 /****************************************** 
     함수명: loadFn
     기능: 로딩 후 버튼 이벤트 및 기능구현
@@ -65,6 +68,10 @@ function loadFn() {
     // 1-4. 슬라이드 li리스트
     let slist = document.querySelectorAll("#slide>li");
 
+    // [드래그대상 (#slide) 드래그 적용함수 호출하기]
+    goDrag(slide); 
+
+
     // [ 초기화1 - 순번붙이기 ] ///////////////////
     // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
     // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
@@ -79,23 +86,21 @@ function loadFn() {
         // 현재 슬라이드 li 새로읽기(2번반복시 li의 순서가 달라지기때문)
         slist = document.querySelectorAll("#slide>li");
         // 맨뒤 맨앞이동하기 -> 변경대상: #slide -> slide변수
-        slide.insertBefore(slist[slist.length-1],slist[0]);
+        slide.insertBefore(slist[slist.length - 1], slist[0]);
         // slide.insertBefore(넣을놈,넣을놈전놈)
         // slide.insertBefore(마지막요소,첫요소)
-        // slide.insertBefore(slist[개수-1],slist[0]);        
+        // slide.insertBefore(slist[개수-1],slist[0]);
     }; ////////// chgSeq함수 ///////////
 
     // 2번 맨뒤 맨앞이동 함수 호출하기!!!
-    for(let i=0;i<2;i++) chgSeq();
-
-    
+    for (let i = 0; i < 2; i++) chgSeq();
 
     // 광클금지변수 : 0 - 허용, 1 - 불허용
     let prot = 0;
 
     // 2. 슬라이드 변경함수 만들기
     // 호출시 seq에 들어오는 값중 1은 오른쪽, 0은 왼쪽
-    const goSlide = (seq) => {
+     goSlide = (seq) => {
         //  console.log("슬고우!", seq);
 
         //  console.log("못들어갔어!!!!");
@@ -130,17 +135,16 @@ function loadFn() {
             // (1-3) 트랜지션 없애기!
             slide.style.transition = "none";
 
-            
             // (2) 오른쪽 버튼 클릭시 다음 슬라이드가
             //     나타나도록 슬라이드 박스의 left값을
             //     -220%로 변경시킨다.
 
             // [코드분리하기!] //////////////////////////
             // -> 같은속성변경을 같은 메모리공간에서 수행하면
-            // 변경효과가 없음!!! 
+            // 변경효과가 없음!!!
             setTimeout(() => {
                 slide.style.left = "-220%";
-                slide.style.transition = "left .4s ease-in-out";                
+                slide.style.transition = "left .4s ease-out";
             }, 1); //// 타임아웃 //////
             // 시간에 0 을쓰면 인터발호출시 트랜지션이 잘 안먹을수있음
             // 1만줘도 잘되는듯하다.
@@ -149,8 +153,6 @@ function loadFn() {
             // 대기실행 공간인 큐(Queue)메모리공간에서 실행하므로
             // 코드가 동시에 바뀌는 것을 막아주고 의도한 대로
             // 시차실행을 가능하게 해준다!
-
-
         } //////////// if : 오른쪽클릭시 //////
 
         // 1-2. 왼쪽버튼 클릭시 //////////////
@@ -176,16 +178,15 @@ function loadFn() {
             // setTimeout을 사용한다!
             setTimeout(() => {
                 slide.style.left = "-220%";
-                slide.style.transition = "left .4s ease-in-out";
+                slide.style.transition = "left .4s ease-out";
             }, 0); ////// 타임아웃 /////////
-
         } //////////// else : 왼쪽클릭시 //////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
         // 대상: .indic li -> indic변수
         // 2-1. 현재 배너리스트 업데이트하기
         clist = slide.querySelectorAll("li");
-        // !!!!! 오른쪽이든 왼쪽이든 먼저 잘라내기 때문에 
+        // !!!!! 오른쪽이든 왼쪽이든 먼저 잘라내기 때문에
         // 순번은 3번째로 일치함!!!!!!
         // console.log("다시수집:",clist);
 
@@ -207,12 +208,11 @@ function loadFn() {
             // 0. 화면위로튕기는거막기
             event.preventDefault();
             // 1. 인터발지우기함수 호출!
-            clearAuto();
+            // clearAuto();
             // 2. 슬라이드 함수 호출!
             goSlide(idx);
         }; ///// click함수 //////
     }); /////// forEach //////////
-
 
     ////////////////////////////
     // 자동넘김 설정하기 ////////
@@ -240,38 +240,214 @@ function loadFn() {
         함수명: autoSlide
         기능: 인터발함수로 슬라이드함수 호출
     ************************************/
-   function autoSlide(){
+    function autoSlide() {
         console.log("인터발시작!");
         // 인터발함수로 슬라이드함수 호출하기
-        autoI = setInterval(()=>goSlide(1),3000);
-   } ////////////// autoSlide함수 //////////
+        autoI = setInterval(() => goSlide(1), 3000);
+    } ////////////// autoSlide함수 //////////
 
-   // 자동넘김 최초호출!
-   autoSlide();
+    // 자동넘김 최초호출!
+    //    autoSlide();
 
-   /************************************ 
+    /************************************ 
         함수명: clearAuto
         기능: 인터발함수를 지우고 다시셋팅
    ************************************/
-   function clearAuto(){
-    console.log("인터발멈춤!");
-    // 1. 인터발 지우기
-    clearInterval(autoI);
+    function clearAuto() {
+        console.log("인터발멈춤!");
+        // 1. 인터발 지우기
+        clearInterval(autoI);
 
-    // 2. 타임아웃도 지우지 않으면
-    // 쌓여서 타임아웃 쓰나미실행이 발생한다!
-    clearTimeout(autoT);
+        // 2. 타임아웃도 지우지 않으면
+        // 쌓여서 타임아웃 쓰나미실행이 발생한다!
+        clearTimeout(autoT);
 
-    // 3. 잠시후 다시 작동하도록 타임아웃으로
-    // 인터발함수를 호출한다! 
-    // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
-    autoT = setTimeout(autoSlide,5000);
+        // 3. 잠시후 다시 작동하도록 타임아웃으로
+        // 인터발함수를 호출한다!
+        // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
+        autoT = setTimeout(autoSlide, 5000);
+    } ///////// clearAuto 함수 /////////////
 
-   } ///////// clearAuto 함수 /////////////
-   
-
-
-
-
+    
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
+
+
+/* 
+    [ 슬라이드에 드래그 적용시 체크사항 ]
+    1. 드래그 적용시 한쪽방향만 적용시킨다.
+    (가로슬라이드인 경우 x축만 적용활성화 함)
+    2. 드래그 대상 슬라이드의 모든 하위요소는 
+    선택이 안되도록 아래와 같이 css속성을 셋팅함
+    ->  user-select: none;
+        -webkit-user-drag: none;
+
+        예) #slide * { 선택 / 드래그 금지속성셋팅 }
+
+    3. 마지막포인트값(1x)을 초기값과 같은 값으로 셋팅한다 
+    -> #slide에는 left: -220% 적용됨
+
+    4. 이동함수를 호출할 수 있게 전역함수화 한다.
+    -> 함수바깥쪽에 선언해준다.
+
+    5. 드래그시 이동할때 적용된 트랜지션을 지워준다.
+    -> transition :none;
+    -> 드래그 함수내 mousemove 이벤트함수구역에 설정
+
+    6. 드래그 마지막(mouseup) 처리시 마지막 위치 
+    업데이트는 할 필요가 없다.
+    -> lastPoint() 함수호출 주석처리 
+
+    7. 슬라이드 이동시 트랜지션에 이징설정이
+    ease-in ... 이 들어가면 드래그 끝나고 
+    이동시 느리게 시작하므로 어색함.
+    따라서 이징은 ease-out으로 주는게 더자연스럽다
+*/
+/********************************************** 
+    [ 드래그 다중적용 함수 만들기 ]
+    함수명 : goDrag
+    기능: 다중 드래그 기능적용
+**********************************************/
+function goDrag(obj) {
+    //obj - 드래그 대상 (슬라이드 요소)
+
+    
+
+    // 변수만들기 ////
+    // (1) 드래그 상태변수
+    let drag = false;
+    // true - 드래그중, false - 드래그아닐시
+    // (2) 첫번째 위치포인트 first x,first y
+    let fx, fy;
+    // (3) 마지막 위치포인트 last x, last y
+    let lx = obj.offsetLeft, // -> 슬라이드 처음 left값 셋팅
+        ly = 0; // 마지막위치는 처음에 0 할당.
+        console.log(lx)
+    // (4) 움직일때 위치포인트 move x, move y
+    let mvx, mvy;
+    // (5) 위치이동 차이 결과  변수 result x, result y
+    let rx, ry;
+
+    // 함수만들기 ////
+    // (1) 드래그상태 true
+    const dTrue = () => (drag = true);
+    // (2) 드래그상태 false
+    const dFalse = () => (drag = false);
+
+    // (3) 드래그 움직일때 작동함수
+    const dMove = () => {
+        // console.log("드래그상태",drag)
+
+        // 만약에 드래그상태일때만 실행
+        if (drag) {
+
+            // 트랜지션 없애기
+            obj.style.transition = 'none';
+            // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
+            mvx = event.pageX;
+            mvy = event.pageY;
+
+            // 2. 움직일때 위치값 - 처음 위치값 rx, ry
+            // x축값은 left값, y축값은 top값 이동이다.
+            rx = mvx - fx;
+            ry = mvy - fy;
+
+            // 3. x,y 움직인 위치값을 타겟요소에 적용!
+            obj.style.left = rx + lx + "px";
+            // obj.style.top = ry + ly + "px"; -> y축 적용은 필요없음 적용x
+            // 한번드래그 후 다시 드래그시 움직인 위치값이 필요
+            // -> 마지막 위치값 저장 필요 -> lx,ly
+            // -> 항상 최종위치에서 움직인 위치를 더한다.
+
+            // console.log(`fx:${fx}/fy:${fy}`);
+            // console.log(`mvx:${mvx}/mvy:${mvy}`);
+            // console.log(`rx:${rx}/ry:${ry}`);
+            // console.log(`lx:${lx}/ly:${ly}`);
+        } //if : 드래그일때 ////
+    }; // dMove ////
+
+    // (4) 첫번째 위치포인트 셋팅함수
+    const firstPoint = () => {
+        fx = event.pageX;
+        fy = event.pageY;
+    }; // firstPoint////
+
+    // (5) 마지막 위치포인트 셋팅함수
+    const lastPoint = () => {
+        lx += rx;
+        ly += ry;
+    }; // firstPoint////
+    // 최종 이동결과 값인 rx,ry를 항상 대입연산하여 값을 업데이트한다.
+
+    // 이벤트 등록하기 ///
+    // (1) 마우스 내려갈때 : 드래그 true + 첫번째 위치값
+    obj.addEventListener("mousedown", () => {
+        dTrue();
+        firstPoint();
+    });
+    // (2) 마우스 올라올때 : 드래그 false + 마지막위치값
+    obj.addEventListener("mouseup", () => {
+        dFalse();
+        // lastPoint(); -> 슬라이드 드래그는 마지막 위치를
+        //  업데이트 할 필요 x -> 슬라이드 마지막위치는 항상 일정하니까
+        // 이동판별함수 호출
+        goWhere(obj);
+    });
+    // (3) 마우스 움직일때
+    obj.addEventListener("mousemove", dMove);
+    // (4) 마우스 벗어날때
+    obj.addEventListener("mouseleave", dFalse);
+
+
+    // 화면크기를 변경할 경우 발생하는 이벤트 -> resize 
+    // 이 이벤트를 이용하여 필요한 경우 코드를 실행한다.
+    // 대상 : window
+    window.addEventListener("resize",()=>{
+        // 화면 크기 변경시 lx값 업데이트 하기
+        lx = -obj.parentElement.clientWidth*2.2;
+        // 마지막 위치값이 슬라이드 부모박스의 220%
+        // 이므로 이것을 업데이트 해준다.
+        // 이때 앞에 마이너스(-) 중요 - 화면나감
+        console.log('업데이트',lx)
+
+    }); // resize ////
+
+
+
+
+} //goDrag 함수 ////
+
+/* 
+    함수명 : goWhere
+    기능 : 드래그시 왼쪽 / 오른쪽 이동 판별
+    호출 : 드래그시 mouseup 이벤트 함수에서 호출
+*/
+function goWhere(obj) { // obj - 드래그대상(슬라이드요소)
+    // 1. 현재 드래그 대상 left위치값 
+    let tgLeft = obj.offsetLeft;
+    
+    // 2. 부모박스를 기준한 -220% left위치값 구하기
+    let tgPoint = obj.parentElement.clientWidth*2.2;
+    console.log('현재left',tgLeft);
+    console.log('기준left',tgPoint);
+
+    // 3. 방향판별하기 : 기준값에 특정값을 더하고 뺌
+    // 3-1. 왼쪽방향이동(오른쪽버튼 클릭과 동일)
+    if(tgLeft < -tgPoint-50){
+        console.log("왼쪽으로")
+        // 이동함수 호출(전달값1)
+        goSlide(1);
+    }
+    // 3-2. 오른쪽방향이동(왼쪽버튼 클릭과 동일)
+    else if(tgLeft > -tgPoint+50){
+        console.log("오른쪽으로")
+        // 이동함수호출(전달값0)
+        goSlide(0);
+    }
+    // 3-3 제자리돌아옴
+    else{
+        console.log('제자리')
+        // 기준값 left로 다시보냄
+        obj.style.left = -tgPoint + 'px';
+    }
+} // goWhere 함수 //// 
