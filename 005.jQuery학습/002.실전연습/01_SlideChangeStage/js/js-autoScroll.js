@@ -195,14 +195,17 @@ function loadFn() {
         ********************************************/
         function updatePg(obj) { // obj - 변경할 메뉴전체 객체
             // 1. 함수호출
-            console.log('업데이트')
+            // console.log('업데이트')
             // 2. 페이지 이동하기
             // scrollTo(가로,세로)
             window.scrollTo(0,window.innerHeight*pgnum);
             // 세로 이동위치 : 윈도우 높이값* 페이지번호
-
             // 3. 메뉴초기화(클래스 on 제거하기)
-            for(let x of obj) x.parentElement.classList.remove('on');
+            for(let x of obj){ //x는 gnb a요소 패렌츠는 li요소
+                console.log(obj)
+                 x.parentElement.classList.remove('on');
+                //  console.log(x)
+                }
             // 4. 해당메뉴에 클래스 on 넣기
             obj[pgnum].parentElement.classList.add('on');
 
