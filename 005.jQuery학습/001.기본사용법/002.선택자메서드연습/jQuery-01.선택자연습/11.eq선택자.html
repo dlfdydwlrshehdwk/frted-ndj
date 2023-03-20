@@ -89,8 +89,10 @@
 			// 순번은 0부터 시작!
 			// $(`.nav1 li:eq(${opt})`)
 
-			// eq(n) -> 제이쿼리 트래버싱 메서드가 더 많이쓰임
-			$(`.navi li`).eq(opt) 
+			// eq(n) -> 제이쿼리 트래버싱 메서드가
+			// 더 많이 쓰임!
+			$(`.nav1 li`).eq(opt)
+
 			.css({
 				backgroundColor: rcolor[opt],
 			});
@@ -98,11 +100,12 @@
 			// 배경이미지 넣기
 			$("body").css({
 				background: `
-	   url(img/${opt}.jpg) no-repeat center/cover`,
+			url(img/${opt}.jpg) no-repeat center/cover`,
 			}); ///// css ///////
 		}); /////////// change /////////////
 	}); /////////// jQB /////////////////
 </script>
+
 </head>
 <body>
 
