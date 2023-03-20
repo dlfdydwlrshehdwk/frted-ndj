@@ -102,28 +102,11 @@
 
             for(let x of mi){
                 console.log(x)
-                hcode += "<ul>";
-                // 객체는 for in문 
-                for(let y in x){//y는 속성명, x는 객체
-                    // console.log(y)
-                    if(y === "제목"){
-                        hcode += `
-                        <li><h2>제목 : ${x.제목}</h2></li>;
-                        `
-                    }
-                    else if ( y === "포스터"){
-                        hcode +=`
-                        <li><img src="${x.포스터}" alt ="${x.제목}포스터"></li>;
-                        `
-                    }
-                    // else if ( y === "함수"){
-                    //     hcode +=`
-                    //     // <li>${x.함수}</li>;
-                    //     `
-                    // }
-                    
-                }// for in 문 ////
-                hcode +="</ul>"
+                hcode += `<ul>
+                    <li><h2>제목 : ${x.제목}</h2></li>
+                    <li><img src="${x.포스터}" alt="${x.제목}의 포스터"></li>
+                    </ul>
+                    `;
             } // for of 문 ////
             document.write(hcode);
             
