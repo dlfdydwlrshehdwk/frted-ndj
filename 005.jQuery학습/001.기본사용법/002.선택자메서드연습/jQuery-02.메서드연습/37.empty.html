@@ -36,10 +36,14 @@
 				let idx = $(this).index();
 				console.log('순번',idx)
 				// 글자변경하기
-				// 1. 내용비우기
-				$(this).empty()
-				.text(txt[idx])
-				
+				$(this).empty() // 1. 내용비우기
+				.css({opacity : 0}) //2. 투명하게하기
+				.text(txt[idx]) // 3. 해당순번 내용넣기
+				.delay(500) // 4. 지연시간주기
+				.animate({
+					opacity :1, // 5. 투명도 복원
+					color : color[idx] // 6. 해당순번 글자색넣기
+				},800); // animate ////
 			}) // click ////
 			
 		});//// jQB ////////////////////////////
