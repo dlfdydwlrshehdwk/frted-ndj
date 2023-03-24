@@ -345,15 +345,22 @@ function goDrag(obj) {
     // (3) 드래그 움직일때 작동함수
     const dMove = () => {
         // console.log("드래그상태",drag)
-
+        
         // 만약에 드래그상태일때만 실행
         if (drag) {
-
+            console.log("드래그중")
+            
             // 트랜지션 없애기
             obj.style.transition = 'none';
             // 1. 드래그 상태에서 움직일때 위치값 : mvx,mvy
-            mvx = event.pageX;
-            mvy = event.pageY;
+            mvx = event.pageX || event.changedTouches[0].pageX;
+            // 모바일일때는 뒤엣것이 유효하므로 할당되어 사용된다.
+            console.log(event.changedTouches)
+            // 모바일에서는 위치값을 changedTouches 컬렉션에 수집한다.
+            // changedTouches[0] -> 첫번째 컬렉션에 pageX값이 존재한다.
+            // changedTouches[0].pageX
+
+            // mvy = event.pageY;
 
             // 2. 움직일때 위치값 - 처음 위치값 rx, ry
             // x축값은 left값, y축값은 top값 이동이다.
@@ -376,8 +383,13 @@ function goDrag(obj) {
 
     // (4) 첫번째 위치포인트 셋팅함수
     const firstPoint = () => {
-        fx = event.pageX;
-        fy = event.pageY;
+
+        fx = event.pageX || event.changedTouches[0].pageX;
+    // 변수 = 할당값1 || 할당값2;
+    // -> undefined / null 값이 아닌값으로 할당됨 
+    // -> 우선순위로 DT쪽을먼저 써준다 
+
+        // fy = event.pageY;
     }; // firstPoint////
 
     // (5) 마지막 위치포인트 셋팅함수
@@ -388,11 +400,22 @@ function goDrag(obj) {
     // 최종 이동결과 값인 rx,ry를 항상 대입연산하여 값을 업데이트한다.
 
     // 이벤트 등록하기 ///
+    // DT용 이벤트와 Mobile이벤트를 모두 등록해줘야 모바일에도 작동함
+    // mousedown -> touchstrat 
+    // mouseup -> touchend
+    // mousemove -> touchmove
     // (1) 마우스 내려갈때 : 드래그 true + 첫번째 위치값
     obj.addEventListener("mousedown", () => {
         dTrue();
         firstPoint();
     });
+    // 모바일 : touchstart
+    obj.addEventListener("touchstart", () => {
+        dTrue();
+        firstPoint();
+        console.log('터치시작');
+    });
+
     // (2) 마우스 올라올때 : 드래그 false + 마지막위치값
     obj.addEventListener("mouseup", () => {
         dFalse();
@@ -401,8 +424,19 @@ function goDrag(obj) {
         // 이동판별함수 호출
         goWhere(obj);
     });
+    // 모바일 touchend
+    obj.addEventListener("touchend", () => {
+        dFalse();
+        // lastPoint(); -> 슬라이드 드래그는 마지막 위치를
+        //  업데이트 할 필요 x -> 슬라이드 마지막위치는 항상 일정하니까
+        // 이동판별함수 호출
+        goWhere(obj);
+        console.log('터치끝');
+    });
     // (3) 마우스 움직일때
     obj.addEventListener("mousemove", dMove);
+    // 모바일 : touchmove
+    obj.addEventListener("touchmove", dMove);
     // (4) 마우스 벗어날때
     obj.addEventListener("mouseleave", dFalse);
 
