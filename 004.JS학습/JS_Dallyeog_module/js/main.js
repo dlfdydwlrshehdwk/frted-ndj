@@ -11,4 +11,15 @@ import MakeDallyeok from "./calendar.js";
 // 우리가만든 달력 생성자함수에서 전달값으로 받는 것은?
 // 달력을 넣을 요소의 선택자정보임
 // 달력넣을 요소 : .calbx
-let calbx = new MakeDallyeok('.calbx'); 
+let calbx = new MakeDallyeok('.calbx');
+// 초기화 함수를 호출함
+calbx.initDallyeok();
+// 다음달 달력호출하기
+// calbx.nextCal();
+
+// 다른요소에 달력 추가생성하기 
+let calbx2 = new MakeDallyeok('.calbx2')
+// 초기화 함수를 호출함
+calbx2.initDallyeok();
+// 다음달 달력호출하기
+// calbx2.nextCal();

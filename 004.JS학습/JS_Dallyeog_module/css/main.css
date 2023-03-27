@@ -17,6 +17,11 @@ body {
     padding-top: 50px;
     padding-left: 20px;
 }
+.mybx{
+    flex: 1;
+    /* 등분할 */
+}
+
 /* 입력부모 두번째박스 */
 .mybx:nth-child(2){
     margin-left: 50px;
