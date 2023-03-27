@@ -125,7 +125,31 @@ function MakeDallyeok(){
 
                     let cls = isSpan.classList.contains('bm')
                     cg(cls);
+                    if(cls){ // 전달일경우 ////
+                        // 월에서 1을 뺀다
+                        // Number(문자형숫자) -> 숫자형변환
+                        // -, *, / 연산은 브라우저가 자동변환해준다.
+                        // 그러나 + 연산은 문자 더하기가 가능하므로
+                        // 이것을 강제 형변환을 해줘야한다.
+                        cmonth = Number(cmonth) - 1;
 
+                        // 만약 1월이면 이전달은 0 이아니므로 12로처리
+                        if(cmonth === 00){ 
+                            cmonth = 12;
+                            cyear = Number(cyear) -1;
+                        
+                        }
+                    } //// if ////
+                    else{ // 다음달일 경우
+                        cmonth = Number(cmonth) + 1;
+
+                        // 만약 12월이면 다음달이 13이 아니므로 1로처리 
+                        if(cmonth === 13){
+                            cmonth = 1;
+                            // 년도도 다음년도로 1더함
+                            cyear = Number(cyear) +1;
+                        }
+                    } // else ////
                 } // if ////
 
                 // 최종데이터
