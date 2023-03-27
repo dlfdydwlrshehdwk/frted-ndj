@@ -1,7 +1,5 @@
 // 달력 생성자함수 /////
 
-MakeDallyeok();
-
 function MakeDallyeok(sel){ // sel - 달력 넣을 요소 선택자
 
     // 선택함수 ////
@@ -223,18 +221,13 @@ function MakeDallyeok(sel){ // sel - 달력 넣을 요소 선택자
         `;
     } // insertHcode ////
 
-
-
-
-
-
     // 버튼에 클릭설정하기 /// 
     qs('.btnL').onclick = prevCal;
     qs('.btnR').onclick = nextCal;
 
-    
-
-
-
-
 } // MakeDallyeok 함수 ////
+
+// 달력 생성자함수 내보내기 ////
+export default MakeDallyeok;
+
+// default 는 이름변경없는 단 하나의 모듈을 내보낼때 사용
