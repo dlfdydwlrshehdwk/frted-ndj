@@ -112,10 +112,10 @@
          function (){ //hover
             $(this).find('.smenu')
             // $(".smenu",this)
-            .slideDown(400);
+            .stop().slideDown(400);
          },
          function(){ //oust
-            $(this).find('.smenu').slideUp(500);
+            $(this).find('.smenu').stop().slideUp(500);
          })
 
 
