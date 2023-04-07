@@ -70,7 +70,9 @@ $(()=>{
             ****************************************/
             if(cv === ''){
                 // 메시지 출력
-                $(this).siblings('.msg').text('필수입력')
+                $(this).siblings('.msg')
+                .text('필수입력')
+                .removeClass('on'); // 빨간색글씨
             }
             else if(cid === 'mid'){
                 // console.log('아이디검사결과',vReg(cv,cid))
@@ -87,6 +89,26 @@ $(()=>{
                     $(this).siblings('.msg').text('멋진아이디네요!').addClass('on');
 
                 }
+            }// else if : 아이디검사 ////
+
+
+            /**************************************** 
+                5. 비밀번호일 경우 유효성 검사하기
+                - 검사기준 : 특수문자,문자,숫자포함 형태의 5~15자리
+            ****************************************/
+           
+            else if(cid === 'mpw'){
+                // console.log('아이디검사결과',vReg(cv,cid))
+                if(!vReg(cv,cid)){ // false 일때 !(NOT연산자)로 true변경
+                    // 불통과일때 메시지
+                    $(this).siblings('.msg').text('특수문자,문자,숫자포함 형태의 5~15자리 ');
+                }
+                else { // 통과시
+                    // 메시지 지우기 : empty() 내용지움 메서드
+                    $(this).siblings('.msg').empty()
+
+                }// else ////
+
             }// else if : 아이디검사 ////
 
 
