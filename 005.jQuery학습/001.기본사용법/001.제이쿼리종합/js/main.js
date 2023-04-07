@@ -82,6 +82,7 @@ $(() => {
     // 2. 버튼셋팅하기 ////////////////
     // 대상: .btns buttons -> btns변수
     btns.hide().first().show();
+    // btns.hide().eq(5).show();
 
     // 3. 공통함수 : actMini() /////////
     // 전달변수 3개
@@ -342,6 +343,7 @@ $(() => {
     .click(function(){
         let fn = () => {// 콜백함수); ///// fadeIn ////////////
 
+            msg.html(`어서 윗층으로가자!`).fadeIn(300);
 
             // 다음버튼 보이기
             $(this).next().delay(500).slideDown(300);
@@ -359,7 +361,7 @@ $(() => {
     .click(function(){
         let fn = () => {// 콜백함수); ///// fadeIn ////////////
 
-
+            msg.html(`이제 곧 탈출이다!`).fadeIn(300)
             // 다음버튼 보이기
             $(this).next().delay(500).slideDown(300);
 
@@ -370,6 +372,102 @@ $(() => {
         actMini(this,1,fn);
 
     }) ///// "1번방으로" 버튼끝 ///////
+
+    /// 12. "헬기를호출" 버튼 클릭시 ///
+    .next()
+    .click(function(){
+        let fn = () => {// 콜백함수); ///// fadeIn ////////////
+
+            msg.html(`도와줘요!`).fadeIn(300)
+
+            // 1번방에 있는 단체좀비 달려들기
+            bd.eq(1).find('.mz').fadeIn(300)
+            .animate({
+                right : bd.eq(1).width() + 'px'
+            },3000,'easeInExpo')
+
+            // 헬기등장
+            $('.heli').animate({
+                left : '20%' // 미니언즈 위치까지 이동
+            },4000,'easeOutBack',function(){ // 콜백함수 헬기이동완료후
+                $(this).attr('src','images/heli2.png');
+                // 원본미니언즈는 사라짐
+                mi.hide();
+
+            })
+            .delay(500) 
+            .animate({
+                left : '70%' // 오른쪽끝으로
+            },4000,'easeInOutCirc',function(){
+                // 끝쪽에서 조종사 좀비로
+                $(this).attr('src','images/heli3.png')
+                .delay(300)
+                .animate({
+                    left : '100%' // 아주천천히 바깥으로나감
+                },10000,'linear',()=>{
+                    // 헬기나간후 콜백함수
+                    // 간판떨어뜨리기 건물무너지기
+                    // 1단계 : 중간까지 떨어짐
+                    // -> 간판에 class 'on'주기
+                    let tit = $('.tit');
+                    tit.addClass('on');
+                    // 2단계 : 맨 아래까지 떨어짐
+                    // 3초후 간판에 class 'on2' 추가
+                    setTimeout(()=>{
+                        tit.addClass('on2');
+                    },3000)
+
+                    // 건물 무너뜨리기
+                    // 간판떨어진 후 실행 (6초)
+                    setTimeout(()=>{
+                        bd.parent().addClass('on');
+                        // parent() 부모요소인 .building
+                    },6000);
+
+                    // 추가구현 6초 + 건물무너지는시간 포함 +
+                    // 건물 무너진후 좀비 하나 올라와 오른쪽으로 사라지기
+                    setTimeout(()=>{
+                        // 건물의 기울기 복구
+                        bd.parent()
+                        .attr('style','transform:rotate(0deg) !important'); // 애니메이션 각도보다 우선순위 강제로 올림
+
+                        // 7번방 좀비 선택
+                        bd.eq(7).find('.mz')
+                        .animate({
+                            bottom : '586%'
+                        },5000)
+                        .delay(3000)
+                        .animate({
+                            right : '-244%'
+                        },5000)
+                    },16000)  
+
+                })
+            })
+
+        }; ///////////// fn함수 /////////
+
+
+        // 공통함수 호출! : 0번방으로
+        actMini(this,0,fn);
+
+    }) ///// "헬기를호출" 버튼끝 /////// 모든버튼 마무리
+
+    // 간판에 마우스 오버시 / 아웃시 색상변경하기
+    // hover(함수1, 함수2)
+    $('.tit').hover(function(){
+        $(this)
+        .css({
+            backgroundColor : 'skyblue',
+            color : 'white'
+        })
+    },function(){
+        $(this)
+        .css({
+            backgroundColor : '',
+            color : ''
+        })
+    })
 
 
 }); /////////////// jQB ////////////////////
