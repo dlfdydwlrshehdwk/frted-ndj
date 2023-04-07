@@ -51,6 +51,13 @@ const indic = $('.indic li');
 // 각 페이지별 등장 
 const minfo = $('.minfo');
 
+// 인스턴스 생성시 접근하여 변경가능한 속성 2가지 선정함
+
+// (1) 이동시간 
+this.sc_speed = 700;
+// (2) 이징값
+this.easing = 'easeInOutQuint';
+
 
 /********************************************* 
     함수명 : this.wheelFn
@@ -100,8 +107,10 @@ this.chgMenu = () =>  {
 
 
     // 1. 클릭된 a요소의 부모 li 순번을 구함 === pno
-    let idx = $(this).parent().index();
-    console.log('나클',this,idx);
+    let idx = $(event.currentTarget).parent().index();
+    console.log('나클',this,event.currentTarget,idx);
+    // this키워드는 생성자함수의 객체를 가리킴
+    // 따라서 이벤트 발생자신은 event.currentTarget
 
     // 2. 전역페이지번호에 순번 업데이트
     pno = idx;
@@ -119,7 +128,8 @@ this.chgMenu = () =>  {
 
 this.chkCrazy = (seq) => { // seq 관리변수 순번
     prot[seq] = 1;
-    setTimeout(()=>prot[seq] = 0 ,800)
+    setTimeout(()=>prot[seq] = 0 ,this.sc_speed)
+    // 생성시 셋팅가능한 이동시간(이동시간동안 막기)
 } // chkCrazy 함수 ////
 
 /*********************************************** 
@@ -130,7 +140,8 @@ this.movePg = () => {
     // 대상 : html, body -> 두개를 모두 잡아야 공통적으로 적용됨
     $('html,body').animate({
         scrollTop : ($(window).height() *pno)+'px'
-    },800,'easeInOutQuint',
+    },this.sc_speed, // 생성시 셋팅가능한 이동시간
+    this.easing
     // showEle // 이동후 콜백함수호출
     );
 
@@ -173,7 +184,7 @@ this.movePg = () => {
  // 윈도우 휠이벤트 발생시
  $(window).on('wheel',this.wheelFn);
 // gnb메뉴 클릭시 : 대상 - .gnb a
-$('.gnb a').on('click',this.this.chgMenu);
+$('.gnb a').on('click',this.chgMenu);
 // 인디케이터 클릭시 : 대상 - .indic a
 $('.indic a').click(this.chgMenu);
 
