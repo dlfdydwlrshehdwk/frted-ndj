@@ -6,6 +6,21 @@
 <!-- jQuery library -->
 <script src="jquery-1.7.2.min.js"></script>
 <script>
+
+	/* 
+		[ 요약 ]
+
+		$('~li',this) 틸드(~) 다음 형제들 선택자
+
+		li중 요소 다음 형제요소 특정순번(숫자)까지만 선택하는 방법
+		$("~li:nth-child(-n+ 숫자 )",this)
+
+		$(this).nextAll() this 다음형제들 모두 선택
+	
+		nextUntil(선택자)  다음형제들중 특정순번까지만 선택
+		-> 선택자 순번은 제외 그 앞까지만 선택
+		$(this).nextUntil("li:nth-child(5)")
+	*/
 $(document).ready(function(e) {
 
 	// 크기설정 트랜지션 적용하려면
@@ -15,7 +30,7 @@ $(document).ready(function(e) {
     //미션: li중 하나를 클릭하면  그 뒤의 형제요소의 li들이 모두 width: 500px, height: 300px로 변경되고 배경이미지를 넣으시오.(배경이미지는 웹경로로 넣고 트랜지션 설정도 하시오.)
 	$('li').on('click', function(){
 
-		$('~li',this)
+		// $('~li',this)
 		// 틸드(~) 다음형제들 선택자
 
 		// li중 클릭된 요소 다음 형제요소 특정순번까지만 선택하는 방법은?
@@ -25,7 +40,7 @@ $(document).ready(function(e) {
 		// $(this).nextAll()
 		// nextAll() - 다음형제들 선택 트래버싱 메서드
 
-		// $(this).nextUntil("li:nth-child(5)")
+		$(this).nextUntil("li:nth-child(5)")
 		// nextUntil(선택자) - 다음형제들중 특정순번까지만 선택
 		// -> 선택자순번은 빠진다. 그 앞까지만 선택
 

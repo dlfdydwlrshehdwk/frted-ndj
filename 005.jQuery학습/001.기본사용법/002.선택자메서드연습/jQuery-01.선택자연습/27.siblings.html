@@ -7,13 +7,27 @@
 <script src="../jquery-3.6.3.min.js"></script>
 <script src="../jquery-ui.min.js"></script>
 <script>
+        /* 
+            [ 요약 ]
+
+            siblings() - 선택요소를 제외한 나머지 형제요소
+
+            siblings(필터) - 필터에 특정요소나 요소명을쓰면 다른형제요소들 중 
+            특정요소만 선택
+
+
+        */
+
+
 $(document).ready(function(e) {
   /* 
     [7. siblings() 메서드]
     - 선택요소를 제외한 나머지 형제요소를 선택함
+    .siblings() - 나빼고다 !
 
     ->>> siblings(필터) 메서드
     - 필터에 특정요소나 요소명을 쓰면 다른 형제요소들 중 특정요소만 선택함
+    .siblings('.my') - 형제들중 .my 요소 만!
   */
 
   // 전체박스

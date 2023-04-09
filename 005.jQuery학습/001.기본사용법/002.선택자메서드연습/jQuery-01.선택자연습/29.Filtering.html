@@ -6,6 +6,20 @@
 <!-- jQuery library -->
 <script src="jquery-1.7.2.min.js"></script>
 <script>
+		/* 
+			[ 요약 ]
+
+			filter(선택자) : 선택요소의 내부에서 다시한번 선택
+			div 중 클래스가 middle인 요소를 선택
+			$('div').filter('.middle')
+
+			is() 메서드
+			$('p').is('.my') -> 선택된 p요소의 클래스가 'my' 인가?
+			-> 맞으면 true 틀리면 false 
+		*/
+
+
+
 $(document).ready(function(e) {
 	// first() 메서드 : 선택요소가 집합일때 그 중 첫번째 요소
 	// last() 메서드 : 선택요소가 집합일때 그 중 마지막째 요소
