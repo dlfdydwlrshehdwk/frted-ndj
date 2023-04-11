@@ -8,15 +8,16 @@
 @import url(./common.css);
 
 /* 2-1. 카테고리 페이지 상단영역 */
-/* 2-1-1. 서브타이틀 */
+/* 2-1-1.서브타이틀 */
 .stit{
     font-family: pist;
     font-weight: normal;
     font-size: 50px;
     text-align: center;
-    padding: 40px 0 20px;    
+    padding: 40px 0 20px;
 }
-/* 2-1-2. 서브메뉴(LNB:Local Navigation Bar) */
+
+/* 2-1-2.서브메뉴(LNB:Local Navigation Bar) */
 .lnb{
     padding: 5px 0 50px;
 }
@@ -35,14 +36,15 @@
     /* 트랜지션 */
     transition: color .5s;
 }
-/* 첫번째 메뉴 + 오버시 빨간색 글자 */
-.lnb a:hover,
-.lnb li:first-child a{
+/* 첫번째메뉴 + 오버시 빨간색 글자 */
+.lnb li:first-child a,
+.lnb a:hover{
     color: red;
 }
+
 /* 2-2. 카테고리 페이지 컨텐츠영역 */
 
-/* fashion */
+/************************ fashion ************************/
 .fashion .bg1-1{
     background-image: url(../images/fashion/cont1-1a.jpg);
 }
@@ -62,7 +64,7 @@
     background-image: url(../images/fashion/cont2-3a.jpg);
 }
 
-/* beauty */
+/************************ beauty ************************/
 .beauty .bg1-1{
     background-image: url(../images/beauty/cont1-1a.jpg);
 }
@@ -82,7 +84,7 @@
     background-image: url(../images/beauty/cont2-3a.jpg);
 }
 
-/* living */
+/************************ living ************************/
 .living .bg1-1{
     background-image: url(../images/living/cont1-1a.jpg);
 }
@@ -102,7 +104,7 @@
     background-image: url(../images/living/cont2-3a.jpg);
 }
 
-/* people */
+/************************ people ************************/
 .people .bg1-1{
     background-image: url(../images/people/cont1-1a.jpg);
 }
@@ -122,7 +124,7 @@
     background-image: url(../images/people/cont2-3a.jpg);
 }
 
-/* video */
+/************************ video ************************/
 .video .bg1-1{
     background-image: url(../images/video/cont1-1a.jpg);
 }
@@ -142,7 +144,7 @@
     background-image: url(../images/video/cont2-3a.jpg);
 }
 
-/* runway */
+/************************ runway ************************/
 .runway .bg1-1{
     background-image: url(../images/runway/cont1-1a.jpg);
 }
@@ -162,7 +164,7 @@
     background-image: url(../images/runway/cont2-3a.jpg);
 }
 
-/* time & gem */
+/************************ time & gem ************************/
 .time-gem .bg1-1{
     background-image: url(../images/time-gem/cont1-1a.jpg);
 }
@@ -182,7 +184,7 @@
     background-image: url(../images/time-gem/cont2-3a.jpg);
 }
 
-/* shopping */
+/************************ shopping ************************/
 .shopping .bg1-1{
     background-image: url(../images/shopping/cont1-1a.jpg);
 }

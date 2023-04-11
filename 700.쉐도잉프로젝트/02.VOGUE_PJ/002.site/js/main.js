@@ -94,19 +94,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     // 상단이동버튼(.tbtn) 클릭시 상단이동하기
-    // 부드러운 스크롤 pos 스크롤 위치값 업데이트필요
-    tbtn.onclick = () => {
-        event.preventDefault();
-        // console.log(pos);
+    // 부드러운 스크롤 pos 스크롤 위치값 업데이트필요!
+    tbtn.onclick = (e) => {
+        // 기본이동막기
+        e.preventDefault();
         // 부드러운 스크롤 전역 스크롤값을
-        // 0으로 변경하여 위치값 일치시킴
+        // 0으로 변경하여 위치값 일치시킴!
         pos = 0;
 
         // 위치이동하기
-        window.scrollTo(0,0)
-
-    }// onclick ////
-
+        window.scrollTo(0,0);
+    }; /////////////// click ///////////////
 
 
 }); /////////////// 로딩구역 ////////////////////
