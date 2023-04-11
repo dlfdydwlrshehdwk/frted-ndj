@@ -79,10 +79,10 @@
   }
 
   /* 8. 등장액션 클래스 보이게 처리 */
-  .scAct {
+  /* .scAct {
     transform: translateY(0);
     opacity: 1;
-  }
+  } */
 
   /* 9. 컨텐츠박스 타이틀 */
   .cbx h2 {
