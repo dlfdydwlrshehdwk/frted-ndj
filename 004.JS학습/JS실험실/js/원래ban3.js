@@ -1,6 +1,4 @@
 // JS실험실: 03.배너스타일 JS -  ban.js
-// 부드러운 드래그위해 [변경1][변경2][변경3][변경4][변경5] -> [업데이트 2023.03.31]
-// 변경사항은 "[변경" 으로 검색이동할것!
 
 // HTML태그 로딩후 loadFn함수 호출! ///
 window.addEventListener("DOMContentLoaded", loadFn);
@@ -119,10 +117,6 @@ function loadFn() {
         let clist = slide.querySelectorAll("li");
         // clist -> current list 현재 리스트
 
-        // [변경1]슬라이드 부모박스 width값 -> %이동값을 px변환위해!
-        let sldParent = slide.parentElement.offsetWidth;
-        console.log("배너부모W:",sldParent);
-
         // 1. 방향에 따른 분기
         // 1-1. 오른쪽버튼 클릭시 ////////////////
         if (seq) {
@@ -136,9 +130,7 @@ function loadFn() {
             //       li를 잘라서 맨뒤로 보낸다!
             slide.appendChild(clist[0]);
             // (1-2) 동시에 left값을 -110%으로 변경한다!
-            // slide.style.left = "-110%";
-            // [변경2]-> px변환+드래그값 보정!
-            slide.style.left = -(sldParent*1.1-rx)+"px";
+            slide.style.left = "-110%";
             // (1-3) 트랜지션 없애기!
             slide.style.transition = "none";
 
@@ -152,7 +144,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 10); //// 타임아웃 [변경5]-> 시간을 10줌!(모바일시보정) //////
+            }, 1); //// 타임아웃 //////
             // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
             // 1만써도 괜찮음~
 
@@ -174,10 +166,7 @@ function loadFn() {
             slide.insertBefore(clist[clist.length - 1], clist[0]);
 
             // (2) 동시에 left값을 -330%로 변경한다.
-            // slide.style.left = "-330%";
-            // [변경3]-> px변환+드래그값 보정!
-            slide.style.left = -(sldParent*3.3-rx)+"px";
-
+            slide.style.left = "-330%";
             // 이때 트랜지션을 없앤다(한번실행후 부터 생기므로!)
             slide.style.transition = "none";
 
@@ -189,7 +178,7 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-out";
-            }, 10); ////// 타임아웃  [변경5]-> 시간을 10줌!(모바일시보정) /////////
+            }, 0); ////// 타임아웃 /////////
         } //////////// else : 왼쪽클릭시 //////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
@@ -327,9 +316,6 @@ function loadFn() {
     함수명: goDrag
     기능: 다중 드래그 기능 적용
 *********************************************/
-// [변경5] 위치차이값을 이동함수에서 드래그 이동값 보정위해 전역으로!
-let rx = 0; // 최초 버튼 클릭시를 위해 초기값 0셋팅 필수!
-
 function goDrag(obj) {
     // obj - 드래그 대상(슬라이드 요소)
 
@@ -345,7 +331,7 @@ function goDrag(obj) {
     // (4) 움직일때 위치포인트 move x, move y
     let mvx, mvy;
     // (5) 위치이동 차이 결과변수 result x, result y
-    let ry; // -> rx를 함수바깥 전역으로!
+    let rx, ry;
 
     // 함수만들기 //////////////
     // (1) 드래그상태 true
@@ -460,7 +446,7 @@ function goDrag(obj) {
     // 대상: window
     window.addEventListener("resize", () => {
         // 화면 크기변경시 lx값 업데이트 하기!
-        // lx = -obj.parentElement.clientWidth * 2.2;
+        lx = -obj.parentElement.clientWidth * 2.2;
         // 마지막 위치값이 슬라이드 부모박스이 -220%
         // 이므로 이것을 업데이트 해준다!
         // 이때 앞에 마이너스(-)중요!!!
@@ -505,6 +491,3 @@ function goWhere(obj) {
         obj.style.transition = "left .2s ease-in-out";
     }
 } ///////////////// goWhere 함수 //////////////////
-
-// 리사이즈시 리로드!
-window.addEventListener("resize",()=>location.reload());
