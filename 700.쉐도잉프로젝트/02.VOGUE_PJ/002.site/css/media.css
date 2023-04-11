@@ -65,12 +65,12 @@
   }
 
   /* 6. 비율박스 비율변경 */
-  .rbx.pt1::before {
-    padding-top: 150%;
+  .pt1 {
+    aspect-ratio: 1/1.5;
   }
 
-  .rbx.pt2::before {
-    padding-top: 75%;
+  .pt2 {
+    aspect-ratio: 1/0.7;
   }
 
   /* 7. 모바일 버튼 보이기 */
@@ -92,6 +92,11 @@
   /* 10. 오버시(포커스갈때) 테두리 */
   .cbx:hover::after {
     border: 2.5vw solid red;
+  }
+
+  /* 컨텐츠 영역박스 min height조정 */
+  .cont{
+    min-height: auto;
   }
 
   /* 11. 하단영역 */
