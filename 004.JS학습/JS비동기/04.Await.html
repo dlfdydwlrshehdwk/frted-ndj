@@ -107,13 +107,13 @@
                     let ajax = new XMLHttpRequest();
     
                     // (2) 비동기 파일요청 열기(전송기능 메모리생성)
-                    ajax.open('https://koreascience.kr/article/JAKO201812055796720.pdf')
+                    ajax.open('GET','https://koreascience.kr/article/JAKO201812055796720.pdf')
     
                     // (3) 결과를 리턴받는 onload이벤트 함수구역만들기
                     ajax.onload=function(){
                         console.log(ajax.status);
                         if(ajax.status ===200){
-                            성공함수(ajax.responseURL);
+                            success(ajax.responseURL);
                             // 성공시 전송받은 파일 URL을 받는다.
                         } // if ////
 
@@ -130,17 +130,6 @@
                     document.getElementById('doc').innerHTML=
                         `<iframe src='${txt}' style='width:100%;height:100%'></iframe>`;
                 }; // 문서보여줘 함수 ////
-
-                
-                파일약속.then(
-                    function(성공메시지){
-                        화면뿌려('파일로딩완료',성공메시지)
-                        document.getElementById('doc').innerHTML=
-                        `<iframe src='${성공메시지}' style='width:100%;height:100%'></iframe>`;
-                    },
-                    function(실패메시지){
-                        화면뿌려(실패메시지);
-                    }); // 파일약속 then ////
                     
                     // 실행함수 호출 
                     문서보여줘(await 파일약속);
