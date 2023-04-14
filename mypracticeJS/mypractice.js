@@ -1,90 +1,181 @@
 
-window.addEventListener("DOMContentLoaded",()=>{
-    console.log("로딩완료");
+( function( $ ) {
 
-    // 배열데이터
-    let by = ["안녕하세요","반갑습니다","안녕히가세요"]
-    let by2 = ["안녕하세요의 내용","반갑습니다의 내용","안녕히가세요의 내용"]
-
-    // li
-    const li = document.querySelectorAll('li');
-    // 버튼
-    const btns = document.querySelectorAll('.btns button')
-    // 최초출력
-    li.forEach((ele,idx)=>{
-        ele.innerHTML = by[idx]; 
-    })
+    // Settings
+    const items = 28; // Segments on wheel
+    const spinSpeed = randNumber( 1, 10 ); // Spin speed multiplier
+    const spinDuration = randNumber( 2, 5 ); // In seconds
+    const spinDirection = randNumber( 0, 1 ) ? 'up' : 'down'; // Animate up  or down
     
-    // 배열에서 자른값을 넣을 데이터변수
-    let bs;
+    // Vars
+    const $wheel = $( '.wheel .wheel__inner' );
+    const diameter = $wheel.height();
+    const radius = diameter / 2;
+    const angle = 360 / items;
+    const circumference = Math.PI * diameter;
+    const height = circumference / items;
     
-    console.log(by)
+    // Trackers
+    let wheelAngle = 0;
+    const wheelStarted = new Date();
+    
+    // Add segments to the wheel
+    for ( let i = 0; i < items; i++ ) {
+        var startAngle = angle * i;
+        var endAngle = angle * ( i + 1 );
+        var transform = `rotateX(${ startAngle }deg) translateZ(${ radius }px)`;
 
-    // bnts[1] 오른쪽버튼 을 누르면 함수실행
-    // li의 각요소들에게 트랜지션을 먼저 없애고 투명하게
-    btns[1].onclick = () =>{
-        li.forEach((ele)=>{
-            ele.style.transition = 'none';
-            ele.style.opacity = 0;
-        })
-         
-        //  배열에 값을 담을 변수
-        bs = by[2];
-
-        // 맨뒤에 요소를 제거! by배열의
-        by.pop();
-        // console.log('by',by,'bs',bs);
-
-        // 배열에 맨앞에 추가해! bs값을
-        by.unshift(bs);
-        // console.log(by)
-        // li업데이트
-        li.forEach((ele,idx)=>{
-            ele.innerHTML = by[idx]; 
-        })
-        // 업데이트후 시간차를 주기위해 셋타임아웃 사용
-        // 각li요소 들에게 트랜지션을 선 부여 후 투명도 1
-        setTimeout(()=>{
-            li.forEach((ele)=>{
-                ele.style.transition = '.5s'
-                ele.style.opacity = 1;
-            })
-        },500)
+        var $segment = $( '<div>', {
+            class: 'wheel__segment',
+            html: `<span>Item ${ i }</span>` 
+        } ).css( {
+            'transform': transform,
+            'height': height,
+        } );
+        
+        // Add start and end angles for this segment
+        $segment.attr( 'data-start-angle', startAngle );
+        $segment.attr( 'data-end-angle', endAngle );
+        
+        $segment.appendTo( $wheel );
     }
-
-
-
-    // 버튼[0] 왼쪽을 누르면 함수실행
-    // li의 각요소들에게 트랜지션을 먼저 없애고 투명하게
-    btns[0].onclick = () => {
-        li.forEach((ele)=>{
-            ele.style.transition = 'none';
-            ele.style.opacity = 0;
-        })
-
-        // 배열의 값을 담을 변수
-        let ba;
-
-        // ba는 배열의 맨처음값
-        ba = by[0];
-        // by의 맨앞을 삭제해!
-        by.shift();
-        // by에 맨뒤에 ba값을 추가해!
-        by.push(ba);
-        // li업데이트
-        // li의 각요소들에게 배열데이터를 순번에 맞게 출력
-        li.forEach((ele,idx)=>{
-            ele.innerHTML = by[idx]; 
-        })
-
-        // 시간차를 주기위해 셋타임아웃 사용 
-        // li의 각요소들에게 트랜지션을 먼저 부여후 투명도 1
-        setTimeout(()=>{
-            li.forEach((ele)=>{
-                ele.style.transition = '.5s'
-                ele.style.opacity = 1;
-            })
-        },500)
+    
+    
+    /**
+     * Print debug info to DOM
+     *
+     * @param {object}
+     */
+    function logInfo( data ) {
+        const $log = $( 'textarea#log' );
+        let logString = '';
+        
+        logString += '-----' + "\n";
+        for ( var key in data ) {
+            logString += `${ key }: ${ data[ key ] }` + "\n";
+        }
+        logString += "\n";
+        
+        // Prepend log to last value
+        logString += $log.val();
+        
+        // Update field value
+        $log.val( logString );
     }
+    
+    /**
+     * Get random number between min & max (inclusive)
+     *
+     * @param {number} min
+     * @param {number} max
+     * @returns {number}
+     */
+    function randNumber( min, max ) {
+        min = Math.ceil( min );
+        max = Math.floor( max );
+        return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+    }
+    
+    /**
+     * Limit angles to 0 - 360
+     *
+     * @param {number}
+     * @returns {number}
+     */
+    function normaliseAngle( angle ) {
+        angle = Math.abs( angle ) % 360;
+        angle = 360 - angle;
+        return angle;
+    }
+    
+    /**
+     * Get the wheel segment at a specific angle
+     *
+     * @param {number} angle
+     * @returns {jQuery}
+     */
+    function segmentAtAngle( angle ) {
 
-}); // 로딩구역
+        angle = normaliseAngle( angle );
+    
+        const $found = $wheel.find( '.wheel__segment' ).filter( function() {
+            const startAngle = parseFloat( $( this ).data( 'start-angle' ) );
+            const endAngle = parseFloat( $( this ).data( 'end-angle' ) );
+            return angle >= startAngle && angle < endAngle;
+        } );
+        
+        return $found;
+    }
+    
+    /**
+     * @var {integer} Unique ID of requestAnimationFrame callback
+     */
+    var animationId = window.requestAnimationFrame( function tick() {
+    
+        // Time passed since wheel started spinning (in seconds)
+        const timePassed = ( new Date() - wheelStarted ) / 1000;
+        
+        // Speed modifier value (can't be zero)
+        let speedModifier = parseInt( spinSpeed ) || 1;
+        
+        // Decelerate animation if we're over the animation duration
+        if ( timePassed > spinDuration ) {
+
+            const decelTicks = ( spinDuration - 1 ) * 60;
+            const deceleration = Math.exp( Math.log( 0.0001 / speedModifier ) / decelTicks );
+            const decelRate = ( 1 - ( ( timePassed - spinDuration ) / 10 ) ) * deceleration;
+
+            speedModifier = speedModifier * decelRate;
+
+            // Stop animation from going in reverse
+            if ( speedModifier < 0 ) {
+                speedModifier = 0;
+            }
+        }
+        
+        // Print debug info
+        logInfo( {
+            timePassed: timePassed,
+            speedModifier: speedModifier,
+            wheelAngle: wheelAngle,
+            normalisedAngle: normaliseAngle( wheelAngle )
+        } );
+        
+        // Wheel not moving, animation must have finished
+        if ( speedModifier <= 0 ) {
+            window.cancelAnimationFrame( animationId );
+
+            const $stopped = segmentAtAngle( wheelAngle );
+            alert( $stopped.text() );
+
+            return;
+        }
+        
+        // Increase wheel angle for animating upwards
+        if ( spinDirection === 'up' ) {
+            wheelAngle += speedModifier;
+        }
+        
+        // Decrease wheel angle for animating downwards
+        else {
+            wheelAngle -= speedModifier;
+        }
+        
+        // CSS transform value
+        const transform = `rotateX(${wheelAngle}deg) scale3d(0.875, 0.875, 0.875)`;
+
+        $wheel.css( {
+            '-webkit-transform': transform,
+            '-moz-transform': transform,
+            '-ms-transform': transform,
+            '-o-transform': transform,
+            'transform': transform,
+            'transform-origin': `50% calc(50% + ${height/2}px)`,
+            'margin-top': `-${height}px`
+        } );
+    
+        // New tick
+        animationId = window.requestAnimationFrame( tick );
+    } );
+    
+} )( jQuery );
