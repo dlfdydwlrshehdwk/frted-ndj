@@ -1,51 +1,24 @@
-*, *:before, *:after {
-    box-sizing: border-box;
-  }
-  
-  .app {
+@charset "utf-8";
+
+html, body,ul{
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    padding: 15px;
-  }
-  
-  textarea#log {
-    width: 300px;
-  }
-  
-  .wheel {
-    perspective: 1000px;
-    border: 1px solid #333;
-    margin: 0 25px;
-    flex-grow: 1;
-  }
-  .wheel:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: red;
-    transform: translateY(-50%);
-  }
-  .wheel .wheel__inner {
-    position: relative;
-    width: 200px;
-    height: 350px;
-    margin: 0 auto;
-    transform-style: preserve-3d;
-  }
-  .wheel .wheel__inner .wheel__segment {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    border: 1px solid #000;
+    width: 300px;
+    margin: 0 auto;
+}
+li{
     width: 100%;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    background-color: #ccc;
-  }
-  .wheel .wheel__inner .wheel__segment:nth-child(even) {
-    background-color: #ddd;
-  }
+    text-align: center;
+    flex: 1;
+    text-decoration: none;
+    list-style: none;
+    line-height: 6;
+}
