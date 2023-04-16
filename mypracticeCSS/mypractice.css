@@ -4,8 +4,45 @@ html, body,ul{
     margin: 0;
     padding: 0;
 }
+.wrap{
+    display: flex;
+    position: relative;
+    height: 100vh;
+    
+}
+.bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-size: 40px;
+    background:linear-gradient(to right, red,white, blue);
+    background-clip: text;
+    -webkit-background-clip: text;
 
-ul{
+
+    -webkit-text-fill-color: transparent;
+    /* -webkit-animation: aitf 80s linear infinite; */
+    margin: 0 auto;
+    text-align: center;
+    background-position: left 0;
+    transition: 1s linear;
+    transition: 3s;
+}
+span{
+    left: 50%;
+    top: 10%;
+    /* background:linear-gradient(to right, red,white, blue); */
+    font-size: 40px;
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    transform: translate(-50%,-50%);
+}
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}
+/* ul{
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,4 +67,14 @@ li{
     perspective: 100px;
     margin-top: 50px;
     transform: rotateZ('30deg');
-}
+}  */
+
+
+
+
+
+
+
+
+
+
