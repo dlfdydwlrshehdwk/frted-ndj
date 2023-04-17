@@ -1,4 +1,4 @@
-{
+[{
 	"scm.alwaysShowActions": false,
 	"scm.alwaysShowRepositories": false,
 
@@ -3064,6 +3064,17 @@
 
 	"vue-semantic-server.trace.server": "off",
 
-	"vue-syntactic-server.trace.server": "off"
+	"vue-syntactic-server.trace.server": "off",
 
-}
+	"멍뭉이이름" : "코리올라누스",
+	"멍뭉이사는곳" : "제주도",
+	"멍뭉이출신지역" : "이탈리아",
+	"멍뭉이간식" : "사시미"
+},
+{
+
+	"고양이이름" : "먼치킨",
+	"고양이사는곳" : "평택항",
+	"고양이출신지역" : "뉴올리언즈",
+	"고양이간식" : "참치"
+}]

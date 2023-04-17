@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>프로미스 적용 연습1</title>
+        <title>프로미스 적용 연습2 - async, await</title>
         <script>
             
 
@@ -37,6 +37,11 @@
                 4. 제이슨 맨 마지막 항목 뒤에 콤마(,) 를 남길 수 없다.
                 -> 자바스크립트에서는 마지막콤마가 허용된다. 혼란하지말자
             */
+
+            // 어씽크/어웨이트 를 위한 어씽크 함수만들기
+            async function myAfn(){
+
+            
 
             // 1. 변수 = new Promise((성공함수)=>{코드})
             // 프라미스 코드에 XMLHttpRequest() 객체로 제이슨 로딩함
@@ -73,34 +78,54 @@
                 ajax.send();
             }); //// myProm ////
 
-            // 2. 프로미스변수.then((성공전달변수)=>{코드})
-            // 성공한 제이슨 로딩파일을 전달받아 활용한다
-
-            myProm.then(success=>{ // success 성공시 전달변수
-                console.log('전달파일',success)
-
+            // html코드 생성 함수
+            const makeHtml = obj => { // obj - 제이슨 객체
                 // html 코드만들기
                 let hcode = `
                 <h1>우리집멍뭉이 정보 : </h1>
                 <ol>
-                    <li>이름 : ${success[0]["멍뭉이이름"]}</li>
-                    <li>사는곳 : ${success[0]["멍뭉이사는곳"]}</li>
-                    <li>태생지 : ${success[0]["멍뭉이출신지역"]}</li>
-                    <li>좋아하는간식 : ${success[0]["멍뭉이간식"]}</li>
+                    <li>이름 : ${obj[0]["멍뭉이이름"]}</li>
+                    <li>사는곳 : ${obj[0]["멍뭉이사는곳"]}</li>
+                    <li>태생지 : ${obj[0]["멍뭉이출신지역"]}</li>
+                    <li>좋아하는간식 : ${obj[0]["멍뭉이간식"]}</li>
                 </ol>
                 <h1>우리집고양이 정보 : </h1>
                 <ol>
-                    <li>이름 : ${success[1]["고양이이름"]}</li>
-                    <li>사는곳 : ${success[1]["고양이사는곳"]}</li>
-                    <li>태생지 : ${success[1]["고양이출신지역"]}</li>
-                    <li>좋아하는간식 : ${success[1]["고양이간식"]}</li>
+                    <li>이름 : ${obj[1]["고양이이름"]}</li>
+                    <li>사는곳 : ${obj[1]["고양이사는곳"]}</li>
+                    <li>태생지 : ${obj[1]["고양이출신지역"]}</li>
+                    <li>좋아하는간식 : ${obj[1]["고양이간식"]}</li>
                 </ol>
                 `;
-                    
-                // 화면출력하기
-                화면뿌려(hcode)
-            }); // Promise then // 
 
+                return hcode;
+
+            } // makeHtml ////
+                
+                // 먼저 변수에 await를 사용 프라미스 리턴값 할당하기
+                let temp = await myProm;
+
+                // 화면출력하기
+                화면뿌려(makeHtml(temp));
+
+                /* 
+                    [ await 사용시 주의사항 ] 
+                    await에서 프라미스 인스턴스를 변수에 담지않고 
+                    사용하면 Pending(보류)처리된 인스턴스가 전달되는 경우가
+                    생긴다.
+
+                    따라서 변수에 await 프라미스 인스턴스를 담아서 
+                    그 리턴값을 확정한 후  
+                    (변수할당이란 값을 특정주소지에 넣고 사용할 준비를하는것)
+                    그 값으로 함수를 다시 호출하던지 
+                    후속코드작업을 하면 된다.
+                    -> await를 담은 변수에 값이 할당되기전엔 그 값을 이용하는 코드도 모두 대기상태다. 
+                */
+
+            }//async function////
+
+            // async 필수 최초호출
+            myAfn();
         }); // 로드구역 ////
 
 
@@ -136,44 +161,53 @@
         <div id="doc"></div>
     </body>
 </html>
-<!-- 나의 비동기 제이슨 Promise then 요약
+<!-- 
+    나만의 async await 정리
 
-    로드구역 - 기본적으로 로딩구역은 만들어줍니다.
+    Promise then보다 나은점. 코드가 조금더 짧다 이상.
 
-    프로미스변수 생성 - 변수myProm = new Promise((성공함수)=>{코드})
+    로딩구역생성
 
-    객체 인스턴스 생성 - 변수ajax = new XMLHttpRequest();
+    기본 함수식에서 async를 붙이는게 핵심
+    어씽크 함수 생성 - async function 함수작명(){
 
-    변수에 제이슨파일요청 - 변수ajax.open('GET',주소-.json);
+        프로미스 생성 const 변수작명1 = new Promise((성공함수작명)=>{
+            XML객체 인스턴스생성 - let 변수작명2 = new XMLHttpRequest();
 
-    제이슨 파일 응답형식 설정
-    변수.responseType = 'json';
+            비동기파일요청제이슨 - 변수작명2,open('GET',주소.파일.json);
+            타입설정 - 변수작명2.responseType = 'json';
 
-    결과리턴할 onload 이벤트 구역 생성
-    변수.onload = function(){
-        if(변수ajax.status == 200){ 200 - 성공함수
+            결과리턴할 onload구역 만들기 - 변수작명2.onload = function(){
+                if(변수작명2.status == 200){
+                    - 성공함수 부분 스테이터스200
+                    성공함수작명(변수작명2.response)
+                }
+                else{
+                    실패함수
+                }
+            }
+            비동기요청보내기 - 변수작명2.send();
 
+            이러면 제이슨데이터 받아오기 완
+        })
+
+        비동기해서 이제 사용할 코드작성 
+        const 작명3 = obj =>{ obj가 제이슨객체를뜻함
+            - then과 다른점은 성공변수를 쓰는게 아니라 obj에서 데이터를 뽑을예쩡
+            ex) let hcode = `
+            <span>${obj["데이터요소명"]}</span>
+            `
+            return hcode;
+            - 리턴꼭꼭
         }
-        else {
-            실패함수
-        }
 
-        비동기 요청보내기 - 변수ajax.send();
+        프라미스리턴값 할당 let 작명4 = await 변수작명1
+
+        출력하기 - 어디.innerhtml = 작명3(작명4)
+
+        어씽크함수는 최초호출을 해줘야됨
+        함수작명();
+
     }
-
-    이러면 받아오는건 완료 이걸이용해서 then을이용해서 활용한다
-    Promise변수 myProm.then(변수 => { 변수 - 성공시 전달변수
-
-        제이슨데이터를 이용한 작업등 하는 코드
-        ex) let hcode = `<span>ㅎㅇ</span>`;
-        정보읽을땐 `${변수["원하는데이터요소명"]}`
-                    ex) `<span>${성공변수["데이터요소명"]}</span>
-                    하면 그 데이터요소명에맞는 데이터값 출력
-        어디.html = hcode
-
-    })
-
-
-
 
  -->
