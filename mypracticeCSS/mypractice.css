@@ -14,47 +14,88 @@ html, body,ul{
     
 }
 
+/* svg요소 공통 */
+.cbx svg{
+    width: 100%;
+    height: 100%;
+}
+
 .wrap{
+    /* 플렉스박스 */
+    display: flex;
+    /* 플렉스 랩핑박스 */
+    flex-wrap: wrap;
+    width: 100vw;
     height: 100vh;
 }
-.bg{
-    height: 100%;
-}
-.wrap ul{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-}
-ul>li{
-    list-style: none;
+.wrap>section {
+    /* 렐러티브 부모자격 */
+    position: relative;
+    /* 가로, 세로 등분할 채우기 */
     flex: 1;
-    display: flex;
-    align-items: center;
+    /* 한줄에 2개씩 */
+    flex-basis: 50%;
 }
-ul>li>a{
-    font-size: 4rem;
-    background: url(../MPimg/KakaoTalk_20230417_193537028_01.jpg) repeat-y;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-backface-visibility: hidden;
-    -webkit-animation: aitf 4s linear infinite;
+/* 컨텐츠 박스 */
+.cbx{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 정중앙이동 */
+    width: 300px;
+    height: 300px;
+    /* outline: 2px dotted blue; */
 }
-@-webkit-keyframes aitf {
-    0% { background-position: 0% 50%; }
-	100% { background-position: 100% 50%; }
-}
-a:hover{
-    -webkit-text-fill-color: transparent;
-}
-ul>li:first-child a{
-    perspective: 150px;
+.svg2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
 }
 
+/* 사각형 */
+.rt1{
+    /* 배경색 */
+    fill: rgba(0, 0, 255, 0.014);
+    /* 선색 - 기본은 안나옴 */
+    stroke: black;
+    /* 선두께 - 기본은 1px 
+    단위안쓰면 기본적으로 px
+    선두께는 선중앙으로부터 생김*/
+    stroke-width: 20;
+    /* 선끝처리 : stroke-linecap 
+        1) butt : 끝에 중심선이 보임(기본값)
+        2) square : 끝에 사각형으로 덮음
+        3) round : 끝에 둥근모양으로 덮음
+    */
+    stroke-linecap: butt;
 
+    /* [데쉬선 속성 : stroke-dasharray ]
+    - 선,공백 순으로 데쉬선 셋팅함
+    -> 50%를 써본다!
+    -> 6조각 이니까 6배한다!
+    50% * 6 = 300%
+    
+    */
+    stroke-dasharray: 500;
 
+    /* [데쉬어레이 시작위치밀기 : stroke-dashoffset ]
+    stroke-dashoffset값을
+    stroke-dasharray값과 같은
+    값을 주면 공백부터 시작함!
+    */
+    stroke-dashoffset: 500;
+
+    /* stroke-dasharray: 100%; */
+    /* stroke-dashoffset: 102%; */
+    /* 트랜지션:속시이지 */
+    transition: stroke-dashoffset .8s ease-in-out;
+}
+.svg2:hover .rt1{
+    stroke-dashoffset: 0;
+}
 
 
 
