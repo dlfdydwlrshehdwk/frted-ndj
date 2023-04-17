@@ -4,84 +4,54 @@
 font-family: 'Cormorant Garamond', serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Yusei Magic', sans-serif; */
+html{
+    font-size: 1vw
+}
 html, body,ul{
     margin: 0;
     padding: 0;
     font-family: 'Cormorant Garamond', serif;
+    
 }
 
 .wrap{
-    display: flex;
-    position: relative;
     height: 100vh;
-    
 }
 .bg{
-    position: absolute;
     height: 100%;
-    width: 100%;
-    font-size: 40px;
-    /* background:linear-gradient(to right, red,white, blue);
-    background-clip: text;
-    -webkit-background-clip: text;
-
-
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: aitf 80s linear infinite; */
-    margin: 0 auto;
-    text-align: center;
-    background-position: left 0;
-    transition: 1s linear;
-    transition: 3s;
 }
-span{
-    font-size: 80px;
-    left: 50%;
-    top: 10%;
-    background: url(../MPimg/KakaoTalk_20230417_163740095.jpg) repeat-y;
-    
+.wrap ul{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+ul>li{
+    list-style: none;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+ul>li>a{
+    font-size: 4rem;
+    background: url(../MPimg/KakaoTalk_20230417_193537028_01.jpg) repeat-y;
     background-clip: text;
     -webkit-background-clip: text;
-    transform: translate(-50%,-50%);
     -webkit-transform: translate3d(0,0,0);
     -webkit-backface-visibility: hidden;
     -webkit-animation: aitf 4s linear infinite;
-    transition: .2s;
 }
 @-webkit-keyframes aitf {
     0% { background-position: 0% 50%; }
 	100% { background-position: 100% 50%; }
 }
-span:hover{
+a:hover{
     -webkit-text-fill-color: transparent;
-    
 }
-/* ul{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #000;
-    width: 300px;
-    margin: 0 auto;
-    transform-origin: left;
+ul>li:first-child a{
+    perspective: 150px;
 }
-li{
-    width: 100%;
-    text-align: center;
-    flex: 1;
-    text-decoration: none;
-    list-style: none;
-}
-.ulwrap{
-    position: relative;
-    width: 300px;
-    height: 800px;
-    margin: 0 auto;
-    perspective: 100px;
-    margin-top: 50px;
-    transform: rotateZ('30deg');
-}  */
 
 
 
