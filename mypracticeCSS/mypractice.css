@@ -21,38 +21,49 @@ html, body,ul{
 }
 
 .wrap{
-    /* 플렉스박스 */
-    display: flex;
-    /* 플렉스 랩핑박스 */
-    flex-wrap: wrap;
-    width: 100vw;
-    height: 100vh;
-}
-.wrap>section {
-    /* 렐러티브 부모자격 */
-    position: relative;
-    /* 가로, 세로 등분할 채우기 */
-    flex: 1;
-    /* 한줄에 2개씩 */
-    flex-basis: 50%;
-}
-/* 컨텐츠 박스 */
-.cbx{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /* 플렉스박스 */
+    display: flex;
+    /* 플렉스 랩핑박스 */
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+.wrap>section {
+    /* 렐러티브 부모자격 */
+    /* position: relative; */
+    /* 가로, 세로 등분할 채우기 */
+    /* flex: 1; */
+    /* 한줄에 2개씩 */
+    /* flex-basis: 50%; */
+}
+/* 컨텐츠 박스 */
+.cbx{
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
     /* 정중앙이동 */
     width: 300px;
     height: 300px;
     /* outline: 2px dotted blue; */
 }
 .svg2{
-    position: absolute;
+    /* position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-
+    left: 50%; */
+    /* transform: translate(-50%,-50%); */
+}
+.svg1{
+    /* position: absolute;
+    top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%,-50%); */
+     
 }
 
 /* 사각형 */
@@ -79,25 +90,50 @@ html, body,ul{
     50% * 6 = 300%
     
     */
-    stroke-dasharray: 500;
+    stroke-dasharray: 1200;
 
     /* [데쉬어레이 시작위치밀기 : stroke-dashoffset ]
     stroke-dashoffset값을
     stroke-dasharray값과 같은
     값을 주면 공백부터 시작함!
     */
-    stroke-dashoffset: 500;
+    stroke-dashoffset: 1200;
 
     /* stroke-dasharray: 100%; */
     /* stroke-dashoffset: 102%; */
     /* 트랜지션:속시이지 */
     transition: stroke-dashoffset .8s ease-in-out;
 }
-.svg2:hover .rt1{
+/* .svg2:hover .rt1{
     stroke-dashoffset: 0;
+} */
+.svg1 .c1{
+    fill: rgba(0, 0, 255, 0.014);
+    stroke: black;
+    stroke-width: 20;
+    stroke-linecap: round;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    transition: stroke-dashoffset .8s ease-in-out;
+    position: absolute;
+    /* top: 35%; */
+    transform: translateY(35%);
 }
-
-
+/* .svg1:hover .c1{
+    stroke-dashoffset: 0;
+} */
+.pg1{
+    fill: rgba(0, 0, 255, 0.014);
+    stroke: black;
+    stroke-width: 20;
+    stroke-linecap: round;
+    position: absolute;
+    top: 20%;
+    transform: translateY(4%);
+    transition: .8s ease-in-out;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+}
 
 
 
