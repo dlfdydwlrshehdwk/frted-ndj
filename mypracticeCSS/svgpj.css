@@ -33,36 +33,11 @@ html, body,ul{
     height: 300px;
     overflow: hidden;
 }
-.wrap>section {
-    /* 렐러티브 부모자격 */
-    /* position: relative; */
-    /* 가로, 세로 등분할 채우기 */
-    /* flex: 1; */
-    /* 한줄에 2개씩 */
-    /* flex-basis: 50%; */
-}
 /* 컨텐츠 박스 */
 .cbx{
     position: absolute;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-    /* 정중앙이동 */
     width: 300px;
     height: 300px;
-    /* outline: 2px dotted blue; */
-}
-.svg2{
-    /* position: absolute;
-    top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%,-50%); */
-}
-.svg1{
-    /* position: absolute;
-    top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%,-50%); */
 }
 .svg3{
     overflow: hidden;
