@@ -79,7 +79,7 @@ html, body,ul{
     /* stroke-dasharray: 100%; */
     /* stroke-dashoffset: 102%; */
     /* 트랜지션:속시이지 */
-    transition: stroke-dashoffset .8s ease-in-out;
+    /* transition: stroke-dashoffset .8s ease-in-out; */
 }
 /* .svg2:hover .rt1{
     stroke-dashoffset: 0;
@@ -91,7 +91,7 @@ html, body,ul{
     stroke-linecap: round;
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
-    transition: stroke-dashoffset .8s ease-in-out;
+    /* transition: stroke-dashoffset .8s ease-in-out; */
     position: absolute;
     /* top: 35%; */
     transform: translateY(35%);
@@ -106,25 +106,9 @@ html, body,ul{
     stroke-linecap: round;
     position: absolute;
     top: 20%;
-    transition: .8s ease-in-out;
+    /* transition: .8s ease-in-out; */
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
-}
-.svg3::after{
-    content: '';
-    display: block;
-    position: absolute;
-    height: 100%;
-    top: -100%;
-    left: 50%;
-    width: 3%;
-    background-color: black;
-    transform: translateX(-50%);
-    transition: .8s ease-in-out;
-}
-.svg3:hover::after{
-    top: 0%;
-    transition: .8s ease-in-out;
 }
 
 
