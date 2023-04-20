@@ -87,6 +87,9 @@ font-family: 'Roboto Condensed', sans-serif;
     position: relative;
     /* 부모자격 */
 }
+.cbx h2 small {
+    font-size: 14px;
+}
 /* 가상요소로 컨텐츠 박스 배경 그라데이션 넣기 */
 .cbx::before{
     content: '';

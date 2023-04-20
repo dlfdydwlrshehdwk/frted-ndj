@@ -36,6 +36,27 @@ $(()=>{
             // 엑시오스로 제이슨 연결
             axios.get('./js/mdata.json')
             .then(x=>this.items=x)
-        }
+
+            // 탭메뉴 타이틀 변경하기 
+            $('title').prepend(pm+' ')
+        },
     }); // vue ////
+
+    // GNB 메뉴 SPA를 위한 재정의하기
+    // -> 뷰JS 인스턴스를 생성하면 대상요소가 
+    // 기존JS의 모든 기능이 초기화 하여 작동되지 않는다.
+    new Vue({
+        // 대상 #gnb
+        el : '#gnb',
+        data : {
+
+        },
+        methods : {
+            // 메뉴변경하기
+            chgMenu(){
+                console.log('ㄴㅇㄴ')
+            }
+        }, // 메서드 구역
+    }); // GNB Vue // 
+
 }); // 로딩구역
