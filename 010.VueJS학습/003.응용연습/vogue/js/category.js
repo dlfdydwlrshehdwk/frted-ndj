@@ -23,7 +23,7 @@ console.log(pm);
 // 로딩구역 //
 $(()=>{
     // 뷰JS 데이터바인딩코드
-    new Vue({
+    const vmCont = new Vue({
         // 대상선정 : 메인컨텐츠영역요소
         el : '#cont',
         data : {
@@ -49,12 +49,29 @@ $(()=>{
         // 대상 #gnb
         el : '#gnb',
         data : {
-
         },
         methods : {
             // 메뉴변경하기
-            chgMenu(){
+            chgMenu(e){
                 console.log('ㄴㅇㄴ')
+                // 컨텐츠 영역의 뷰에 설정된변수 catName에
+                // 접근하여 변수의 값을 변경한다.
+                // vmCont 변수에 인스턴스가 담겼으므로 
+                // vmCont.catName 으로 접근하여 
+                // 클릭된요소의 글자를 읽고 이를 소문자로 변경
+                // " & " 를 "-"로 치환만 해주면된다.
+
+                // a요소 문자열 변경하기
+                let txt = e.target.innerText
+                .replace(" & ","-").toLowerCase();
+
+                // 뷰 데이터에 반영하기 -> 가상돔의 변경 -> 실제돔반영
+                vmCont.catName = txt;
+                console.log(txt)
+
+                // 탭메뉴 타이틀변경하기
+                $('title').text(vmCont.catName+ ' | 2023 보그 코리아 (Vogue Korea)')
+
             }
         }, // 메서드 구역
     }); // GNB Vue // 
