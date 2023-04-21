@@ -38,3 +38,98 @@ $('.ham').click(function(){
     // 을 사용하는 것은 같은 이름의 클래스를 
     // 사용할 경우 순서대로 요소를 담는다.
 }); ///////// click //////////
+
+/* *************************************
+    [ 터치 배너 기능구현하기 ]
+    1. 원리 : 제이쿼리 UI를 이용하여 X축으로만 
+    드래그가 되도록 설정후 위치값을 체크하여
+    드래그가 끝난시점에 자동위치이동 애니메이션 처리해준다.
+
+    2. 대상 : .slide
+
+    3. 기준
+    (1) 왼쪽방향이동 : 
+        기준값(-100%) 보다 -10% 작은경우(-110%)
+    (2) 오른쪽방향이동 : 
+        기준값(-100%) 보다 10% 큰경우(90%) 
+    (3) 제자리이동
+        양쪽기준값 사이일때 (-110%~90%)
+
+    4. 구현시 주의사항
+    -> %단위는 모두 px단위로 변환하여 구현한다.
+    -> 배너크기가 윈도우가로크기와 같다! 이것을 활용함
+
+**************************************/
+// 1. 대상선정
+const slide = $('.slide');
+
+// 2. 드래그설정
+slide.draggable({
+    axis:'x' // x축고정
+});
+
+// 윈도우크기 리턴
+const reWin = () => $(window).width()
+
+// 리사이즈 업데이트
+$(window).resize(()=>{
+    winW = reWin();
+    console.log('winW',winW)
+})
+
+
+
+// 3. 드래그가 끝난후 -> dragstop 이벤트 발생후 
+// 기준위치 체크후 이동애니메이션
+
+// 윈도우 가로크기 : left 기준위치 px변환
+let winW = reWin();
+console.log('wiwW * 0.9:',winW * 0.9);
+console.log('wiwW',winW);
+console.log('wiwW * 1.1:',winW * 1.1);
+
+// 광드래그 방지위해 커버 셋팅(show(),hide())
+const cover = $('.cover');
+
+// 드래그 끝난후 이벤트 함수 만들기 
+slide.on('dragstop',function(){
+    
+    // 광드래그방지위해 커버보이기 
+    cover.show();
+
+    // 슬라이드 left값위치값
+    let sleft = $(this).offset().left;
+    console.log('ㅎㅎ',sleft)
+    
+    // 1. 왼쪽으로 이동 : -110% 미만일때
+    if(sleft < -winW * 1.1){
+        slide.animate({left :  -winW*2 + 'px'},500,'easeOutQuint',()=>{
+            // 이동후 맨앞li맨뒤 이동
+            slide.append(slide.find('li').first()).css({left:'-100%'})
+            // 커버제거하기 
+            cover.hide();
+        })
+    } // if ////
+    // 2. 오른쪽으로 이동 : -90% 초과일때
+    else if(sleft > -winW * 0.9){
+        slide.animate({left :  0 + 'px'},500,'easeOutQuint',()=>{
+            // 이동후 맨뒤li 맨앞으로 이동하기
+            slide.prepend(slide.find('li').last()).css({
+                left : '-100%'
+            })
+            // 커버제거
+            cover.hide();
+        })
+    } // else if ////
+    // 3. 제자리로 이동 : -110% ~ -90%사이
+    else {
+        slide.animate({left :  -winW + 'px'},200,'easeOutQuint',()=>{
+            // 커버제거하기
+            cover.hide();
+        })
+        
+    } // else ////
+    
+
+}); // slide ////
+
