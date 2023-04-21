@@ -36,11 +36,15 @@ ul>li{
 }
 ul>li>a{
     font-size: 4rem;
-    background: url(../MPimg/KakaoTalk_20230417_193537028_01.jpg) repeat-y;
+
+
+    background: url(../MPimg/kmk.jpg) repeat-y;
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-backface-visibility: hidden;
+    /* -webkit-transform: translate3d(0,0,0); */
+    /* -webkit-backface-visibility: hidden; */
+
+
     -webkit-animation: aitf 4s linear infinite;
 }
 @-webkit-keyframes aitf {
@@ -50,9 +54,9 @@ ul>li>a{
 a:hover{
     -webkit-text-fill-color: transparent;
 }
-ul>li:first-child a{
+/* ul>li:first-child a{
     perspective: 150px;
-}
+} */
 
 
 

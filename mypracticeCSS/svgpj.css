@@ -110,7 +110,14 @@ html, body,ul{
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
 }
-
-
+.svg4{
+    top: -100%;
+}
+.rt2{
+    fill: rgba(0, 0, 255, 0.014);
+    stroke: black;
+    stroke-width: 5;
+    transition: .5s;
+}
 
 

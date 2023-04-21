@@ -35,6 +35,31 @@ $('.indic a').click(chgMenu);
 
 // 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
 $('html,body').animate({scrollTop : '0px'})
+// [ 소스 업데이트 알림 ]
+// 자동스크롤시 페이지 업/다운버튼, 방향키 위/아래 버튼으로 
+// 페이지가 자동이동되도록 업데이트 하였습니다.
+
+// ((내용))
+// 키보드 이벤트발생시 업데이트
+// 1. Page Up(33) / Up Arrow (38) 
+// 2. Page Down(34) / Down Arrow (40) 
+$(document).keydown((e)=>{
+    // 이전페이지이동
+    if(e.keyCode===33 || e.keyCode===38){
+        pno--;
+        if (pno === -1) pno = 0;
+        movePg();
+    }
+    // 다음페이지이동
+    else if(e.keyCode===34 || e.keyCode===40){
+        pno++;
+        if (pno === pgcnt) pno = pgcnt - 1;
+        movePg();
+    }
+}); ///////////// keydown ////////////////
+
+// // ((링크))
+// https://github.com/tombap8/FED-PJ-2022-tom/blob/main/005.jQuery%ED%95%99%EC%8A%B5/002.%EC%8B%A4%EC%A0%84%EC%97%B0%EC%8A%B5/01_SlideChangeStage/js/jquery-autoScroll.js
 
 /********************************************* 
     함수명 : wheelFn
