@@ -2,7 +2,7 @@
 ( function( $ ) {
 
     // Settings
-    const items = 28; // Segments on wheel
+    const items = 28; // Segments on wheel 총 휠의 개수
     const spinSpeed = randNumber( 1, 10 ); // Spin speed multiplier
     const spinDuration = randNumber( 2, 5 ); // In seconds
     const spinDirection = randNumber( 0, 1 ) ? 'up' : 'down'; // Animate up  or down
