@@ -119,7 +119,10 @@ slide.on("dragstop",function(){
             .css({left:"-100%"});
             // 커버제거하기
             cover.hide();
-        });
+
+            // 배너타이틀 함수
+            showTit();
+        }); // animate //
 
         // 블릿변경함수호출!
         addOn(2);
@@ -137,6 +140,9 @@ slide.on("dragstop",function(){
             .css({left:"-100%"});
             // 커버제거하기
             cover.hide();
+
+            // 배너타이틀 함수
+            showTit();
         });
         
         // 블릿변경함수호출!
@@ -206,3 +212,123 @@ function addOn(seq){ // seq - 읽을 슬라이드 순번
 
 } ///////// addOn 함수 /////////////
 
+///////////////////////////////////////
+    ////// 각 배너 등장 타이틀 셋팅 /////////
+    ///////////////////////////////////////
+    let bantxt = {
+        "ban1": "Men's Season<br>Collection",
+        "ban2": "2023 Special<br>Collection",
+        "ban3": "GongYoo<br>Collection",
+        "ban4": "T-Shirt<br>Collection",
+        "ban5": "Shoes<br>Collection",
+        "ban6": "Wind Jacket<br>Collection"
+    }; ///////////// bantxt객체 //////////////
+
+
+/* 
+    함수명 : showTit
+    기능 : 각 배너 타이틀 보이기
+    호출 : 배너이동후 콜백함수에서 호출
+*/
+
+function showTit() {
+    // 요구사항: 배너이동 후 호출하여
+    // 해당배너의 순번에 맞는 타이틀을 
+    // 동적으로 생성하여 애니메이션 한다.
+
+    // 주인공배너
+    const mainban = slide.find('li').eq(1)
+
+    // 1. 항상 도착후엔 두번째 슬라이드가 주인공이다.
+    // 슬라이드 순번은 1번 
+    // 슬라이드 클래스명 읽어오기(타이틀이 클래스명과 연관됨)
+    let clsnm = mainban.attr('class');
+
+    // 2. 클래스명에 해당하는 객체값 읽어오기
+    let bantit = bantxt[clsnm]
+
+    // 모든 추가 타이틀 지우기
+    $('.btit').remove();
+
+    // 3. 타이틀 넣을 요소를  배너에 추가한다.
+    mainban.append(`<h2 class='btit'></h2>`)
+
+    // 타이틀 left위치 변수처리
+    // ban2, ban3만 오른쪽처리
+    let lval = '30%';
+    if(clsnm === 'ban2' || clsnm === 'ban3') lval = '70%'
+
+
+    // 4. h2태그에 배너 타이틀 넣기
+    mainban.find('.btit').html(bantit)
+    .css({
+        position : 'absolute',
+        top : '55%',
+        left : lval,
+        transform : 'translate(-50%,-50%)',
+        font:'bold 4.5vmax Verdana',
+        color : '#fff',
+        textShadow : '1px 1px 3px #777',
+        whiteSpace : 'nowrap',
+        opacity : 0 // 처음에 투명
+    }) // css //
+    .animate({ // 등장 애니메이션 //
+        top : '50%',
+        opacity : 1
+    },500,'easeInOutQuart')
+
+
+
+    // 호출확인
+    console.log('ㅂㄴㅌㅇㅌ',clsnm,bantit)
+
+
+
+
+
+} // showTit 함수 //
+
+setTimeout(showTit,500)
+
+// 타임아웃변수
+let banAgain;
+
+
+// 자동넘김 지우기 함수
+const clearAuto = () => {
+    clearInterval(banAuto);
+    clearTimeout(banAgain);
+    banAgain = setTimeout(banAutoSlide,5000)
+}; // clearAuto 함수 //
+
+// 배너이동시 자동넘김 지우기 셋팅
+$(slide).on('dragstart dragstop',clearAuto);
+
+// 자동넘김 인터발 셋팅하기
+// 변수에 담아 정지하기 //
+let banAuto;
+
+const banAutoSlide = () => {
+
+    banAuto = setInterval(()=>{
+        slide.animate({
+            left: -winW*2 + "px"
+        },2000,"easeOutQuint",()=>{
+            // 이동후 맨앞li 맨뒤이동
+            slide.append(slide.find("li").first())
+            .css({left:"-100%"});
+            // 커버제거하기
+            cover.hide();
+            
+            // 배너타이틀 함수
+            showTit();
+        }); // animate //
+        
+        // 블릿변경함수호출!
+        addOn(2);
+        // 왼쪽이동이므로 2번째 슬라이드
+    },5000)
+
+}; // banAutoSlide 함수 // 
+// 최초호출
+banAutoSlide();
