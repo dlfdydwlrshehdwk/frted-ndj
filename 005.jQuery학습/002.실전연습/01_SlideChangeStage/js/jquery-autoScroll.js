@@ -131,13 +131,15 @@ function chkCrazy(seq){ // seq 관리변수 순번
     setTimeout(()=>prot[seq] = 0 ,800)
 } // chkCrazy 함수 ////
 
+
+
 /*********************************************** 
     함수명 : movePg
     기능 : 페이지이동 애니메이션
 ***********************************************/
 function movePg(){
     // 대상 : html, body -> 두개를 모두 잡아야 공통적으로 적용됨
-    $('html,body').animate({
+    $('html,body').stop().animate({
         scrollTop : ($(window).height() *pno)+'px'
     },800,'easeInOutQuint',showEle // 이동후 콜백함수호출
     );
