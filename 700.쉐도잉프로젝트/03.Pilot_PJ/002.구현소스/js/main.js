@@ -204,7 +204,7 @@ function addOn(seq){ // seq - 읽을 슬라이드 순번
 
     // 1.해당슬라이드 data-seq읽어오기
     let dseq = slide.find("li").eq(seq).attr("data-seq");
-    console.log(dseq);
+    // console.log(dseq);
 
     // 2. 해당슬라이드와 동일한 순번블릿에 on넣기
     bindic.eq(dseq).addClass("on")
@@ -280,7 +280,7 @@ function showTit() {
 
 
     // 호출확인
-    console.log('ㅂㄴㅌㅇㅌ',clsnm,bantit)
+    // console.log('ㅂㄴㅌㅇㅌ',clsnm,bantit)
 
 
 
@@ -332,3 +332,5 @@ const banAutoSlide = () => {
 }; // banAutoSlide 함수 // 
 // 최초호출
 banAutoSlide();
+
+
