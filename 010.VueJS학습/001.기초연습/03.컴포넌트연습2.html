@@ -249,7 +249,7 @@
             data : function(){
                 return{
                     gsrc : `img_gallery/${this.haha}.jpg`,
-                    gname : `Sofia`+this.haha+this.endlet,
+                    gname : `Sofia`+this.haha+this.endlet+(this.myseq%2?"❗":"❕"),
                     gprice : this.insComma(1234*this.haha) +`원`,
                 }
             },
