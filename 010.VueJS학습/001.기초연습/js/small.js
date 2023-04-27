@@ -112,8 +112,23 @@ new Vue({
             nowNum = $(this).attr("data-num")
             console.log(nowNum)
 
+            // 5. 값셋팅하기
+            setVal();
+            
             
         }) ; // click //
+
+        // 상품명 / 가격 등 데이터 셋업함수
+        function setVal(){
+            // nowNum에 의한 대상선정
+            const tg = $(`.grid>div[data-num=${nowNum}]`)
+            // console.log(tg.find("h2").text())
+            // console.log(tg.find("h3").text())
+
+            // 상품명 / 가격 큰박스에 넣기
+            $('#gtit').text(tg.find("h2").text());
+            $('#gprice, #total').text(tg.find("h3").text());
+        } // setVal 함수 // 
 
         // 2. 닫기버튼 클릭시 큰이미지 박스 숨기기
         $('.cbtn').click(function(e){
@@ -141,7 +156,12 @@ new Vue({
 
             // 4. 큰이미지 변경하기
             $('.gimg img').attr('src',`img_gallery/${nowNum}.jpg`);
+
+            // 5. 값셋팅
+            setVal();
         })
+
+
 
     }, // mounted 함수구역 //
 

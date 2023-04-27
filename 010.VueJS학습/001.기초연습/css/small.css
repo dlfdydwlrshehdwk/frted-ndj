@@ -1,6 +1,11 @@
 @charset "utf-8";
 /* 쇼핑몰 갤러리 CSS - small.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap');
+body{
+    font-family: 'Nanum Gothic','Ubuntu', sans-serif;
+}
+
 /* 타이틀 */
 .tit {
     text-align: center;
@@ -66,7 +71,6 @@
 /* 상품설명박스 */
 .grid div aside {
     position: absolute;
-    z-index: 1;
     bottom: 0;
     width: 100%;
     text-align: center;
