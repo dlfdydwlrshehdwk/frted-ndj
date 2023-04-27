@@ -75,32 +75,40 @@
                 width: 100%;
                 height: 50%;
                 background-image: url(./images/sc1.jpg);
+                /* 삼각형 클리핑 */
                 clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
             }
-            /* 오른박스 */
+            /* 오른쪽박스 */
             #stc > div:nth-child(2) {
+                top: 0;
+                right: -15%;
                 width: 50%;
                 height: 100%;
-                right: -15%;
                 background-image: url(./images/sc4.jpg);
-                clip-path: polygon(100% 0%, 100% 100%, 0% 50%);
+                /* 삼각형 클리핑 */
+                clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
             }
-            /* 아래박스 */
+            /* 아랫쪽박스 */
             #stc > div:nth-child(3) {
+                bottom: -15%;
+                left: 0;
                 width: 100%;
                 height: 50%;
-                bottom: -15%;
                 background-image: url(./images/sc3.jpg);
-                clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
+                /* 삼각형 클리핑 */
+                clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
             }
-            /* 마지막박스 */
-            #stc > div:last-child {
+            /* 왼쪽박스 */
+            #stc > div:nth-child(4) {
+                top: 0;
                 left: -15%;
                 width: 50%;
                 height: 100%;
                 background-image: url(./images/sc2.jpg);
-                clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+                /* 삼각형 클리핑 */
+                clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
             }
+
             /* 삼각형과 이미지박스 */
             #mtit {
                 position: absolute;
@@ -108,15 +116,16 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background-color: rgba(0, 0, 0, 0);
+                background-color: rgb(0, 0, 0, 0);
                 /* 애니메이션으로 배경색 투명도를 변경함 */
             }
             /* 로고이미지 */
             #mtit img {
                 position: absolute;
-                left: -6px;
-                width: 100%;
+                left: 10%;
+                width: 80%;
                 opacity: 0;
+                padding: 40px 0;
             }
             /* 삼각형 */
             .tribox {
@@ -132,72 +141,123 @@
                 stroke-dasharray: 330%;
                 stroke-dashoffset: 330%;
             }
+
+            /* 오디오버튼 */
+            .audPlay{
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 100px;
+                height: 100px;
+
+                background: none;
+                border: 4px solid #fff;
+
+                color: #fff;
+                font-size: 50px;
+                text-shadow: 0 0 10px #000;
+                border-radius: 50%;
+                cursor: pointer;
+            
+            }
         </style>
-        <!-- [ 제이쿼리 CDN ] -->
 
         <!-- 제이쿼리 라이브러리 CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
         <!-- 제이쿼리 UI CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-
         <script>
             $(() => {
-                // JQB //
+                /////////////// jQB /////////////////////
 
                 // 0. 대상선정
+                // 스틸컷
                 const stc = $("#stc>div");
 
-                // 1. 첫번째 박스 투명도 1, 위치 원위치 애니
+                // 1. 스틸컷 박스 투명도1, 원위치 애니!
                 // (1) 첫번째 박스
                 stc.eq(0).delay(7000).animate(
                     {
+                        top: "0",
                         opacity: 1,
-                        top: "0%",
                     },
-                    2000,
-                    "easeInOutQuint"
+                    5500,
+                    "easeInOutCubic"
                 );
+
                 // (2) 두번째 박스
                 stc.eq(1).delay(7500).animate(
                     {
+                        right: "0",
                         opacity: 1,
-                        right: "0%",
                     },
-                    2000,
-                    "easeInOutQuint"
+                    6000,
+                    "easeInOutCubic"
                 );
+
                 // (3) 세번째 박스
                 stc.eq(2).delay(8000).animate(
                     {
+                        bottom: "0",
                         opacity: 1,
-                        bottom: "0%",
                     },
-                    2000,
-                    "easeInOutQuint"
+                    6500,
+                    "easeInOutCubic"
                 );
+
                 // (4) 네번째 박스
                 stc.eq(3).delay(8500).animate(
                     {
+                        left: "0",
                         opacity: 1,
-                        left: "0%",
                     },
-                    2000,
-                    "easeInOutQuint"
+                    7000,
+                    "easeInOutCubic",
+                    titAni // 콜백함수 호출!
                 );
-            }); // JQB //
+
+                // 2. 타이틀 로고 애니함수
+                function titAni(){
+                    // (1) 로고 보이기
+                    $("#mtit img").animate({
+                        opacity: 1
+                    },2000,"easeInOutBounce");
+
+                    // (2) 배경투명도 변경
+                    $("#mtit").animate({
+                        backgroundColor: "rgb(0, 0, 0, 0.7)"
+                    },2000,"easeInOutBounce");
+
+                    // (3) 삼각형 애니
+                    $(".tribox polygon").delay(3000)
+                    .animate({
+                        strokeDashoffset: "0%"
+                    },2000,"linear");
+
+                } //////// titAni함수 ///////////
+
+            }); /////////////////// jQB //////////////////////
         </script>
     </head>
     <body>
         <!-- 공각기동대 스틸컷 박스 -->
         <div id="stc">
-            <div><span class="ir">공각스틸컷</span></div>
-            <div><span class="ir">공각스틸컷</span></div>
-            <div><span class="ir">공각스틸컷</span></div>
-            <div><span class="ir">공각스틸컷</span></div>
+            <div>
+                <span class="ir">공각스틸컷</span>
+            </div>
+            <div>
+                <span class="ir">공각스틸컷</span>
+            </div>
+            <div>
+                <span class="ir">공각스틸컷</span>
+            </div>
+            <div>
+                <span class="ir">공각스틸컷</span>
+            </div>
         </div>
 
-        <!-- 라인svg -->
+        <!-- 라인 SVG -->
         <svg class="stg">
             <line class="line1" x1="0%" y1="0%" x2="100%" y2="100%"></line>
             <line class="line1" x1="100%" y1="0%" x2="0%" y2="100%"></line>
@@ -205,10 +265,15 @@
 
         <!-- 삼각형과 이미지박스 -->
         <div id="mtit">
-        <img src="images/GoastInTheShell_logo.png" alt="logo">
-        <svg class="tribox" viewBox="0 0 300 300">
-            <polygon points="0,300 300,300 150,0"></polygon>
-        </svg>
+            <img src="images/GoastInTheShell_logo.png" alt="logo" />
+            <svg class="tribox" viewBox="0 0 300 300">
+                <polygon points="0,300 300,300 150,0"></polygon>
+            </svg>
         </div>
+
+        <!-- 오디오 -->
+        <button class="audPlay">▶</button>
+        <div class="audSpot"></div>
+        <iframe width="1280" height="736" src="https://www.youtube.com/embed/WjOuEruzoh0?autoplay=1" allow="autoplay"></iframe>
     </body>
 </html>
