@@ -25,6 +25,11 @@ autoScroll();
 
 *************************************************/
 
+// 공통전역변수
+// [1] 애니메이션 시간/광클금지시간
+const ani_time = 600;
+// [2] 이징
+const ani_easing = 'easeOutQuint';
 
 // 햄버거 버튼 클릭시 전체 메뉴 보이기
 $(".ham").click(function(){
@@ -125,7 +130,7 @@ slide.on("dragstop",function(){
     else{
         slide.animate({
             left: -winW + "px"
-        },200,"easeOutQuint",()=>{            
+        },200,ani_easing,()=>{            
             // 커버제거하기
             cover.hide();
         });
@@ -146,7 +151,7 @@ function goSlide(dir) { // dir - 전달변수
     if(dir) {
         slide.animate({
             left: "0px"
-        },600,"easeOutQuint",()=>{
+        },ani_time,ani_easing,()=>{
             // 이동후 맨뒤li 맨앞으로 이동하기
             slide.prepend(slide.find("li").last())
             .css({left:"-100%"});
@@ -166,7 +171,7 @@ function goSlide(dir) { // dir - 전달변수
     else {
         slide.animate({
             left: -winW*2 + "px"
-        },600,"easeOutQuint",()=>{
+        },ani_time,ani_easing,()=>{
             // 이동후 맨앞li 맨뒤이동
             slide.append(slide.find("li").first())
             .css({left:"-100%"});
@@ -382,8 +387,16 @@ banAutoSlide();
 /* 
     배너이동버튼 클릭시 배너이동하기
 */
+// 광클금지변수
+let prot = 0;
 // 대상 : .btntit
 $('.btntit').click(function(){
+
+    // 0. 광클금지 //
+    if(prot === 1) return;
+
+    prot = 1;
+    setTimeout(()=>prot = 0,ani_time)
 
     // 1. 자동넘김 지우기 함수 호출!
     clearAuto();

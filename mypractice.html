@@ -4,108 +4,18 @@
   <meta charset="UTF-8">
   <title>Infinite Scroll</title>
   <style>
-    .block {
-    height: 200px;
-    margin-top: 20px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 0 0 0 rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 0 0 0 rgba(0, 0, 0, 0.15);
-    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 0 0 0 rgba(0, 0, 0, 0.15);
-    border: 1px solid #eee;
-    border-radius: 0.4em;
-    -webkit-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: box-shadow 0.4s ease-in-out;
-}
-.block:hover {
-    box-shadow: -3px 10px 50px rgba(0, 0, 0, 0.1), inset 0 0 0 0 rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: -3px 10px 50px rgba(0, 0, 0, 0.1), inset 0 0 0 0 rgba(0, 0, 0, 0.15);
-}
-  
-.block p {
-    padding: 20px;
-    box-sizing: border-box;
-    margin: 0;
-}
   </style>
+  <link rel="stylesheet" href="./mypracticeCSS/mypractice.css">
 </head>
 <body>
-    <section>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-        <div class="block">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam, ipsam aperiam deleniti beatae expedita id quisquam veritatis corporis, voluptates ducimus molestiae eum adipisci.
-            </p>
-        </div>
-       
-        <!-- 반복 -->
-</section>
-
-  <script>
-        (function() {
-            const article = document.querySelector('section');
-            let count = article.children.length;
-            
-            const template = function(n) {
-                const docFrag = document.createDocumentFragment();
-                const div = document.createElement('div');
-                const p = document.createElement('p');
-                p.textContent = n+' Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia accusamus sequi ipsa, rerum nam laboriosam';
-                
-                div.appendChild(p)
-                div.classList.add('block');
-
-                docFrag.appendChild(div);
-                article.appendChild(docFrag);
-            };
-
-            //스크롤 바닥 감지
-            window.onscroll = function(e) {
-                //window height + window scrollY 값이 document height보다 클 경우
-                if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                    count++;
-                    template(count);  //콘텐츠 추가
-                }
-            };
-        })();
- </script>
+    <div class="nav">Navigation</div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="inline-block static">static</div>
+      <div class="inline-block fixed">fixed</div>
+      <div class="inline-block sticky">sticky</div>     
+    </div>
+    <div class="inline-block long-text">Long Text Area.</div>
+  </div>
 </body>
 </html>
