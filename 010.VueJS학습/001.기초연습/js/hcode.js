@@ -2,55 +2,61 @@
 
 const hcode = {
     // 1. 타이틀
-    tit:`
-    <strong>
-        <span>다이아나 쇼핑몰</span>
-        Diana Shopping Mall
-    </strong> 
+    tit: `
+        <strong>
+            <span>👩‍🦰다이아나 쇼핑몰💕</span><br>
+            👗Diana Shopping Mall🥻
+        </strong>
     `,
     // 2. 리스트
-    list:`
+    list: `
         <div>
-            <img v-bind:src="gsrc" v-on:click="goPapa"
-            v-on:mouseover="ovNow"  alt="dress">
+            <img v-bind:src="gsrc" v-on:click="goPapa" v-on:mouseover="ovNow" alt="dress" />
             <aside>
-            <h2>{{gname}}</h2>
-            <h3>
-                <span v-bind:class="{del:condiRet()}">{{gprice}}</span>
-                <span class="sale" v-if='condiRet()'>{{sale}}</span>
-            </h3>
+                <h2>{{gname}}</h2>
+                <h3>
+                    <span v-bind:class="{del:condiRet()}"
+                    v-bind:data-price="orgprice">
+                        {{gprice}}
+                    </span>
+                    <span class="sale" v-if="condiRet()">
+                        {{sale}}
+                    </span>
+                </h3>
             </aside>
         </div>
     `,
     /* 
-        [ 뷰JS에서 클래스 바인드하기 ]
+        [뷰JS에서 클래스 바인드하기]
 
         1. 일반적인 클래스 바인드
-        <요소 v-bind:class=클래스명> 
-        예) <요소 v-bind:class="'del'">
-        - 클래스명이 변수에 있다면 변수를쓰고 
-        직접 문자로 넣으려면 따옴표처리를한다. 
-        
-        2. 조건에 의한 클래스바인드
-        <요소 v-bind:class={클래스명:조건}> 
-        예) <요소 v-bind:class="{del:haha==3}">
-        -클래스의 값으로 객체를 설정하고 객체속성명에 클래스명을 
-        객체값에 조건식을 쓰면 해당조건에 서만 클래스가 적용된다
+        <요소 v-bind:class=클래스명>
+        예) <span v-bind:class="'del'"></span>
+        -클래스명이 변수에 있다면 변수를 쓰고
+        직접 문자로 넣으로면 따옴표처리를 한다!
 
-        참고) 조건이 많을경우 또는 여러군데 사용될 경우 
-        조건식에 결과를 리턴하는 메서드를 만들어 사용한다.
-        ex) <요소 v-bind:class="{del:constiRet()}"></span>
+        2. 조건에의한 클래스 바인드
+        <요소 v-bind:class={클래스명:조건}>
+        예) <span v-bind:class="{del:haha==3}"></span>
+        - 클래스의 값으로 객체를 설정하고 객체속성명에 클래스명을
+         객체값에 조건식을 쓰면 해당조건에서만 클래스가 적용된다!
+
+        참고) 조건이 많을 경우 또는 여러군데 사용될 경우
+        조건식의 결과를 리턴하는 메서드를 만들어 사용한다!
+        예) <span v-bind:class="{del:constiRet()}"></span>
 
         ->>> 해당 컴포넌트 methods:{} 처리구역에 리턴메서드 생성
         methods:{
             condiRet(){
-                return this.haha == 3 || this.haha == 5 || this.haha == 20;
+                return this.haha==3 || this.haha==5 || this.haha==20;
             }
         }
-        
+
     */
+
+
     // 3. 큰이미지
-    big:`
+    big: `
     <!-- 큰이미지 배경박스 -->
     <div id="bgbx">
         <!-- 오른쪽버튼 -->
@@ -112,7 +118,7 @@ const hcode = {
                             <li>
                                 <span>구매수량</span>
                                 <span>
-                                    <input type="text" id="sum" value="1" readonly />
+                                    <input type="text" id="sum" value="1">
                                     <!--
                                     readonly 속성은 직접입력을 막음
                                     disable 속성은 입력창의 비활성화
@@ -151,6 +157,7 @@ const hcode = {
     </div>
 
     `,
-}; // hcode 객체 // 
+}; ////////////// hcode객체 //////////////
+
 // 객체 내보내기
 export default hcode;
