@@ -6,9 +6,37 @@
 // 이유 : export 하기위해
 
 function autoScroll() {
+
+    // 현재 페이지 가로크기기준 800px 이하일때 모바일로 변경
+    // 모바일 상태변수
+    let mob = 0; // 1-모바일//0-DT
+    const updateW = () => {
+        if($(window).width() <= 800) mob = 1;
+        else mob = 0; 
+        console.log('업데이트')
+    }; // updateW 함수 //
+
+    // 로딩시 실행
+    updateW();
+
+    // 배너초기화 실행함수
+    const callInit = () => {
+        if(!mob) // 모바일아니면 초기화  
+        initSet();
+        else { // 모바일이면 초기화 셋팅지우기
+            $(".imgc,.txtc a").attr("style","");
+        }
+    } // callInit 함수 // 
+
+    // window 리사이즈 이벤트 등록
+    $(window).resize(()=>{
+        updateW(); // mob코드 업데이트 함수
+        callInit(); // 배너초기화 적용함수
+        showEle();
+    })
     /********************************************** 
-    대상 변수할당하기
-**********************************************/
+        대상 변수할당하기
+    **********************************************/
     // 전체 페이지번호
     let pno = 0;
     // 페이지요소
@@ -47,6 +75,10 @@ function autoScroll() {
 *********************************************/
 
     function wheelFn() {
+
+        // 모바일일때 작동정지 
+        if(mob) return;
+
         // 광휠금지
         if (prot[0] === 1) return;
         chkCrazy(0);
@@ -139,6 +171,7 @@ function autoScroll() {
 ***********************************************/
     function showEle() {
         // .minfo 페이지별 등장하기
+        console.log('쇼엘르~',pno)
         pg.eq(pno)
             .find(".minfo")
             .css({
@@ -200,7 +233,7 @@ function initSet() {
 } // initSet 함수 //
 
 // 초기화 함수 호출
-initSet();
+if(!mob) initSet();
 
     /* 
     함수명 : actPage
