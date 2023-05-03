@@ -53,11 +53,13 @@ new Vue({
     el : "#info",
 }) // 하단영역 뷰인스턴스
 
+
 // 스와이퍼 플러그인 인스턴스 생성하기
 // 스와이퍼 생성함수
 function makeSwiper() {
-
-    var swiper = new Swiper(".mySwiper", {
+    
+    let swiper;
+        swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
         // spaceBetween: 30,
         loop: true,
@@ -94,7 +96,10 @@ const flist = $(".flist");
 let lpos = 0;
 // 재귀호출 상태값 변수 1이면 호출가능 0이면 호출불가
 let call_sts = 0; 
-
+// 스크롤시 상태값변수 1이면 호출가능 0이면 호출불가
+let sc_sts = 0; // - 안써도될듯
+// 재귀호출 어쩌구
+let callT;
 function moveList(){
 
     // 1. 이동위치값 (left값) 감소하기
@@ -115,9 +120,12 @@ function moveList(){
         left : lpos + 'px'
     })
 
+    // 타임아웃비우기
+    clearTimeout(callT)
+
     // 재귀호출하기 ( 비동기 호출 - setTimeout)
     // 조건 
-    if(call_sts)setTimeout(moveList,40)
+    if(call_sts)callT = setTimeout(moveList,40)
 
 
 }  // moveList 함수 //
@@ -192,7 +200,7 @@ flist.hover(
     $(window).scroll(function(){
         // 스크롤 위치값
         scTop = $(this).scrollTop();
-
+        console.log(scTop)
         // getBoundingClientRect 값 구하기
         let gBCR = tgpos-scTop;
         console.log("getBoundingClientRect",gBCR)
@@ -203,10 +211,21 @@ flist.hover(
             call_sts = 1; // 콜백허용! (한번만실행)
             moveList(); // 함수재호출!
         }   // if //
-        // 기타경우 멈춤
-        else {
+        // (2) 기타경우 멈춤
+        // (조건 : 윈도우높이보다 크거나 0보다 작고 call_sts===1일때)
+        else if((gBCR > winH || gBCR) < 0 && call_sts === 1){
             call_sts = 0; // 콜백중단!
         }   // else // 
+
+        // 서브배너 스와이퍼 API를 이용한 작동멈춤셋팅하기
+        // 기준 : 화면높이값 보다 스크롤위치가 크면 멈춤
+        // 스와이퍼API : swiper.autoplay.stop()
+        //        스크롤위치가 작으면 자동넘김
+        // 스와이퍼API : swiper.autoplay.start()       
+        if(scTop>winH){
+            swiper.autoplay.stop()
+        }
+        else{}
     }); // scroll // 
     
 } // sinsangFn 함수 //
