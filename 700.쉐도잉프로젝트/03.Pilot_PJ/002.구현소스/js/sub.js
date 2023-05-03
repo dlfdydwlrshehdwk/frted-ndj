@@ -7,6 +7,8 @@ import comData from "./tempData/data-common.js";
 // 신상정보 가져오기
 import sinsang from "./gdsData/sinsang.js";
 
+// 스와이퍼변수
+let swiper;
 // 상단영역 메뉴 뷰 템플릿 셋팅 //
 // Vue.component(작명,{옵션})
 Vue.component("top-comp",{
@@ -58,7 +60,7 @@ new Vue({
 // 스와이퍼 생성함수
 function makeSwiper() {
     
-    let swiper;
+    
         swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
         // spaceBetween: 30,
@@ -225,7 +227,9 @@ flist.hover(
         if(scTop>winH){
             swiper.autoplay.stop()
         }
-        else{}
+        else{
+            swiper.autoplay.start()
+        }
     }); // scroll // 
     
 } // sinsangFn 함수 //
