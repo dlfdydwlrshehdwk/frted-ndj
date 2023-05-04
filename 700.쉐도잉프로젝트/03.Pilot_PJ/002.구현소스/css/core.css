@@ -137,3 +137,8 @@
     /* margin-top: 3em; */
     transform: translateY(30%);
   }
+
+  /* a요소는 트랜스폼 적용안돼서 인라인블럭을줌 */
+  a.js-reveal{
+    display: inline-block;
+  }
