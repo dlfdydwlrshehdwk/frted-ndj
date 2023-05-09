@@ -83,14 +83,16 @@ html, body,ul{
   }
   .pg2{
     height: 200vh;
-    background-color: red;
   }
-  .scntxt div{
+  .scntxt span{
+    /* 이걸 아래놓으면 적용이안되네... */
+    background: url(../MPimg/redwhite.png) repeat-y;
     background-clip: text;
     -webkit-background-clip: text;
-    background-color: red;
-    background-size: 100%/100%;
-    background-repeat: repeat-y;
-    background-position: 0 10%;
+    /* -webkit-text-fill-color: transparent; */
     -webkit-text-fill-color: transparent;
+
+    background-position-y: 10%;
+    /* -webkit-transform: translate3d(0,0,0); */
+    /* -webkit-backface-visibility: hidden; */
   }

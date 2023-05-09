@@ -36,15 +36,11 @@ ul>li{
 }
 ul>li>a{
     font-size: 4rem;
-
-
     background: url(../MPimg/kmk.jpg) repeat-y;
     background-clip: text;
     -webkit-background-clip: text;
     /* -webkit-transform: translate3d(0,0,0); */
     /* -webkit-backface-visibility: hidden; */
-
-
     -webkit-animation: aitf 4s linear infinite;
 }
 @-webkit-keyframes aitf {
