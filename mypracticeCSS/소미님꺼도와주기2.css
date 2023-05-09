@@ -86,13 +86,12 @@ html, body,ul{
   }
   .scntxt span{
     /* 이걸 아래놓으면 적용이안되네... */
-    background: url(../MPimg/redwhite.png) repeat-y;
+    background: url(../MPimg/redwhite.png) repeat-x top/35%;
     background-clip: text;
     -webkit-background-clip: text;
     /* -webkit-text-fill-color: transparent; */
     -webkit-text-fill-color: transparent;
 
-    background-position-y: 10%;
     /* -webkit-transform: translate3d(0,0,0); */
     /* -webkit-backface-visibility: hidden; */
   }
