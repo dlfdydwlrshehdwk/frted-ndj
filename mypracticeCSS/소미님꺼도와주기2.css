@@ -85,3 +85,12 @@ html, body,ul{
     height: 200vh;
     background-color: red;
   }
+  .scntxt div{
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-color: red;
+    background-size: 100%/100%;
+    background-repeat: repeat-y;
+    background-position: 0 10%;
+    -webkit-text-fill-color: transparent;
+  }
