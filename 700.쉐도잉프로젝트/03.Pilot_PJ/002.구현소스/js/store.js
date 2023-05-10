@@ -45,8 +45,10 @@ const store = new Vuex.Store({
             // pm에 객체데이터 속성명이 전달됨(남성/여성/스타일)
             // 1. 해당 카테고리 개수 업데이트 
             dt.cnt = dt.subData[pm].cnt;
-            // 1. 해당 카테고리 이름 업데이트 
+            // 2. 해당 카테고리 이름 업데이트 
             dt.cat = dt.subData[pm].cat;
+            // 3. 해당 카테고리 메뉴 업데이트 
+            dt.menu = dt.subData[pm].menu;
 
         }, // chgData 메서드 //
     },

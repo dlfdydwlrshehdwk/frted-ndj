@@ -78,6 +78,15 @@ new Vue({
 
         // 스크롤리빌 플러그인 적용 호출
         $.fn.scrollReveal(); 
+
+        // 메뉴클릭시 전체 메뉴창 닫기
+        $('.mlist a').click(
+            ()=>$('.ham').trigger('click'));
+            // $(선택요소).trigger('이벤트명')
+            // 제이쿼리문법임
+            // -> 선택요소의 이벤트를 강제발생
+            // 참고) JS 클릭이벤트 강제발생
+            // document.querySelector(요소).click();
     },
 }) // 상단영역 뷰인스턴스
 
