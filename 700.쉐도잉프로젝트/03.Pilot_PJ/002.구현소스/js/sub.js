@@ -9,6 +9,13 @@ import subData from "./tempData/data-sub.js"
 // 신상정보 가져오기
 import sinsang from "./gdsData/sinsang.js";
 
+
+// 뷰엑스스토어 JS가져오기
+// 중요! 반드시 메인 JS파일 한군데서 불러와 써야 상태관리됨
+// -> 이 JS파일에 Vue 인스턴스 생성코드가 같이 있어야한다.
+import store from "./store.js"; 
+
+
 // 스와이퍼변수
 let swiper;
 // 상단영역 메뉴 뷰 템플릿 셋팅 //
@@ -17,6 +24,8 @@ Vue.component("top-comp",{
     template : comData.tareaSub,
 }); // 상단영역 Vue 컴포넌트 //
 
+// 서브영역 템플릿 셋팅
+// Vue.component(작명,{옵션})
 Vue.component("ban-comp",{
     template : subData.banner,
 }); // 서브영역 Vue 컴포넌트 //
@@ -24,7 +33,8 @@ Vue.component("ban-comp",{
 // 서브영역 뷰 인스턴스 셋팅하기 //
 new Vue({
     el:'#cont',
-})
+    store, // 뷰엑스 스토어 등록 필수!
+}) // 서브영역 뷰 인스턴스 //
 
 // 하단영역 메뉴 뷰 템플릿 셋팅 //
 // Vue.component(작명,{옵션})
@@ -38,6 +48,7 @@ Vue.component("foot-comp",{
 // new Vue({옵션})
 new Vue({
     el : "#top",
+    store, // 뷰엑스 스토어 사용하려면 등록필수
     data:{},
     // create 실행구역 : DOM연결전 
     created:function(){

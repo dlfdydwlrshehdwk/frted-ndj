@@ -117,14 +117,21 @@ const comData = {
         <!-- 전체메뉴 -->
         <nav class="mlist">
             <dl>
-                <dt><a href="#">MEN</a></dt>
+                <dt><a href="#" 
+                v-on:click="
+                    $store.commit('chgData',{'남성'})
+                ">
+                MEN
+                </a></dt>
                 <dd><a href="#">T-SHIRT</a></dd>
                 <dd><a href="#">JACKET</a></dd>
                 <dd><a href="#">TRAINING WARE</a></dd>
                 <dd><a href="#">BEACH WARE</a></dd>
             </dl>
             <dl>
-                <dt><a href="#">WOMEN</a></dt>
+                <dt><a href="#"
+                
+                >WOMEN</a></dt>
                 <dd><a href="#">T-SHIRT</a></dd>
                 <dd><a href="#">JACKET</a></dd>
                 <dd><a href="#">TRAINING WARE</a></dd>
