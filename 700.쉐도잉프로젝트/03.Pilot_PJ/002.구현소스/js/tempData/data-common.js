@@ -118,10 +118,7 @@ const comData = {
                 ">
                 MEN
                 </a></dt>
-                <dd><a href="#">T-SHIRT</a></dd>
-                <dd><a href="#">JACKET</a></dd>
-                <dd><a href="#">TRAINING WARE</a></dd>
-                <dd><a href="#">BEACH WARE</a></dd>
+                <dd v-for="(v,i) in $store.state.menu"><a v-bind:href="'#c'+(i+1)">{{v}}</a></dd>
             </dl>
             <dl>
                 <dt><a href="#"
