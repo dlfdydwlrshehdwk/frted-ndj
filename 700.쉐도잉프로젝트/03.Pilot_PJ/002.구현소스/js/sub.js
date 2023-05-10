@@ -4,6 +4,8 @@
 import menuFn from "./mainjs/menu.js";
 // 공통데이터 가져오기
 import comData from "./tempData/data-common.js";
+// 서브데이터 가져오기
+import subData from "./tempData/data-sub.js" 
 // 신상정보 가져오기
 import sinsang from "./gdsData/sinsang.js";
 
@@ -13,7 +15,17 @@ let swiper;
 // Vue.component(작명,{옵션})
 Vue.component("top-comp",{
     template : comData.tareaSub,
-}); // 상단영역 Vue 컴포넌트 // 
+}); // 상단영역 Vue 컴포넌트 //
+
+Vue.component("ban-comp",{
+    template : subData.banner,
+}); // 서브영역 Vue 컴포넌트 //
+
+// 서브영역 뷰 인스턴스 셋팅하기 //
+new Vue({
+    el:'#cont',
+})
+
 // 하단영역 메뉴 뷰 템플릿 셋팅 //
 // Vue.component(작명,{옵션})
 Vue.component("foot-comp",{
