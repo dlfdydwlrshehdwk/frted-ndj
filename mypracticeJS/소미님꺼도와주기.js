@@ -1,16 +1,21 @@
 $(()=>{
 
-    const imbx = $('.imbx')
-    const pg2 = $('.pg2')
-    console.log(imbx)
-    let qustn = 0;
+    // 이벤트대상 윈도우
+    const wdw = $(window)
+    // '.cubewrap' <- 클래스를 주어야 할 대상
+    const tg = $('.cubewrap')
 
-
-    imbx.on('wheel',function(){
-        event.preventDefault();
-        let delta = event.wheelDelta;
-        if(delta === 120) qustn++;
-        else if(delta === -120) qustn --
-        console.log(qustn)
+    wdw.on('scroll',function(){
+        cube(tg)
     })
+
+    function cube(x){
+        console.log('큐브',this)
+        let a = wdw.scrollTop();
+        
+        if(a!==0) $(x).addClass('on');
+        else $(x).removeClass('on');
+    }
+
+
 }); // jqb

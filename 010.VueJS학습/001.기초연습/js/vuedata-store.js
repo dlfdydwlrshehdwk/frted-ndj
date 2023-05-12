@@ -37,7 +37,10 @@ const store = new Vuex.Store({
     // (3)백엔 관련 코딩 비동기처리 메서드구역 : 호출시 dispatch()사용
     actions : {
         // 제이슨 데이터 로드하기 메서드 
-        initData({commit}){ // 액션스 메서드 전달값으로 
+        initData(){ // 
+            // initData({commit}){ 이거로 쓰고 commit('setData',result)로 써도됨 
+                
+            // 액션스 메서드 전달값으로 
             // {commit}을 쓰면 뮤테이션 구역으로 바로 commit사용가능.
             // 제이슨 데이터 변수에 할당
             const result = jsnData;
@@ -46,8 +49,11 @@ const store = new Vuex.Store({
             // state의 items변수변경 메서드호출
             // mutations의 메서드 호출은 
             // -> commit('메서드',전달값(파라미터)
-            commit('setData',result)
 
+
+            this.commit('setData',result);
+            // commit('setData',result) 
+            //위에껄로 쓰고 initData({commit}){ 로 써도됨
 
         }, // initData // 
 

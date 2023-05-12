@@ -24,11 +24,17 @@ Vue.component("top-comp",{
     template : comData.tareaSub,
 }); // 상단영역 Vue 컴포넌트 //
 
-// 서브영역 템플릿 셋팅
+// 1. 배너파트 템플릿 셋팅
 // Vue.component(작명,{옵션})
 Vue.component("ban-comp",{
     template : subData.banner,
 }); // 서브영역 Vue 컴포넌트 //
+
+// 2. 컨텐츠1 템플릿 셋팅
+// Vue.component(작명,{옵션})
+Vue.component("cont1-comp",{
+    template : subData.cont1,
+}); // 2. 컨텐츠1 Vue 컴포넌트 //
 
 // 서브영역 뷰 인스턴스 셋팅하기 //
 new Vue({

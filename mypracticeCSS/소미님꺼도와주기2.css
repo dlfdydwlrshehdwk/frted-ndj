@@ -95,3 +95,48 @@ html, body,ul{
     /* -webkit-transform: translate3d(0,0,0); */
     /* -webkit-backface-visibility: hidden; */
   }
+
+
+
+
+
+
+
+
+
+
+
+
+  /* 돌아갈거 래핑박스 */
+  .cubewrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    width: 100px;
+    height: 20px;
+  }
+  /* 돌아갈거 기본소양 조건 */
+  .cubewrap>div{
+    position: absolute;
+    /* 앱솔루트는 자동블럭 */
+    width: 100%;
+    height: 100%;
+    transition: .5s linear;
+  }
+
+
+  /* 글씨 위로갔다 왔다 기본셋팅 */
+  .cubewrap.on>div:nth-child(1){
+    transform: rotateX(90deg) translateZ(15px);
+  }
+  .cubewrap.on>div:nth-child(2){
+    transform: rotateX(360deg) translateZ(15px);
+  }
+  .cubewrap>div:nth-child(1){
+    transform: rotateX(0deg) translateZ(15px);
+  }
+  .cubewrap>div:nth-child(2){
+    transform: rotateX(270deg) translateZ(15px);
+  }
