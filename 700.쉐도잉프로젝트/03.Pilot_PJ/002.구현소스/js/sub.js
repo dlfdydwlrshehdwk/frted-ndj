@@ -36,6 +36,13 @@ Vue.component("cont1-comp",{
     template : subData.cont1,
 }); // 2. 컨텐츠1 Vue 컴포넌트 //
 
+// 3. 컨텐츠2 템플릿 셋팅
+// Vue.component(작명,{옵션})
+Vue.component("cont2-comp",{
+    template : subData.cont2,
+}); // 2. 컨텐츠1 Vue 컴포넌트 //
+
+
 // 서브영역 뷰 인스턴스 셋팅하기 //
 new Vue({
     el:'#cont',
@@ -87,7 +94,11 @@ new Vue({
 
         // 메뉴클릭시 전체 메뉴창 닫기
         $('.mlist a').click(
-            ()=>$('.ham').trigger('click'));
+            ()=>{
+                $('.ham').trigger('click');
+                // 위치값 - 부드러운 스크롤 위치값 업데이트
+                sc_pos=0;
+            });
             // $(선택요소).trigger('이벤트명')
             // 제이쿼리문법임
             // -> 선택요소의 이벤트를 강제발생
@@ -206,7 +217,12 @@ flist.hover(
         let clsnm = $(this).attr("class");
         // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
         // ^는 특수문자이므로 정규식에 넣을때 역슬래쉬와 함께씀
-        let gd_info = sinsang[clsnm];
+        // 중간 객체속성명 상위부모박스 #c1의 data-cat 속성값 
+        // 읽어와서 sinsang[요기][] -> 요기 에 넣기
+        let cat =$(this).parents('#c1').attr('data-cat')
+        let gd_info = sinsang[cat][clsnm];
+
+        console.log("data-cat",cat)
         
         // console.log(gd_info)
         // 3. 상품정보박스 만들고 보이게하기
