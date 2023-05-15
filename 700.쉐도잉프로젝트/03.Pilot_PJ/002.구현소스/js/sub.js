@@ -16,8 +16,42 @@ import sinsang from "./gdsData/sinsang.js";
 import store from "./store.js"; 
 
 
+
 // 스와이퍼변수
 let swiper;
+
+// 바로실행구역 함수 //
+// 바로실행구역을 쓰는 이유: 변수나 명령어를 다른 영역과 구분하여 
+// 코딩할때 주로 사용됨
+// GET방식 데이터를 store 에서 초기값으로 셋팅하는 것을 
+// 인스턴스 생성전에 해야 아래쪽에 빈값으로 셋팅된값이
+// 들어가서 에러나는 것을 막을 수 있다.
+(()=>{
+    // 파라미터 변수
+    let pm;
+
+
+    // GET방식으로 넘어온 데이터 처리하여
+    // 분류별 서브 페이지 구성하기
+    // location.href -> 상단 url읽어옴
+    // indexOf('?')!==-1 -> ?가 있으면
+    if(location.href.indexOf('?')!==-1)
+    pm = location.href.split('?')[1].split('=')[1];
+    // 물음표(?) 로 잘라서 뒤엣것,이퀄(=)로 잘라서 뒤엣것
+    // 파라미터 값만 추출함
+    // pm에 할당이 되었다면 undefined가 아니므로 true
+    if(pm) store.commit('chgData',decodeURI(pm));
+
+    // 메뉴를 선택해서 파라미터로 들어오지 않으면 '남성' 으로 기본셋팅
+    else store.commit('chgData','남성');
+
+    // decodeURI() - 변경할 문자열만 있어야 변환됨
+    // decodeURIComponent() - url전체에 섞여 있어도 모두 변환
+
+})(); // 바로실행 함수구역 //
+
+
+
 // 상단영역 메뉴 뷰 템플릿 셋팅 //
 // Vue.component(작명,{옵션})
 Vue.component("top-comp",{
@@ -79,6 +113,8 @@ new Vue({
     created:function(){
         // DOM연결전 데이터 가공작업
         console.log('create구역')
+
+        
     },
     // mounted 실행구역 : DOM연결 후 
     mounted:function(){
@@ -153,7 +189,16 @@ new Vue({
                 // 5. 부드러운 스크롤 변수에 현재위치값 업데이트
                 sc_pos = newpos;
 
+            }) ; /// 클릭 //
+
+            // 로고 클릭시 첫페이지로 이동
+            $('#logo').click(()=>{
+                location.href="index.html"
             })
+
+            
+
+            
     },
 }) // 상단영역 뷰인스턴스
 
@@ -314,10 +359,10 @@ flist.hover(
     $(window).scroll(function(){
         // 스크롤 위치값
         scTop = $(this).scrollTop();
-        console.log(scTop)
+        // console.log(scTop)
         // getBoundingClientRect 값 구하기
         let gBCR = tgpos-scTop;
-        console.log("getBoundingClientRect",gBCR)
+        // console.log("getBoundingClientRect",gBCR)
 
         // 3. 신상품 리스트 이동/멈춤 분기하기
         // (1) 이동기준 gBCR값이 화면높이보다 작고 0보다클때 이동
