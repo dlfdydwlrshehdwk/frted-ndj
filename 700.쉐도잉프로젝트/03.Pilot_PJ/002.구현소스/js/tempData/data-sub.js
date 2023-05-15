@@ -41,9 +41,10 @@ const subData = {
                 <li v-for="v in 9" :class="'m'+v">
                     <a href="#">
                         <img :src="
-                        ./images/goods/men/m1.png
-                        " 
-                        alt="신상품" />
+                        './images/goods/'+
+                        $store.state.cat +
+                        '/m'+ v +'.png'
+                        " alt="신상품" />
                     </a>
                 </li>
             </ul>
