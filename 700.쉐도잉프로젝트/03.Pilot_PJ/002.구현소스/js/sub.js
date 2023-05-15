@@ -40,7 +40,19 @@ Vue.component("cont1-comp",{
 // Vue.component(작명,{옵션})
 Vue.component("cont2-comp",{
     template : subData.cont2,
-}); // 2. 컨텐츠1 Vue 컴포넌트 //
+}); // 3. 컨텐츠2 Vue 컴포넌트 //
+
+// 4. 컨텐츠3 템플릿 셋팅
+// Vue.component(작명,{옵션})
+Vue.component("cont3-comp",{
+    template : subData.cont3,
+}); // 4. 컨텐츠3 Vue 컴포넌트 //
+
+// 5. 컨텐츠4 템플릿 셋팅
+// Vue.component(작명,{옵션})
+Vue.component("cont4-comp",{
+    template : subData.cont4,
+}); // 5. 컨텐츠4 Vue 컴포넌트 //
 
 
 // 서브영역 뷰 인스턴스 셋팅하기 //
@@ -95,15 +107,53 @@ new Vue({
         // 메뉴클릭시 전체 메뉴창 닫기
         $('.mlist a').click(
             ()=>{
+                // 1. 전체 메뉴창 닫기 트리거
                 $('.ham').trigger('click');
+
+                // 2.부드러운 스크롤 위치값 탑값 업데이트
                 // 위치값 - 부드러운 스크롤 위치값 업데이트
                 sc_pos=0;
+
+                // 3. 스와이퍼 첫번째 슬라이드로 이동
+                // swiper.slideTo(index, speed, runCallbacks)
+                swiper.slideTo(0)
+                // 첫번째 슬라이드 -> 0번째 슬라이드 스와이퍼 API이용
+
+                // 4. 등장액션 스크롤 리빌 다시 호출
+                $.fn.scrollReveal();
             });
             // $(선택요소).trigger('이벤트명')
             // 제이쿼리문법임
             // -> 선택요소의 이벤트를 강제발생
             // 참고) JS 클릭이벤트 강제발생
             // document.querySelector(요소).click();
+
+            // GNB 메뉴 클릭시 해당위치로 스크롤이동 애니메이션
+            // 각 .gnb a에는 href="c2" 이런식으로 아이디요소가 있음!
+            // a요소의 #id명 으로 기본 위치 이동은 되지만 
+            // 스크롤 애니메이션은 되지않는다.
+            // 이것을 제이쿼리로 구현하자.
+            $('.gnb a').click(function(e){
+                // 1. 기본이동막기
+                e.preventDefault();
+
+                // 2. 클릭된 a요소의 href값 읽어오기
+                let aid = $(this).attr('href')
+                
+                // 3. 아이디 요소 박스 위치구하기
+                let newpos = $(aid).offset().top;
+                
+                console.log(aid) 
+
+                // 4. 애니메이션 이동
+                $('html,body').animate({
+                    scrollTop : newpos + 'px'
+                },600,'easeOutQuint')
+                
+                // 5. 부드러운 스크롤 변수에 현재위치값 업데이트
+                sc_pos = newpos;
+
+            })
     },
 }) // 상단영역 뷰인스턴스
 
