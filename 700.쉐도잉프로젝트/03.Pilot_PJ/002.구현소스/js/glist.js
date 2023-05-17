@@ -36,6 +36,9 @@ new Vue({
         // push(실행할 뷰 라우터경로)
         // $router - 전체 라우터객체
         // 비교) $route - 개별경로정보객체
+        store.commit('resCheck');
+
+
 
         // 메뉴기능실행
         menuFn();
