@@ -55,7 +55,7 @@ const store = new Vuex.Store({
             // pm 은 업데이트할 전달숫자 
             dt.mnum += pm;
             // 업데이트 후 모어버튼 없애기(한계수를 넘으면)
-            if(dt.mnum>=25) dt.mbtn =false;
+            if(dt.mnum>=25){ dt.mbtn =false;}
                 
         }, // updateMore // 
     },
