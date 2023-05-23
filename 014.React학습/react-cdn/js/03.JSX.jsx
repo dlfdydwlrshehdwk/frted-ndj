@@ -96,8 +96,40 @@ const myele4 =
 ReactDOM.render(myele4,document.querySelectorAll('#root>div')[3]);
 
 
+// 5번에는 내가 원하는 태그를 출력해본다.
 
+const mydata = [
+    {idx:1,name:"김수현",hi:"안녕하세요"},
+    {idx:2,name:"장우혁",hi:"봉쥬르"},
+    {idx:3,name:"김혜수",hi:"사와디캅"}
 
+]
+
+// map()을 사용한 태그 생성하기
+// map(value,index,array)
+// map(배열값, 순번, 배열객체전체자신)
+// 파라미터 구성은 forEach() 메서드와 유사하다.
+const mylist = mydata.map((val,idx,obj)=>
+        <li>{val.idx ==3?"예뻐" : "멋져"} : {val.name} :{val.hi}</li>
+    )
+    // 저런식으로 삼항연산자도 사용가능한듯 하다! idx의 내용값이 바뀌넹
+
+const myele5 = 
+<React.Fragment>
+    <h1>배우리스트</h1>
+    <ul>
+    {mylist}
+    </ul>
+</React.Fragment>
+
+// 다섯번째 div요소에 출력하기
+ReactDOM.render(myele5,document.querySelectorAll('#root>div')[4]);
+
+/**************************************************** 
+    [ JSX는 홀로태그라도 끝에 닫기를 해줘야한다. ]
+    예) <br> -> <br />
+        <input type="text"> -> <input type="text" />
+****************************************************/
 /**************************************************** 
 
 ****************************************************/
