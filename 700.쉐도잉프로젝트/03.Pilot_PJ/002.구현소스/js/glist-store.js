@@ -58,6 +58,16 @@ const store = new Vuex.Store({
             if(dt.mnum>=25){ dt.mbtn =false;}
                 
         }, // updateMore // 
+
+        // 장바구니 데이터 업데이트 메서드 
+        setData(dt,pm){ // pm - 배열데이터 순번
+            console.log("장바구니",pm)
+            console.log("선택gdata",dt.gdata[pm])
+            console.log('카트전',localStorage.getItem("cart"))
+            if(localStorage.getItem("cart")==null)
+            localStorage.setItem("cart","[]")
+            console.log('카트후',localStorage.getItem("cart"))
+        }, // setData //
     },
 });
 
