@@ -1,4 +1,6 @@
 // 04. 리액트 컴포넌트 JSX 
+import Avengers from "./Avengers";
+// import시 CDN에서도 js/jsx 확장자는 생략 가능하다.
 
 /* 
     [ 리액트 컴포넌트 ]
@@ -50,7 +52,7 @@
 
     // 렌더링 하기
     const root1 = 
-    ReactDom.createRoot(document.getElementById("root1"))
+    ReactDOM.createRoot(document.getElementById("root1"))
 
     root1.render(<Gogh />);
     // render(출력할요소)
@@ -58,8 +60,126 @@
     // 클래스호출법 : <클래스명 />
 
 
+    // [ 함수형 컴포넌트 만들기 ]
+    // 첫글자는 대문자
+    function IronMan(){
+        return (
+            <div>
+                <h2>안녕 나는 아이론맨이야 </h2>
+                <img src="./images/ab1.jpg" alt="아이언맨" />
+            </div>
+        )
+    } // 아이언맨 컴포넌트 // 
+
+    // 렌더링하기
+    ReactDOM.render(<IronMan/>,document.querySelector("#root2"))
 
 
 /* 
-
+    [ props 사용하기 ]
+    props는 properties 에서 나온말
+    속성들... 즉, 변수에 값을 할당하여 전달하는 방법
+    함의의 전달값과 같고 속성으로 컴포넌트에 보낸다.
+    -> props는 05번 다음번에 자세히 다룬다.
 */
+
+// 내가 좋아하는 색 표시하기 컴포넌트
+function Favorite(props){ // props는 속성셋팅 변수집합
+    return (
+        <h2>
+            내가 좋아하는 색은 {props.color}이야 <br />
+            그리고 좋아하는 음식은 {props.food}야 <br />
+            취미는 {props.hobby}야 
+        </h2>
+        )
+    
+    ;
+} // Favorite 컴포넌트
+
+// 좋아하는 색을 props로 전달할 수 있다.
+ReactDOM.render(<Favorite color="빨간색" food="피자" hobby="게임"/>, 
+document.querySelector("#root3"));
+
+// 함수 컴포넌트에서는 표현식안에서 {props.호출시 사용한속성명}
+// 여기서는 {props.color} 이런 형식으로 사용함
+
+// 컴포넌트 재사용하기 
+ReactDOM.render(<Favorite color="퍼렁색" food="찜닭" hobby="쇼핑"/>, 
+document.querySelector("#root4"))
+
+/* 
+    컴포넌트 내부에서 다른 컴포넌트를 호출할 수 있다.
+*/
+function Who(){
+    return (
+        <div>
+            <h1>김똑팔이가 누구야?</h1>
+            {/* 다른 컴포넌트 넣기 */}
+            <Ans />
+        </div>
+        
+    );
+} // Who 컴포넌트 //
+
+// 컴포넌트 내부에서 호출할 컴포넌트
+function Ans(){
+    return(
+        <h2>김씨가 똑하고 팔이 부러졌대</h2>
+    );
+}
+
+ReactDOM.render(<Who />, 
+document.querySelector("#root5"))
+
+
+/*************************************************** 
+    [ 컴포넌트의 파일분리 ]
+    리액트는 코드를 재사용하는 것이므로
+    컴포넌트를 별도의 파일로 분할 하는것 일반적이다!
+
+    {분할방법}
+    1. jsx의 새파일을 생성한다.
+    2. 대문자로 시작하는 컴포넌트를 구현한다.
+    3. 분할구현된 jsx파일을 import하여 호출한다.
+
+    -> 일반적으로 js파일 상단에 import 키워드로 불러오면
+    되는데 지금 사용하는 CDN방식의 바벨모듈에서는
+    주의 사항이 있으니 참고 바란다!(아래참고)
+
+***************************************************/
+
+// 어벤져스 컴포넌트 렌더링하기
+ReactDOM.render(<Avengers />, 
+document.querySelector("#root6"))
+
+/* 
+    [ 바벨을 사용할때 모듈로 파일 호출시 주의사항! ]
+  ____________________________________________
+
+  설치형이 아닌 CDN방식의 바벨은 호출셋업의 시차로
+  바로 모듈을 호출하면 에러가 발생한다!
+  따라서 모듈을 사용할 파일을 아래와 같은 형식으로
+  메인 html 상단에 호출해 줘야만 한다!!!
+
+  -> 상단에 모듈화한 JS를 먼저 불러준다!
+
+  <script src="모듈화한js" 
+  data-plugins="transform-es2015-modules-umd" 
+  type="text/babel"></script>
+
+  -> 아래쪽에 모듈을 호출하는 JS를 불러준다!
+
+  <script src="모듈을 호출하는 JS" 
+  data-plugins="transform-es2015-modules-umd" 
+  type="text/babel"></script>
+
+  ->>> 위의 호출 속성 중 기본적으로
+  type="text/babel" 은 당연히 해야하고
+
+  ->>> 여기에 더하여 하나의 속성을 추가한다!
+  data-plugins="transform-es2015-modules-umd"
+
+  이 속성과 값이 바벨에서 모듈을 사용하게 하는
+  es2015 즉 ES6버전에서의 모듈문법을 사용하게끔 해준다!
+*/
+
