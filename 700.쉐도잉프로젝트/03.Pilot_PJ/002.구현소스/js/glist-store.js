@@ -59,15 +59,102 @@ const store = new Vuex.Store({
                 
         }, // updateMore // 
 
-        // 장바구니 데이터 업데이트 메서드 
+        // 1. 장바구니 데이터 업데이트 메서드 
         setData(dt,pm){ // pm - 배열데이터 순번
             console.log("장바구니",pm)
             console.log("선택gdata",dt.gdata[pm])
             console.log('카트전',localStorage.getItem("cart"))
-            if(localStorage.getItem("cart")==null)
-            localStorage.setItem("cart","[]")
-            console.log('카트후',localStorage.getItem("cart"))
+
+        // 2. 로컬스 데이터 cart가 없으면 [] 배열형식으로 문자넣기
+        if(localStorage.getItem("cart")==null)
+        localStorage.setItem("cart","[]")
+        console.log('카트후',localStorage.getItem("cart"))
+
+        // 로컬스토리지 객체데이터 가져오기
+        // 입력된 데이터는 문자형 객체이므로 
+        // 다시 파싱항 원래 객체로 복원한다.
+        let org = localStorage.getItem('cart');
+        console.log(org);
+        org = JSON.parse(org);
+        console.log('변환객체:',org);
+
+        // 3. 배열뒤에 밀어넣기 메서드 : push(값)
+        org.push(dt.gdata[pm])
+        console.log(org)
+
+        // 4. 객체를 문자형으로 변환후 로컬스토리지에 반영
+        localStorage
+        .setItem('cart',JSON.stringify(org))
+        console.log('반영후 로칼쓰',localStorage.getItem('cart'));
+
+        // 5. 카트 애니메이션 버튼을 등장시켜 카트리스트까지 연동한다.
+        this.commit('cartAni',org.length);
+        // org.length는 배열 데이터의 개수를넘김
+
+        // 내용 초기화
+        // localStorage.clear();
+
         }, // setData //
+
+        // 장바구니 애니메이션 버튼 생성하기 // 
+        cartAni(dt,pm){
+            console.log("콰트로 맥시멈 미트 포커스드")
+
+            // 0. 생성될 카트이미지 지우고 시작! -> 하나만 생성되게 하기위함
+            $('#mycart').remove();
+
+            // gif애니메이션 이미지를 사용하여 
+            // 화면중앙에 등장하여 장바구니 담김을 알림
+            $('body').append(`<img id="mycart" 
+            src="./images/mycart.gif" 
+            title="${pm}개의 상품이 카트에 있습니다.">`)
+            console.log($('#mycart').attr('title'))
+
+            // 추가한 이미지 화면 중앙에 위치하기 
+            $('#mycart').css({
+                position : "fixed",
+                top : '50%',
+                left : '50%',
+                transform : 'translate(-50%,-50%)',
+                cursor : 'pointer',
+                zIndex : "99999",
+            })
+            .delay(3000)
+            .animate({
+                top : '5%',
+                left : '80%',
+                width : '50px',
+            },1000,'easeInExpo')
+            // 클릭하면 카트리스트가 보이기 
+            .click(function(){
+                // body에 카트리스트 요소넣기
+                $('body').append(`
+                    <section id="cartlist">
+
+                    </section>
+                `)
+                // 생성된 카트리스트에 테이블넣기
+                $('cartlist').html(`
+                    <a href="#" class="cbtn cbtn2">×</a>
+                    <table>
+                        <caption>
+                            <h1>카트리스트</h1>
+                        </caption>
+                        <tr>
+                            <th>번호</th>
+                            <th>상품명</th>
+                            <th>상품코드</th>
+                            <th>단가</th>
+                            <th>수량</th>
+                            <th>합계</th>
+                            <th>삭제</th>
+                        </tr>
+                    </table>
+                `)
+            })
+
+            
+        }, // cartAni //
     },
 });
 
