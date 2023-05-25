@@ -162,8 +162,9 @@ const store = new Vuex.Store({
                     console.log('카트박스 만들기')
                 } // if // 
 
-                // 2. 로컬스 데이터로 테이블 레코드 태그 구성하기 
-                store.commit('bindData');
+                // 2. 로컬스 데이터로 테이블 레코드 태그 구성하기
+                // 카트가 보이지 않는 상태임(right : '-60vw') 
+                store.commit('bindData','-60vw');
                 
 
             }) // 카트버튼 click // 
@@ -186,7 +187,7 @@ const store = new Vuex.Store({
                 // 지울아이템과 같으면 
                 if(v.idx==pm){
                     // 지울것인지 물어봄(확인시 true)
-                    if(alert('장바구니에서 지우시겠습니까?')){
+                    if(confirm('장바구니에서 지우시겠습니까?')){
                         org.splice(i,1);
                     }
                 }
@@ -196,12 +197,24 @@ const store = new Vuex.Store({
             .setItem('cart',JSON.stringify(org))
             console.log('삭제후 로칼쓰',localStorage.getItem('cart'));
 
-            // 5. 리스트 갱신하기 
-            store.commit('bindData');
+            // 5. 리스트 갱신하기 : 카트가 보이는 상태임
+            store.commit('bindData','0');
+
+            // 6. 카트버튼 툴팁 문구 업데이트하기
+            if(org.length ==0){ // 데이터가 없으면 장바구니삭제
+                $('#mycart').remove();
+                $('#cartlist').remove();
+            } // if //
+            else{ // 타이틀 재 셋팅
+                $('#mycart')
+                .attr('title',
+                org.length + '개의 상품이 카트에 있습니다.')
+            } // else // 
+
         }, // delRec //
 
         // 리스트 바인딩 메서드
-        bindData(){
+        bindData(dt,pm){ // pm은 카트박스 right값 전달
             // (1) 로컬스 데이터 읽어와서 객체화하기
             let org = localStorage.getItem('cart');
             org = JSON.parse(org);
@@ -322,7 +335,7 @@ const store = new Vuex.Store({
             .css({
                 position : 'fixed',
                 top : '0',
-                right : '-60vw',
+                right : pm, //'-60vw',
                 width : '60vw',
                 height : '100vh',
                 backgroundColor : 'rgba(255,255,255,1)',
