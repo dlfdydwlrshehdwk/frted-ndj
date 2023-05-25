@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Sahitya);
+
+:root {
+    /* 박스사이즈 */
+  --size: 400px;
+  /* 갭간격 */
+  --gap: 5px;
+  /* 각도 */
+  --tdeg: 90deg;
+  /* 속도 */
+  --dr: 200ms;
+  /* 이징 */
+  --tf: ease-out;
+  --pr: 300px;
+  /* 각종칼라 */
+  --fr: #000;
+  --bg: #fff;
+  --mn: #00BCD4;
+  --sc: #673AB7;
+}
+
+li {
+  margin: 5px;
+  margin: var(--gap);
+  position: relative;
+  width: 180px;
+  width: var(--size);
+  height: 180px;
+  height: var(--size);
+  display: inline-block;
+  vertical-align: top;
+  -webkit-perspective: 300px;
+          perspective: 300px;
+  -webkit-perspective: var(--pr);
+          perspective: var(--pr);
+  -webkit-transform-origin: 50% 50% calc(180px/2);
+      -ms-transform-origin: 50% 50% calc(180px/2);
+          transform-origin: 50% 50% calc(180px/2);
+  -webkit-transform-origin: 50% 50% calc(var(--size)/2);
+      -ms-transform-origin: 50% 50% calc(var(--size)/2);
+          transform-origin: 50% 50% calc(var(--size)/2);
+}
+
+.w {
+  /* font-size: medium; */
+  font-size: initial;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50% calc(180px / 2 * -1);
+      -ms-transform-origin: 50% 50% calc(180px / 2 * -1);
+          transform-origin: 50% 50% calc(180px / 2 * -1);
+  -webkit-transform-origin: 50% 50% calc(var(--size) / 2 * -1);
+      -ms-transform-origin: 50% 50% calc(var(--size) / 2 * -1);
+          transform-origin: 50% 50% calc(var(--size) / 2 * -1);
+  will-change: transform;
+  -webkit-animation: 200ms ease-out 0ms 1 normal forwards paused;
+          animation: 200ms ease-out 0ms 1 normal forwards paused;
+  -webkit-animation: var(--dr) var(--tf) 0ms 1 normal forwards paused;
+          animation: var(--dr) var(--tf) 0ms 1 normal forwards paused;
+}
+
+.f,
+.b {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: white;
+  /* -webkit-transition: none; */
+  /* -o-transition: none; */
+  /* transition: none; */
+}
+
+.f {
+  /* background-color: #00BCD4; */
+  /* background-color: var(--mn); */
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#00BCD4), to(#673AB7)); */
+  /* background: -o-linear-gradient(#00BCD4, #673AB7); */
+  /* background: linear-gradient(#00BCD4, #673AB7); */
+  /* background: -webkit-gradient(linear, left top, left bottom, from(var(--mn)), to(var(--sc))); */
+  /* background: -o-linear-gradient(var(--mn), var(--sc)); */
+  /* background: linear-gradient(var(--mn), var(--sc)); */
+  /* -webkit-transform: translate3d(0,0,0); */
+          /* transform: translate3d(0,0,0) */
+}
+
+.f > svg {
+    /* mix-blend-mode: luminosity; */
+  }
+
+.b {
+  padding: 1rem;
+  background-image: -o-radial-gradient(circle, #333, #000 160%);
+  background-image: radial-gradient(circle, #333, #000 160%);
+  -webkit-transform: translate3d(0,0,-1px);
+          transform: translate3d(0,0,-1px);
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-shadow: 0 20px 20px black;
+  text-align: center;
+}
+
+.in-top .b,
+.out-top .b {
+  -webkit-transform-origin: 0% 100%;
+      -ms-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: translate3d(0, -100%, 0) rotate3d(1,0,0,90deg);
+          transform: translate3d(0, -100%, 0) rotate3d(1,0,0,90deg);
+}
+
+.in-right .b,
+.out-right .b {
+  -webkit-transform-origin: 0% 0%;
+      -ms-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(100%, 0, 0) rotate3d(0,1,0,90deg);
+          transform: translate3d(100%, 0, 0) rotate3d(0,1,0,90deg);
+}
+
+.in-bottom .b,
+.out-bottom .b {
+  -webkit-transform-origin: 0% 0%;
+      -ms-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+  -webkit-transform: translate3d(0, 100%, 0) rotate3d(-1,0,0,90deg);
+          transform: translate3d(0, 100%, 0) rotate3d(-1,0,0,90deg);
+}
+
+.in-left .b,
+.out-left .b {
+  -webkit-transform-origin: 100% 0;
+      -ms-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+  -webkit-transform: translate3d(-100%,0,0) rotate3d(0,-1,0,90deg);
+          transform: translate3d(-100%,0,0) rotate3d(0,-1,0,90deg);
+}
+
+.in-top .w    {-webkit-animation-name: in-top;animation-name: in-top; -webkit-animation-play-state: running; animation-play-state: running}
+.in-right .w  {-webkit-animation-name: in-right;animation-name: in-right; -webkit-animation-play-state: running; animation-play-state: running}
+.in-bottom .w {-webkit-animation-name: in-bottom;animation-name: in-bottom; -webkit-animation-play-state: running; animation-play-state: running}
+.in-left .w   {-webkit-animation-name: in-left;animation-name: in-left; -webkit-animation-play-state: running; animation-play-state: running}
+
+.out-top .w    {-webkit-animation-name: out-top;animation-name: out-top; -webkit-animation-play-state: running; animation-play-state: running}
+.out-right .w  {-webkit-animation-name: out-right;animation-name: out-right; -webkit-animation-play-state: running; animation-play-state: running}
+.out-bottom .w {-webkit-animation-name: out-bottom;animation-name: out-bottom; -webkit-animation-play-state: running; animation-play-state: running}
+.out-left .w   {-webkit-animation-name: out-left;animation-name: out-left; -webkit-animation-play-state: running; animation-play-state: running}
+
+@-webkit-keyframes in-top {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(-1,0,0,90deg);transform: rotate3d(-1,0,0,90deg);-webkit-transform: rotate3d(-1,0,0,var(--tdeg));transform: rotate3d(-1,0,0,var(--tdeg))}
+}
+
+@keyframes in-top {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(-1,0,0,90deg);transform: rotate3d(-1,0,0,90deg);-webkit-transform: rotate3d(-1,0,0,var(--tdeg));transform: rotate3d(-1,0,0,var(--tdeg))}
+}
+@-webkit-keyframes out-top {
+  from {-webkit-transform: rotate3d(-1,0,0,90deg);transform: rotate3d(-1,0,0,90deg);-webkit-transform: rotate3d(-1,0,0,var(--tdeg));transform: rotate3d(-1,0,0,var(--tdeg))}
+  to   {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+@keyframes out-top {
+  from {-webkit-transform: rotate3d(-1,0,0,90deg);transform: rotate3d(-1,0,0,90deg);-webkit-transform: rotate3d(-1,0,0,var(--tdeg));transform: rotate3d(-1,0,0,var(--tdeg))}
+  to   {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+
+@-webkit-keyframes in-right {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(0,-1,0,90deg);transform: rotate3d(0,-1,0,90deg);-webkit-transform: rotate3d(0,-1,0,var(--tdeg));transform: rotate3d(0,-1,0,var(--tdeg))}
+}
+
+@keyframes in-right {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(0,-1,0,90deg);transform: rotate3d(0,-1,0,90deg);-webkit-transform: rotate3d(0,-1,0,var(--tdeg));transform: rotate3d(0,-1,0,var(--tdeg))}
+}
+@-webkit-keyframes out-right {
+  from  {-webkit-transform: rotate3d(0,-1,0,90deg);transform: rotate3d(0,-1,0,90deg);-webkit-transform: rotate3d(0,-1,0,var(--tdeg));transform: rotate3d(0,-1,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+@keyframes out-right {
+  from  {-webkit-transform: rotate3d(0,-1,0,90deg);transform: rotate3d(0,-1,0,90deg);-webkit-transform: rotate3d(0,-1,0,var(--tdeg));transform: rotate3d(0,-1,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+
+@-webkit-keyframes in-bottom {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(1,0,0,90deg);transform: rotate3d(1,0,0,90deg);-webkit-transform: rotate3d(1,0,0,var(--tdeg));transform: rotate3d(1,0,0,var(--tdeg))}
+}
+
+@keyframes in-bottom {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(1,0,0,90deg);transform: rotate3d(1,0,0,90deg);-webkit-transform: rotate3d(1,0,0,var(--tdeg));transform: rotate3d(1,0,0,var(--tdeg))}
+}
+@-webkit-keyframes out-bottom {
+  from  {-webkit-transform: rotate3d(1,0,0,90deg);transform: rotate3d(1,0,0,90deg);-webkit-transform: rotate3d(1,0,0,var(--tdeg));transform: rotate3d(1,0,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+@keyframes out-bottom {
+  from  {-webkit-transform: rotate3d(1,0,0,90deg);transform: rotate3d(1,0,0,90deg);-webkit-transform: rotate3d(1,0,0,var(--tdeg));transform: rotate3d(1,0,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+
+@-webkit-keyframes in-left {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(0,1,0,90deg);transform: rotate3d(0,1,0,90deg);-webkit-transform: rotate3d(0,1,0,var(--tdeg));transform: rotate3d(0,1,0,var(--tdeg))}
+}
+
+@keyframes in-left {
+  from  {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+  to    {-webkit-transform: rotate3d(0,1,0,90deg);transform: rotate3d(0,1,0,90deg);-webkit-transform: rotate3d(0,1,0,var(--tdeg));transform: rotate3d(0,1,0,var(--tdeg))}
+}
+@-webkit-keyframes out-left {
+  from  {-webkit-transform: rotate3d(0,1,0,90deg);transform: rotate3d(0,1,0,90deg);-webkit-transform: rotate3d(0,1,0,var(--tdeg));transform: rotate3d(0,1,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+@keyframes out-left {
+  from  {-webkit-transform: rotate3d(0,1,0,90deg);transform: rotate3d(0,1,0,90deg);-webkit-transform: rotate3d(0,1,0,var(--tdeg));transform: rotate3d(0,1,0,var(--tdeg))}
+  to    {-webkit-transform: rotate3d(0,0,0,0deg);transform: rotate3d(0,0,0,0deg)}
+}
+
+/* ======= aesthetics ======= */
+
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding: 3rem 1.5rem;
+  font-size: 16px;
+  font-family: 'Sahitya', serif;
+  color: #000;
+  color: var(--fr);
+  background-color: #fff;
+  background-color: var(--bg);
+  line-height: 1.618;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  padding-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2em
+}
+
+h1 sup {
+    font-size: .7em;
+    color: #00BCD4;
+    color: var(--mn);
+  }
+
+ul {
+  font-size: 0;
+  padding: 0;
+  max-width: calc((180px + (5px * 2)) * 4);
+  max-width: calc((var(--size) + (var(--gap) * 2)) * 4);
+  margin: 0 auto;
+  list-style: none
+}
+
+ul::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+footer {
+  font-size: .75rem;
+  font-family: monospace;
+  padding-top: 3rem
+}
+
+footer a {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+footer svg {fill: currentColor}
+
+:link,:visited {
+  color: #00BCD4;
+  color: var(--mn);
+}
+
+:-webkit-any-link {
+  color: #00BCD4;
+  color: var(--mn);
+}
+
+:-moz-any-link {
+  color: #00BCD4;
+  color: var(--mn);
+}
+
+:any-link {
+  color: #00BCD4;
+  color: var(--mn);
+}
+
+.-center {
+  text-align: center;
+}
+
+.-neutral-mid {
+  color: color(#000 tint(60%));
+  color: color(var(--fr) tint(60%));
+}
+    </style>
+</head>
+<body>
+    <header class='-center'>
+        <h2>안녕하세요</h2>
+    </header>
+      <ul class='-center'>
+        <li>
+          <div class='w'>
+            <div class='f'>
+              <svg viewBox='0 0 180 180'>
+                <image height='100%' preserveAspectRatio='xMidYMid slice' width='100%' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-angus.png'></image>
+              </svg>
+            </div>
+            <div class='b'>
+              <h3>
+                Angus Young
+              </h3>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class='w'>
+            <div class='f'>
+              <svg viewBox='0 0 180 180'>
+                <image height='100%' preserveAspectRatio='xMidYMid slice' width='100%' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-aurora.png'></image>
+              </svg>
+            </div>
+            <div class='b'>
+              <h3>
+                Aurora
+              </h3>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class='w'>
+            <div class='f'>
+              <svg viewBox='0 0 180 180'>
+                <image height='100%' preserveAspectRatio='xMidYMid slice' width='100%' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-bride.png'></image>
+              </svg>
+            </div>
+            <div class='b'>
+              <h3>
+                Bride of Frankenstein
+              </h3>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class='w'>
+            <div class='f'>
+              <svg viewBox='0 0 180 180'>
+                <image height='100%' preserveAspectRatio='xMidYMid slice' width='100%' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/9473/i-bride.png'></image>
+              </svg>
+            </div>
+            <div class='b'>
+              <h3>
+                Bride of Frankenstein
+              </h3>
+            </div>
+          </div>
+        </li>
+        
+      </ul>
+    
+</body>
+<script>
+    // - Noel Delgado | @pixelia_me
+
+class DAH {
+  constructor(nodes) {
+    this.nodes = [];
+
+    Array.prototype.slice.call(nodes, 0).forEach(node => {
+      this.nodes.push(new Node(node));
+    });
+
+    this._bindEvents();
+  }
+
+  _bindEvents() {
+    ['_resizeHandler'].forEach(fn => this[fn] = this[fn].bind(this));
+    window.addEventListener('resize', this._resizeHandler, false);
+  }
+
+  _resizeHandler() {
+    this.nodes.forEach(node => node.update());
+  }
+}
+
+class Node {
+  constructor(node) {
+    this.element = node;
+    this._bindEvents().update();
+  }
+
+  update() {
+    // const bcr = this.element.getBoundingClientRect();
+    // this.l = bcr.left;
+    // this.t = bcr.top;
+    this.w = this.element.offsetWidth;
+    this.h = this.element.offsetHeight;
+    this.l = this.element.offsetLeft;
+    this.t = this.element.offsetTop;
+  }
+
+  _bindEvents() {
+    ['_mouseEnterHandler', '_mouseOutHandler'].forEach(fn => this[fn] = this[fn].bind(this));
+    this.element.addEventListener('mouseenter', this._mouseEnterHandler, false);
+    this.element.addEventListener('mouseout', this._mouseOutHandler, false);
+    return this;
+  }
+  
+  _mouseEnterHandler(ev) {
+    this._addClass(ev, 'in');
+  }
+
+  _mouseOutHandler(ev) {
+    this._addClass(ev, 'out');
+  }
+
+  _addClass(ev, state) {
+    const direction = this._getDirection(ev);
+    let class_suffix = '';
+
+    switch (direction) {
+      case 0: class_suffix = '-top'; break;
+      case 1: class_suffix = '-right'; break;
+      case 2: class_suffix = '-bottom'; break;
+      case 3: class_suffix = '-left'; break;
+    }
+
+    this.element.className = '';
+    this.element.classList.add(state + class_suffix);
+  }
+
+  _getDirection(ev) {
+    const w = this.w,
+      h = this.h,
+      x = (ev.pageX - this.l - (w / 2) * (w > h ? (h / w) : 1)),
+      y = (ev.pageY - this.t - (h / 2) * (h > w ? (w / h) : 1)),
+      d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
+
+    return d;
+  }
+}
+
+new DAH(document.querySelectorAll('li'));
+</script>
+</html>
