@@ -323,7 +323,9 @@ const Detail = {
                         <button class="btn btn1">BUY NOW</button>
                         <button class="btn scbtn" @click="$store.commit('setData', $route.params.id-1)"
                         >SHOPPING CART</button>
-                        <button class="btn">WISH LIST</button>
+                        <button class="btn"
+                        @click ="$store.commit('clearData')"
+                        >ClEAR CART</button>
                     </div>
                 </section>
             </div>
