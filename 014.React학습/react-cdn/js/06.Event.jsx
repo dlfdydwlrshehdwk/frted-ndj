@@ -40,6 +40,12 @@ function EventShow(){
             background-color:rgba(0,0,0,.5);
         `;
         },500); // sT //
+
+        // 3. 램프 가져오기 버튼 3초뒤에 보이기
+        setTimeout(()=>{
+            document.querySelectorAll('button')[0]
+            .style.display='inline-block'
+        })
     }; // aladin //
 
     // 컴포넌트의 return은 가장 아래쪽에 위치함
@@ -53,13 +59,18 @@ function EventShow(){
                 }}
                 />
             </div>
+            {/* 램프가 들어갈 요소 */}
+            <div className='lamp'></div>
+            {/* 버튼들 */}
+            <button >램프가져오기</button><br/>
+            <button >페라리주셈</button>
         </React.Fragment>
     );
 } // EventShow //
 
 // 알라딘 램프 이미지 출력 컴포넌트 //
-function AlaLamp(){
-
+function AlaLamp(props){ // 이미지 경로를 props로 받는다.
+    return <img src={props.isrc} alt="램프"/>;
 } // AlaLamp // 
 
 // 페라리 이미지 출력 컴포넌트 //
