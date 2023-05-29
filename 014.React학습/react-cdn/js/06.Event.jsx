@@ -46,6 +46,9 @@ function EventShow(){
             document.querySelectorAll('button')[0]
             .style.display='inline-block'
         })
+
+        // 4. 별도의 요소인 #ala에 이미지 생성 컴포넌트 출력하기
+        let sowon = ReactDOM.render 
     }; // aladin //
 
     // 컴포넌트의 return은 가장 아래쪽에 위치함
