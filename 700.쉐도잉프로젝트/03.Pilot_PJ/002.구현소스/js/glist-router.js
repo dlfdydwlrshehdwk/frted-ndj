@@ -33,8 +33,11 @@ let Glist = {
                     v-if="
                         v.cat==$store.state.selnm[0] ||
                         v.cat==$store.state.selnm[1] ||
-                        v.cat==$store.state.selnm[2]
-                ">
+                        v.cat==$store.state.selnm[2]                    
+                    "
+                    @click="$store.commit('setBtn')"
+                
+                >
 
                 
                 <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
@@ -92,8 +95,7 @@ let Paging = {
                
             <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
             <router-link 
-                v-bind:to="
-                {
+                v-bind:to="{
                     name:'det',
                     params:{id : v.idx, list : $route.path}
                 }">
@@ -155,8 +157,7 @@ let More = {
                
             <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
             <router-link 
-                v-bind:to="
-                {
+                v-bind:to="{
                     name:'det',
                     params:{id : v.idx, list : $route.path}
                 }">
@@ -313,7 +314,9 @@ const Detail = {
                             </li>
                             <li class="tot">
                                 <span>총합계</span>
-                                <span id="total">니가계산해!</span>
+                                <span id="total">
+                                {{$store.state.gdata[$route.params.id-1].ginfo[3]}}
+                                </span>
                             </li>
                         </ol>
 
@@ -321,11 +324,13 @@ const Detail = {
                     <div>
                         <!--버튼영역-->
                         <button class="btn btn1">BUY NOW</button>
-                        <button class="btn scbtn" @click="$store.commit('setData', $route.params.id-1)"
+                        <button class="btn scbtn"
+                        @click="$store.commit('setData',$route.params.id-1)"
                         >SHOPPING CART</button>
                         <button class="btn"
-                        @click ="$store.commit('clearData')"
-                        >ClEAR CART</button>
+                        @click="$store.commit('clearData')"
+                        >CLEAR CART</button>
+
                     </div>
                 </section>
             </div>
