@@ -167,7 +167,11 @@ function move() {console.log(one);
     let car = document.getElementById("car");
     car.style.transform = one?"translateX(150%) scale(2)":"translateX(0) scale(1)";
     car.style.transition = "2s ease-in-out";
+<<<<<<< HEAD
 
+=======
+    // 왔다갔다 1/0 값 전환하기 
+>>>>>>> d190e8e45fb53d6f9b6d9044418609db26537c21
     one?one=0:one=1;
 } ///////////// move함수 ///////////////////
 
