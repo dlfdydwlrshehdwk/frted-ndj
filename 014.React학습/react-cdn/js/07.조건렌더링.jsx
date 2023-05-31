@@ -27,7 +27,7 @@ function LostDev(){
 // 3번 컴포넌트
 function MakeImg(props){
     return(
-        <img src={props.isrc} alt={props.ialt} />
+        <img src={props.isrc} alt={props.ialt} title={props.ialt}/>
     )
 } // MakeImg 컴포 //
 
@@ -39,6 +39,7 @@ function Developer(props){ // 호출시 전달되는 속성 props
     if(isNow){
         return (
         <React.Fragment>
+            {/* MakeDev 컴포넌트 선택출력 */}
         <MakeDev /><MakeImg isrc={props.isrc} ialt={props.ialt} />
         </React.Fragment>
         )
@@ -147,23 +148,46 @@ const movs = [
     2022년도 영화2
     2023년도 영화3
 */
-function Movie(props){
-    return <li>도 </li>
-}
 
-function FM(props){
-    return(
+function MovieList(props){ // year - 년도, mname - 영화명
+    return <li>{props.year}도 {props.mname}</li>
+} // FoodList 컴포 //
+
+// 2-3. 개발자 선호 영화 리스트 출력 컴포넌트 //
+function WishList2(props){ // wlist속성에 담아 보내준다.
+    // 위시리스트 담기
+    const mymv = props.wlist;
+    // 코드리턴
+    return (
         <React.Fragment>
-            <h2>개발자가 좋아하는 영화</h2>
-            <h2>개발자가 좋아하는 영화는 모두 {movs.length}가지 입니다.</h2>
-            <ul>
-                {
-                    movs.map(x => <Movie x={x} />)
-                }
-            </ul>
+            <Title tit="영화"/>
+            {/* 영화 위시리스트가 길이가 0보다 클때만 출력 */}
+            { mymv.length > 0 &&
+                <div>
+                    <h2>개발자가 좋아하는 영화는 최근{mymv.length}년간 아래와 같습니다.</h2>
+                    <ul>
+                        {
+                            // 배열변수.map() 메서드 사용!
+                            // map(변수=>{표현식})
+                            // 변수는 화살표함수 안으로 값전달
+                            // 배열값으로 객체가 들어가 있으므로 
+                            // 각 배열값은 객체의 속성으로 지정한다.
+                            // x.year / x.mtit
+                            mymv.map(
+                                x => <MovieList mname={x.mtit} year={x.year}/> )
+                        }
+                    </ul>
+                </div>
+            }
+            {/* 다른 경우출력은 별도의 JSX출력 중괄호구역에 코딩 */}
+            {
+                mymv.length == 0 &&
+                <h2>아직 개발자영화 리스트가 업데이트되지 않았습니다.</h2>
+            }
         </React.Fragment>
     )
-}
+} // WishList 컴포 //
 
-ReactDOM.render(<FM /> ,
-document.querySelector('#root4'))
+// 컴포넌트 출력하기
+ReactDOM.render(<WishList2 wlist={movs}/>,
+document.querySelector("#root4"))
