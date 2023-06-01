@@ -18,6 +18,9 @@
     position: relative;
     left: 0;
 }
+.slider li{
+    position: relative;
+}
 /* 배너 컨텐츠버튼 */
 .banner button{
     border-radius: 20px;

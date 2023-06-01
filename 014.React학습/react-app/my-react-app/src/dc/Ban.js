@@ -1,22 +1,36 @@
 // 배너 컴포넌트 - Ban.js
-import "./css/ban.css"
+import "./css/ban.css";
 // 배너데이터
 import ban_data from "./data/banner";
 
-function Ban(props) { // props.cat 은 배너데이터 구분 속성
-    const sel_data = ban_data[props.cat]
+// 반복리스트 코드 생성용 컴포넌트 //
+function MakeList(props) { // rec - 개별레코드값(객체형식)
+    return (
+        <li>
+            <img className="banimg" src={props.rec["src"]} alt="배너" />
+            <section className="bantit">
+                <h3>{props.rec["tit"]}</h3>
+                <h2>{props.rec["tit2"]}</h2>
+                <p>{props.rec["cont"]}</p>
+                <button>{props.rec["btn"]}</button>
+            </section>
+        </li>
+    );
+} // MakeList 컴포 //
+
+// 배너출력용 컴포넌트 //
+function Ban(props) {
+    // props.cat 은 배너데이터 구분 속성
+    const sel_data = ban_data[props.cat];
+    // sel_data에 담긴값은 data/banner.js의 객체의 배열값
     return (
         <div className="banner">
-            <ul>
-                <li>
-                    <img className="banimg" src={sel_data[0]['src']} alt="배너" />
-                    <section className="bantit">
-                        <h3>{sel_data[0]['tit']}</h3>
-                        <h2>{sel_data[0]['tit2']}</h2>
-                        <p>{sel_data[0]['cont']}</p>
-                        <button>{sel_data[0]['btn']}</button>
-                    </section>
-                </li>
+            <ul className="slider">
+                {
+                    sel_data.map(x=>
+                        <MakeList rec={x}/>
+                        )
+                }
             </ul>
         </div>
     );

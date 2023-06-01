@@ -10,7 +10,11 @@ import Ban from './dc/Ban';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Ban cat='CHARACTERS'/>)
+root.render(
+    <>
+        <Ban cat='main'/>
+        <Ban cat='CHARACTERS'/>
+    </>)
 // root.render(
 //   <React.StrictMode>
 //     <App />
