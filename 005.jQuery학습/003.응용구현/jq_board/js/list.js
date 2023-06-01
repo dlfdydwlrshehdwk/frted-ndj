@@ -79,6 +79,7 @@ function bindList(pgnum){ // pgnum - 페이지번호
     console.log(pgtotal)
     // 코드만들기 for문
     for(let i = 1; i<pgtotal+1; i++){
+    // for(let i = 1; i<=pgtotal; i++){
         pgcode +=
         pgnum == i ? `<b>${i}</b>` 
         : `<a href="#">${i}</a>`;
