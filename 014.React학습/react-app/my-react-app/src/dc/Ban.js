@@ -4,7 +4,9 @@ import "./css/ban.css";
 import ban_data from "./data/banner";
 
 // 반복리스트 코드 생성용 컴포넌트 //
-function MakeList(props) { // rec - 개별레코드값(객체형식)
+function MakeList(props) { 
+    // rec - 개별레코드값(객체형식)
+    // key - 유일키
     return (
         <li>
             <img className="banimg" src={props.rec["src"]} alt="배너" />
@@ -27,8 +29,8 @@ function Ban(props) {
         <div className="banner">
             <ul className="slider">
                 {
-                    sel_data.map(x=>
-                        <MakeList rec={x}/>
+                    sel_data.map((x,i)=>
+                        <MakeList rec={x} key={i} />
                         )
                 }
             </ul>
