@@ -2,31 +2,38 @@
 import $ from "jquery";
 import "./css/menubtn.css";
 import menu_data from "./data/menubtn";
+import { Link, Outlet } from 'react-router-dom';
+
 
 // 제이쿼리 로드구역 함수
 function jqFn(){
     $(()=>{
-
     }); // JQB // 
 } // jqFn 함수 //
 
-function MenuBtn(props){
+function MenuBtn(){
     return(
         <>
         <section className="menubtn">
-            <div> 
+            {
+                menu_data.map((x,i) => 
+            <div key={i}> 
                 <div className="imbx">
-                    <img src={menu_data[0]['isrc']} alt="" />
+                    <img src={x['isrc']} alt="" />
                 </div>
                 <div className="titbx">
-                    <h3>{menu_data[0]['tit'.split('^',)]}</h3>
-                    <h2>THE FLASH IS ONLY IN <br/>
-                    THEATERS JUNE 16</h2>
+                    <h3>{x.tit.split("^")[0]}</h3>
+                    <h2>{x.tit.split("^")[1]}</h2>
                 </div>
                 <div className="btnbx">
-                    <button>TICKETS ONSALE NOW</button>
+                    {/* 라우터를 이용한 이동은 반드시 Link를 사용하자 */}
+                    <Link to={x.link}>
+                    <button>{x['btn']}</button>
+                    </Link>
                 </div>
             </div>
+                )
+            }
         </section>
         {/* 빈루트를 만들고 JS로드 함수 포함 */}
         {jqFn()}

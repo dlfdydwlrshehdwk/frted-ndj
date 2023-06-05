@@ -10,6 +10,7 @@
     gap: 5% 0;
     font-family: 'Roboto Condensed', sans-serif;
     padding-bottom: 30px;
+    justify-content: space-evenly;
 }
 .menubtn>div{
     flex-basis: 20%;
@@ -28,6 +29,13 @@
 }
 .titbx h2{
     margin-bottom: 8px;
+    height: 4.5em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.btnbx{
+    margin-bottom: 30px;
 }
 .btnbx button{
     padding: 15px 30px;
