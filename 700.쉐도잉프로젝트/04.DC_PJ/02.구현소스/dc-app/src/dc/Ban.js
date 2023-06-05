@@ -125,7 +125,7 @@ function Ban(props) {
                 <ol className='indic'>
                     {
                         sel_data.map((x,i)=>
-                        <li className={i==0?'on':''}></li>
+                        <li key={i} className={i==0?'on':''}></li>
                         )
                     }
                 </ol>
