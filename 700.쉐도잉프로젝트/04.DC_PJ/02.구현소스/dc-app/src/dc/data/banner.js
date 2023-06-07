@@ -47,7 +47,8 @@ const ban_data ={
             "tit2" : "WORLDS TRAVELER",
             "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
             "btn" : "New Places, Familiar Faces"
-        }
+        },
+        
     ],
     "MOVIES": [
         {
@@ -65,7 +66,14 @@ const ban_data ={
             "tit2" : "WORLDS TRAVELER",
             "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
             "btn" : "New Places, Familiar Faces"
-        }
+        },
+        {
+            "src":"./images/dcm24.jpg",
+            "tit1":"GET TO KNOW",
+            "tit2":"RYAN CHOI",
+            "cont":`When the original Atom went missing, he left his student with. size-changing belt -- and Ryan Choi fulfilled his destiny as the All-New Atom!`,
+            "btn":"MEET RYAN",
+        },
     ],
     "NEWS": [
         {

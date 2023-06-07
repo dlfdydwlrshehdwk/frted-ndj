@@ -12,7 +12,7 @@ const Main = () => {
             {/* 2. 메뉴버튼모듈 */}
             <MenuBtn />
             {/* 3. 비디오소개모듈 */}
-            <VidIntro pg="main" />
+            <VidIntro pg="main" mm="" />
         </>
     );
 }; // Main 컴포 //
