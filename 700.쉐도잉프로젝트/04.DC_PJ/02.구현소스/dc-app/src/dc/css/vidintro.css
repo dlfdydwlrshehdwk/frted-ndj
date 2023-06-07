@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* vidintro 모듈용 CSS - vidintro.css*/
+
+.vidsc{
+    display: flex;
+    text-align: left;
+    align-items: center;
+}
