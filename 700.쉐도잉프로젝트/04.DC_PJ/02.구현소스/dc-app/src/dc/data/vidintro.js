@@ -5,7 +5,7 @@ const vidintro_data = {
         stit : "FEATURED VIDEO",
         btit : "THE FLASH - FINAL TRAILER",
         sum1 : "Are YOU ready? THE FLASH - Only in Theaters June 16.",
-        desc : "Advance tickets available now! Visit our official Flash hub for tickets and showtimes!",
+        desc : "Advance tickets available now! ^Visit our official Flash hub^ for tickets and showtimes!",
         link : "https://www.dc.com/theflash"
     },
     CHARACTERS : {
