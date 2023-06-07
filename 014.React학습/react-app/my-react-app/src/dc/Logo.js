@@ -16,7 +16,9 @@ const Logo = () => {
     return(
         <>
             <h1 style={mystyle}>
-                <img src={isrc.logo} style={{width:'81px'}} />
+                <img src={isrc.logo} 
+                style={{backgroundImage:'81px'}} 
+                />
             </h1>
         </>
     ); 
