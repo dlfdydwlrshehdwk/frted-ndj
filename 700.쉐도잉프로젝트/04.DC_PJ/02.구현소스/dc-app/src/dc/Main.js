@@ -3,6 +3,7 @@ import React from 'react';
 import Ban from './modules/Ban' 
 import MenuBtn from './modules/MenuBtn';
 import VidIntro from './modules/VidIntro';
+import VidSwipe from './modules/VidSwipe';
 
 const Main = () => {
     return(
@@ -13,6 +14,9 @@ const Main = () => {
             <MenuBtn />
             {/* 3. 비디오소개모듈 */}
             <VidIntro pg="main" mm="" />
+            {/* 4. 비디오 스와이퍼 모듈 */}
+            <VidSwipe tit="LATEST TRAILERS, CLIPS & MORE" pg="main" />
+
         </>
     );
 }; // Main 컴포 //

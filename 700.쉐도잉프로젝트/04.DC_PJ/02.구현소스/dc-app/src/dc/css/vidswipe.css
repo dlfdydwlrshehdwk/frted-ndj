@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* vidswipe 모듈용 CSS - vidswipe.css*/
+
+.tit{
+    text-align: left;
+    transform: translateX(-40px);
+    font-size: 36px;
+}
+.playvid{
+    display: none;
+    position: fixed;
+    max-width: 1140px;
+    border: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99;
+    /* width: 80%; */
+    /* height: 60%; */
+}
+.playvid iframe{
+    /* width: 100%;
+    height: 100%; */
+}
+.cbtn{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    background-color: transparent;
+}
+
+
