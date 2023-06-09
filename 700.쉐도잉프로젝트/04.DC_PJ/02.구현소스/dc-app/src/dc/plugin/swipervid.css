@@ -9,7 +9,6 @@
     font-size: 14px;
     color: #000;
     margin: 0;
-    padding: 0;
   }
   .swsec{
     width: 100%;
@@ -56,7 +55,7 @@
   .swiper-slide{
     display: flex;
     flex-direction: column;
-    box-shadow: 010px 10px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 05px 5px 5px 0 rgba(0,0,0,0.2);
     position:relative;
     justify-content: start;
   }
@@ -83,4 +82,7 @@
     line-height: 40px;
     top: 25%;
     left: 5%;
+  }
+  .tit{
+    /* background: url(../../../public/images/dcm1.jpg); */
   }

@@ -30,7 +30,6 @@ import $ from "jquery";
 // 로드구역 함수화 하기 ! // 
 function jqFn(){
 
-
 $(()=>{
 
     // 광클금지 변수 

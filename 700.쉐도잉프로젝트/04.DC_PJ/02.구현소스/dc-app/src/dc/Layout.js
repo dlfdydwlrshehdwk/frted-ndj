@@ -2,7 +2,9 @@
 import Logo from './Logo';
 import './css/layout.css';
 import { Link, Outlet } from 'react-router-dom';
-
+// 폰트어썸 임포트
+import { faCamera, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* 
     [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
     1. <Link to="/경로명"></Link>
@@ -27,19 +29,19 @@ const Layout = () => {
         },
         {
             txt:"COMICS",
-            link:"/co",
+            link:"/co1",
             sub:[
                 {
                     txt:"LATEST COMICS",
-                    link:"/lc",
+                    link:"/co1",
                 },
                 {
                     txt:"DC UNIVERSE INFINITE",
-                    link:"/dui",
+                    link:"/co2",
                 },
                 {
                     txt:"ALL COMICS SERIES",
-                    link:"/acs",
+                    link:"/co3",
                 },
         ],
     },
@@ -49,15 +51,15 @@ const Layout = () => {
         sub:[
             {
                 txt:"DC MOVIES",
-                link:"/dm",
+                link:"/mv",
             },
             {
                 txt:"DC SERIES",
-                link:"/ds",
+                link:"/mv",
             },
             {
                 txt:"DC ON HBO MAX",
-                link:"/hbo",
+                link:"/mv",
             },
         ],
         },
@@ -74,11 +76,28 @@ const Layout = () => {
             link:"/vd",
         },
     ]
-    
-    // sub:[{
-    //     txt:"",
-    //     link:"",
-    // }]
+    const fdata =[
+        {
+            txt:"PRIVACY POLICY ㅣ",
+            link:"https://www.warnermediaprivacy.com/policycenter/b2c/WM/",
+        },
+        {
+            txt:"TERMS ㅣ",
+            link:"https://www.dcuniverseinfinite.com/terms?_gl=1*1sgbuvb*_gcl_au*ODUxNTMwOTIuMTY4NTU5MTU1OA..",
+        },
+        {
+            txt:"AD CHOICES ㅣ",
+            link:"https://www.warnermediaprivacy.com/policycenter/b2c/wm/",
+        },
+        {
+            txt:"ACCESSIBLILTY ㅣ",
+            link:"https://policies.warnerbros.com/terms/en-us/#accessibility",
+        },
+        {
+            txt:"COOKIE SETTINGS",
+            link:"https://www.dc.com/#compliance-link",
+        },
+    ]
     return(
         <>
             {/* 1. 상단영역 */}
@@ -87,7 +106,9 @@ const Layout = () => {
                 <nav className='gnb'>
                     <ul>
                         <li>
-                            <Logo />
+                            <Link to="/">
+                                <Logo gb='top'/>
+                            </Link>
                         </li>
                         {
                             gnb_data.map((v,i)=>
@@ -117,25 +138,10 @@ const Layout = () => {
                             </li>
                             )
                         }
-
-                        {/* <li>
-                            <Link to="/ct">CHARACTERS</Link>
-                        </li>
-                        <li>
-                            <Link to="/co">COMICS</Link>
-                        </li>
-                        <li>
-                            <Link to="/mv">MOVIES & TV</Link>
-                        </li>
-                        <li>
-                            <Link to="/gm">GAMES</Link>
-                        </li>
-                        <li>
-                            <Link to="/nw">NEWS</Link>
-                        </li>
-                        <li>
-                            <Link to="/vd">VIDEO</Link>
-                        </li> */}
+                        <li style={{marginLeft:"auto"}}><FontAwesomeIcon icon={faSearch} 
+                        /></li>
+                        <li><Link to="/signup">SIGN UP</Link></li>
+                        <li><Link to="/login">LOG IN</Link></li>
                     </ul>
                 </nav>
             </header>
@@ -146,9 +152,17 @@ const Layout = () => {
             </main>
             {/* 3.하단영역 */}
             <footer className="info">
-                All Site Content © &amp; TM DC, unless otherwise noted here.
-                <br /> 
-                All rights reserved. 
+                <Logo gb='bottom' />
+                <ul>
+                    {
+                        fdata.map((x,i)=>
+                    <li key={i}>
+                        <Link to={x.link}>{x.txt}</Link>
+                    </li>
+                        )
+                    }
+                </ul>
+                <h3>© & ™ DC. ALL RIGHTS RESERVED</h3>
             </footer>
         </>
     );

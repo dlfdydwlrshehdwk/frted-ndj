@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+/* 폰트어썸 임포트 */
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import $ from 'jquery'
 // Import Swiper styles
 import "swiper/css";
@@ -42,7 +45,7 @@ export default function SwiperVid(props) {
     <>
       <Swiper
         slidesPerView={4}
-        spaceBetween={30}
+        spaceBetween={40}
         // pagination={{
         //   clickable: true,
         // }}
@@ -62,6 +65,15 @@ export default function SwiperVid(props) {
                     {/* 동영상 타이틀영역 */}
                     <p className="pone">{x.cat}</p>
                     <p className="ptwo">{x.tit}</p>
+                    {/* 폰트어썸을 이용한 재생버튼 만들기 */}
+                    {/* <FontAwesomeIcon icon={faPlayCircle} 
+                                style={{
+                                    position:"absolute",
+                                    bottom:"55%",
+                                    left:"10%",
+                                    color:"#fff",
+                                    fontSize:"50px"
+                                    }} /> */}
                     <div className="play">▶</div>
                 </section>
             </SwiperSlide>
