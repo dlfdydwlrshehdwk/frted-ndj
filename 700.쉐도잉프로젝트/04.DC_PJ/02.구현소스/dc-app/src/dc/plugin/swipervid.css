@@ -86,3 +86,8 @@
   .tit{
     /* background: url(../../../public/images/dcm1.jpg); */
   }
+
+
+  @media screen (min-width: 768px ) {
+    
+  }

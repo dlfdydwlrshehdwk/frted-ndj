@@ -11,14 +11,21 @@
             margin: 0;
         }
         .mover{
+            background-image: url(./images/KakaoTalk_20230609_163845862.png);
             position: fixed;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: rgb(255, 0, 0);
+            width: 50px;
+            height: 50px;
+
+            /* border-radius: 50%; */
+            /* background-color: rgb(255, 0, 0); */
             /* 트랜지션 
             이징을 반드시 ease-out 을 준다 
             따라다니는 반응이 시작할때 바로 움직여야함*/
+            transition: .3s ease-out;
+        }
+        .img{
+            width: 30px;
+            height: 30px;
             transition: .3s ease-out;
         }
     </style>
@@ -71,6 +78,8 @@
 <body>
     
     <!-- 돌아다니는원 -->
-    <div class="mover" style="width: 30px; height: 30px; transition:  .3s; background-color: red; border-radius: 50%; position: fixed;"></div>
+    <div class="mover" style="width: 30px; height: 30px; transition:  .3s; background-color: red; border-radius: 50%; position: fixed;">
+    <img class="img" src="./images/KakaoTalk_20230609_163845862.png">
+    </div>
 </body>
 </html>
