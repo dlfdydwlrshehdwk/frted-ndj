@@ -39,8 +39,8 @@ import ScrollTop from "./dc/common/ScrollTop";
 // 출력해야하기 때문에 스스로 내보내기를 셋팅하는것
 export default function App(){
     return(
-        // <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        {/* // <BrowserRouter> */}
         {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
         <ScrollTop />
             <Routes>
@@ -50,6 +50,7 @@ export default function App(){
                     {/* path대신 index만 쓰면 첫페이지임!
                     -> Layout의 Link to='/' 에 해당하는 셋팅필수! */}
                     <Route index element={ <Main /> } />
+                    <Route path='main' element={ <Main /> } />
                     <Route path='ct' element={ <Characters /> } />
                     {/* <Route path='co' element={ <Comics sub=""/> } /> */}
                     <Route path='co1' element={ <Comics sub="0"/> } />
