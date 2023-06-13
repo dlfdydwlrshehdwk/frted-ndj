@@ -110,6 +110,27 @@ function Member() {
 
     }; ///////////// changePwd ///////////////////
 
+    // 3. 비밀번호 확인 유효성검사
+    const changeChkPwd = e => {
+        // 1. 위에 입력한 비밀번호와의 일치여부
+        if(pwd === e.target.value) setChkPwdError(false); // 정상
+        else setChkPwdError(true); // error
+
+        // 2. 입력값 반영하기 
+        setChkPwd(e.target.value);
+    }; // changeChkPwd //
+
+    // 4. 사용자이름 확인 유효성검사
+    const changeUserName = e => {
+        // 1. 에러상태를 먼저 false로 셋팅
+        if(e.target.value !== "") setUserNameError(false); // 정상
+        else setUserNameError(true); // error
+
+        // 2. 입력값 반영하기 
+        setUserName(e.target.value);
+    }; // changeChkPwd //
+
+   
 
 
 
@@ -121,9 +142,12 @@ function Member() {
             <section className="membx">
                 <h2>Member</h2>
                 <form>
-                    {/* 1.아이디 */}
-                    <label>아이디 : </label>
-                    <input type="text" maxLength="20" placeholder="아이디를 입력하세요" value={userId} onChange={changeUserId} />
+
+                    <ul>
+                        <li>
+                            {/* 1.아이디 */}
+                    <label>ID : </label>
+                    <input type="text" maxLength="20" placeholder="Please enter you ID" value={userId} onChange={changeUserId} />
                     {
                         // 에러일 경우 메시지 보여주기
                         // 조건문 && 요소 -> 조건이 true이면 요소출력
@@ -140,10 +164,12 @@ function Member() {
                         // onChange={changeUserId} 
                         // -> change이벤트 발생시 changeUserId 함수호출!
                     }
+                        </li>
 
+                        <li>
                     {/* 2.비밀번호 */}
-                    <label>비밀번호 : </label>
-                    <input type="password" maxLength="20" placeholder="비밀번호를 입력하세요" value={pwd} onChange={changePwd} />
+                    <label>PW : </label>
+                    <input type="password" maxLength="20" placeholder="Please enter you PW" value={pwd} onChange={changePwd} />
                     {
                         // 에러일 경우 메시지 보여주기
                         // 조건문 && 요소 -> 조건이 true이면 요소출력
@@ -155,12 +181,62 @@ function Member() {
                             </small>
                         </div>
                     }
+                        </li>
+
+                        <li>
+                    {/* 3. 비밀번호확인 */}
+                    <label>Confirm password : </label>
+                    <input type="password" maxLength="20" placeholder="Please enter you Confirm PW" value={chkPwd} onChange={changeChkPwd} />
+                    {
+                        // 에러일 경우 메시지 보여주기
+                        // 조건문 && 요소 -> 조건이 true이면 요소출력
+                        chkPwdError &&                        
+                        <div className="msg">
+                            <small style={{ color: "red", fontSize: "10px" }}>
+                            비밀번호 확인이 일치하지 않습니다.
+                            </small>
+                        </div>
+                    }
+                        </li>
+
+                        <li>
+                    {/* 4.이름 */}
+                    <label>User Name : </label>
+                    <input type="text" maxLength="20" placeholder="Please enter you your name" value={userName} onChange={changeUserName} />
+                    {
+                        // 에러일 경우 메시지 보여주기
+                        // 조건문 && 요소 -> 조건이 true이면 요소출력
+                        userNameError &&                        
+                        <div className="msg">
+                            <small style={{ color: "red", fontSize: "10px" }}>
+                            필수입력입니다.
+                            </small>
+                        </div>
+                    }
+                        </li>
+
+                        <li>
+                        {/* 5.이메일 */}
+                        </li>
+
+                        <li>
+                        {/* 5.버튼 */}
+                        </li>
+
+                        <li>
+                        {/* 6.로그인페이지링크 */}
+                        </li>
+
+                    </ul>
+                    
 
                     
-                    {/* 3.이름 */}
-                    {/* 4.이메일 */}
-                    {/* 5.버튼 */}
-                    {/* 6.로그인페이지링크 */}
+
+                    
+                    
+                    
+                    
+                    
                 </form>
             </section>
 

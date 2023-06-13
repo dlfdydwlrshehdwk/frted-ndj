@@ -10,6 +10,11 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
 }
+main.cont{
+    /* 최소높이 상단,하단제외 채우기
+    - 하단 여백이 생기는 일이 없어짐 */
+    min-height: calc(100vh - 58px - 242.75px);
+}
 .gnb{
     max-width: 1320px;
     margin: 0 auto;
