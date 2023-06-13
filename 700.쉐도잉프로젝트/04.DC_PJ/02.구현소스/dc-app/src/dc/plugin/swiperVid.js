@@ -1,86 +1,98 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+/* 제이쿼리넣기 */
+import $ from "jquery";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
 /* 폰트어썸 임포트 */
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import $ from 'jquery'
-// Import Swiper styles
-import "swiper/css";
-// import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import "./swipervid.css";
 
 // import required modules
-import {  Navigation } from "swiper";
-
-// 데이터가져오기
+import { Navigation } from "swiper";
+// 데이터 가져오기
 import swipervid_data from "../data/swipervid";
 
-
 export default function SwiperVid(props) {
-    // 데이터셋팅
+    // 데이터 셋팅
     const sdt = swipervid_data;
 
-    // 비디오 보이기 함수
-    const showVid = (src,tit) => { // srt-비디오경로, tit-비디오제목
-        console.log(src,tit)
-        const ifr = $('.playvid iframe')
-        // 1. iframe src넣기
-        ifr.attr('src',src+"?autoplay=1") // <- 이렇게 해야 자동플레이됨 allow="autoplay" 해놓고
+    // 비디오보이기 함수
+    const showVid = (src, tit) => {
+        // src-비디오경로, tit-비디오제목
+        console.log(src, tit);
 
-        // 2. title 넣기
-        $('.ifrtit').text(tit)
+        let ifr = $(".playvid iframe");
+        // 1. 아이프레임 src넣기
+        ifr.attr("src", src + "?autoplay=1");
+        // 2. 비디오 타이틀 넣기
+        $(".ifrtit").text(tit);
 
-        // 3. 비디오전체박스 보이기
-        $('.vidbx').fadeIn(300);
-        // 4. 닫기버튼
-        $('.cbtn').click(()=>{
-            $('.vidbx').fadeOut(300);
-            ifr.attr('src',''); // 영상을 멈추기위해 그냥 소스자체를빼버림!
-        })
-    }; // showVid 함수 //
-  return (
-    <>
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={40}
-        // pagination={{
-        //   clickable: true,
-        // }}
-        navigation={true}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
+        let vbx = $(".vidbx");
+        // 3. 비디오 전체박스 보이기
+        vbx.fadeIn(300);
+        // 4. 닫기버튼 셋팅
+        $(".cbtn").click(() => {
+            vbx.fadeOut(300);
+            ifr.attr("src", "");
+        });
+    }; //////////// showVid ///////////////////
 
-        {
-            sdt.map((x,i)=>
-            <SwiperSlide key={i}>
-                <section className="swsec" onClick={()=>showVid(x.vsrc,x.tit)}>
-                    {/* 동영상이미지 */}
-                    <div>
-                        <img src={x.isrc}/>
-                    </div>
-                    {/* 동영상 타이틀영역 */}
-                    <p className="pone">{x.cat}</p>
-                    <p className="ptwo">{x.tit}</p>
-                    {/* 폰트어썸을 이용한 재생버튼 만들기 */}
-                    {/* <FontAwesomeIcon icon={faPlayCircle} 
-                                style={{
-                                    position:"absolute",
-                                    bottom:"55%",
-                                    left:"10%",
-                                    color:"#fff",
-                                    fontSize:"50px"
-                                    }} /> */}
-                    <div className="play">▶</div>
-                </section>
-            </SwiperSlide>
-            )
-        }
-
-      </Swiper>
-    </>
-  );
+    return (
+        <>
+            <Swiper
+                // slidesPerView={2}
+                spaceBetween={20}
+                navigation={true}
+                modules={[Navigation]}
+                // 스와이퍼 사이즈별 슬라이드수 변경!
+                breakpoints={{
+                    200: {
+                        slidesPerView: 2,
+                    },
+                    700: {
+                        slidesPerView: 2,
+                    },
+                    1000: {
+                        slidesPerView: 3,
+                    },
+                    1200: {
+                        slidesPerView: 4,
+                    },
+                }}
+                className="mySwiper">
+                {sdt.map((v, i) => (
+                    <SwiperSlide key={i}>
+                        <section className="swinbx" onClick={() => showVid(v.vsrc, v.tit)}>
+                            {/* 동영상이미지영역 */}
+                            <div className="vidimg">
+                                <img src={v.isrc} alt={v.tit}></img>
+                                <FontAwesomeIcon
+                                    icon={faPlayCircle}
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "55%",
+                                        left: "10%",
+                                        color: "#fff",
+                                        fontSize: "50px",
+                                    }}
+                                />
+                            </div>
+                            {/* 동영상타이틀영역 */}
+                            <div className="vidtit">
+                                <h4>{v.cat}</h4>
+                                <h3>{v.tit}</h3>
+                            </div>
+                        </section>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </>
+    );
 }

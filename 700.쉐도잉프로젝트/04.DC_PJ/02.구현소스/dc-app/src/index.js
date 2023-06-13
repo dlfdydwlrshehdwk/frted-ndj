@@ -11,6 +11,8 @@ import Movies from './dc/Movies';
 import Games from './dc/Games';
 import News from './dc/News';
 import Video from './dc/Video';
+import Member from "./dc/Member";
+import ScrollTop from "./dc/common/ScrollTop";
 
 /* 
     [ 리액트 라우터 ]
@@ -38,6 +40,8 @@ import Video from './dc/Video';
 export default function App(){
     return(
         <BrowserRouter>
+        {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
+        <ScrollTop />
             <Routes>
                 {/* 중요! :레이아웃 컴포넌트를 루트로 잡아준다. */}
                 <Route path='/' element={<Layout />}>
@@ -54,6 +58,7 @@ export default function App(){
                     <Route path='gm' element={ <Games /> }/>
                     <Route path='nw' element={ <News /> }/>
                     <Route path='vd' element={ <Video /> }/>
+                    <Route path="mem" element={<Member />} />
                 </Route>
             </Routes>
         </BrowserRouter>
