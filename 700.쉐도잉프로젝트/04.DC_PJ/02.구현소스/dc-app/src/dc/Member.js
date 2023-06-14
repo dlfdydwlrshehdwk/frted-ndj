@@ -225,15 +225,16 @@ function Member() {
     const onSubmit = (e) => {
         // 기본 서브밋기능 막기!
         e.preventDefault();
-
+        localStorage.clear();
+        // localStorage.clear();
         console.log("서브밋!");
 
         // 유효성검사 전체 통과시 ////
         if (totalValid()) {
             // alert("처리페이지로 이동!");
 
-            // localStorage.clear();
-
+            localStorage.clear();
+            console.log(localStorage.getItem('mem-data'))
             // 만약 로컬스 "mem-data"가 null이면 만들어준다!
             if (localStorage.getItem("mem-data") === null) {
                 localStorage.setItem(
