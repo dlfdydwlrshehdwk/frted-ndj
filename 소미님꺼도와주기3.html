@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 제이쿼리 라이브러리 -->
+    <script src="./mypracticeJS/jquery-3.6.1.min.js"></script>
+    <script>
+        $(()=>{
+            console.log('ㅇㄴ')
+            let p3 = $('.page3');
+            let p4 = $('.page4');
+            let p3h = p3.offset().top;
+            let p4h = p4.offset().top;
+            let p4hh = p4.height();
+            console.log('p3높이',p3h)
+            console.log('p4높이',p4h)
+            $(window).scroll(function(){
+                let wh = $(window).scrollTop();
+                console.log(wh)
+
+                if(wh >= p3h){
+                    console.log("p3실행")
+                    $('.fix').css({
+                        opacity : 1,
+                    })
+                }
+
+                if(wh >= (p4h - p4hh)){
+                    console.log("p4실행")
+                    $('.fix').css({
+                        opacity : 0,
+                    })
+                }
+
+            })
+
+
+            // $('.page3').wheel(function(){
+            //     console.log('휘힝ㄹ')
+            // })
+        })
+
+        /* 
+            수쿠롤 이벤트 안에서 
+            위에서 아래로 가던
+            아래에서 위로 가던
+            스크롤의 위치는 p3의 맨위로 가서 이벤트가 실행된다.
+        */
+    </script>
+    <style>
+        .page{
+            width: 100vw;
+            height: 100vh;
+        }
+        .page1{
+            background-color: skyblue;
+        }
+        .page2{
+            background-color: orange;
+        }
+        .page3{
+            background-color: gold;
+            width: 100vw;
+            height: 800vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .page4{
+            background-color: red;
+        }
+        .fix{
+            opacity: 0;
+            position: fixed;
+            /* bottom: 10%; */
+            bottom: 0;
+            left: 10%;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+        }
+        .long{
+            height: 600vh;
+            width: 100px;
+        }
+        .long1{
+            background-color: darkcyan;
+            position: absolute;
+            top: 0;
+            right: 10%;
+            transform: translateY(-99%);
+            transition: .8s ease-in-out;
+        }
+        .page3.on .long1{
+            transform: translateY(0);
+        }
+        .page3.on .long2{
+            transform: translateY(-33%);
+        }
+
+        .long2{
+            background-color: whitesmoke;
+            position: absolute;
+            bottom: 0;
+            right : 30%;
+            transform: translateY(0);
+        }
+        </style>
+</head>
+
+<body>
+    <!-- <div style="background-color: orange; max-width: 1080px; height: 400px;">
+        
+    </div> -->
+    <div class="wrap">
+        <section class="page page1"></section>
+        <section class="page page2"></section>
+
+
+
+        <section class="page3">
+            <div class="fix">고정</div>
+            <div class="long long1" ></div>
+            <div class="long long2"></div>
+        </section>
+
+
+
+        <section class="page page4"></section>
+        <section class="page page5"></section>
+        <section class="page page6"></section>
+    </div>
+</body>
+</html>

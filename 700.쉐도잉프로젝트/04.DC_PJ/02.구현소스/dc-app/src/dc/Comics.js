@@ -17,7 +17,7 @@ const Comics = (props) => {
     return(
         <>
             <h1>{tit_data[props.sub]}</h1>
-            <VidIntro pg="COMICS" mm="on"/>
+            <VidIntro pg="COMICS" mm=""/>
         </>
     );
 }; // Comics 컴포 //
