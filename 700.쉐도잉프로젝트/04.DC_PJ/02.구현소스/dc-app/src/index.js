@@ -1,7 +1,7 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
 import Layout from './dc/Layout';
 import "./index.css";
 import Characters from './dc/Characters';
@@ -40,7 +40,7 @@ import ScrollTop from "./dc/common/ScrollTop";
 export default function App(){
     return(
         // <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <BrowserRouter>
+        <HashRouter>
         {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
         <ScrollTop />
             <Routes>
@@ -63,7 +63,7 @@ export default function App(){
                     <Route path="mem" element={<Member />} />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 } // App  컴포 // 
 

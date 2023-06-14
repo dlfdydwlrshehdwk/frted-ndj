@@ -1,7 +1,8 @@
 ///  어떤 모듈 - 어떤.js
-import React,{useState} from "react";
+import React, { useState } from "react";
 import $ from "jquery";
 import "./css/member.css";
+import { Link } from "react-router-dom";
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -33,40 +34,48 @@ function jqFn() {
 } ////////////// jQFn ///////////
 
 function Member() {
-
     // 요구사항 : 각 입력항목에 맞는 유효성검사를 입력하는 순간!
     //            실시간으로 체크하여 결과를 화면에 리턴한다!
 
     // [ 후크 useState 메서드 셋팅하기 ]
     // [ 1. 입력요소 후크변수 ]
     // 1. 아이디변수
-    const [userId,setUserId] = useState("");
+    const [userId, setUserId] = useState("");
     // 2. 비밀번호변수
-    const [pwd,setPwd] = useState("");
+    const [pwd, setPwd] = useState("");
     // 3. 비밀번호확인변수
-    const [chkPwd,setChkPwd] = useState("");
+    const [chkPwd, setChkPwd] = useState("");
     // 4. 사용자이름변수
-    const [userName,setUserName] = useState("");
+    const [userName, setUserName] = useState("");
     // 5. 이메일변수
-    const [email,setEmail] = useState("");
+    const [email, setEmail] = useState("");
 
     // [ 2. 에러상태값 후크변수 ]
     // -> 에러상태값변수 : 초기값은 에러 아님상태(false)
     // 1. 아이디에러변수
-    const [userIdError,setUserIdError] = useState(false);
+    const [userIdError, setUserIdError] = useState(false);
     // 2. 비밀번호에러변수
-    const [pwdError,setPwdError] = useState(false);
+    const [pwdError, setPwdError] = useState(false);
     // 3. 비밀번호확인에러변수
-    const [chkPwdError,setChkPwdError] = useState(false);
+    const [chkPwdError, setChkPwdError] = useState(false);
     // 4. 사용자이름에러변수
-    const [userNameError,setUserNameError] = useState(false);
+    const [userNameError, setUserNameError] = useState(false);
     // 5. 이메일에러변수
-    const [emailError,setEmailError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
 
+    // [ 아이디관련 메시지 프리셋 ]
+    const msgId = [
+        "User ID must contain a minimum of 5 characters",
+        "This ID is already in use!",
+        "That's a great ID!",
+    ];
+    // 후크변수 메시지
+    const [idMsg, setIdMsg] = useState(msgId[0]);
 
     // [ 3. 유효성 검사 메서드 ]
     // 1. 아이디 유효성 검사
-    const changeUserId = e => { // e - 이벤트전달변수
+    const changeUserId = (e) => {
+        // e - 이벤트전달변수
         // 1. 아이디 유효성 검사식(따옴표싸지 말것!)
         const valid = /^[A-Za-z0-9+]{5,}$/;
 
@@ -77,18 +86,61 @@ function Member() {
         // 조건: 유효성 검사결과가 true인가? 에러상태! false(에러아님)
         // 정규식.test() -> 정규식 검사결과 리턴 메서드
         // 결과: true이면 에러상태값 false / false이면 에러상태값 true
-        if(valid.test(e.target.value))
-            setUserIdError(false); // 에러아님상태!
-        else
-            setUserIdError(true); // 에러상태임!
+        if (valid.test(e.target.value)) {
+            // 아이디 형식에는 맞지만 사용중인 아이디인지 검사하기
+            let memData = localStorage.getItem("mem-data");
+            console.log("로컬쓰:", memData);
+            // 로컬쓰 null아닌경우
+            if (memData) {
+                // 로컬쓰에 기존 아이디중 있는지 확인하기
+                // 문자형데이터를 객체형 데이터로 변환(배열형!)
+                memData = JSON.parse(memData);
+                console.log("검사:", memData);
+
+                // 기존아이디가 있으면 상태값 false로 업데이트
+                let isOK = true;
+
+                // 검사돌기!
+                memData.forEach((v) => {
+                    // 기존의 아이디와 같은 경우!
+                    if (v["uid"] === e.target.value) {
+                        console.log(v["uid"]);
+                        // 메시지변경
+                        setIdMsg(msgId[1]);
+                        // 아이디에러상태값 업데이트
+                        setUserIdError(true);
+                        // 존재여부 업데이트
+                        isOK = false;
+                    } ////// if /////
+                }); ///////// forEach //////////////
+                
+                // 기존아이디가 없으면 들어감!
+                if(isOK){
+                    console.log("바깥");
+                    // 메시지변경(처음메시지로 변경)
+                    setIdMsg(msgId[0]);              
+                    // 아이디에러상태값 업데이트
+                    setUserIdError(false);
+
+                }
+
+
+            } ///////// if ////////////////////
+            else {
+                console.log("DB가 없어욧!!!");
+            } ////////// else /////////////////
+
+            // setUserIdError(false); // 에러아님상태!
+        } ////// if ///////////
+        else setUserIdError(true); // 에러상태임!
 
         // 4. 실제 useerId 후크변수값이 업데이트 되어야 화면에 출력됨!
         setUserId(e.target.value);
-
     }; /////////////// changeUserId ////////////////
 
     // 2. 비밀번호 유효성 검사
-    const changePwd = e => { // e - 이벤트전달변수
+    const changePwd = (e) => {
+        // e - 이벤트전달변수
         // 1. 유효성 검사식(따옴표싸지 말것!)
         const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -99,144 +151,298 @@ function Member() {
         // 조건: 유효성 검사결과가 true인가? 에러상태! false(에러아님)
         // 정규식.test() -> 정규식 검사결과 리턴 메서드
         // 결과: true이면 에러상태값 false / false이면 에러상태값 true
-        if(valid.test(e.target.value))
-            setPwdError(false); // 에러아님상태!
-        else
-            setPwdError(true); // 에러상태임!
+        if (valid.test(e.target.value)) setPwdError(false); // 에러아님상태!
+        else setPwdError(true); // 에러상태임!
 
         // 4. 실제 useerId 후크변수값이 업데이트 되어야 화면에 출력됨!
         setPwd(e.target.value);
-
-
     }; ///////////// changePwd ///////////////////
 
     // 3. 비밀번호 확인 유효성검사
-    const changeChkPwd = e => {
-        // 1. 위에 입력한 비밀번호와의 일치여부
-        if(pwd === e.target.value) setChkPwdError(false); // 정상
-        else setChkPwdError(true); // error
+    const changeChkPwd = (e) => {
+        // 1. 위에 입력한 비밀번호와 일치여부
+        if (pwd === e.target.value) setChkPwdError(false); // 에러아님!
+        else setChkPwdError(true); // 에러임!
 
-        // 2. 입력값 반영하기 
+        // 2. 입력값 반영하기
         setChkPwd(e.target.value);
-    }; // changeChkPwd //
+    }; ////////////// changeChkPwd /////////////////
 
-    // 4. 사용자이름 확인 유효성검사
-    const changeUserName = e => {
-        // 1. 에러상태를 먼저 false로 셋팅
-        if(e.target.value !== "") setUserNameError(false); // 정상
-        else setUserNameError(true); // error
+    // 4. 사용자이름 유효성검사
+    const changeUserName = (e) => {
+        // 1. 빈값 체크
+        if (e.target.value !== "") setUserNameError(false);
+        else setUserNameError(true);
 
-        // 2. 입력값 반영하기 
+        // 2. 입력값 반영하기
         setUserName(e.target.value);
-    }; // changeChkPwd //
+    }; ////////////// changeUserName /////////////////
 
-   
+    // 5. 이메일 유효성검사 ///////////////////////
+    const changeEmail = (e) => {
+        // 1.이메일 정규식 셋팅
+        const valid =
+            /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
+        // 1. 이메일유효성 검사체크
+        if (valid.test(e.target.value)) setEmailError(false);
+        else setEmailError(true);
 
+        // 2. 입력값 반영하기
+        setEmail(e.target.value);
+    }; ////////////// changeEmail /////////////////
 
+    // 6. 전체 유효성 검사 함수 /////////////
+    const totalValid = () => {
+        // 모든 입력창 검사(빈값일 경우 모두 에러를 후크변수에 전달!)
+        if (!userId) setUserIdError(true);
+        if (!pwd) setPwdError(true);
+        if (!chkPwd) setChkPwdError(true);
+        if (!userName) setUserNameError(true);
+        if (!email) setEmailError(true);
 
+        // 통과조건:
+        // 1. 빈값이 아님
+        // 2. 에러 후크 변수가 모두 false
+        // 위의 2가지 만족시 treu값 리턴
+        if (
+            userId &&
+            pwd &&
+            chkPwd &&
+            userName &&
+            email &&
+            !userIdError &&
+            !pwdError &&
+            !chkPwdError &&
+            !userNameError &&
+            !emailError
+        )
+            return true;
+        else return false; // 하나라도 에러면  false값 리턴!
+    }; ////////////// totalValid ////////////////
+
+    // 7. 서브밋 기능함수 ///////////////
+    const onSubmit = (e) => {
+        // 기본 서브밋기능 막기!
+        e.preventDefault();
+
+        console.log("서브밋!");
+
+        // 유효성검사 전체 통과시 ////
+        if (totalValid()) {
+            // alert("처리페이지로 이동!");
+
+            // localStorage.clear();
+
+            // 만약 로컬스 "mem-data"가 null이면 만들어준다!
+            if (localStorage.getItem("mem-data") === null) {
+                localStorage.setItem(
+                    "mem-data",
+                    `
+                    [
+                        {
+                            "idx": "1",
+                            "uid":"tomtom",
+                            "pwd":"1111",
+                            "unm":"Tom",
+                            "eml":"tom@gmail.com"
+                        }
+                    ]
+                `
+                );
+            }
+
+            // 로컬스 변수할당
+            let memData = localStorage.getItem("mem-data");
+
+            console.log(memData);
+
+            // 로컬스 객체로 변환하기
+            memData = JSON.parse(memData);
+
+            console.log(memData);
+
+            // 새로운 데이터구성
+            let newObj = {
+                idx: memData.length + 1,
+                uid: userId,
+                pwd: pwd,
+                unm: userName,
+                eml: email,
+            };
+
+            // 데이터 추가하기 : 배열에 데이터 추가임 -> push()
+            memData.push(newObj);
+
+            // 추가후 확인
+            console.log(memData);
+
+            // 로컬쓰에 반영하기
+            localStorage.setItem("mem-data", JSON.stringify(memData));
+
+            // 로컬쓰 확인
+            console.log(localStorage.getItem("mem-data"));
+        } /// if ////
+        // 불통과시 ////////////////
+        else {
+            // alert("입력을 수정하세요!");
+        } /// else /////
+    }; ///////////// onSubmit ////////////////
 
     return (
         <>
             {/* 모듈코드 */}
             <section className="membx">
-                <h2>Member</h2>
-                <form>
-
+                <h2>Join Us</h2>
+                <form method="post" action="process.php">
                     <ul>
                         <li>
                             {/* 1.아이디 */}
-                    <label>ID : </label>
-                    <input type="text" maxLength="20" placeholder="Please enter you ID" value={userId} onChange={changeUserId} />
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소 -> 조건이 true이면 요소출력
-                        userIdError &&
-                        <div className="msg">
-                            <small style={{ color: "red", fontSize: "10px" }}>
-                                사용자 아이디는 5글자 이상 문자 또는 숫자를 포함해야 합니다!
-                            </small>
-                        </div>
+                            <label>ID : </label>
+                            <input
+                                type="text"
+                                maxLength="20"
+                                placeholder="Please enter your ID"
+                                value={userId}
+                                onChange={changeUserId}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                // 훅크 데이터 idMsg로 변경출력!
+                                userIdError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                            {idMsg}
+                                        </small>
+                                    </div>
+                                )
+                            }
 
-                        // value={userId} 값은 setUserId를 통해서만
-                        // 업데이트되어 실제화면에 반영된다!
+                            {
+                                // "훌륭한 아이디네요"일 경우!
+                                // 아이디에러가 false일때 출력!
+                                // 고정데이터 배열 msgId 세번째값 출력
+                                // 조건추가 : userId가 입력전일때는 안보임
+                                // userId가 입력전엔 false를 리턴함!
+                                !userIdError && userId && (
+                                    <div className="msg">
+                                        <small style={{ color: "green", fontSize: "10px" }}>
+                                            {msgId[2]}
+                                        </small>
+                                    </div>
+                                )
 
-                        // onChange={changeUserId} 
-                        // -> change이벤트 발생시 changeUserId 함수호출!
-                    }
+                                // value={userId} 값은 setUserId를 통해서만
+                                // 업데이트되어 실제화면에 반영된다!
+
+                                // onChange={changeUserId}
+                                // -> change이벤트 발생시 changeUserId 함수호출!
+                            }
                         </li>
-
                         <li>
-                    {/* 2.비밀번호 */}
-                    <label>PW : </label>
-                    <input type="password" maxLength="20" placeholder="Please enter you PW" value={pwd} onChange={changePwd} />
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소 -> 조건이 true이면 요소출력
-                        pwdError &&                        
-                        <div className="msg">
-                            <small style={{ color: "red", fontSize: "10px" }}>
-                            비밀번호는 8자 이상이어야 하며 문자와 숫자를 
-                            각각 하나 이상 포함해야 합니다.
-                            </small>
-                        </div>
-                    }
+                            {/* 2.비밀번호 */}
+                            <label>Password : </label>
+                            <input
+                                type="password"
+                                maxLength="20"
+                                placeholder="Please enter your Password"
+                                value={pwd}
+                                onChange={changePwd}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                pwdError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                            Password must be at least 8 characters long and must
+                                            contain at least one letter and one number each.
+                                        </small>
+                                    </div>
+                                )
+                            }
                         </li>
-
                         <li>
-                    {/* 3. 비밀번호확인 */}
-                    <label>Confirm password : </label>
-                    <input type="password" maxLength="20" placeholder="Please enter you Confirm PW" value={chkPwd} onChange={changeChkPwd} />
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소 -> 조건이 true이면 요소출력
-                        chkPwdError &&                        
-                        <div className="msg">
-                            <small style={{ color: "red", fontSize: "10px" }}>
-                            비밀번호 확인이 일치하지 않습니다.
-                            </small>
-                        </div>
-                    }
+                            {/* 3.비밀번호확인 */}
+                            <label>Confirm password : </label>
+                            <input
+                                type="password"
+                                maxLength="20"
+                                placeholder="Please enter your Confirm Password"
+                                value={chkPwd}
+                                onChange={changeChkPwd}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                chkPwdError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                            Password verification does not match
+                                        </small>
+                                    </div>
+                                )
+                            }
                         </li>
-
                         <li>
-                    {/* 4.이름 */}
-                    <label>User Name : </label>
-                    <input type="text" maxLength="20" placeholder="Please enter you your name" value={userName} onChange={changeUserName} />
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소 -> 조건이 true이면 요소출력
-                        userNameError &&                        
-                        <div className="msg">
-                            <small style={{ color: "red", fontSize: "10px" }}>
-                            필수입력입니다.
-                            </small>
-                        </div>
-                    }
+                            {/* 4.이름 */}
+                            <label>User Name : </label>
+                            <input
+                                type="text"
+                                maxLength="20"
+                                placeholder="Please enter your Name"
+                                value={userName}
+                                onChange={changeUserName}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                userNameError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                            This is a required entry
+                                        </small>
+                                    </div>
+                                )
+                            }
                         </li>
-
                         <li>
-                        {/* 5.이메일 */}
+                            {/* 5.이메일 */}
+                            <label>Email : </label>
+                            <input
+                                type="text"
+                                maxLength="50"
+                                placeholder="Please enter your Email"
+                                value={email}
+                                onChange={changeEmail}
+                            />
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소 -> 조건이 true이면 요소출력
+                                emailError && (
+                                    <div className="msg">
+                                        <small style={{ color: "red", fontSize: "10px" }}>
+                                            Please enter a valid email format
+                                        </small>
+                                    </div>
+                                )
+                            }
                         </li>
-
+                        <li style={{ overflow: "hidden" }}>
+                            {/* 6.버튼 */}
+                            <button className="sbtn" onClick={onSubmit}>
+                                Submit
+                            </button>
+                            {/* input submit버튼이 아니어도 form요소
+                            내부의 button은 submit기능이 있다! */}
+                        </li>
                         <li>
-                        {/* 5.버튼 */}
+                            {/* 7.로그인페이지링크 */}
+                            Are you already a member?
+                            <Link to="/login"> Log In </Link>
                         </li>
-
-                        <li>
-                        {/* 6.로그인페이지링크 */}
-                        </li>
-
                     </ul>
-                    
-
-                    
-
-                    
-                    
-                    
-                    
-                    
                 </form>
             </section>
 
