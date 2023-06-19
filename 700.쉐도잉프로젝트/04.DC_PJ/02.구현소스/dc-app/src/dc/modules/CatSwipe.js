@@ -16,7 +16,7 @@ function CatSwipe(props){
     return(
         <>
         {/* 코드구역 */}
-        <section className="Catswbox">
+        <section className="catswbox">
 
         {/* 1. 모듈타이틀 */}
         <h2 className="tit">{props.tit}</h2>

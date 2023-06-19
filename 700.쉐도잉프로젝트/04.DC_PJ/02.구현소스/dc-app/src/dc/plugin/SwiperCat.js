@@ -18,6 +18,7 @@ import "./swipercat.css";
 import { Navigation } from "swiper";
 // 데이터 가져오기
 import cat_data from "../data/cat";
+import { Link } from "react-router-dom";
 
 export default function SwiperCat(props) {
     // 데이터 셋팅
@@ -32,8 +33,8 @@ export default function SwiperCat(props) {
                 modules={[Navigation]}
                 // 스와이퍼 사이즈별 슬라이드수 변경!
                 breakpoints={{
-                    200: {
-                        slidesPerView: 4,
+                    400: {
+                        slidesPerView: 3,
                     },
                     700: {
                         slidesPerView: 5,
@@ -48,27 +49,18 @@ export default function SwiperCat(props) {
                 className="mySwiper">
                 {sdt.map((v, i) => (
                     <SwiperSlide key={i}>
-                        <section className="swinbx" onClick={() => showCat(v.vsrc, v.tit)}>
-                            {/* 동영상이미지영역 */}
+                        <Link to="/det" style={{textDecoration : "none"}}>
+                        <section className="swinbx">
+                            {/* 캐릭터이미지영역 */}
                             <div className="catimg">
-                                <img src={v.isrc} alt={v.tit}></img>
-                                <FontAwesomeIcon
-                                    icon={faPlayCircle}
-                                    style={{
-                                        position: "absolute",
-                                        bottom: "55%",
-                                        left: "10%",
-                                        color: "#fff",
-                                        fontSize: "50px",
-                                    }}
-                                />
+                                <img src={v.tmsrc} alt={v.cname} />
                             </div>
                             {/* 동영상타이틀영역 */}
                             <div className="cattit">
-                                <h4>{v.cat}</h4>
-                                <h3>{v.tit}</h3>
+                                <h3>{v.cname}</h3>
                             </div>
                         </section>
+                        </Link>
                     </SwiperSlide>
                 ))}
             </Swiper>

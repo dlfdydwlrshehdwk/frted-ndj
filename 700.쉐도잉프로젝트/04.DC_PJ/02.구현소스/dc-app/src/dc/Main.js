@@ -1,6 +1,7 @@
 // DC 메인 페이지 컴포넌트
 import React from 'react';
 import Ban from './modules/Ban' 
+import CatSwipe from './modules/CatSwipe';
 import MenuBtn from './modules/MenuBtn';
 import VidIntro from './modules/VidIntro';
 import VidSwipe from './modules/VidSwipe';
@@ -16,7 +17,8 @@ const Main = () => {
             <VidIntro pg="main" mm="" />
             {/* 4. 비디오 스와이퍼 모듈 */}
             <VidSwipe tit="LATEST TRAILERS, CLIPS & MORE" pg="main" />
-            {/* 5. 메뉴스와이프 모듈 */}
+            {/* 5. 캐릭터스와이프 모듈 */}
+            <CatSwipe tit="LATEST TRAILERS, CLIPS & MORE" />
             {/* 6. 배너모듈(캐릭터) */}
             <Ban cat="CHARACTERS"/>
             {/* 7. 메뉴스와이프모듈 */}
