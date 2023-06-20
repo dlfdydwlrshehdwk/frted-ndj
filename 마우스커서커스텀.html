@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./mypracticeJS/jquery-3.6.1.min.js"></script>
+    <style>
+        html{
+            /* cursor: none; */
+        }
+        body{
+            height: 100vh;
+        }
+        #cursor{
+            top: 0;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background-color: transparent;
+            background: url(./MPimg/휠라.png) no-repeat 100%/100%;
+            border: 1px solid #000;
+            transform: translate(-25%, 0%);
+        }
+
+    </style>
+    <script>
+        // onmouseover 이벤트에 쓰일 변수
+        const newCursor = document.querySelector('#cursor');
+        let posX = 0;
+        let posY = 0;
+
+        $(()=>{
+            $('body').on('mousemove',e=>{
+                posX = e.clientX + "px";
+                posY = e.clientY + "px";
+                console.log(posX, posY);
+
+                $('#cursor').css({
+                    left : posX,
+                    top : posY
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="cursor">
+
+    </div>
+</body>
+</html>
