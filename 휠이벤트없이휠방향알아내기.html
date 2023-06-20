@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 제이쿼리 라이브러리 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- 제이쿼리 UI CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+<style>
+       body {
+        height: 3000px;
+    }
+ 
+    p {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+    <p class="test_obj"></p>
+</body>
+<script>
+    var last_scrollTop = 0;
+ 
+    $(window).scroll(function () {
+        var tmp = $(this).scrollTop();
+        if (tmp > last_scrollTop) {
+            $(".test_obj").text("scroll down");
+        } else {
+            $(".test_obj").text("scroll up");
+        }
+        last_scrollTop = tmp;
+    });
+</script>
+</html>
