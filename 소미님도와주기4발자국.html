@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./mypracticeJS/jquery-3.6.1.min.js"></script>
+    <style>
+        body{
+            height: 100vh;
+        }
+        .point{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+        }
+        .point img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="point">
+        <img src="./MPimg/휠라.png" alt="">
+    </div>
+    <script>
+        $(()=>{
+            let a 
+            let b
+            $('body').on('mousemove',function(e){
+                console.log('무브',a,b)
+                 a = e.pageX;
+                 b = e.pageY;
+                 $(window).on('mouseup',function(){
+                     console.log("뗐어")
+                     console.log(a,b)
+                     $('body').append(`
+                     <div class="point" style="top:${b}px; left:${a}px">
+                         <img src="./MPimg/휠라.png" alt="">
+                         </div>
+                         `)     
+                 })
+                })
+        })
+    </script>
+</body>
+</html>
