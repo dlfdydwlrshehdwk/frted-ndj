@@ -113,8 +113,11 @@ const Layout = () => {
                             </li>
                             )
                         }
-                        <li style={{marginLeft:"auto"}}><FontAwesomeIcon icon={faSearch} 
-                        /></li>
+                        <li style={{marginLeft:"auto"}}>
+                        <Link to="/sch">
+                            <FontAwesomeIcon icon={faSearch}/>
+                        </Link>    
+                        </li>
                         {
                             // 회원가입, 로그인은 로그인아닌 상태일때만
                             logSts === null &&

@@ -1,32 +1,32 @@
 // 배너 컴포넌트 사용 데이터 - data/banner.js
 
-const ban_data ={
-    "main1": [
+const ban_data = {
+    "main1":[
         {
-            'src' : './images/dcm21.jpg',
-            "tit" : "GOTHAM GAZETTE",
-            "tit2" : "WORLDS TRAVELER",
-            "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn" : "New Places, Familiar Faces"
-        }
+            "src":"./images/dcm21.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
+        },
     ],
-    "main2": [
+    "main2":[
         {
-            'src' : './images/dcmb2.jpg',
-            "tit" : "",
-            "tit2" : "WATCH THE NEW TRAILER",
-            "cont" : `Mysteries abound in DC's latest animated blockbuster. Coming to a screen near you this July!`,
-            "btn" : "A WORLD AT STAKE"
-        }
+            "src":"./images/dcmb2.jpg",
+            "tit1":"",
+            "tit2":"WATCH THE NEW TRAILER",
+            "cont":`Mysteries abound in DC's latest animated blockbuster. Coming to a screen near you this July!`,
+            "btn":"A World at Stake",
+        },
     ],
-    "main3": [
+    "main3":[
         {
-            'src' : './images/dcm45.jpg',
-            "tit" : "FLASH FACTS",
-            "tit2" : "THINGS YOU MAY NOT KNOW ABOUT THE FLASH",
-            "cont" : `We've raced through over sixty years of comics to find a collection of trivia that may surprise even his biggest fans.`,
-            "btn" : "WHEN IS BARRY ALLEN'S BIRTHDAY?"
-        }
+            "src":"./images/dcmb3.jpg",
+            "tit1":"FLASH FACTS",
+            "tit2":"THINGS YOU MAY NOT KNOW ABOUT THE FLASH",
+            "cont":`We've raced through over sixty years of comics to find a collection of trivia that may surprise even his biggest fans.`,
+            "btn":"When is Barry Allen's Birthday?",
+        },
     ],
     "CHARACTERS":[
         {
@@ -58,49 +58,41 @@ const ban_data ={
             "btn":"MEET RYAN",
         },
     ],
-    "COMICS": [
+    "COMICS":[
         {
-            'src' : './images/dcm3.jpg',
-            "tit" : "GOTHAM GAZETTE",
-            "tit2" : "WORLDS TRAVELER",
-            "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn" : "New Places, Familiar Faces"
-        },
-        
-    ],
-    "MOVIES": [
-        {
-            'src' : './images/dcm34.jpg',
-            "tit" : "GOTHAM GAZETTE",
-            "tit2" : "WORLDS TRAVELER",
-            "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn" : "New Places, Familiar Faces"
-        }
-    ],
-    "GAMES": [
-        {
-            'src' : './images/dcm37.jpg',
-            "tit" : "GOTHAM GAZETTE",
-            "tit2" : "WORLDS TRAVELER",
-            "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn" : "New Places, Familiar Faces"
-        },
-        {
-            "src":"./images/dcm24.jpg",
-            "tit1":"GET TO KNOW",
-            "tit2":"RYAN CHOI",
-            "cont":`When the original Atom went missing, he left his student with. size-changing belt -- and Ryan Choi fulfilled his destiny as the All-New Atom!`,
-            "btn":"MEET RYAN",
+            "src":"./images/dcm3.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
         },
     ],
-    "NEWS": [
+    "MOVIES":[
         {
-            'src' : './images/dcm33.jpg',
-            "tit" : "GOTHAM GAZETTE",
-            "tit2" : "WORLDS TRAVELER",
-            "cont" : `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn" : "New Places, Familiar Faces"
-        }
+            "src":"./images/dcm34.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
+        },
+    ],
+    "GAMES":[
+        {
+            "src":"./images/dcm37.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
+        },
+    ],
+    "NEWS":[
+        {
+            "src":"./images/dcm33.jpg",
+            "tit1":"GOTHAM GAZETTE",
+            "tit2":"WORLDS TRAVELER",
+            "cont":`Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
+            "btn":"New Places, Familiar Faces",
+        },
     ],
     "SUPERMAN":[
         {
@@ -368,10 +360,122 @@ const ban_data ={
             "btn":"",
         },
     ],
-
+    "HARLEY QUINN":[
+        {
+            "src":"./images/cat/harleyquinn/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/3.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/4.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/5.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/6.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/harleyquinn/7.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
+    "PEACEMAKER":[
+        {
+            "src":"./images/cat/peacemaker/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/peacemaker/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/peacemaker/3.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
+    "BLACK ADAM":[
+        {
+            "src":"./images/cat/blackadam/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/blackadam/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
+    "CHESHIRE":[
+        {
+            "src":"./images/cat/cheshire/1.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/cheshire/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+        {
+            "src":"./images/cat/cheshire/2.jpg",
+            "tit1":"",
+            "tit2":"",
+            "cont":``,
+            "btn":"",
+        },
+    ],
 
 
 };
 
-// 데이터 내보내기 
+// 데이터 내보내기
 export default ban_data;

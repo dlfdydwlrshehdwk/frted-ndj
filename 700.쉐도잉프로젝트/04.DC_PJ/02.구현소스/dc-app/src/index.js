@@ -14,6 +14,7 @@ import Video from './dc/Video';
 import Member from "./dc/Member";
 import LogIn from './dc/LogIn';
 import Detail from './dc/Detail';
+import Search from './dc/modules/Search';
 
 /* 
     [ 리액트 라우터 ]
@@ -63,6 +64,7 @@ export default function App(){
                     <Route path="mem" element={<Member />} />
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
+                    <Route path="sch" element={<Search />} />
                 </Route>
             </Routes>
         </HashRouter>
