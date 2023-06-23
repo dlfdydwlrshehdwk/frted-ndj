@@ -23,6 +23,7 @@ function Search(){
     // 설정이유 : 데이터 정렬만 변경될 경우 
     // 배열데이터가 변경되지 않은것으로 Hook상태관리에서 인식함
     let [sdt,setSdt] = useState([cat_data,2]);
+    // let [sdt2,setSdt2] = useState(cat_data);
     // sdt[0] -> 배열데이터만 가져갈 경우 0번째로 선택함
     // 데이터 건수 : Hook 데이터 구성하기 
     let [tot , setTot] = useState(cat_data.length);
@@ -72,6 +73,21 @@ function Search(){
         // 임시변수 : 배열데이터만가져옴
         let temp = sdt[0];
         console.log(temp)
+        
+        // let temp2 = [...sdt2]
+        // console.log("temp2",temp2)
+        // temp2.sort((x,y)=>{
+        //     // 2. 옵션에 따른 정렬반영하기 
+        //     if(opt==1){ // 내림차순(1)
+        //         return x.cname == y.cname ? 0 : x.cname > y.cname ? -1 : 1
+                
+        //     } // if //
+        //     else{ // 올림차순(0)
+        //         return x.cname == y.cname ? 0 : x.cname > y.cname ? 1 : -1
+        //     } // else //
+        // })
+        // setSdt(temp2)
+        // console.log("바뀐temp2",temp2)
         
         temp.sort((x,y)=>{
         // 2. 옵션에 따른 정렬반영하기 
