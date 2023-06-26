@@ -14,6 +14,16 @@ function jqFn(){
     }); //////// jQB ///////////
 } ////////////// jQFn ///////////
 
+    // 최초 원본데이터 정렬변경하기(오름차순)
+    // 주의사항 : 컴포넌트에 포함시키지 말것
+    // 왜? 배열의 정렬정보가 컴포넌트에 포함될 경우 
+    // 정렬변경이 되지 않는다. 따라서 컴포넌트 바깥위에서 
+    // 데이터 정렬이 변경된 원본배열을 만들어 준것을 
+    // 컴포넌트 내부에서 사용하도록 하면 기존 정렬변경이 반영됨.
+    cat_data.sort((x,y)=>{
+        return x.cname == y.cname ? 0 : x.cname > y.cname ? 1: -1
+    })
+
 function Search(){
 
     // 데이터 선택하기 : Hook 데이터 구성하기
@@ -106,6 +116,84 @@ function Search(){
         setSdt([temp,opt]);
     }; // sortList //
 
+    // 체크박스 요소
+    let chkele = document.querySelector(".chkhdn");
+
+    // 체크박스 검색함수 // 
+    const chkSearch = (e) => {
+        // 1. 체크박스 아이디 : 검색항목의 값(aligment)
+        let cid = e.target.id;
+        // 2. 체크박스 체크여부 : checked(true/false)
+        let chked = e.target.checked;
+        console.log(cid, chked);
+
+        // 임시변수 : 기존입력된 데이터 가져옴
+        let temp = sdt[0];
+        console.log("기존저장데이터",temp)
+        
+        // 결과집합변수
+        let newList = [];
+
+        // 체크박스 체크개수세기 : 1개 초과시 배열합치기할것임
+        let num = 0;
+        chkele.forEach(v=>{if(v.checked)num++});
+        console.log("체크개수",num);
+
+        // 3. 체크박스 체크여부에 따른 분기
+        // (1) 체크여부가 true일때 해당 검색어로 검색하기
+        if(chked){
+            // 현재데이터 변수에 담기 
+            let nowdt = cat_data.filter(v=>{
+                if(v.alignment===cid) return true;
+
+            }); // filter // 
+
+            // 체크개수가 1초과일때 배열합치기 
+            if(num > 1){ // 스프레드 연산자(...)사용
+                // 기존데이터(temp) 새데이터(nowdt)
+                newList = [...temp,...nowdt];
+
+            } // if // 
+            // 체크개수 1일때
+            else {
+                newList = nowdt;
+            } // else // 
+
+            newList= nowdt;
+
+        } // if : 체크박스 true // 
+
+        // (2) 체크박스가 false일때 데이터지우기 
+        else {
+            console.log('지울데이터',cid);
+            // splice삭제시 일반for문으로 --처리 해야함
+            for(let i = 0; i<temp.length;i++){
+
+                // 조건 체크박스 풀린 값
+                if(temp[i].alignment === cid){
+
+                    // 배열지우기 메서드 : splice(순번,개수)
+                    temp.slice(i,1);
+                    // 중요! splice로 지우면 배열항목자체가 삭제되므로 
+                    // for문돌때 개수가 줄어든다.
+                    // 따라서 다음번호를 지울때 ++을 --처리 필수 
+                    i--; 
+
+                } // if //
+
+                // 결과처리하기 : 삭제처리된 temp를 결과에 넣기 
+                newList = temp; 
+
+            } // for // 
+        } // else : 체크박스 false //
+
+        // 4. 검색결과 리스트 업데이트하기 
+        // Hook 데이터변수+데이터건수
+        setSdt([newList],2);
+        setTot(newList.length);
+
+    }; // chkSearch 함수 //
+
     return(
         <>
         {/* 모듈코드 */}
@@ -119,6 +207,45 @@ function Search(){
                 title='Open search' className='schbtn' icon={faSearch}/>
                 {/* 입력창 */}
                 <input onKeyUp={enterKey} id='schin' type='text' placeholder='Filter by Keyword'></input>
+                
+            </div>
+            {/* 체크박스구역 */}
+            <div className='chkbx'>
+                <ul>
+                    <li>
+                        <h2>ALIGNMENT<span className='spanbtn'>＋</span></h2>
+                        {/* 체크박스리스트 */}
+                        <ol>
+                            <li>
+                                Heroes
+                                <input type='checkbox' 
+                                id='hero'
+                                className='chkhdn'
+                                onChange={chkSearch}>
+                                </input>
+                                <label htmlFor='hero' className='chklb'></label>
+                            </li>
+                            <li>
+                                It's Complicated
+                                <input type='checkbox' 
+                                id='comp'
+                                className='chkhdn'
+                                onChange={chkSearch}>
+                                </input>
+                                <label htmlFor='comp' className='chklb'></label>
+                            </li>
+                            <li>
+                                Villiains                                
+                                <input type='checkbox' 
+                                id='villain'
+                                className='chkhdn'
+                                onChange={chkSearch}>
+                                </input>
+                                <label htmlFor='villain' className='chklb'></label>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
                 </div>
             </div>
 
