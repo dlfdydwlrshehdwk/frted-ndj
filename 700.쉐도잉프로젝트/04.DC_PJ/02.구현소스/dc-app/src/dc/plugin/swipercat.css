@@ -1,13 +1,9 @@
 @charset "utf-8";
 /* 스와이퍼 캐릭터 컴포넌트 CSS */
-
 #app {
     height: 100%;
   }
-  .catswbox{
-    max-width: 1320px;
-    margin: 0 auto;
-  }
+  
   .swiper {
     width: 100%;
     padding: 10px;
@@ -65,17 +61,17 @@
   .cattit{ 
     font-family: 'Roboto Condensed', sans-serif;
     padding: 15px;
-  }
-  /* 카테고리 */
-  .cattit h4{
-    font-size: 14px;
-    color: #555;
+    aspect-ratio: 2/1;
   }
   /* 동영상타이틀 */
   .cattit h3{
     font-size: 22px;
     margin-top: 15px;
-    color: black;
+  }
+  a{
+    /* Link로 싸서 a요소가 작용함! 밑줄,글자색 변경 */
+    text-decoration: none;
+    color: #000;    
   }
   
   
@@ -109,7 +105,7 @@
     
   /* 동영상타이틀 */
   .cattit h3{
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 10px;
   }
   }

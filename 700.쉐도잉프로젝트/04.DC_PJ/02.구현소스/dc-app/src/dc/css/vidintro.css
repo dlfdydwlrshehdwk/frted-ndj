@@ -1,73 +1,63 @@
 @charset "utf-8";
-/* vidintro 모듈용 CSS - vidintro.css*/
+/* VidIntro 모듈용 CSS - VidIntro.css  */
 
+/* 전체박스 */
 .vidbox{
-    display: flex;
-    text-align: left;
-    align-items: center;
+    position: relative;
     max-width: 1320px;
     margin: 0 auto;
-    padding: 2.5%;
+    margin-top: 30px;
+    padding: 24px;
+    display: flex;
 }
-/* 클래스 on 적용시 배경색,글자색 변경적용 */
+
+/* 클래스 "on" 적용시 배경색,글자색 변경적용 */
 .vidbox.on{
     background-color: #0074E8;
-    color: white;
+    color: #fff;
 }
 .vidbox.on a{
-    color: white;
+    color: #fff;
 }
 
 /* 비디오파트 박스 */
-.divone{
-    padding-left: 4%;
-    padding-right: 20px;
-    width: 58%;
+.vb1{
+    width: 55%;
+    aspect-ratio: 4/3;
 }
-.divone iframe{
+.vb1 iframe{
     border: none;
-    width: 100%
+    width: 100%;
+    height: 100%;
 }
-.divtwo h2, .divtwo h3 {
-    font-weight: bold;
-}
-.divtwo{
+.vb2{
     width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-family: 'Roboto Condensed', sans-serif;
-    padding-left: 20px;
-    padding-right: 4%;
+    text-align-last: left;
+    padding: 30px;
 }
-.divtwo h2{
-    font-size: 32px;
-    letter-spacing: -0.1rem;
-    margin-top: 5px;
-    margin-bottom: 10px;
+.vb2 h2{
+    font-size: 40px;
+    margin: 20px 0 5px;
 }
-.divtwo h3{
-    letter-spacing: -0.1rem;
-    margin-bottom: 10px;
+.vb2 p{
+    line-height: 30px;
+    font-weight: bold;
 }
-.divtwo p{
-    letter-spacing: 0rem;
-    font-weight: 600;
-    font-size: 14px;
-}
-.divtwo p:last-child{
+.vb2 .desc{
     margin-top: 20px;
 }
-.divtwoa{
-    text-decoration: underline;
-    color: black;
-}
+
 
 @media screen and (max-width:1024px) {
     .vidbox{
-        flex-direction: column;
+        flex-direction: column;        
     }
     .vidbox>div{
-        width: 80%;
+        width: 100%;
     }
+
 }

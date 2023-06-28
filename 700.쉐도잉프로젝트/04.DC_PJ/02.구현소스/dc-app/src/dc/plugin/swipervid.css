@@ -3,10 +3,7 @@
 #app {
     height: 100%;
   }
-  .vidswbox{
-    max-width: 1320px;
-    margin: 0 auto;
-  }
+  
   .swiper {
     width: 100%;
     padding: 10px;
@@ -94,6 +91,11 @@
   
   .swiper-button-prev{
     transform: scale(.8) translateX(-15px);
+  }
+
+  /* 슬라이드 끝에서 버튼 숨김 */
+  .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{    
+    display: none;
   }
 
 

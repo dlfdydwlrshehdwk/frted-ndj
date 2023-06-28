@@ -1,27 +1,20 @@
 @charset "utf-8";
-/* Catswipe 모듈용 CSS - catswipe.css*/
+/* CatSwipe 모듈용 CSS - catswipe.css  */
 
-/* 비디오화면 */
-.playcat{
-    /* display: none; */
-    position: absolute;
-    max-width: 1140px;
-    border: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 99;
-    width: 80%;
-    aspect-ratio: 16/9;
+.catswbox{
+    max-width: 1320px;
+    margin: 40px auto;
 }
-/* 비디오박스 (검정배경)*/
+
+/* 캐릭터박스 */
 .catbx{
-    display: none;
-    width: 100vw;
-    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99999;
-    background-color: rgba(0,0,0,0.3);
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background-color: rgba(0, 0, 0, 0.742);
+    display: none;
+    /* 처음에 안보임 */
 }
