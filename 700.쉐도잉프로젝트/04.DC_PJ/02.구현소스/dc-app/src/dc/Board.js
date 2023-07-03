@@ -1,7 +1,7 @@
 // 템프 모듈 - Temp.js
 import $ from "jquery";
 import "./css/board.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // 제이슨 불러오기
 import orgdata from "./data/data.json"
 
@@ -120,7 +120,33 @@ function bindList(pgnum){ // pgnum - 페이지번호
 
 } // bindList 함수 //
 
-const callFn = () => bindList(1);
+// 로그인 상태 체크 함수 // 
+const chkLogin = () => {
+    // 로컬스에 'minfo'가 있는지 체크
+    let chk = localStorage.getItem('minfo');
+    // 로컬스에 셋팅했을 경우 상태 Hook을 true값 업데이트 
+    if(chk) setLog(true)
+    else setLog(false)
+}; // chkLogin // 
+
+// 게시판 모드별 상태구분  Hook 변수만들기 //
+// 모드구분값 : CRUD (Create/Read/Update/Delete)
+// C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 삭제(U에 포함)
+// 상태추가 : L - 글목록 
+const [bdmode , setBdmode] = useState('L')
+
+// 로그인 상태 Hook 변수 만들기
+// 상태값: false - 비로그인상태 / true - 로그인상태
+const [log, setLog] = useState(false);
+
+const callFn = () => {
+    // 리스트 상태일때만 호출
+    if(bdmode == "L") bindList(1);
+    // 로그인상태 체크함수 호출
+    chkLogin();
+}; // callFn // 
+
+// 로딩체크함수 호출
 useEffect(callFn,[])
 
 
@@ -166,12 +192,54 @@ useEffect(callFn,[])
         <table className="dtbl btngrp">
             <tr>
                 <td>
-                    <button>
-                        <a href="list.php">List</a>
-                    </button>
-                    <button className="wbtn">
-                        <a href="write.php">Write</a>
-                    </button>
+                    {
+                        // 리스트모드(L)
+                        bdmode == 'L' &&
+                        <>
+                        <button>
+                            <a href="#">Write</a>
+                        </button>
+                        </>
+                    }
+                    {
+                        // 글쓰기모드(C) : Submit + List
+                        bdmode == 'C' &&
+                        <>
+                        <button>
+                            <a href="#">Submit</a>
+                        </button>
+                        <button>
+                            <a href="#">List</a>
+                        </button>
+                        </>
+                    }
+                    {
+                        // 읽기모드(R) : List + Modify(수정모드)
+                        bdmode == 'R' &&
+                        <>
+                        <button>
+                            <a href="#">List</a>
+                        </button>
+                        <button>
+                            <a href="#">Modify</a>
+                        </button>
+                        </>
+                    }
+                    {
+                        // 수정모드(U) : Submit + delete + List
+                        bdmode == 'U' &&
+                        <>
+                        <button>
+                            <a href="#">Submit</a>
+                        </button>
+                        <button>
+                            <a href="#">Delete</a>
+                        </button>
+                        <button>
+                            <a href="#">List</a>
+                        </button>
+                        </>
+                    }
                 </td>
             </tr>
         </table>
