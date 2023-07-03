@@ -88,14 +88,14 @@ function bindList(pgnum){ // pgnum - 페이지번호
     // 전체 레코드 수 : totnum 
     let pgtotal = Math.floor(totnum / pgblock);
     let pgadd = totnum % pgblock;
-    console.log(pgtotal,pgadd,pgblock);
+    // console.log(pgtotal,pgadd,pgblock);
 
     // 페이징코드변수
     let pgcode ="";
     // 3-2. 페이징코드 만들기 
     // 나머지가 있으면 1을 함함
     if(pgadd !=0) pgtotal = pgtotal+1; 
-    console.log(pgtotal)
+    // console.log(pgtotal)
     // 코드만들기 for문
     for(let i = 1; i<pgtotal+1; i++){
     // for(let i = 1; i<=pgtotal; i++){
@@ -127,6 +127,8 @@ const chkLogin = () => {
     // 로컬스에 셋팅했을 경우 상태 Hook을 true값 업데이트 
     if(chk) setLog(true)
     else setLog(false)
+
+    console.log('로그인상태',log,"/모드",bdmode)
 }; // chkLogin // 
 
 // 게시판 모드별 상태구분  Hook 변수만들기 //
@@ -194,9 +196,9 @@ useEffect(callFn,[])
                 <td>
                     {
                         // 리스트모드(L)
-                        bdmode == 'L' &&
+                        bdmode == 'L'&& log &&
                         <>
-                        <button>
+                        <button >
                             <a href="#">Write</a>
                         </button>
                         </>
