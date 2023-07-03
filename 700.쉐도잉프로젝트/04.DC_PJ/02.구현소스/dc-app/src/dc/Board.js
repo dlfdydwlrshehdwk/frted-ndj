@@ -7,9 +7,14 @@ import orgdata from "./data/data.json"
 
 // 컴포넌트에서 제이슨 데이터를 담지말고 
 // 반드시 바깥에서 담을것
-let jsn = orgdata;
+// 초기데이터 처리는 로컬스 'bdata'가 있으면 로컬스를 가져오고
+// 없다면 제이슨 데이터를 사용하여 초기화한다
+let org = orgdata;
+if(localStorage.getItem('bdata')) org = JSON.parse(localStorage.getItem('bdata'))
+
+
 // 제이슨 데이터 배열정렬하기(내림차순:최신등록순번이 1번)
-jsn.sort((x,y)=>{
+org.sort((x,y)=>{
     return Number(x.idx) == Number(y.idx) ? 0 : Number(x.idx) > Number(y.idx) ? -1 : 1;
 })
 
@@ -28,6 +33,8 @@ function Board(props){
 // [ 제이슨 파일 데이터 로컬스토리지에 넣기 ]
 // 1. 변수에 제이슨 파일 문자화 하여 불러오기
 // 상단에서 불러옴
+// 실시간 데이터 변경관리를 Hook변수화 하여 처리함
+const [jsn,setJsn] = useState(org); // 초데데이터셋팅
 
 // 2. 로컬스토리지 변수를 설정하여 할당하기
 localStorage.setItem('bdata',JSON.stringify(jsn));
@@ -35,7 +42,10 @@ localStorage.setItem('bdata',JSON.stringify(jsn));
 
 // 3. 로컬스토리지 데이터를 파싱하여 게시판 리스트에 넣기
 // 3-1. 로컬 스토리지 데이터 파싱하기 
-let bdata = JSON.parse(localStorage.getItem('bdata'));
+// let bdata = JSON.parse(localStorage.getItem('bdata'));
+// jsn변수에 Hook상태처리했으므로 중간 파싱이 필요업슴
+
+
 // console.log('로컬파싱',bdata,'개수',totnum);
 
 
@@ -59,7 +69,12 @@ function bindList(pgnum){ // pgnum - 페이지번호
     // 0. 게시판 리스트 생성하기
     let blist;
     // 전체 레코드 개수 : totnum 변수에 이미 할당
-    let totnum =bdata.length;
+    let totnum = jsn.length;
+
+    // 내림차순 정렬
+    jsn.sort((x,y)=>{
+        return Number(x.idx) == Number(y.idx) ? 0 : Number(x.idx) > Number(y.idx) ? -1 : 1;
+    })
 
     // 1. 일반형 for문으로 특정대상 배열 데이터 가져오기
     // 데이터 순서 : 번호 글제목 글쓴이 등록일자 조회수
@@ -73,13 +88,13 @@ function bindList(pgnum){ // pgnum - 페이지번호
             <tr>
             <td>${i+1}</td>   
             <td>
-            <a href="view.html?idx=${bdata[i]['idx']}">
-            ${bdata[i]["tit"]}
+            <a href="view.html?idx=${jsn[i]['idx']}">
+            ${jsn[i]["tit"]}
             </a>
             </td>   
-            <td>${bdata[i]["writer"]}</td>   
-            <td>${bdata[i]["date"]}</td>   
-            <td>${bdata[i]["cnt"]}</td>   
+            <td>${jsn[i]["writer"]}</td>   
+            <td>${jsn[i]["date"]}</td>   
+            <td>${jsn[i]["cnt"]}</td>   
             </tr>
             `
         } // if // 
@@ -184,23 +199,56 @@ const  chgMode = e => {
         // 타이틀
         let tit = $('.dtblview .subject').val();
         // 내용
-        let cont = $('.dtblview .cont').val();
+        let cont = $('.dtblview .content').val();
 
         if(tit.trim() == '' || cont.trim() == ''){
             alert('제목과 내용을 필수입니다.')
         }
-        /* 
-        {
-        "idx" : "1",
-        "tit" : "This is a Title1",
-        "cont" : "I wanna talk to you now1",
-        "att" : "",
-        "date" : "2023-06-01",
-        "writer" : "admin",
-        "pwd" : "1111",
-        "cnt" : "1"
-        }, 
-        */
+        // 통과시 실제 데이터 입력하기
+        else{
+            // 날짜처리
+            let today = new Date();
+            let yy = today.getFullYear();
+            let mm = today.getMonth();
+            mm = mm<10?"0"+mm:mm
+            let dd = today.getDate();
+            dd = dd<10?"0"+dd:dd
+
+            // 1. 원본데이터 변수할당
+            let orgtemp = jsn;
+
+            // 2. 임시변수에 입력할 객체 데이터 생성하기
+            let temp = 
+            {
+            "idx" : jsn.length + 1, // 현재개수 + 1
+            "tit" : tit,
+            "cont" : cont,
+            "att" : "",
+            "date" : `${yy}-${mm}-${dd}`,
+            "writer" : nowmem.uid,
+            "pwd" : nowmem.pwd,
+            "cnt" : "1"
+            }
+
+            // 3. 원본임시변수에 데이터 push하기 
+            orgtemp.push(temp);
+
+            // 4. Hook 관리변수에 최종 업데이트
+            setJsn(orgtemp)
+
+            // 5. 로컬스 변수에 반영하기 
+            localStorage.setItem('bdata',JSON.stringify(jsn));
+
+            console.log(localStorage.getItem('bdata'))
+
+            // 6. 게시판 모드 업데이트('L)
+            setBdmode('L');
+
+            // 7. 리스트 바인딩호출
+            bindList(1);
+
+
+        }
     } // 새로입력 //
 
     // 리스트 태그로딩구역에서 일괄호출
@@ -298,7 +346,7 @@ useEffect(callFn,[])
                     Content
                 </td>
                 <td>
-                    <textarea name="content" cols="60" rows="10"></textarea>
+                    <textarea className="content" cols="60" rows="10"></textarea>
                 </td>
             </tr>
             </tbody>
