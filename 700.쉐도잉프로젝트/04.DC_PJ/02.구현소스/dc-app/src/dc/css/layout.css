@@ -161,28 +161,32 @@ input:focus{
     color: #007aff;
 }
 
-/* 햄버거버튼 */
-.hambtn{
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    border: none;
-    background-color: transparent;
-    font-size: 30px;
-    cursor: pointer;
+/* 1320px이하 미디어쿼리 */
+@media screen and (max-width:1320px) {
+    body{
+        padding-top: 58px;
+        /* 첫번째 컨텐츠 가려짐방지 패딩 */
+    }
+    .top{
+        /* 보이는 화면고정 */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 58px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 9999;
+        overflow: hidden;
+        transition: .4s ease-out;
+    }
+    .top.on{
+        height: 100vh;
+    }
 }
 
-.hambtn::before{
-    content: '≡';
-}
-.top.on .hambtn::before{
-    content: '×';
-}
 
-/* 1024 aleldj */
-@media screen and ( max-width: 1024px ){ 
+/* 1024px 이하 미디어쿼리 */
+@media screen and (max-width:1024px) {
     .gnb{
         background-color: #fff;
     }
@@ -225,7 +229,7 @@ input:focus{
         top: calc(58px * 7);
         border-bottom: 1px solid #000;
     }
-    /* Join Us */
+    /* Join Us / LOGIN */
     .gnb>ul>li:nth-child(10) a,
     .gnb>ul>li:nth-child(11) a    
     {
@@ -261,6 +265,30 @@ input:focus{
         left: 80px;
         width: 80%;
     }
-}
+
+    /* 햄버거버튼 */
+    .hambtn{
+        display: block;
+    }
+    /* 햄버거버튼 */
+    .hambtn{
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        width: 20px;
+        height: 20px;
+        border: none;
+        background-color: transparent;
+        font-size: 30px;
+        cursor: pointer;
+        display: none;
+    }
+    
+    .hambtn::before{
+        content: '≡';
+    }
+    .top.on .hambtn::before{
+        content: '×';
+    }
     
 }
