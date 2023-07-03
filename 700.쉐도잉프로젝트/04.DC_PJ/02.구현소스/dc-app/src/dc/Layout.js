@@ -188,6 +188,10 @@ const Layout = () => {
                             )
                         }
                     </ul>
+                    {/* 햄버거버튼 */}
+                    <button className="hambtn">
+                        
+                    </button>
                 </nav>
             </header>
             {/* 2. 메인영역 */}
