@@ -8,6 +8,11 @@ import orgdata from "./data/data.json"
 // 컴포넌트에서 제이슨 데이터를 담지말고 
 // 반드시 바깥에서 담을것
 let jsn = orgdata;
+// 제이슨 데이터 배열정렬하기(내림차순:최신등록순번이 1번)
+jsn.sort((x,y)=>{
+    return Number(x.idx) == Number(y.idx) ? 0 : Number(x.idx) > Number(y.idx) ? -1 : 1;
+})
+
 
 
 // 제이쿼리 로드구역 함수
@@ -61,11 +66,12 @@ function bindList(pgnum){ // pgnum - 페이지번호
     for(let i = (pgnum-1)*pgblock; i< pgnum*pgblock; i++ ){
         // 마지막 번호한계값 조건으로 마지막페이지 데이터 
         // 존재하는 데이터까지만 바인딩하기
+        // 순번은 리스트상 순서번호를 넣는다(idx아님)
         if(i<totnum){
 
             blist +=`
             <tr>
-            <td>${bdata[i]["idx"]}</td>   
+            <td>${i+1}</td>   
             <td>
             <a href="view.html?idx=${bdata[i]['idx']}">
             ${bdata[i]["tit"]}
@@ -120,6 +126,7 @@ function bindList(pgnum){ // pgnum - 페이지번호
 
 } // bindList 함수 //
 
+let [nowmem,setNowmem] = useState('')
 // 로그인 상태 체크 함수 // 
 const chkLogin = () => {
     // 로컬스에 'minfo'가 있는지 체크
@@ -128,7 +135,14 @@ const chkLogin = () => {
     if(chk) setLog(true)
     else setLog(false)
 
+    if(chk){
+       setNowmem(JSON.parse(chk))
+    }
+    console.log(nowmem)
     console.log('로그인상태',log,"/모드",bdmode)
+
+        // $('.dtblview .name').text(nowmem.unm);
+        // $('.dtblview .email').text(nowmem.eml);
 }; // chkLogin // 
 
 // 게시판 모드별 상태구분  Hook 변수만들기 //
@@ -140,6 +154,61 @@ const [bdmode , setBdmode] = useState('L')
 // 로그인 상태 Hook 변수 만들기
 // 상태값: false - 비로그인상태 / true - 로그인상태
 const [log, setLog] = useState(false);
+
+// 모드전환함수 // 
+const  chgMode = e => {
+    // 기본이동막기
+    e.preventDefault()
+
+    let txt = $(e.target).text()
+    // console.log('버튼',txt)
+
+    // 글쓰기버튼클릭
+    if(txt=="Write"){
+        // 모드 상태값 업데이트
+        setBdmode('C');
+
+        // console.log(nowmem)
+        // 읽기전용 입력창에 기본정보 셋팅
+        $(()=>{
+            $('.dtblview .name').val(nowmem.unm);
+            $('.dtblview .email').val(nowmem.eml);
+        })
+    } 
+    // 리스트버튼클릭
+    else if(txt=="List") setBdmode('L');
+    // 글쓰기 모드(C)일때 실행(Submit)버튼클릭 
+    else if(txt=="Submit" && bdmode == "C"){
+        // 제목/내용 빈값 체크
+
+        // 타이틀
+        let tit = $('.dtblview .subject').val();
+        // 내용
+        let cont = $('.dtblview .cont').val();
+
+        if(tit.trim() == '' || cont.trim() == ''){
+            alert('제목과 내용을 필수입니다.')
+        }
+        /* 
+        {
+        "idx" : "1",
+        "tit" : "This is a Title1",
+        "cont" : "I wanna talk to you now1",
+        "att" : "",
+        "date" : "2023-06-01",
+        "writer" : "admin",
+        "pwd" : "1111",
+        "cnt" : "1"
+        }, 
+        */
+    } // 새로입력 //
+
+    // 리스트 태그로딩구역에서 일괄호출
+    // 리스트 태그가 출력되었을때 적용됨
+    $(()=>bindList(1))
+
+}; // chgMode // 
+
 
 const callFn = () => {
     // 리스트 상태일때만 호출
@@ -157,48 +226,98 @@ useEffect(callFn,[])
     return(
         <>
         {/* 코드구역 */}
-        {/* 게시판 리스트 */}
-        <table className="dtbl" id="board">
-            <caption>
-                {/* 방명록 게시판 */}
-            </caption>
-            {/* 상단 컬럼명 표시영역 */}
-            <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Title</th>
-                    <th>Writer</th>
-                    <th>Date</th>
-                    <th>Hits</th>
-                </tr>
-            </thead>
+        {/* 1. 게시판 리스트 : 게시판 모드 'l'일때 출력 */}
+        {
+            bdmode == "L" &&
 
-            {/* 중앙 레코드 표시부분 */}
+            <table className="dtbl" id="board">
+                <caption>
+                    {/* 방명록 게시판 */}
+                </caption>
+                {/* 상단 컬럼명 표시영역 */}
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Title</th>
+                        <th>Writer</th>
+                        <th>Date</th>
+                        <th>Hits</th>
+                    </tr>
+                </thead>
+
+                {/* 중앙 레코드 표시부분 */}
+                <tbody>
+                    <tr>
+                        <td colSpan="5">There is no data</td>
+                    </tr>
+                </tbody>
+
+                {/* 하단 페이징 표시부분 */}
+                <tfoot>
+                    <tr>
+                        <td colSpan="5" className="paging">
+                            {/* 페이징번호 위치  */}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        {/* 2. 글쓰기 테이블 : 게시판 모드 'C'일때 출력 */}
+        {
+            bdmode == "C" && 
+            <>
+            <table className="dtblview">
+            <caption>OPINION</caption>
             <tbody>
-                <tr>
-                    <td colspan="5">There is no data</td>
-                </tr>
+            <tr>
+                <td width="100">
+                    Name
+                </td>
+                <td width="650">
+                    <input type="text" className="name" size="20" readOnly/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td>
+                    <input type="text" className="email" size="40" readOnly/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Title
+                </td>
+                <td>
+                    <input type="text" className="subject" size="60" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Content
+                </td>
+                <td>
+                    <textarea name="content" cols="60" rows="10"></textarea>
+                </td>
+            </tr>
             </tbody>
-
-            {/* 하단 페이징 표시부분 */}
-            <tfoot>
-                <tr>
-                    <td colspan="5" className="paging">
-                         {/* 페이징번호 위치  */}
-                    </td>
-                </tr>
-            </tfoot>
         </table>
+        </>
+        }
+
 
         <br />
+        {/* 버튼그룹박스 */}
         <table className="dtbl btngrp">
+            <tbody>
             <tr>
                 <td>
                     {
                         // 리스트모드(L)
                         bdmode == 'L'&& log &&
                         <>
-                        <button >
+                        <button onClick={chgMode}>
                             <a href="#">Write</a>
                         </button>
                         </>
@@ -207,10 +326,10 @@ useEffect(callFn,[])
                         // 글쓰기모드(C) : Submit + List
                         bdmode == 'C' &&
                         <>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">Submit</a>
                         </button>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">List</a>
                         </button>
                         </>
@@ -219,10 +338,10 @@ useEffect(callFn,[])
                         // 읽기모드(R) : List + Modify(수정모드)
                         bdmode == 'R' &&
                         <>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">List</a>
                         </button>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">Modify</a>
                         </button>
                         </>
@@ -231,19 +350,20 @@ useEffect(callFn,[])
                         // 수정모드(U) : Submit + delete + List
                         bdmode == 'U' &&
                         <>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">Submit</a>
                         </button>
                         <button>
                             <a href="#">Delete</a>
                         </button>
-                        <button>
+                        <button  onClick={chgMode}>
                             <a href="#">List</a>
                         </button>
                         </>
                     }
                 </td>
             </tr>
+            </tbody>
         </table>
         {/* 빈루트를 만들고 JS로드 함수 포함 */}
         {jqFn()}
