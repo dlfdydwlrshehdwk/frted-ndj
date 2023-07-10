@@ -97,8 +97,9 @@ const Layout = () => {
     // .top.on 이면 메뉴가 나타남!
     const chgMenu = () => $(".top").toggleClass('on');
 
-    // 메뉴클릭시 닫기 부가기능 함수
+    // 메뉴클릭시 닫기 부가기능 함수!
     const rmCls = () => $(".top").removeClass('on');
+
 
     return (
         <>
@@ -186,7 +187,7 @@ const Layout = () => {
                         }
 
                         {
-                            /* 로그아웃버튼은 로그인상태일때만 */
+                            /* 로그아웃버튼은 로인인상태일때만 */
                             logSts !== null && (
                                 <li onClick={rmCls}>
                                     <a href="#" onClick={logout}>
