@@ -1,17 +1,46 @@
-let data = ['1','5','30','9','8','12','6','2','7','4']
-let data2 = ['나','다','마','가','라','라이언','갈치','데미안']
+$(()=>{
 
-let data3 = [
-    { '이름' : '사자', '가격' : '300000'},
-    { '이름' : '거북이', '가격' : '50000'},
-    { '이름' : '설표', '가격' : '5950000'},
-]
+    function clock(a){
+        $(a).append(`<div class='clock'></div>`)
+        $('.clock').css({
+            width : '200px',
+            border : '1px solid black',
+            textAlign : 'center',
+        })
 
-function 객체데이터정렬함수(데이터){
-    let 결과 = 데이터.sort(function(a,b){
-        return a.가격 - b.가격;
-    })
+        let year = new Date().getFullYear();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
+        let day = new Date().getDay();
+        let date = new Date().getDate();
+        let ampm;
 
-    console.log(결과)
-}
-객체데이터정렬함수(data3)
+        switch(day){
+            case 0 : day = '일'; break;
+            case 1 : day = '월'; break;
+            case 2 : day = '화'; break;
+            case 3 : day = '수'; break;
+            case 4: day = '목'; break;
+            case 5 : day = '금'; break;
+            case 6 : day = '토'; break;
+        }
+        if(hour < 10) hour = '0' + hour
+        if(hour < 13) ampm = 'AM'; else ampm = 'PM'
+        if(hour > 12) hour = hour - 12
+
+        $('.clock').html(`
+            <h4>
+                ${year}.${hour}.${date}.${day}
+            </h4>
+            <h4>
+                (${ampm}) ${hour} : ${minute}
+            </h4>
+        `)
+    }
+
+
+    clock('body')
+
+
+
+})
