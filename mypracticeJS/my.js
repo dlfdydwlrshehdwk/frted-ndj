@@ -1,28 +1,46 @@
 $(()=>{
 
     function clock(a){
-        $(a).append(`<div class='clock'></div>`)
+
+        // 박스 형태 만들어주기 + css 간단하게 설정
+        $(a).append(`
+        <div class='clock'>
+            <div>
+                <span class="year"></span>.
+                <span class="month"></span>.
+                <span class="date"></span>.
+                (<span class="day"></span>)
+            </div>
+            <div>
+                <span class="ampm"></span>
+                <span class="hour"></span> :
+                <span class="minute"></span> :
+                <span class="second"></span>
+            </div>
+        </div>
+        `)
+
         $('.clock').css({
             width : '200px',
             border : '1px solid black',
             textAlign : 'center',
+            fontWeight : 'bold'
         })
 
-        // 년
+        // 함수안에서 1초마다 실행될 함수를 만들어줌
+        function set(){
+
+        // 변수 세팅 - 영어 이정도는 아실거같으니까 따로 적지않습니다.
         let year = new Date().getFullYear();
-        // 월
         let month = new Date().getMonth() + 1;
-        // 일
         let date = new Date().getDate();
-        // 요일
         let day = new Date().getDay();
-        // 시간
         let hour = new Date().getHours();
-        // 분
         let minute = new Date().getMinutes();
-        // 오전 오후 변수
+        let second = new Date().getSeconds();
         let ampm;
 
+        // 조건문을 이용한 디테일 살리기
         switch(day){
             case 0 : day = '일'; break;
             case 1 : day = '월'; break;
@@ -36,21 +54,26 @@ $(()=>{
         if(hour < 10) hour = '0' + hour
         if(hour < 13) ampm = 'AM'; else ampm = 'PM'
         if(hour > 12) hour = hour - 12
-        if(minute < 11) minute = '0' + minute
+        if(minute < 10) minute = '0' + minute
+        if(second < 10) second = '0' + second
+            
+            // 요소에 알맞게 데이터 삽입
+            $('.year').text(year)
+            $('.month').text(month)
+            $('.date').text(date)
+            $('.day').text(day)
+            $('.hour').text(hour)
+            $('.minute').text(minute)
+            $('.second').text(second)
+            $('.ampm').text(ampm)
+        }
 
-        $('.clock').html(`
-            <h4>
-                ${year}.${month}.${date}.${day}
-            </h4>
-            <h4>
-                (${ampm}) ${hour} : ${minute}
-            </h4>
-        `)
+        // 최초로 한번실행해준다
+        set()
+        // 1초마다 한번씩 시간이 업데이트 되게 해준다.
+        setInterval(set,1000);
     }
 
-
     clock('body')
-
-
 
 })
