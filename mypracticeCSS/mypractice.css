@@ -1,87 +1,49 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Montserrat:wght@400;500&family=Yusei+Magic&display=swap');
-/* 
-font-family: 'Cormorant Garamond', serif;
-font-family: 'Montserrat', sans-serif;
-font-family: 'Yusei Magic', sans-serif; */
-html{
-    font-size: 1vw
-}
-html,body{
-  /* overflow-y: hidden; */
-}
-html, body,ul{
-    margin: 0;
-    padding: 0;
-    font-family: 'Cormorant Garamond', serif;
-    
-}
-.container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    border: 2px solid;
-  }
-  
-  .inline-block {
-    display: inline-block;
-    padding: .6rem;
-    width: 50px;
-    height: 30px;
-  }
-  .inline-block:first-child {
-    display: block;
-  }
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1;
-  }
-  .nav ul{
-    display: flex;
-    list-style: none;
-  }
 
-  .pg1{
-    position: relative;
-    height: 200vh;
-    background-color: gray;
-    font-size: 150px;
-  }
-  .ftxt{
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
-  .scntxt{
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
-  .imbx{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    bottom: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
-    background-color: #eee;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-  }
-  .pg2{
-    height: 200vh;
-    background-color: red;
-  }
+html, body, div, h1,h2,h3,h4,ul,li{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+nav{
+  height: 100%;
+}
+nav ul{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+li{
+  list-style: none;
+  padding: 5px;
+}
+header{
+  height: 90px;
+  background-color: skyblue;
+}
+
+.slidebx{
+  display: flex;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+.bx{
+  flex-shrink: 0;
+  flex-basis: 100%;
+  height: 400px;
+  background-color: beige;
+}
+
+.color1{
+  background-color: beige;
+}
+.color2{
+  background-color: blue;
+}
+.color2{
+  background-color: indianred;
+}
