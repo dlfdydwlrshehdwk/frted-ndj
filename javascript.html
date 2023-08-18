@@ -6,11 +6,14 @@
     <!-- jquery -->
     <script src="./mypracticeJS/jquery-3.6.1.min.js"></script>
     <!-- gsap -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- 스크롤매직 -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
+    <!-- gsap 용 플러그인 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.js"></script>
 <style>
     body{
         height: 200vh;
@@ -18,46 +21,41 @@
 </style>
 </head>
 <body>
-    <form class="move">
-        <fieldset>
-            <legend>Toggle duration</legend>
-            <div>
-                <input type="radio" name="duration" id="bound" value="300" checked="">
-                <label for="bound">bound to scrollbar (duration = 300)</label>
-            </div>
-            <div>
-                <input type="radio" name="duration" id="unbound" value="0">
-                <label for="unbound">unbound from scrollbar (duration = 0)</label>
-            </div>
-        </fieldset>
-    </form>
+    <!-- <form class="move"> -->
+    <!-- </form> -->
     <div class="spacer s2"></div>
+    <div style="height: 1000px;">ㅇ</div>
     <div class="spacer s0" id="trigger">트리거</div>
     <div id="imagesequence">
         <img id="myimg" src="./MPimg/sequence/sequence_1.jpg"><br>
-        <a href="#" class="viewsource">view source</a>
+        <!-- <a href="#" class="viewsource">view source</a> -->
     </div>
     <div class="spacer s2"></div>
 </body>
 <script>
     // define images 이미지정의
+
+    // for문으로 이미지 배열 생성
     let array = []
-    for(let i = 0 ; i < 175 ; i++){
+    for(let i = 1 ; i < 175 ; i++){
         array.push("./MPimg/sequence/sequence_" + i + ".jpg")
     }
-    console.log(array)
 	var images = array
 
 	// TweenMax can tween any property of any object. We use this object to cycle through the array
     // TweenMax는 모든 객체의 속성을 구분할 수 있습니다. 이 객체를 사용하여 배열을 순환합니다
 	var obj = {curImg: 0};
 
-	// create tween 사이를 만들다
-	var tween = TweenMax.to(obj, 3,
-		{
-			curImg: images.length - 1,	// animate propery curImg to number of images 애니메이트 속성 curImg 이미지 수로 이동
+    // init controller init 컨트롤러 1. scrollmagic 컨트롤러생성
+	var controller = new ScrollMagic.Controller();
+
+	// create tween 사이를 만들다. 2. animation object 생성
+	var tween = TweenMax.to(obj, 10,
+    // 몇초동안 - 5
+    {
+			curImg: images.length,	// animate propery curImg to number of images 애니메이트 속성 curImg 이미지 수로 이동
 			roundProps: "curImg",				// only integers so it can be used as an array index 배열 인덱스로 사용할 수 있도록 정수만 사용합니다
-			repeat: 2,									// repeat 3 times 세 번 반복하다
+			repeat: 0,									// repeat 3 times 세 번 반복하다
 			immediateRender: true,			// load first image automatically 첫 번째 이미지 자동 로드
 			ease: Linear.easeNone,			// show every image the same ammount of time 모든 이미지에 동일한 시간을 보여줍니다
 			onUpdate: function () {
@@ -66,18 +64,17 @@
 		}
 	);
 
-	// init controller init 컨트롤러
-	var controller = new ScrollMagic.Controller();
+	
 
 	// build scene 장면을 만들다
-	var scene = new ScrollMagic.Scene({triggerElement: "#trigger",duration: 0})
+	var scene = new ScrollMagic.Scene({triggerElement: "#trigger",duration: '100%'})
 					.setTween(tween)
-					.addIndicators({name : '1'}) // add indicators (requires plugin) 지시자 추가(인디케이터 플러그인)
+					.addIndicators() // add indicators (requires plugin) 지시자 추가(인디케이터 플러그인)
 					.addTo(controller);
 
 	// handle form change  양식 변경을 처리하다
-	$("form.move input[name=duration]:radio").change(function () {
-		scene.duration($(this).val());
-	});
+	// $("form.move input[name=duration]:radio").click(function () {
+	// 	scene.duration(300);
+	// });
 </script>
 </html>
