@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" href="./mypracticeJS/swiper.min.css">
+  <link rel="stylesheet" href="./mypracticeJS/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./mypracticeJS/swiper.css">
+  <script src="./mypracticeJS/swiper.min.js"></script>
+  <script src="./mypracticeJS/swiper-bundle.min.js"></script>
+
+  <style>
+    .swiper {
+      width: 600px;
+      height: 400px;
+      border: 1px solid ;
+    }
+    .swiper-slide {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide">Slide 1</div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+    <div class="swiper-slide">Slide 4</div>
+    <div class="swiper-slide">Slide 5</div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+</div>
+  <script>
+    const swiper = new Swiper('.swiper',{
+      slidesPerView : 3,
+      spaceBetween : 30,
+      navigation: {   // 버튼
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+    })
+
+
+
+      
+     /*  
+
+
+      스와이퍼구조
+        var swiper1 = new Swiper(".mySwiper", {
+        spaceBetween: 30,    // 슬라이드 사이 여백
+
+        slidesPerView : 'auto', // 한 슬라이드에 보여줄 갯수
+        centeredSlides: true,    //센터모드
+        autoplay: {     //자동슬라이드 (false-비활성화)
+          delay: 2500, // 시간 설정
+          disableOnInteraction: false, // false-스와이프 후 자동 재생
+        },
+
+        loop : false,   // 슬라이드 반복 여부
+
+        loopAdditionalSlides : 1,
+
+        // 슬라이드 반복 시 마지막 슬라이드에서 다음 슬라이드가 보여지지 않는 현상 수정
+        pagination: { // 호출(pager) 여부
+          el: ".swiper-pagination", //버튼을 담을 태그 설정
+          clickable: true, // 버튼 클릭 여부
+        },
+        navigation: {   // 버튼
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      }); 
+
+      각종효과
+      
+      freeMode : false, // 슬라이드 넘길 때 위치 고정 여부
+
+      autoHeight : true,  // 현재 활성 슬라이드높이 맞게 높이조정
+
+      a11y : false, // 접근성 매개변수(접근성 관련 대체 텍스트 설정이 가능) 
+
+      resistance : false, // 슬라이드 터치 저항 여부
+
+      slideToClickedSlide : true, // 해당 슬라이드 클릭시 슬라이드 위치로 이동
+
+      allowTouchMove : true, // (false-스와이핑안됨)버튼으로만 슬라이드 조작이 가능
+
+      watchOverflow : true // 슬라이드가 1개 일 때 pager, button 숨김 여부 설정
+
+      slidesOffsetBefore : number, // 슬라이드 시작 부분 여백
+
+      slidesOffsetAfter : number, 
+      
+      참고
+      display:none 시 슬라이드 작동안할시?
+
+      observer: true,
+      observeParents: true,
+      
+      
+      */
+
+  </script>
+</body>
+</html>
